@@ -1,0 +1,11 @@
+{
+	"folders":
+	[
+		{
+		"path":".",
+			"follow_symlinks": true,
+			"file_exclude_patterns":["config.codekit", "*.html", "_Markdown*", "*.acorn", "*.css", "jquery*", "*.command", "*.sublime*"],
+			"folder_exclude_patterns":["logo", "photo", "poster", "signup", "HIDE", "plugins", "cache", "attachments", "teambox", "Michelf", "img", "wireframes", "textsources","svg-sources", "icon", "fonts", "frameworks", "*.oo3"]
+		}
+	]
+}
