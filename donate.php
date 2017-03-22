@@ -52,7 +52,7 @@ include('_header.php'); ?>
   Take a moment to donate — even if it’s just a few dollars — it goes a long way to helping us continue to provide the programs that you love.
 </p>
 <p>
-	Tomorrow Youth Repertory is a registered 501c(3) non-profit organization, and all donations are tax deductible.
+	Tomorrow Youth Repertory is a registered 501c(3) non-profit organization, and all donations are tax deductible. Our EIN/Tax ID is 45-5544176.
 </p>
 
 <p>You can donate any amount online, one-time or monthly, right now:
