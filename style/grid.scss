@@ -1,0 +1,339 @@
+/* -------- GENERAL CSS DECLARATIONS -------- */
+
+/* The big deal that gives us the sizing model that makes all of this possible http://paulirish.com/2012/box-sizing-border-box-ftw/ */
+*,*:before,*:after { -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box }
+
+/* To measure your image in pixels and don't want to include padding and border, the .exact class takes <img> back to content-box sizing. */
+img.exact { -moz-box-sizing:content-box; -webkit-box-sizing:content-box; box-sizing:content-box }
+
+/* Grids are always centered. Not sure if we want to keep the overflow hidden that came from source system. */
+/* display:block to help with images */
+.centered { display:block; margin:0 auto }
+
+/* The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content:" "; display:table }
+.clearfix:after { clear:both }
+
+/* Boxes are display:inline, and then floated left to right or right to left (as declared later) */
+/* Default to 100%, this is mobile-first, and it also makes our media quaries simpler since we only have to declare non-100% values */
+.inlinebox { width:100% } /* Generic definition for 'box' */
+
+.inlinebox { float:left } /* Default is Left to Right; can override with directionRtoL */
+.directionRtoL .inlinebox { float:right } /* Specify normal direction for boxes based on ancestor's direction */
+.inlinebox.opposite { float:right }
+.directionRtoL .inlinebox.opposite { float:left } /* ... and force box to be on opposite side of normal flow */
+
+.fullwidth { width:100% } /* for images, form elements, etc. which should be the full width of their container */
+.nobottom { margin-bottom:0 !important } /* Utility to force an element to have no bottom margin. [If not important, overridden by grid-system's inlinebox selector.] */
+
+// Make sure last paragraph has no bottom margin.
+
+p:last-child, blockquote:last-child {
+	margin-bottom:0;
+}
+
+.position-container { position:relative } /* for position-container of some custom-positioned element */
+
+/* SPECIFIC GRID LAYOUT CHOICES: We probably want to move this into styles.css once we have this decided */
+
+$gutter:   		30px;	// space between columns; divided between left and right
+$gutterpad:		20px;	// Padding for content within a differently-colored background.
+$below:   		30px;   // space below objects; all as margin below.
+$belowimage:	10px;	// Margin below a floated image so that text doesn't get too close bottom edge. (Should we have it for top too?)
+$section: 		3em; 	// space above and below a section (At the bottom, it may accumulate with the box margin unfortunately)
+$minisection:   2em;
+
+$colorbreak:	$section+0.5em;	// For changing background colors between sections.
+$minicolorbreak:$minisection+0.5em;
+
+$mediumwidth:	36em;	// wider is a 'medium' viewport
+$largewidth:	48em;	// wider is a 'large' viewport
+
+$stickywidth1:	36em;	// width at which footer becomes sticky and gets the fixed height below.
+$stickyheight1: 8em;	// Sticky footer height for medium-width viewports; taller to accomodate more lines of text
+
+$stickywidth2:	42em;	// width at which footer becomes sticky and gets the fixed height below.
+$stickyheight2:	7em;	// Sticky footer height
+
+// Values here support $maxwidth
+$columns: 12;
+$colwidth:51px;
+
+//$maxwidth: $columns*$colwidth+($columns - 1)*$gutter + $gutter;	// capped width, page gets no wider than this. Leaving half-a-gutter width on the edge.
+$maxwidth:61em;		// Cast it in em; no way to really do that from SCSS.
+
+/* ==========================================================================
+   Functions
+   ========================================================================== */
+
+@function justBelow($width){
+	@return $width - 0.01em;
+}
+
+/* ==========================================================================
+   General -- Grid System for 'body'
+   ========================================================================== */
+
+/* Gutter Declarations */
+
+.outdented {
+	margin:0 (-$gutter/2); /* Nested row outdents so that columns will line up */
+}
+
+.pullbottom {
+	margin-bottom:-$below; /* Also remove bottom padding introduced by contained inlinebox divs. Usually you want this except for when negative bottom margin screws up stuff below it. */
+}
+
+.inlinebox {
+	padding:0 ($gutter/2); /* Half of gutter on both sides */
+	margin-bottom:$below; /* Vertical space between inlinebox. */
+}
+
+/* Container for no gutter, e.g. for image galleries */
+.nogutter .outdented, .nogutter .pullbottom, .nogutter .inlinebox {
+	margin:0;
+}
+.nogutter .inlinebox {
+	padding:0;
+}
+
+/* These work as I'd want for things like images with a fixed size -- not the grid, which deals in percentages. */
+
+// Idea: What about a class that floats in medium and large screen, but is centered and not floated on a small screen?
+// Perhaps we could combine classes.  class="floated small-block" means it's small so it can float even on small screens
+// floated medium-block = floated on medium & large screens; not floated on small screens
+// floated large-block = floated only on large screens.
+// default floated would be that you aren't caring about responsiveness, so same as floated small, meaning always floated?
+// maybe don't even bother with 'small' since that is essentially a noop?
+
+// BE CAREFUL ABOUT THE ORDER THAT THESE ARE DECLARED SO THAT THE OVERRIDES ARE DONE CORRECTLY.
+// DO NOT COALESCE WILLY-NILLY AS THIS MAY BREAK THE PRECEDENCE!
+
+// Is there a way to do this in Sass, e.g. abstract declarations for left and right, tight and normal?
+
+.floated {
+	/* Default is direction Left to Right */
+	clear:left;
+	float:left;
+	margin:0 $gutter $belowimage 0;
+	// Leave a side margin that's equivalent to the gutter width
+	// leave a small margin below also, so that text doesn't get too close
+}
+.floated-tight {
+	/* Default is direction Left to Right */
+	clear:left;
+	float:left;
+	margin:0 $gutter/2 $belowimage 0;
+	// Leave a side margin that's equivalent to the gutter width
+	// leave a small margin below also, so that text doesn't get too close
+}
+
+.directionRtoL .floated {
+	float:right;
+	margin:0 0 $belowimage $gutter;
+}
+.directionRtoL .floated-tight {
+	float:right;
+	margin:0 0 $belowimage $gutter/2;
+}
+
+.floated.opposite {
+	clear:right;
+	float:right;
+	margin:0 0 $belowimage $gutter;
+}
+.floated-tight.opposite {
+	float:right;
+	margin:0 0 $belowimage $gutter/2;
+}
+
+.directionRtoL .floated.opposite {
+	clear:left;
+	float:left;
+	margin:0 $gutter $belowimage 0;
+}
+.directionRtoL .floated-tight.opposite {
+	float:left;
+	margin:0 $gutter/2 $belowimage 0;
+}
+
+
+// All of the above definitions for floating then get undone when the screen is too narrow to float the image!
+// a "small-block floated"  image means it can float on all screen sizes.  We make it a bit bigger on small screens.
+// a "medium-block floated" image means it's too big to be floated on small screens
+// a "large-block floated"  image meand it's too big to be floated on small or medium screens.
+
+ .small-block  { display:block; max-width:25%;}
+.medium-block  { display:block; max-width:33.33%; }
+ .large-block  { display:block; max-width:50%; }
+  .full-block  { display:block; max-width:100% }
+
+@media only screen and (max-width:justBelow($mediumwidth)) {
+	// When the screen is small, any "small-block" will be shown at 50% width so it's not TOO small.
+	.small-block
+	{
+		max-width:50%;
+	}
+	// When the screen is small, any "medium-block" will be shown the full width.
+	.medium-block
+	{
+		max-width:100%;
+	}
+	// When the screen is small, then any "floated medium-block" image will instead be shown centered, not floated.
+	.floated.medium-block {
+		float:none;
+		margin:0 auto $belowimage auto;
+	}
+}
+
+@media only screen and (max-width:justBelow($largewidth)) {
+	// When the screen is medium (or small), then any "large-block" image will instead be shown the full width
+	.large-block {
+		max-width:100%;
+	}
+	// When the screen is medium (or small), then any "floated large-block" image will instead be shown centered, not floated.
+	.floated.large-block {
+		float:none;
+		margin:0 auto $belowimage auto;
+	}
+}
+
+.inlinebox.floated.opposite {
+	margin-left:($gutter/2); /* Only need half-gutter width */
+}
+
+.directionRtoL .inlinebox.floated.opposite {
+	margin-right:($gutter/2); /* Only need half-gutter width */
+}
+
+/* Can a "floated" inlinebox have its own special margins? */
+
+// OTHER
+
+.sidebar {
+	padding: 1px $gutterpad $gutterpad $gutterpad;		/* Why 1px top padding? */
+	margin-bottom: $gutterpad/2;
+}
+
+
+
+// ------------------ WIDTH MANAGEMENT ------------------
+
+.capped-width {
+	margin:0 auto;
+	max-width:$maxwidth; /* Wide viewports, don't let liquid layout get too wide */
+}
+
+/* TODO: I would like to have a full gutter's left/right margin, not half-gutter's worth, so I should improve this. */
+
+/* TODO: It would be nice if all groups could have a negative margin equivalent to inline box, so that there isn't extra space below allocated */
+
+// ------------------ SECTION VERTICAL SPACING ------------------
+
+// This is styling for a <section>.  Might or might not have a color break!
+
+section {
+	padding-top:$section; /* No bottom padding; already handled by boxes */
+	clear:both;
+
+	@media only screen and (max-width:justBelow($mediumwidth)) {
+		padding-top:$minisection;
+	}
+}
+
+
+
+// These handle section color breaks, taking advantage of the fact that a the top and bottom
+// of <section>s within a single color block can be addressed via first-child and last-child.
+//
+section:first-child {
+	padding-top:$colorbreak;
+
+	@media only screen and (max-width:justBelow($mediumwidth)) {
+		padding-top:$minicolorbreak;
+	}
+
+}
+section:last-child {
+	padding-bottom:($colorbreak);
+
+	@media only screen and (max-width:justBelow($mediumwidth)) {
+		padding-bottom:$minicolorbreak;
+	}
+}
+
+// Keeping boxes the same height
+// Not using display:table-cell since that ends up being very complicated with our nesting
+// So use kludgeyer but functioning negative margin trick.
+//
+//
+// NOT ACTUALLY USED.  WE DO USE JAVASCRIPT FOR MORE COMPLEX ISSUES.
+//
+//
+.same-height-container {
+	overflow:hidden;
+}
+.same-height {
+	padding-bottom:1000px;
+	margin-bottom:-1000px;
+}
+
+// ------------------ FOOTER ------------------
+
+/* The height, and also the minimum width, are both designer-defined here. */
+
+
+@media only screen and (min-width:$stickywidth1) {
+	.Footer-Container {
+		height:$stickyheight1; /* only when footer is sticky */
+	}
+
+	html, body, .outside-sticky-footer { /* Every div enclosing needs to be 100% or the thing falls apart. So can we eliminate any nested divs? */
+		height:100%;
+	}
+
+	.contain-sticky-footer {
+		min-height:100%;
+		display:table;
+		height:100%;
+	}
+
+	.before-sticky-footer {
+		overflow:auto;
+		padding-bottom:$stickyheight1;
+	}
+
+	.sticky-footer {
+		position:relative;
+		margin-top:-$stickyheight1;
+		clear:both;
+	}
+}
+
+/* Wider breakpoint to make footer less tall. Overrides above. */
+@media only screen and (min-width:$stickywidth2) {
+	.Footer-Container {
+		height:$stickyheight2;
+	}
+	.before-sticky-footer {
+		padding-bottom:$stickyheight2;
+	}
+
+	.sticky-footer {
+		margin-top:-$stickyheight2;
+	}
+}
+
+// Debugging
+
+// .pullbottom { background: linear-gradient(to right, rgba(0,0,0,1.0) 0%,rgba(0,0,0,0) 100%) !important;  }
+// .outdented { background: rgba(0,0,255,0.5); }	// Blue helps us identify outdented content
+// section { background:rgba(0,0,0,0.10) }			// Section itself (and padding) slightly gray
+// section > * { background:rgba(0,0,128,0.10) }		// Everything contained in a section slightly blue
+// .inlinebox { background:rgba(255,0,0,0.30) }		// "boxes" pink
+// p { background:rgba(255,255,0,0.5) }				// Paragraphs somewhat yellow
+
+// img { background:rgba(255,255,255,0.25) }			// whiten image backgrounds
+// section { border-top:1px solid red; }
+// div { border-top:1px solid orange; }
+// p { border-top: 1px solid cyan; }

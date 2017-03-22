@@ -1,0 +1,871 @@
+// import bourbon framework
+@import "bourbon";
+
+// ---------------------------
+// -------- Variables --------
+
+$type-color: #333;
+$type-color-inverse: #fff;
+$type-footer: #838383;
+
+$text-link-color: #0098ba;
+
+$beige: #ece9e2;
+$purple: #7f2b51;
+$lightgray: #e0e0e0;
+$darkgray: #303030;
+$bright-green: #85b22a;
+$green: #648c52;
+$gray: #aaa;
+$green-type: #5e8d00;
+$red: #b2402a;
+$blue: #579aa9;
+$orange: #ffCC77;
+$form-textfield-background: #faf7f0;
+
+// Type
+$type-family: 'Droid Serif', serif;
+$title-family:'Homenaje',sans-serif;
+
+$h1-size: 3.75em; //60px/16px
+$h1-weight: 400;
+$h1-line-height: 1em; //60px/60px
+
+$h2-size: 3em; //48px/16px
+$h2-weight: 700;
+$h2-line-height: 1em; //48px/48px
+
+$h3-size: 1.75em;
+$h3-weight: 400;
+$h3-line-height: 1.25em; //40px/32px
+
+$h4-size: 1.5em;
+$h4-weight: 600; //semibold
+$h4-line-height: 1.5em;
+
+$p-size: 1.125em; //18px/16px
+$p-weight: 400;
+$p-line-height: 1.455em; //28px/16px - 1.75em = 28px but rendering too wide
+
+$sidebar-type-size: 1em; //16px/16px
+
+$small-type: 0.875em; //14px/16px
+$small-type-line-height: 1.42857143em; //20px/14px
+
+
+$card-radius:16px;
+
+// -------- End Variables --------
+// -------------------------------
+
+
+// ------------ Reset  -----------
+// -------------------------------
+
+
+// We may want to bring in more fixes from git.io/normalize
+// /* We may want to get more useful stuff out of ZURB's foundation normalize.css */
+
+// Basic reset
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+//Screws up slider
+// ul, ol {
+// 	margin-left:1.5em;
+// 	line-height: $p-line-height;
+// }
+
+// -----------------------------------------------------------------------------------------------
+// From HTML5Boilerplate; accessible text.
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+.hidden {
+	display:none;
+}
+
+
+// ------------ Blocks -----------
+// -------------------------------
+
+.white-block {
+	background-color: white;
+}
+
+.lightgray-block {
+	background-color: $lightgray;
+}
+
+.black-block {
+	background-color: black;
+}
+
+.darkgray-block {
+	background-color: $darkgray;
+}
+
+.blue-block {
+	background-color: $blue;
+}
+.orange-block {
+	background-color: $orange;
+}
+
+
+.gray-block {
+	background-color: $gray;
+}
+
+// -------- typography ---------
+
+body {
+	color: $type-color;
+	background-color: white;
+	font-size: 100%;
+	font-family: $type-family;
+	font-weight: $p-weight;
+}
+
+strong, b {
+	font-weight: $h4-weight;
+}
+em, i {
+	font-style:italic;
+}
+
+h1 {
+	font-family:$title-family;
+	color: $type-color;
+	font-size: $h1-size;
+	font-weight: $h1-weight;
+	line-height: $h1-line-height;
+	margin-bottom: $h1-size / 8;
+	letter-spacing: 0;
+}
+
+h2 {
+	color: $type-color;
+	font-size: $h2-size;
+	font-weight: $h3-weight;
+	line-height: $h3-line-height;
+	margin-bottom: $h2-size / 3 !important;
+}
+
+
+h3 {
+	color: $type-color;
+	font-size: $h3-size;
+	font-weight: $h3-weight;
+	line-height: $h3-line-height;
+	margin-bottom: $h3-size / 2 !important;
+}
+
+
+h4 {
+	color: $type-color;
+	font-size: $h4-size;
+	font-weight: $h4-weight;
+	line-height: $h4-line-height;
+	margin-bottom: $h4-size / 2;
+}
+
+
+h5 {
+	color: $type-color;
+	font-size: $sidebar-type-size;
+	font-weight: $h4-weight;
+	line-height: $p-line-height;
+	margin-bottom: 0;
+}
+
+p {
+	font-size: $p-size;
+	font-weight: $p-weight;
+	line-height: $p-line-height;
+	margin-bottom: $p-size;
+	color: lighten($type-color, 6%);
+}
+
+// -------- Buttons ---------
+
+
+.button
+{
+	background:$green;
+	color:white !important;
+	padding:0.25em 1em;
+	border-radius:4px;
+	text-decoration:none;
+
+	&:hover
+	{
+		text-decoration:none;
+		background:lighten($green, 10%);
+		color:white;
+	}
+	&:active
+	{
+		text-decoration:none;
+		background:darken($green, 10%);
+		color:white;
+	}
+}
+
+.blue-block {
+	.button {
+		background:$purple;
+	}
+}
+
+// -------- Cards ---------
+
+// Social media icons from http://www.designkindle.com/2011/10/27/socialis/
+
+$social-padding:0.15em;
+
+.card-action
+{
+	margin-top:1.5em;
+	float:left;
+}
+.social
+{
+	width:100%;
+	margin-top:1em;
+	text-align:right;
+	margin-right:-$social-padding;
+
+	a
+	{
+		padding:$social-padding;
+	}
+}
+
+// Special Options
+
+// If there is a logo, we don't want to also show the title (but it should be there for the search engines)
+.logo-hides-title {
+	@extend .visuallyhidden;
+}
+
+.logo-card img { padding:1em; }
+
+
+
+a.card-anchor
+{
+	color:black;
+	text-decoration:none;
+	display:block;
+
+}
+// The components of the cards
+
+// Caption is placed above a photo, on the bottom left.
+
+.card-caption, .card-date
+{
+	font-size:0.8em;
+	padding:0.5em;
+	line-height:1.3;
+	position:absolute;
+	bottom:0;
+}
+.card-caption
+{
+	width:55%;
+	left:0.5em;
+}
+.card-date
+{
+	width:45%;
+	right:0.5em;
+	text-align:right;
+}
+
+.card-text {
+	padding:1em;
+	line-height:1.5;
+}
+
+
+.card-title {
+	font-family:$title-family;
+	font-size:1.6rem;
+	color:white;
+	text-shadow: 1px 2px 2px rgba(0, 0, 0, 1.0);
+	padding:0.25em 0.5em;
+	width:100%;
+
+	.suffix {
+		text-transform:uppercase;
+		font-size:50%;
+		color:rgba(255,255,255,0.6);
+		text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.25);
+	}
+}
+
+// "Later" cards get a distinctive background image.
+
+.later-gradient
+{
+	background-image: -webkit-linear-gradient(bottom, rgb(235,246,255) 25%, rgb(255,255,255) 63%, rgb(240,240,240) 92%);
+	background-image:         linear-gradient(bottom, rgb(235,246,255) 25%, rgb(255,255,255) 63%, rgb(240,240,240) 92%);
+}
+
+// A card is either a photo-card or a logo-card or a text-card.  Text card means absolutely positioned bottom info; image means info goes below image.
+
+.logo-card, .photo-card
+{
+	.card-title {
+		position:absolute;
+		top:0; left:0;
+		z-index:1;
+	}
+}
+
+.logo-card img
+{
+	max-height:12em;
+	display:block;
+	margin:0 auto;
+	max-width:100%;
+}
+
+
+.photo-card, .equalize-past
+{
+	overflow:hidden;		// trying to prevent whole card from expanding when image is larger...
+	width:100%;
+	height:0;
+	padding-bottom: 56.25%; /* 16:9 ratio */
+	position:relative;
+}
+
+.photo-card
+{
+	.card-caption, .card-date
+	{
+		color:white;
+		text-shadow: 0px 0px 4px black;	// create a little glow behind it in case it's light background
+	}
+
+	img
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	-webkit-transition: all 1s ease;
+	   -moz-transition: all 1s ease;
+	     -o-transition: all 1s ease;
+	    -ms-transition: all 1s ease;
+			transition: all 1s ease;
+	}
+
+	img:hover {
+		-webkit-transform: scale(1.1);
+		-ms-transform: scale(1.1);
+		transform: scale(1.1);
+
+		-webkit-transform-origin:50% 50%;
+		-ms-transform-origin:50% 50%;
+		transform-origin:50% 50%;
+	}
+}
+
+.text-card, .logo-card
+{
+	border:1px solid gray;
+
+	.card-title
+	{
+		background-color:rgba(100,0,0,0.5);
+	}
+
+	img { margin-bottom:1.5em; }		// room for caption
+}
+.photo-card
+{
+	border:1px solid black;
+}
+
+.show-card, .event-card
+{
+	background:white;
+	min-height:11em;
+	position:relative;
+}
+
+a.stealth
+{
+	text-decoration:none!important;
+	color:black!important;
+}
+
+
+// Distinct looks for shows and events
+
+.show-card {
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+
+	.current-event &:hover, .current-show &:hover {
+		box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+	}
+
+}
+
+.event-card {
+	border-radius: $card-radius;
+	top:-5px;
+	box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.5);
+
+  -webkit-transition: -webkit-transform 1s ease;
+     -moz-transition: -moz-transform 1s ease;
+       -o-transition: -o-transform 1s ease;
+      -ms-transition: -ms-transform 1s ease;
+          transition: transform 1s ease;
+
+	.card-title
+	{
+		border-top-left-radius:  $card-radius - 1;
+		border-top-right-radius: $card-radius - 1;
+	}
+	img
+	{
+		border-radius:$card-radius - 2;
+
+	}
+
+}
+
+
+.footer-innards
+{
+	margin-top:1em;
+}
+
+
+// ------------------  BLOCKS --------
+
+.black-block, .blue-block, .gray-block {
+	h1, h2, h2, h2.big-headline, h3, h4, p, label, table {
+		color: $type-color-inverse;
+	}
+}
+
+.white-block {
+	h1, h2, h3, h4, p, label, table {
+		color: $type-color; // In case we nest within a darker block, we need to set color back
+	}
+}
+
+
+// COLORS
+
+
+.red-type {
+	color: $red;
+}
+
+.green-type {
+	color: $green-type;
+}
+
+
+
+// -------- text ::links ---------
+
+a:link, a:visited {
+	color: $text-link-color;
+	text-decoration: none;
+}
+
+a:hover, a:active {
+	color: darken($text-link-color,10%);
+	text-decoration: underline;
+}
+
+.black-block, .blue-block, .gray-block {
+	a:link, a:visited {
+		color: desaturate(lighten($text-link-color,30%),50%);
+	}
+}
+
+.black-block, blue-block {
+	a:hover, a:active {
+		color: lighten(desaturate(lighten($text-link-color,30%),50%),10%);
+	}
+}
+
+.blue-block, .gray-block {
+	a:link, a:visited {
+		color: lighten($text-link-color,50%);
+	}
+}
+
+.blue-block, .gray-block {
+	a:hover, a:active {
+		color: lighten(lighten($text-link-color,35%),10%);
+	}
+}
+
+// change a headline link back to standard text colour
+a.covert-link:link, a.covert-link:visited {
+	color: $type-color;
+}
+
+a.covert-link:hover, a.covert-link:active {
+	color: darken($text-link-color,10%);
+}
+
+// covert links for headlines used in colored blocks
+.blue-block, .gray-block {
+	h1, h2, h2.big-headline, h3, h4 {
+		a.covert-link:link, a.covert-link:visited {
+			color: $type-color-inverse;
+		}
+
+	}
+}
+
+.black-block, .blue-block, .gray-block {
+	h1, h2, h2.big-headline, h3, h4 {
+		a.covert-link:hover, a.covert-link:active {
+			text-decoration: underline;
+		}
+
+	}
+}
+
+
+
+
+// -------- forms ---------
+
+#{$all-text-inputs}, textarea {
+	min-width: 7.5em;
+	font: 1em $type-family;
+	padding: 0.4em;
+	border: 1px solid #ccc;
+}
+
+select {
+	font: 1em $type-family;
+}
+
+textarea {
+	font: 1em $type-family;
+}
+
+
+input[type="submit"] {
+	border:none;
+	-webkit-appearance: none;
+	font: 1em $type-family;
+}
+
+
+.basic-input {
+	color: lighten($type-color,30%);
+	background-color: $form-textfield-background;
+	border: 1px solid $form-textfield-background;
+	padding: 8px 12px;
+}
+
+.dark-input {
+	font: 1em $type-family;
+	color: lighten($type-color,30%);
+	background-color: $beige;
+	border: 1px solid $beige;
+	padding: 8px 12px;
+}
+
+.basic-input:focus, .dark-input:focus {
+	border: 1px solid darken($beige,25%);
+}
+
+// add this class to tables being used to lay out forms
+.form-table {
+	width:100%;
+	border-collapse: inherit;
+	border-spacing: 1em;
+}
+
+.form-table th {
+	text-align: right;
+}
+
+label {
+	margin-bottom: 0.5em;
+}
+
+
+
+
+
+.upperize { text-transform:uppercase }
+
+img { -ms-interpolation-mode: bicubic }
+
+/**
+ * Prevent iOS text size adjust after orientation change, without disabling user zoom.
+ */
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/* Some defaults from HTML5Boilerplate */
+
+// It would be nice to set text-shadow:none in ::-moz-selection and ::selction, but then you lose your highlight color completely!  So don't do this.
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+    vertical-align: middle;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+.snapshot {
+	border:8px solid white;
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+	margin-bottom:0.5em !important;
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+        border-color: black !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+	a[href^=http]:after {
+        content: " (" attr(href) ")";
+        word-wrap:break-word;
+    }
+
+    a.button:after {
+        content: "";
+    }
+
+	a[href^="#"]:after {
+   		content: "";
+	}
+
+	.small-button, .large-button
+	{
+		border:1px dotted black;
+	}
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    a:after > img {
+		content: "";
+	}
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+}
+
+#page-home a.page-home	// Like disabled links, but keep it blue
+{
+	cursor:default;		// Don't make it seem clickable
+	pointer-events: none;
+	text-decoration: none;
+}
+
+#page-donate	li.page-donate a,
+#page-about		li.page-about a,
+#page-staff		li.page-staff a,
+#page-archives	li.page-archives a,
+#page-volunteer	li.page-volunteer a,
+#page-upcoming	li.page-upcoming a,
+{
+	color: #7c7979;		// Gray; shows we are there and it's not clickable
+	cursor:default;		// Don't make it seem clickable
+	pointer-events: none;
+	text-decoration: none;
+}
+
+.youtube-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; max-width: 100%; height: auto; }
+.youtube-container iframe, .youtube-container object, .youtube-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+.glowing {
+	box-shadow:0 0 20px rgba(255,255,255,0.3);
+}
+.miniicon { float:right; padding:8px 4px 0 8px; height:40px; margin-bottom:0; }
+
+// Media Queries.  Shrink down the headers by one level for medium; two levels for small screen
+
+@media only screen and (max-width:35.99em) {
+	h1 { font-size: $h1-size * 0.55; }
+	h2 { font-size: $h2-size * 0.7; }
+	h3 { font-size: $h3-size * 0.8; }
+	p { font-size: $p-size * 0.9 ; }
+	.footer-list { font-size: $p-size * 0.8; }
+	footer { font-size: 80%; }
+}
+
+@media only screen and (min-width:36em) and (max-width:51em) {
+	h1 { font-size: $h1-size * 0.8; }
+	h2 { font-size: $h2-size * 0.8; }
+	h3 { font-size: $h3-size * 0.8; }
+	p { font-size: $p-size * 0.9 ; }
+	.footer-list { font-size: $p-size * 0.8; }
+}
+
+/* Responsive iFrame */
+
+.responsive-iframe-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.responsive-iframe-container iframe,
+.vresponsive-iframe-container object,
+.vresponsive-iframe-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-holder {
+	padding:0 5px;	// Images are 966 *2 = 1932, so we want 966 width
+}
+
+.bxslider img, .bxslider .video {
+	display:none;
+}
+ul.bxslider  {
+	list-style-type:none;
+}
