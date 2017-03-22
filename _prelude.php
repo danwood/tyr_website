@@ -516,11 +516,11 @@ Note: If we are past last date, then it's arechive (or hide)
 				$mediaURL = '';		// Hey, it BETTER be here!
 				if ($this->shouldShowPhoto())
 				{
-					$mediaURL = $urlBase . 'photo/' . $this->photoFilename;
+					$mediaURL = $urlBase . 'shows/photo/' . $this->photoFilename;
 				}
 				else if ($this->shouldShowLogo())
 				{
-					$mediaURL = $urlBase . 'logo/' . $this->logoFilename;
+					$mediaURL = $urlBase . 'shows/logo/' . $this->logoFilename;
 				}
 				echo '<a target="_blank" href="http://www.pinterest.com/pin/create/button/?url=' . urlencode($this->link())
 				. '&amp;media=' . urlencode($mediaURL)
@@ -764,19 +764,19 @@ Note: If we are past last date, then it's arechive (or hide)
 
 		if ($this->shouldShowLogo())
 		{
-			echo '<img src="' . $root . 'logo/' . htmlspecialchars($this->logoFilename) . '" '
+			echo '<img src="' . $root . 'shows/logo/' . htmlspecialchars($this->logoFilename) . '" '
 				. 'alt = "' . htmlspecialchars($this->title . ' Logo') . '" />' . PHP_EOL;
 		}
 		else if ($this->shouldShowPhoto())
 		{
-			echo '<img src="' . $root . 'photo/' . htmlspecialchars($photoFilename) . '" '
+			echo '<img src="' . $root . 'shows/photo/' . htmlspecialchars($photoFilename) . '" '
 				. 'alt = "' . htmlspecialchars($this->title . ' Photo') . '" />' . PHP_EOL;
 		}
 		else	// Text card, but might have mini-logo in corner
 		{
 			if ($this->isBackstageCamp() && $this->logoFilename)
 			{
-				echo '<img class="miniicon" src="' . $root . 'logo/' . htmlspecialchars($this->logoFilename) . '" '
+				echo '<img class="miniicon" src="' . $root . 'shows/logo/' . htmlspecialchars($this->logoFilename) . '" '
 					. 'alt = "' . htmlspecialchars($this->title . ' Logo') . '" />' . PHP_EOL;
 			}
 			if ($this->isPastEvent() && !$this->shouldShowPhoto())
@@ -980,7 +980,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 					$att = trim($att);
 					if ($att)
 					{
-						echo '<p><a href="signup/' . htmlspecialchars(rawurlencode($att)) . '">';
+						echo '<p><a href="shows/signup/' . htmlspecialchars(rawurlencode($att)) . '">';
 
 						$attachment = $att;
 						$extension = strtolower(pathinfo($attachment, PATHINFO_EXTENSION));
@@ -1024,7 +1024,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 				//
 				if ($this->signupAttachment)
 				{
-					echo '<p><a href="signup/' . htmlspecialchars(rawurlencode($this->signupAttachment)) . '">';
+					echo '<p><a href="shows/signup/' . htmlspecialchars(rawurlencode($this->signupAttachment)) . '">';
 
 					$extension = strtolower(pathinfo($this->signupAttachment, PATHINFO_EXTENSION));
 					$iconfilename = 'teambox/' . $extension . '.png';
@@ -1103,7 +1103,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 		if ($this->publicityAttachment)
 		{
 			echo '<p><b><i>Help get the word out!</i></b> Download this file and print it out, or email to your friends!</p>' . PHP_EOL;
-			echo '<p><a href="poster/' . htmlspecialchars(rawurlencode($this->publicityAttachment)) . '">';
+			echo '<p><a href="shows/poster/' . htmlspecialchars(rawurlencode($this->publicityAttachment)) . '">';
 
 			$extension = strtolower(pathinfo($this->publicityAttachment, PATHINFO_EXTENSION));
 			$iconfilename = 'teambox/' . $extension . '.png';
@@ -1151,7 +1151,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 					echo '<meta name="twitter:card" content="gallery">' . PHP_EOL;
 					for ($i = 0 ; $i < $photoCount ; $i++)
 					{
-						echo '<meta name="twitter:image' . $i . '" content="' . $urlBase . 'photo/' . $matches[1] . ($i+1) . '.' . $matches[3] . '">' . PHP_EOL;
+						echo '<meta name="twitter:image' . $i . '" content="' . $urlBase . 'shows/photo/' . $matches[1] . ($i+1) . '.' . $matches[3] . '">' . PHP_EOL;
 					}
 				}
 			}
@@ -1159,12 +1159,12 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 			if ($photoCount == 1)	// Only 1? OK, do it here as a photo card.
 			{
 				echo '<meta name="twitter:card" content="photo">' . PHP_EOL;
-				echo '<meta name="twitter:image" content="' . $urlBase . 'photo/' . $photoFilename . '">' . PHP_EOL;
+				echo '<meta name="twitter:image" content="' . $urlBase . 'shows/photo/' . $photoFilename . '">' . PHP_EOL;
 				// <meta name="twitter:image:width" content="610">
 				// <meta name="twitter:image:height" content="610">
 			}
 			// Facebook only one photo, so just take the last (highest number) one, which is $photoFilename
-			echo '<meta property="og:image" content="' . $urlBase . 'photo/' . $photoFilename . '">' . PHP_EOL;
+			echo '<meta property="og:image" content="' . $urlBase . 'shows/photo/' . $photoFilename . '">' . PHP_EOL;
 			// <meta property="og:image:type" content="image/png">
 			// <meta property="og:image:width" content="1024">
 			// <meta property="og:image:height" content="1024">
@@ -1175,8 +1175,8 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 			$logo = $this->logoFilename;
 			if ($logo)
 			{
-				echo '<meta name="twitter:image" content="' . $urlBase . 'logo/' . $logo .  '">' . PHP_EOL;
-				echo '<meta property="og:image" content="' . $urlBase . 'logo/' . $logo . '">' . PHP_EOL;
+				echo '<meta name="twitter:image" content="' . $urlBase . 'shows/logo/' . $logo .  '">' . PHP_EOL;
+				echo '<meta property="og:image" content="' . $urlBase . 'shows/logo/' . $logo . '">' . PHP_EOL;
 			}
 		}
 

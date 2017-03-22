@@ -221,7 +221,7 @@ foreach ($eventsForRSS as $event)
 				}
 			}
 
-			$imgURL = $urlBase . 'photo/' . $photoFilename;
+			$imgURL = $urlBase . 'shows/photo/' . $photoFilename;
 
 		}
 		if ($imgURL)
