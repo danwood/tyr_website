@@ -6,22 +6,23 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
+	// Page loaded from form submission; login or logout.
 	if (isset($_POST['password']))
 	{
-		$password = trim(strtolower($_POST['password']));
-		$authenticated = ($password == 'XXX');
-		if ($authenticated)
-		{
-			$_SESSION['authenticated'] = 1;
-		}
+		// if password matches, login by setting local variable and session variable.
+
+		$password = trim($_POST['password']);
+		$authenticated = $_SESSION['authenticated'] = ($password == 'XXX');
 	}
 	else
 	{
-		$authenticated = isset($_SESSION['authenticated']) && $_SESSION['authenticated'] = 1;
+		// no password given; log out, resetting local variable and session variable.
+		$authenticated = $_SESSION['authenticated'] = 0;
 	}
 }
 else
 {
+	// Standard page load; get value of $authenticated from session variable.
 	$authenticated = isset($_SESSION['authenticated']) && $_SESSION['authenticated'] = 1;
 }
 
@@ -61,7 +62,33 @@ include('_header.php'); ?>
 						<section id="volunteer" class="clearfix capped-width">
 							<div class="inlinebox">
 
+<?php
+if ($authenticated) {
+?>
+<form id="uploader" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 
+<p>
+  <input id="submit" type="submit" value="Logout" />
+</p>
+
+</form>
+
+<?php
+} else {
+?>
+<form id="uploader" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+<p>
+Login with password: <input type="text" name="password" />
+</p>
+<p>
+	<input id="submit" type="submit" value="Login" />
+</p>
+
+</form>
+
+<?php
+}
+?>
 
 
 							</div>
