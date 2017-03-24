@@ -2,3 +2,5 @@
 *.sublime-workspace
 
 cache/cache.0.csv
+
+tyr.sqlite3
