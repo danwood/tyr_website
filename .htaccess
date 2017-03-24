@@ -1,11 +1,12 @@
 # TEMP FOR LOCAL STAGING, UNTIL I COME UP WITH BETTER PHP -> HTML LOADING
+# TEMP -- I COMMENTED OUT THE suPHP_ConfigPath
 
 RewriteEngine On
 RewriteRule    ^(.+)\.html$    $1.php    [NC,L]
 
 # Use a local configuration for PHP to allow ‘exec’ to be used (for image processing)
 # --- PAY ATTENTION TO PATH; DIFFERENT BETWEEN STAGING AND PUBLIC SITE
-suPHP_ConfigPath /home/ichgof/public_html
+# suPHP_ConfigPath /home/ichgof/public_html
 
 # Set a header to help Internet Explorer know this is a modern site. Done here instead of a meta tag, to avoid w3c validation warnings
 Header set X-UA-Compatible "IE=edge,chrome=1"
