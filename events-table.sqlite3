@@ -1,0 +1,18 @@
+----
+-- phpLiteAdmin database dump (http://www.phpliteadmin.org/)
+-- phpLiteAdmin version: 1.9.7.1
+-- Exported: 11:17pm on March 24, 2017 (UTC)
+-- database file: tyr.sqlite3
+----
+BEGIN TRANSACTION;
+
+----
+-- Drop table for events
+----
+DROP TABLE IF EXISTS "events";
+
+----
+-- Table structure for events
+----
+CREATE TABLE 'events' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'title' TEXT, 'suffix' TEXT, 'infoIfNoLogo' TEXT, 'descriptionBefore' TEXT, 'logoFilename' TEXT, 'photoFilename' TEXT, 'photoCredits' TEXT, 'type' INTEGER, 'signupDetails' TEXT, 'whoCanGo' TEXT, 'signupAttachment' TEXT, 'performanceInfo' TEXT, 'howTheShowWent' TEXT, 'castList' TEXT, 'sharedCast' BOOLEAN, 'tuition' TEXT, 'ticketURL' TEXT, 'photoURL1' TEXT, 'photoURL2' TEXT, 'publicityAttachment' TEXT, 'auditionLocation' TEXT, 'auditionPrepare' TEXT, 'classDays' TEXT, 'startTime' TEXT, 'endTime' TEXT, 'announceDate' DATETIME, 'signupStartDate' DATETIME, 'auditionDateTime1' DATETIME, 'auditionDateTime2' DATETIME, 'callbackDateTime' DATETIME, 'signupEndDate' DATETIME, 'rehearsalStartDate' DATETIME, 'ticketSaleDate' DATETIME, 'showFirstDate' DATETIME, 'showLastDate' DATETIME);
+COMMIT;
