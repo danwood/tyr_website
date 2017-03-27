@@ -42,7 +42,7 @@ foreach ($pastEvents as $event)
 		$lastYearShown = $year;
 		echo '<h3 style="clear:both">' . $year . '</h3>';
 	}
-echo '<div class="inlinebox past" id="BEFORE_' . $event->id() . '">' . PHP_EOL;
+echo '<div class="inlinebox past" id="THECARD_' . $event->id() . '">' . PHP_EOL;
 $event->outputEventCard();
 echo "</div>\n";
 }

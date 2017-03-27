@@ -114,10 +114,10 @@ include('_header.php'); ?>
 foreach ($currentShows as $event)
 {
 	echo '<div class="clearfix outdented">' . PHP_EOL;
-	echo '<div class="inlinebox card" id="BEFORE_' . $event->id() . '">' . PHP_EOL;
+	echo '<div class="inlinebox card" id="THECARD_' . $event->id() . '">' . PHP_EOL;
 	$event->outputEventCard(FALSE, FALSE);
 	echo "</div>\n";
-	echo '<div class="inlinebox info" id="BEFORE_' . $event->id() . '_info">' . PHP_EOL;
+	echo '<div class="inlinebox info" id="THECARD_' . $event->id() . '_info">' . PHP_EOL;
 	$event->outputEventCurrentBlurb();
 
 	// Special case for Romeo and Juliet
@@ -139,10 +139,10 @@ foreach ($currentShows as $event)
 foreach ($currentOther as $event)
 {
 	echo '<div class="clearfix outdented">' . PHP_EOL;
-	echo '<div class="inlinebox card" id="BEFORE_' . $event->id() . '">' . PHP_EOL;
+	echo '<div class="inlinebox card" id="THECARD_' . $event->id() . '">' . PHP_EOL;
 	$event->outputEventCard(FALSE, FALSE);
 	echo "</div>\n";
-	echo '<div class="inlinebox info" id="BEFORE_' . $event->id() . '_info">' . PHP_EOL;
+	echo '<div class="inlinebox info" id="THECARD_' . $event->id() . '_info">' . PHP_EOL;
 	$event->outputEventCurrentBlurb();
 	echo "</div>\n";
 	echo "</div>\n";
@@ -239,7 +239,7 @@ function getParameterByName(name) {
 
 $(window).load(function() {
   var id = getParameterByName('id');
-	if (id.length) $('html, body').animate({ scrollTop: $('#BEFORE_' + id).offset().top }, 500);
+	if (id.length) $('html, body').animate({ scrollTop: $('#THECARD_' + id).offset().top }, 500);
 });
 
 

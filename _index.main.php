@@ -33,7 +33,7 @@ if (count($currentShows) > 0)
 	{
 		// FIXME: Have a way to show video on Romeo and Juliet, anything else with a video
 
-		echo '<div class="inlinebox current-show" id="BEFORE_' . $event->id() . '">' . PHP_EOL;
+		echo '<div class="inlinebox current-show" id="THECARD_' . $event->id() . '">' . PHP_EOL;
 		$event->outputEventCard(TRUE, TRUE);
 		echo "</div>\n";
 	}
@@ -65,7 +65,7 @@ if (count($currentOther) > 0)
 	foreach ($currentOther as $event)
 	{
 if ($staging) error_log("... Current ... " . $event->title());
-		echo '<div class="inlinebox current-event" id="BEFORE_' . $event->id() . '">' . PHP_EOL;
+		echo '<div class="inlinebox current-event" id="THECARD_' . $event->id() . '">' . PHP_EOL;
 		$event->outputEventCard(TRUE, TRUE);
 		echo "</div>\n";
 	}
@@ -88,7 +88,7 @@ if (count($laterEvents) > 0)
 <?php
 foreach ($laterEvents as $event)
 {
-	echo '<div class="inlinebox later" id="BEFORE_' . $event->id() . '">' . PHP_EOL;
+	echo '<div class="inlinebox later" id="THECARD_' . $event->id() . '">' . PHP_EOL;
 	$event->outputEventCard(FALSE);
 	echo "</div>\n";
 }
@@ -116,7 +116,7 @@ foreach ($laterEvents as $event)
 $mostRecentEvents = array_slice($pastEvents, 0, NUMBER_OF_PAST_TO_SHOW);
 foreach ($mostRecentEvents as $event)
 {
-	echo '<div class="inlinebox past-six" id="BEFORE_' . $event->id() . '">' . PHP_EOL;
+	echo '<div class="inlinebox past-six" id="THECARD_' . $event->id() . '">' . PHP_EOL;
 	$event->outputEventCard();
 	echo "</div>\n";
 }
