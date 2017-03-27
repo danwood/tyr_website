@@ -107,47 +107,10 @@ class Event
     	global $now;
     	global $urlBase;
 
-		$this->id = $eventAssoc[BEFORE_ID];
-		$this->title = $eventAssoc[BEFORE_Title];
-		$this->suffix = $eventAssoc[BEFORE_Suffix];
-		$this->infoIfNoLogo = $eventAssoc[BEFORE_InfoIfNoLogo];
-		$this->descriptionBefore = $eventAssoc[BEFORE_DescriptionBefore];
-		$this->logoFilename = $eventAssoc[BEFORE_LogoFilename];
-		$this->photoFilename = $eventAssoc[BEFORE_PhotoFilename];
-		$this->photoCredits = $eventAssoc[BEFORE_PhotoCredits];
-		$this->type = $eventAssoc[BEFORE_Type];
-		$this->signupDetails = $eventAssoc[BEFORE_SignupDetails];
-		$this->whoCanGo = $eventAssoc[BEFORE_WhoCanGo];
-		$this->signupAttachment = $eventAssoc[BEFORE_SignupAttachment];
-		$this->performanceInfo = $eventAssoc[BEFORE_PerformanceInfo];
-
-		$this->howTheShowWent = $eventAssoc[BEFORE_HowTheShowWent];
-		$this->castList = $eventAssoc[BEFORE_CastList];
-
-		$this->tuition = $eventAssoc[BEFORE_Tuition];
-		$this->ticketURL = $eventAssoc[BEFORE_TicketURL];
-		$this->photoURL1 = $eventAssoc[BEFORE_PhotoURL1];
-		$this->photoURL2 = $eventAssoc[BEFORE_PhotoURL2];
-		$this->publicityAttachment = $eventAssoc[BEFORE_PublicityAttachment];
-		$this->auditionLocation = $eventAssoc[BEFORE_AuditionLocation];
-		$this->auditionPrepare = $eventAssoc[BEFORE_AuditionPrepare];
-
-		$this->classDays = $eventAssoc[BEFORE_ClassDays];
-		$this->startTime = $eventAssoc[BEFORE_StartTime];
-		$this->endTime = $eventAssoc[BEFORE_EndTime];
-
-		$this->googleCalendar = $eventAssoc[BEFORE_GoogleCalendar];
-
-		$this->announceDate			= strtotime($eventAssoc[BEFORE_AnnounceDate]);
-		$this->signupStartDate		= strtotime($eventAssoc[BEFORE_SignupStartDate]);
-		$this->auditionDateTime1	= strtotime($eventAssoc[BEFORE_AuditionDateTime1]);
-		$this->auditionDateTime2	= strtotime($eventAssoc[BEFORE_AuditionDateTime2]);
-		$this->callbackDateTime		= strtotime($eventAssoc[BEFORE_CallbackDateTime]);
- 		$this->signupEndDate		= strtotime($eventAssoc[BEFORE_SignupEndDate]);
-		$this->rehearsalStartDate	= strtotime($eventAssoc[BEFORE_RehearsalStartDate]);
-		$this->ticketSaleDate		= strtotime($eventAssoc[BEFORE_TicketSaleDate]);
-		$this->showFirstDate		= strtotime($eventAssoc[BEFORE_ShowFirstDate]);
- 		$this->showLastDate			= strtotime($eventAssoc[BEFORE_ShowLastDate]);
+// TODO: LOAD $this->_____ from eventAssoc.  Probably better to construct differently.
+// Dates, datetimes need to be loaded from strtotime()
+//
+//
 
 // Guarantee that the first and last dates will be set.  They might be equivalent though.
 
@@ -166,26 +129,6 @@ class Event
 
 
 		// $this->showLastDateMidnight = strtotime(date('Y-m-d',$this->eventTimeLast).' 00:00:00');
-
-
-
-/*
-define('BEFORE_AnnounceDate', 31);							// We first want event to appear to the public. Before, hidden. On/After, visible in "later this year"
-define('BEFORE_SignupStartDate', 32);						// Announce and make signup possible (Or announce rehearsals). Before, "later this year". After, "coming soon"
-define('BEFORE_AuditionDateTime1', 33);						// (If audition) date AND time of audition. Before, announce this (and second) dates. After, only second date
-define('BEFORE_AuditionDateTime2', 34);						// (If a second audition) ""   -- After, "rehearsals starting soon" [Assume cast notified by email]
-define('BEFORE_CallbackDateTime', 35);						// When callbacks are scheduled, just to help cast families schedule if they get called back [Assume cast notified by email]
-
-define('BEFORE_SignupEndDate', 36);							// Deadline for signups. (Before, "sign up soon" countdown. Afterward, "rehearsals starting soon")
-define('BEFORE_RehearsalStartDate', 37);						// Rehearsals underway. After, "rehearsals in progress", no action for this show.
-define('BEFORE_TicketSaleDate', 38);							// Tickets now available.  If no tickets for sale, shows a countdown timer to first performance; click for cast details.
-define('BEFORE_ShowFirstDate', 39);							// First performance (of any cast). Keep linking to ticket URL if available, otherwise show details.
-															// Use approximate date (1st of month) when it's in the distant future and date hasn't been nailed down yet
-define('BEFORE_ShowLastDate', 40);							// Last performance [if applicable] Before this, show countdown to last performance. After this, show moves to past events & archives!
-
-Note: If we are past last date, then it's arechive (or hide)
-
- */
 
 
 		$bestStateMatch = STATE_PAST_ARCHIVE;
