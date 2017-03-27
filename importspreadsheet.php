@@ -71,7 +71,7 @@ if ($authenticated) {
 
 
 // Get the database loaded from the Google cache file
-require_once('_database.php');
+require_once('_spreadsheet.php');
 
 $eventAssocArrays = getEventAssocArrays();		// Sorted by BEFORE_ShowFirstDate
 
