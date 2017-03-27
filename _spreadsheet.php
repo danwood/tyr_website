@@ -112,33 +112,6 @@ define('BEFORE_ShowFirstDate', 39);							// First performance (of any cast). Ke
 															// Use approximate date (1st of month) when it's in the distant future and date hasn't been nailed down yet
 define('BEFORE_ShowLastDate', 40);							// Last performance [if applicable] Before this, show countdown to last performance. After this, show moves to past events & archives!
 
-
-/*
-
-
-Additional fields we might want to add
-
-Should we post the cast list
-Is there a performance
-
-Date that cast list is expected to be posted
-Date that cast list is re-scheduled to be posted
-
-
-Rename ticket sale date to publicize date
-
-
-GET RID OF shared/separate
-
-GET RID OF google calendar
-
-Season or general timeframe description for upcoming shows & event - NOT a date, but just text.
-
-
- */
-
-
-
 // Returns array of event associative arrays
 
 function getEventAssocArrays($fetchNow = FALSE)
@@ -157,22 +130,14 @@ function getEventAssocArrays($fetchNow = FALSE)
 		'SignupStartDate','AuditionDateTime1','AuditionDateTime2','CallbackDateTime','SignupEndDate',
 		'RehearsalStartDate','TicketSaleDate','ShowFirstDate','ShowLastDate');
 
-
 	if ($headers != $expectedHeaders)
 	{
 		error_log("Something's wrong with the data table. Expected " . print_r($expectedHeaders, 1) . " got " . print_r($headers, 1));
 //		die;
 	}
 
-
-
-
-
 	$result = array_slice($result, 2);	// skip first two
-
 	return $result;
 }
-
-
 
 ?>
