@@ -1,13 +1,6 @@
 <?php
 
-//error_log("including _database.php");
-
 date_default_timezone_set('America/Los_Angeles');
-
-
-// https://docs.google.com/spreadsheet/pub?key=0AibPgovp6ncndGd0S3I4MWc2SVR4RE52U3FFLVJsdWc&single=true&gid=0&output=csv
-//
-//
 
 // Sheet numbers
 define('EVENTS', 0);
@@ -17,47 +10,7 @@ define('LOCATIONS', 4);
 define('CAMPS', 5);
 
 
-function parse_csv ($csv_string, $delimiter = ",", $skip_empty_lines = true, $trim_fields = true)
-{
-    return array_map(
-        function ($line) use ($delimiter, $trim_fields) {
-            return array_map(
-                function ($field) {
-                    return str_replace('!!Q!!', '"', urldecode($field));	// took out utf8_decode wrapping around urldecode
-                },
-                $trim_fields ? array_map('trim', explode($delimiter, $line)) : explode($delimiter, $line)
-            );
-        },
-        preg_split(
-            $skip_empty_lines ? ($trim_fields ? '/( *\R)+/s' : '/\R+/s') : '/\R/s',
-            preg_replace_callback(
-                '/"(.*?)"/s',
-                function ($field) {
-                    return urlencode($field[1]);	// took out utf8_encode around field[1]
-                },
-                $enc = preg_replace('/(?<!")""/', '!!Q!!', $csv_string)
-            )
-        )
-    );
-}
 
-function getGoogleTable($tableNumber, $fetchNow = FALSE)
-{
-	global $root;
-	if ($fetchNow)
-	{
-		error_log("fetching google table $tableNumber RIGHT NOW");
-	}
-	$result = '';
-	$cacheFileName = $root . 'cache/cache.' . $tableNumber . '.csv';
-	$result = file_get_contents($cacheFileName);
-
-//	error_log('Contents of file = ' . $result);
-	$resultArray = parse_csv($result, ',', FALSE);
-
-//	error_log('Parsed table = ' . print_r($resultArray, 1));
-	return $resultArray;
-}
 
 
 
@@ -146,36 +99,22 @@ Season or general timeframe description for upcoming shows & event - NOT a date,
 
 function getEventAssocArrays($fetchNow = FALSE)
 {
-	$result = getGoogleTable(EVENTS, $fetchNow);
+	$result = array();
 
-	$headers = $result[0];
+	$db = new SQLite3('tyr.sqlite3') or die('Unable to open database');
 
-	$expectedHeaders = array('ID','Title','Suffix','InfoIfNoLogo','DescriptionBefore','LogoFilename',
-		'PhotoFilename', 'PhotoCredits',
-		'Type','SignupDetails','WhoCanGo', 'SignupAttachment', 'PerformanceInfo', 'HowTheShowWent',
-		'CastList','SharedOrSeparateCasts','Tuition','TicketURL','PhotoURL1', 'PhotoURL2', 'PublicityAttachment',
-		'AuditionLocation','AuditionPrepare','ClassDays','StartTime','EndTime',
-		'GoogleCalendar', '','','','',
-		'AnnounceDate',
-		'SignupStartDate','AuditionDateTime1','AuditionDateTime2','CallbackDateTime','SignupEndDate',
-		'RehearsalStartDate','TicketSaleDate','ShowFirstDate','ShowLastDate');
+	$query = 'select * from events';
 
-
-	if ($headers != $expectedHeaders)
-	{
-		error_log("Something's wrong with the data table. Expected " . print_r($expectedHeaders, 1) . " got " . print_r($headers, 1));
-//		die;
+   	$ret = $db->query($query);
+   	if(!$ret) {
+   		echo $db->lastErrorMsg();
+   		die;
+   	}
+   	while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
+   		$result[] = $row;
 	}
-
-
-
-
-
-	$result = array_slice($result, 2);	// skip first two
-
+	$db->close();
 	return $result;
 }
-
-
 
 ?>
