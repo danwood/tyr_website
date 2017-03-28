@@ -111,9 +111,43 @@ foreach ($laterEvents as $event)
 						<div class="blue-block">
 							<section id="recent" class="clearfix capped-width">
 								<div class="inlinebox nobottom"><h2>Recent Shows &amp; Events</h2></div>
+<?php
+// First indicate recent shows that don't have an image yet
+$noImageYetArray = array();
+$indexOfFirstWithPhoto = 0;
+foreach ($pastEvents as $event)
+{
+	if (!$event->shouldShowPhoto()) {
+		$noImageYetArray[] = $event;
+	}
+	else {
+		break;		// Stop as soon as we hit
+	}
+	$indexOfFirstWithPhoto++;
+}
+if (count($noImageYetArray)) {
+?>
+								<div class="inlinebox">
+									<p style="padding:0.5em 0"><i>Images coming soon:</i>
+
+<?php
+	$hasOutputYet = FALSE;
+	foreach($noImageYetArray as $noImageYetEvent) {
+		if ($hasOutputYet) {
+			echo ', ';
+		}
+		$hasOutputYet = TRUE;
+		echo htmlspecialchars($noImageYetEvent->title()) . ' <i>(' . htmlspecialchars($noImageYetEvent->getCardLowerRightText()) . ')</i>';
+	}
+?>
+										</p>
+								</div>
+<?php
+}
+?>
 								<div> <!-- similar elements together, for nth-child -->
 <?php
-$mostRecentEvents = array_slice($pastEvents, 0, NUMBER_OF_PAST_TO_SHOW);
+$mostRecentEvents = array_slice($pastEvents, $indexOfFirstWithPhoto, NUMBER_OF_PAST_TO_SHOW);
 foreach ($mostRecentEvents as $event)
 {
 	echo '<div class="inlinebox past-six" id="THECARD_' . $event->id() . '">' . PHP_EOL;
@@ -123,12 +157,12 @@ foreach ($mostRecentEvents as $event)
 ?>
 								</div>
 <?php
-$lessRecentEvents = array_slice($pastEvents, NUMBER_OF_PAST_TO_SHOW, NUMBER_ADDITIONAL_PAST_TITLES);
+$lessRecentEvents = array_slice($pastEvents, $indexOfFirstWithPhoto+NUMBER_OF_PAST_TO_SHOW, NUMBER_ADDITIONAL_PAST_TITLES);
 if (count($lessRecentEvents))
 {
 ?>
 								<div class="inlinebox nobottom archive-intro">
-									<p style="padding:0.5em 0">Also:
+									<p style="padding:0.5em 0">Earlier:
 <?php
 foreach ($lessRecentEvents as $event)
 {
