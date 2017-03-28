@@ -1284,7 +1284,10 @@ $currentShows = array();
 $currentOther = array();
 $laterEvents = array();
 
-$db = new SQLite3('tyr.sqlite3') or die('Unable to open database');
+$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/tyr.sqlite3';
+echo $dbPath;
+
+$db = new SQLite3($dbPath) or die('Unable to open database');
 
 $query = 'select * from events';
 

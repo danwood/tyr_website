@@ -119,7 +119,7 @@ else
 
 
 <?php
-	if (file_exists('..shows//photo/original.' . $base . ($i+1) . '.' . $extension ))
+	if (file_exists('../shows/photo/original.' . $base . ($i+1) . '.' . $extension ))
 	{
 ?>
 											<a href="<?php echo $root . 'shows/photo/original.' . $base . ($i+1) . '.' . $extension; ?>"
