@@ -1286,9 +1286,6 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 
 	$event = new Event($row);		// Copy the event, work with that.
 
-
-/*
-
 	$events[] = $event;
 
 	if ($event->isPastEvent())
@@ -1310,7 +1307,6 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 			$currentShows[] = $event;
 		}
 	}
-*/
 }
 $db->close();
 
