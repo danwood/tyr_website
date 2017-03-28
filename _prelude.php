@@ -93,8 +93,8 @@ define ('NUMBER_ADDITIONAL_PAST_TITLES', 3);
 define ('MAX_NUMBER_TO_SHOW_ON_ARCHIVES', 6);
 
 
-define('STATE_PAST_ARCHIVE',				98);		// Show is in the past; display in archive sections
-define('STATE_PAST_HIDE',					99);		// Show is in the past; don't show.
+define('STATE_PAST_ARCHIVE',				'STATE_PAST_ARCHIVE');		// Show is in the past; display in archive sections
+define('STATE_PAST_HIDE',					'STATE_PAST_HIDE');		// Show is in the past; don't show.
 
 
 // GLOBALS:  $now, $root, $staging, $urlBase
@@ -179,10 +179,13 @@ class Event
     	global $now;
     	global $urlBase;
 
-	      foreach($rowAssoc as $key => $value) {
-	        $this->{$key} = $value;
-	      }
+	    foreach($rowAssoc as $key => $value) {
 
+	    	if (0 !== strpos($value, 'Date')) {
+	    		$value = strtotime($value);
+	    	}
+	        $this->{$key} = $value;
+	    }
 
 // Dates, datetimes need to be loaded from strtotime()
 //
@@ -196,26 +199,34 @@ class Event
  		if (!$this->auditionDateTime2) $this->auditionDateTime2 = $this->auditionDateTime1;	// For one-day auditions, now we don't have to specify date twice
  		if (!$this->auditionDateTime1) $this->auditionDateTime1 = $this->auditionDateTime2;	// Be forgiving the other way around too.
 
-
-
 		// Other initialization
 
-
-
-
-
 		// $this->showLastDateMidnight = strtotime(date('Y-m-d',$this->eventTimeLast).' 00:00:00');
+
+	$dateStates = array(
+		'announceDate',
+		'signupStartDate',
+		'auditionDateTime1',
+		'auditionDateTime2',
+		'callbackDateTime',
+		'signupEndDate',
+		'rehearsalStartDate',
+		'ticketSaleDate',
+		'showFirstDate',
+		'showLastDate');
+
+
+
 
 
 		$bestStateMatch = STATE_PAST_ARCHIVE;
 		$bestDateMatch = 0x7FFFFFFF;		// hang onto the date we matched, just in case later event is actually before it's supposed to
 		// NEW approach -- loop through time events and try to figure out which state we are based on that.
-		for ($key = BEFORE_AnnounceDate ; $key <= BEFORE_ShowLastDate ; $key++)
+		foreach ($dateStates as $key)
 		{
-			$thisDateString = $eventAssoc[$key];
-			if ($thisDateString)
+			$thisDate = $this->{$key};
+			if ($thisDate)
 			{
-				$thisDate = strtotime($thisDateString);
 				if ($now < $thisDate && $thisDate < $bestDateMatch)			// Assume date has time embedded if we want to not switch until time in that day?
 				{
 					$bestStateMatch = $key;
@@ -409,24 +420,24 @@ class Event
 	public function isComingSoonEvent()
 	{
 		global $now;
-		$result = $this->state > BEFORE_AnnounceDate
-				&& $this->state <= BEFORE_SignupStartDate
+		$result = $this->state > 'announceDate'
+				&& $this->state <= 'signupStartDate'
 				&& ($now < $this->signupStartDate - (86400 * 7) ) ;
 		// error_log($this->title . ' coming soon? ' . $result);
 		return $result;
 	}
 
 // Just before the signup date, up to the show last date
-	public function isUpcomingEvent()		{ return $this->state > BEFORE_AnnounceDate && $this->state <= BEFORE_ShowLastDate; }
+	public function isUpcomingEvent()		{ return $this->state > 'announceDate' && $this->state <= 'showLastDate'; }
 
 // Only one state for past (archived) events
 	public function isPastEvent()			{ return $this->state == STATE_PAST_ARCHIVE; }
 
-	public function isDuringSignup()		{ return $this->state > BEFORE_SignupStartDate && $this->state <= BEFORE_SignupEndDate; }
-	public function isBeforeRehearsal()		{ return $this->state > BEFORE_SignupStartDate && $this->state <= BEFORE_RehearsalStartDate; }
-	public function isAfterSignup()			{ return $this->state > ($this->signupEndDate ? BEFORE_SignupEndDate : BEFORE_RehearsalStartDate); }
+	public function isDuringSignup()		{ return $this->state > 'signupStartDate' && $this->state <= 'signupEndDate'; }
+	public function isBeforeRehearsal()		{ return $this->state > 'signupStartDate' && $this->state <= 'rehearsalStartDate'; }
+	public function isAfterSignup()			{ return $this->state > ($this->signupEndDate ? 'signupEndDate' : 'rehearsalStartDate'); }
 
-	public function isSellingTickets()		{ return $this->state > BEFORE_TicketSaleDate && $this->state <= BEFORE_ShowLastDate; }
+	public function isSellingTickets()		{ return $this->state > 'ticketSaleDate' && $this->state <= 'showLastDate'; }
 
 	public function isArchiveEvent()		{ return $this->type == 'Event to Archive'; }
 	public function isAnnounceOnlyEvent()	{ return $this->type == 'Event Announce-Only'; }
@@ -671,7 +682,7 @@ class Event
 				}
 				else if (!$this->isBackstageCamp())
 				{
-					if ($this->state > BEFORE_ShowFirstDate)
+					if ($this->state > 'showFirstDate')
 					{
 						$date = 'Closing ' . smartDate('M j', $this->showLastDate);
 					}
@@ -1039,7 +1050,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 			//
 			if ($this->isSpecialEvent())		// For special events with no signup deadline, BUT with a signup attachment.
 			{
-				// Just show the attachment, and let the BEFORE_DescriptionBefore explain it.
+				// Just show the attachment, and let the descriptionBefore explain it.
 				//
 				if ($this->signupAttachment)
 				{
@@ -1142,7 +1153,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 			}
 		}
 
-		if ($this->state <= BEFORE_SignupStartDate)
+		if ($this->state <= 'signupStartDate')
 		{
 			echo "<p><b>Registration will open " . date('F j', $this->signupStartDate) . "</b></p>\n";
 		}
@@ -1271,12 +1282,13 @@ if(!$ret) {
 }
 while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 
-	print_r($row);
-	echo "<hr>\n";
-
 	if (!$row['announceDate']) continue;		// quickly ignore anything not announced yet
 
 	$event = new Event($row);		// Copy the event, work with that.
+
+
+/*
+
 	$events[] = $event;
 
 	if ($event->isPastEvent())
@@ -1298,6 +1310,7 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 			$currentShows[] = $event;
 		}
 	}
+*/
 }
 $db->close();
 
