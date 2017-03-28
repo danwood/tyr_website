@@ -25,7 +25,7 @@ Better build in years, into the paths (archive/2014/) and such.  Break down imag
 // LogoFilename								// An image with the name of the show in it; we won't display show title!  FILE
 // PhotoFilename							// Photo of performance or publicity photo like Les Mis, shown WITH title. Supercedes above when available.
 // PhotoCredits								// Human-readable list of people who took the photos we feature in column above
-// Type										// 'Audition Show', 'Class Show', or 'Event to Archive' or 'Event Announce-Only'  It had better be one of these?
+// Type										// 0=unknown, 1='Event Announce-Only', 3='Audition Show', 4='Class Show', or 2='Event to Archive' 5=backstage camp
 // SignupDetails							// Where classes are, audition preparations, what to expect, etc. **
 // WhoCanGo									// Tiny description to show on card. Just a few words -- make sure it fits on various window sizes!
 // SignupAttachment							// name of file in attachments directory, should be downloadable from signup details page.
@@ -34,7 +34,7 @@ Better build in years, into the paths (archive/2014/) and such.  Break down imag
 // HowTheShowWent							// After the show, some text to describe how it went. For people reading details about show from archives **
 // CastList									// Fill this in to show who got cast.  Goes away after rehearsal start date **
 
-// SharedOrSeparateCasts					// 'Shared' (multiple casts rehearse together) or 'Separate' (casts rehearse separately, e.g. schools)
+// SharedCast								// 'Shared' (multiple casts rehearse together) or 'Separate' (casts rehearse separately, e.g. schools)
 // Tuition									// human-readable dollars
 // TicketURL								// URL to buy tickets (otherwise free show?)
 // PhotoURL1								// URL of a photo album for a show, after the run is over
@@ -77,7 +77,6 @@ Date that cast list is re-scheduled to be posted
 Rename ticket sale date to publicize date
 
 
-GET RID OF shared/separate
 
 GET RID OF google calendar
 
@@ -85,6 +84,12 @@ Season or general timeframe description for upcoming shows & event - NOT a date,
  */
 
 
+define ('TYPE_UNKNOWN', 0);
+define ('TYPE_EVENT_ANNOUNCE_ONLY', 1);
+define ('TYPE_EVENT_ARCHIVE', 2);
+define ('TYPE_AUDITION_SHOW', 3);
+define ('TYPE_CLASS_SHOW', 4);
+define ('TYPE_BACKSTAGE_CAMP', 5);
 
 
 
@@ -181,8 +186,17 @@ class Event
 
 	    foreach($rowAssoc as $key => $value) {
 
-	    	if (0 !== strpos($value, 'Date')) {
-	    		$value = strtotime($value);
+	        error_log("$key : $value");
+
+	    	if (FALSE !== strpos($key, 'Date')) {
+	    		if (empty($value)) {
+	    			$value = 0;
+	    			error_log(@"Empty $key");
+	    		}
+	    		else {
+	    			$value = strtotime($value);
+	    		}
+	        error_log("$key CHANGED TO : $value");
 	    	}
 	        $this->{$key} = $value;
 	    }
@@ -266,8 +280,7 @@ class Event
 			}
 		}
 
-
- // error_log($this->id . '  ' . $this->title . '     state: ' . $this->state . '   path: ' . $this->path);
+	error_log($this->id . '  ' . $this->title . '     state: ' . $this->state . '   path: ' . $this->path);
    }
 
     public $state;
@@ -439,12 +452,12 @@ class Event
 
 	public function isSellingTickets()		{ return $this->state > 'ticketSaleDate' && $this->state <= 'showLastDate'; }
 
-	public function isArchiveEvent()		{ return $this->type == 'Event to Archive'; }
-	public function isAnnounceOnlyEvent()	{ return $this->type == 'Event Announce-Only'; }
-	public function isSpecialEvent()		{ return $this->type == 'Event to Archive' || $this->type == 'Event Announce-Only'; }
-	public function isShow()				{ return $this->type == 'Audition Show' || $this->type == 'Class Show'; }
-	public function isAuditionShow()		{ return $this->type == 'Audition Show'; }
-	public function isBackstageCamp()		{ return $this->type == 'Backstage Camp'; }		// Gets put in a separate list from regular shows
+	public function isArchiveEvent()		{ return $this->type == TYPE_EVENT_ARCHIVE; }
+	public function isAnnounceOnlyEvent()	{ return $this->type == TYPE_EVENT_ANNOUNCE_ONLY; }
+	public function isSpecialEvent()		{ return $this->type == TYPE_EVENT_ARCHIVE || $this->type == TYPE_EVENT_ANNOUNCE_ONLY; }
+	public function isShow()				{ return $this->type == TYPE_AUDITION_SHOW || $this->type == TYPE_CLASS_SHOW; }
+	public function isAuditionShow()		{ return $this->type == TYPE_AUDITION_SHOW; }
+	public function isBackstageCamp()		{ return $this->type == TYPE_BACKSTAGE_CAMP; }		// Gets put in a separate list from regular shows
 
 	public function shouldShowLogo()		{ return $this->isUpcomingEvent() 	&& !empty($this->logoFilename) && !$this->isBackstageCamp(); }
 	public function shouldShowLogoPNG()		{ return $this->shouldShowLogo() && pathinfo($this->logoFilename, PATHINFO_EXTENSION) == 'png'; }
