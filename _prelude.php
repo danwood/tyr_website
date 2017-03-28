@@ -1285,7 +1285,6 @@ $currentOther = array();
 $laterEvents = array();
 
 $dbPath = $_SERVER['DOCUMENT_ROOT'] . '/tyr.sqlite3';
-echo $dbPath;
 
 $db = new SQLite3($dbPath) or die('Unable to open database');
 
