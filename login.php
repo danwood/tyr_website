@@ -1,19 +1,30 @@
 <?php
+error_log("start");
 
 $ALLOW_UNAUTHENTICATED = TRUE;
 require_once('_authenticate.php');
+error_log("past authentication");
 
-if ($authenticated) {
-	if ($_SERVER['REQUEST_METHOD'] == 'POST')
+$return = '';
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+	if (isset($_POST['return']))
 	{
-		if (isset($_POST['return']))
-		{
-			header('Location: ' . $_POST['return']);		// Logged in; go to destination page.
-			exit;
-		}
+		$return = $_POST['return'];
+	}
+	if ($authenticated && !empty($return))
+	{
+error_log("gonna go to $return");
+		header('Location: ' . $return);		// Logged in; go to destination page.
+		exit;
 	}
 }
+else
+{
+	if (isset($_GET['return'])) $return = $_GET['return'];
+}
 
+error_log("past return setting");
 
 ?>
 <!DOCTYPE html>
@@ -45,10 +56,10 @@ include('_header.php'); ?>
 <?php
 if ($authenticated) {
 ?>
-<form id="the_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+<form id="the_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
 <p>
-  <input id="submit" type="submit" value="Logout" />
+  <input id="logout" type="submit" value="Logout" />
 </p>
 
 </form>
@@ -56,13 +67,13 @@ if ($authenticated) {
 <?php
 } else {
 ?>
-<form id="the_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+<form id="the_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 <p>
 Login with password: <input type="text" name="password" />
 </p>
 <p>
-	<input id="return" type="hidden" value="<?php echo htmlspecialchars($_GET['return']); ?>" />
-	<input id="submit" type="submit" value="Login" />
+	<input id="return" type="hidden" value="<?php echo htmlspecialchars($return); ?>" />
+	<input id="login" type="submit" value="Login" />
 </p>
 
 </form>
