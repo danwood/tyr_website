@@ -1,32 +1,8 @@
 <?php
 
-$authenticated = FALSE;
-
-session_start();
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-	if (isset($_POST['password']))
-	{
-		$password = trim(strtolower($_POST['password']));
-		$authenticated = ($password == '**********************');
-		if ($authenticated)
-		{
-			$_SESSION['authenticated'] = 1;
-		}
-	}
-	else
-	{
-		$authenticated = isset($_SESSION['authenticated']) && $_SESSION['authenticated'] = 1;
-	}
-}
-else
-{
-	$authenticated = isset($_SESSION['authenticated']) && $_SESSION['authenticated'] = 1;
-}
-
-require_once('_prelude.php'); require_once('phmagick.php');
-
+require_once('_authenticate.php');	// Login required
+require_once('_prelude.php');
+require_once('phmagick.php');
 
 ?>
 <!DOCTYPE html>
@@ -77,12 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
     		$errorMessage = "Something was wrong with the file type";
     		goto giveup;
-	}
-
-	if (!$authenticated)
-	{
-    	$errorMessage = "Sorry, buddy, stand in line for a ticket!";
-    	goto giveup;
 	}
 
 	$uploadedFiles = $_FILES['file'];
@@ -257,16 +227,6 @@ The first four images are the most important, and will be rotated in as thumbnai
 <p>
   <input style="width:100%;" id="fileinput" type='file' name='file[]' disabled />
 </p>
-<?php
-if (!$authenticated)		// If not yet authenticated, we need the password field
-{
-?>
-<p>
-	Top-secret password: <input type="text" name="password" />
-</p>
-<?php
-}
-?>
 <p>
   <input id="submit" type="submit" value="Upload" disabled /> <span id="status"></span>
 </p>
