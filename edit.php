@@ -15,6 +15,10 @@ $title='Tomorrow Youth Rep — Edit Event';
 $description='';
 include('_head.php');
 ?>
+<style>
+textarea { width:100%;}
+
+</style>
 </head>
 <body id="" class="lightgray-block">
 	<div class="clearfix outside-sticky-footer">
@@ -30,6 +34,7 @@ include('_header.php'); ?>
 					<main>
 						<section id="volunteer" class="clearfix capped-width">
 							<div class="inlinebox">
+<?php
 
 define('SIZE_TINY',     0);
 define('SIZE_SMALL',     1);
@@ -45,8 +50,24 @@ define('REQUIRED_FALSE', FALSE);
 
 function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = SIZE_ONELINE, $isMarkdown = MARKDOWN_FALSE, $isRequired = REQUIRED_FALSE) {
 
+	echo "<h4>" . htmlspecialchars($displayName) . "</h4>";
+	if (!empty($explain)) echo "<p><i>" . htmlspecialchars($explain) . "</i></p>";
 
-
+	$height = 1;
+	$width = 50;
+	switch($size) {
+		case SIZE_TINY:		$width = 12;	break;
+		case SIZE_SMALL:	$width = 20;	break;
+		case SIZE_ONELINE:	$width = 50;	break;
+		case SIZE_MULTILINE:$height = 12;	break;
+		case SIZE_GIANT:	$height = 20;	break;
+	}
+	if ($height == 1) {
+		echo '<input type="text" size="' . $width . '<">';
+	}
+	else {
+		echo '<textarea rows="' . $height . '"></textarea>';
+	}
 }
 
 // Tuition									// human-readable dollars
@@ -69,9 +90,11 @@ showEditor('infoIfNoLogo', 'TEXT',           'Longer title', 'Shown only when no
 showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General blurb used for recruiting show, on the recruitment page', SIZE_MULTILINE, MARKDOWN_TRUE);
 //showEditor('logoFilename', 'TEXT',           'logoFilename'
 //showEditor('photoFilename', 'TEXT',
-showEditor('photoCredits', 'TEXT',           'Photo Credits', 'Who took the photos after the show/event', SIZE_ONELINE)
+showEditor('photoCredits', 'TEXT',           'Photo Credits', 'Who took the photos after the show/event', SIZE_ONELINE);
 //showEditor('type', 'INTEGER',                'type'
+
 showEditor('signupDetails', 'TEXT',          'Signup Details', 'Where classes are, audition preparations, what to expect, etc.', SIZE_MULTILINE, MARKDOWN_TRUE);
+
 showEditor('whoCanGo', 'TEXT',               'Who Can Go', 'Age or grade range etc.', SIZE_TINY);
 //showEditor('signupAttachment', 'TEXT',
 showEditor('performanceInfo', 'TEXT',        'Performance Info', 'Details on when and where performances are', SIZE_MULTILINE, MARKDOWN_TRUE);
@@ -101,6 +124,8 @@ showEditor('showFirstDate', 'DATETIME',      'showFirstDate', 'DATE
 showEditor('showLastDate', 'DATETIME',       'showLastDate', 'DATET
 */
 
+
+?>
 							</div>
 						</section>
 					</main>
