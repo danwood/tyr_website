@@ -50,8 +50,12 @@ define('REQUIRED_FALSE', FALSE);
 
 function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = SIZE_ONELINE, $isMarkdown = MARKDOWN_FALSE, $isRequired = REQUIRED_FALSE) {
 
-	echo "<h4>" . htmlspecialchars($displayName) . "</h4>";
-	if (!empty($explain)) echo "<p><i>" . htmlspecialchars($explain) . "</i></p>";
+	$type = 'text';
+	if ($sqlType == 'DATETIME') $type = 'datetime';
+	if (FALSE !== strpos(strtolower($sqlColumn), 'url')) $type = 'url';		// hack to enforce URL input
+
+	echo "<h4>" . htmlspecialchars($displayName) . "</h4>". PHP_EOL;
+	if (!empty($explain)) echo "<p><i>" . htmlspecialchars($explain) . "</i></p>" . PHP_EOL;
 
 	$height = 1;
 	$width = 50;
@@ -63,24 +67,15 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 		case SIZE_GIANT:	$height = 20;	break;
 	}
 	if ($height == 1) {
-		echo '<input type="text" size="' . $width . '<">';
+		echo '<input type="' . $type . '" size="' . $width . '"';
+		if ($type == 'url') echo ' placeholder = "http://..."';
+		echo '>'. PHP_EOL;
 	}
 	else {
-		echo '<textarea rows="' . $height . '"></textarea>';
+		echo '<textarea rows="' . $height . '"></textarea>'. PHP_EOL;
 	}
 }
 
-// Tuition									// human-readable dollars
-// TicketURL								// URL to buy tickets (otherwise free show?)
-// PhotoURL1								// URL of a photo album for a show, after the run is over
-// PhotoURL2								// URL of a second photo album for a show, after the run is over
-// PublicityAttachment						// downloadable PDF that parents can print out for a show that is ready for ticketing
-// AuditionLocation							// WHERE auditions will be held
-// AuditionPrepare							// WHAT to prepare for auditions **
-
-// ClassDays								// Days of the week the rehearsals/camp/classes are, or maybe specific dates
-// StartTime								// time, in human-readable format, that auditions/camp/classes start
-// EndTime									// time, in human-readable format, that auditions/camp/classes end
 
 
 
@@ -102,27 +97,29 @@ showEditor('howTheShowWent', 'TEXT',         'howTheShowWent', 'After the show, 
 showEditor('castList', 'TEXT',               'castList', 'Fill this in to show who got cast.  Goes away after rehearsal start date', SIZE_MULTILINE, MARKDOWN_TRUE);
 //showEditor('sharedCast', 'BOOLEAN',
 showEditor('tuition', 'TEXT',                'Tuition', 'Human-readable dollar amount or amounts', SIZE_ONELINE);
-/*
-showEditor('ticketURL', 'TEXT',              'ticketURL',
-showEditor('photoURL1', 'TEXT',              'photoURL1',
-showEditor('photoURL2', 'TEXT',              'photoURL2',
-showEditor('publicityAttachment', 'TEXT',    'publicityAttachment',
-showEditor('auditionLocation', 'TEXT',       'auditionLocation', 'T
-showEditor('auditionPrepare', 'TEXT',        'auditionPrepare', 'TE
-showEditor('classDays', 'TEXT',              'classDays',
-showEditor('startTime', 'TEXT',              'startTime',
-showEditor('endTime', 'TEXT',                'endTime',
-showEditor('announceDate', 'DATETIME',       'announceDate', 'DATET
-showEditor('signupStartDate', 'DATETIME',    'signupStartDate', 'DA
-showEditor('auditionDateTime1', 'DATETIME',  'auditionDateTime1', '
-showEditor('auditionDateTime2', 'DATETIME',  'auditionDateTime2', '
-showEditor('callbackDateTime', 'DATETIME',   'callbackDateTime', 'D
-showEditor('signupEndDate', 'DATETIME',      'signupEndDate', 'DATE
-showEditor('rehearsalStartDate', 'DATETIME', 'rehearsalStartDate',
-showEditor('ticketSaleDate', 'DATETIME',     'ticketSaleDate', 'DAT
-showEditor('showFirstDate', 'DATETIME',      'showFirstDate', 'DATE
-showEditor('showLastDate', 'DATETIME',       'showLastDate', 'DATET
-*/
+
+showEditor('ticketURL', 'TEXT',              'ticketURL', 'URL at Brown Paper Tickets etc. if needed', SIZE_ONELINE);
+showEditor('photoURL1', 'TEXT',              'photoURL1', 'URL of a photo album for a show, after the run is over', SIZE_ONELINE);
+showEditor('photoURL2', 'TEXT',              'photoURL2', 'URL of any second photo album for a show, after the run is over', SIZE_ONELINE);
+//showEditor('publicityAttachment', 'TEXT',    'publicityAttachment',
+showEditor('auditionLocation', 'TEXT',       'auditionLocation', 'Where auditions will be held', SIZE_ONELINE);
+showEditor('auditionPrepare', 'TEXT',        'auditionPrepare', 'What to prepare for auditions', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('classDays', 'TEXT',              'classDays', 'Days of the week the rehearsals/camp/classes are, or maybe specific dates', SIZE_ONELINE);
+showEditor('startTime', 'TEXT',              'startTime', 'time, in human-readable format, that auditions/camp/classes start', SIZE_SMALL);
+showEditor('endTime', 'TEXT',                'endTime', 'time, in human-readable format, that auditions/camp/classes end', SIZE_SMALL);
+
+
+
+showEditor('announceDate', 'DATETIME',       'announceDate', 'We first want event to appear to the public. Before, hidden. On/After, visible in "later this year"');
+showEditor('signupStartDate', 'DATETIME',    'signupStartDate', 'Announce and make signup possible (Or announce rehearsals). Before, "later this year". After, "coming soon"');
+showEditor('auditionDateTime1', 'DATETIME',  'auditionDateTime1', 'If audition) date AND time of audition. Before, announce this (and second) dates. After, only second date');
+showEditor('auditionDateTime2', 'DATETIME',  'auditionDateTime2', '(If a second audition) ""   -- After, "rehearsals starting soon" [Assume cast notified by email]');
+showEditor('callbackDateTime', 'DATETIME',   'callbackDateTime', 'When callbacks are scheduled, just to help cast families schedule if they get called back [Assume cast notified by email]');
+showEditor('signupEndDate', 'DATETIME',      'signupEndDate', 'Deadline for signups. (Before, "sign up soon" countdown. Afterward, "rehearsals starting soon")');
+showEditor('rehearsalStartDate', 'DATETIME', 'rehearsalStartDate', 'Rehearsals underway. After, "rehearsals in progress", no action for this show.');
+showEditor('ticketSaleDate', 'DATETIME',     'ticketSaleDate', 'Tickets now available.  If no tickets for sale, shows a countdown timer to first performance; click for cast details.');
+showEditor('showFirstDate', 'DATETIME',      'showFirstDate', 'First performance (of any cast). Keep linking to ticket URL if available, otherwise show details. Use approximate date (1st of month)  when it’s in the distant future and date hasn’t been nailed down yet');
+showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [if applicable] Before this, show countdown to last performance. After this, show moves to past events & archives!');
 
 
 ?>
