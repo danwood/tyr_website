@@ -2,7 +2,6 @@
 
 require_once('_authenticate.php');
 require_once('_prelude.php');
-require_once('phmagick.php');
 
 
 ?>
