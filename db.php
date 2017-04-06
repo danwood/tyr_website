@@ -45,7 +45,7 @@ include('_header.php'); ?>
 							<div class="inlinebox">
 
 
-<p>&#10133; <a href="new.php"><b>Add a show or event</b></a></p>
+<p>&#10133; <a href="edit.php"><b>Add a show or event</b></a></p>
 <?php
 
 function outputList($eventArray, $headline)
