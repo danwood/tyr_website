@@ -444,6 +444,7 @@ class Event
 
 // Only one state for past (archived) events
 	public function isPastEvent()			{ return $this->state == STATE_PAST_ARCHIVE; }
+	public function isHiddenOrVisiblePastEvent() { return $this->state == STATE_PAST_ARCHIVE || $this->state == STATE_PAST_HIDE; }
 
 	public function isDuringSignup()		{ return $this->state > 'signupStartDate' && $this->state <= 'signupEndDate'; }
 	public function isBeforeRehearsal()		{ return $this->state > 'signupStartDate' && $this->state <= 'rehearsalStartDate'; }
@@ -1279,9 +1280,11 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 $events = array();		// Master list of all
 
 $pastEvents = array();
+$allPastEvents = array();
 $currentShows = array();
 $currentOther = array();
 $laterEvents = array();
+$hiddenEvents = array();
 
 $dbPath = $_SERVER['DOCUMENT_ROOT'] . '/tyr.sqlite3';
 
@@ -1296,15 +1299,22 @@ if(!$ret) {
 }
 while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 
-	if (!$row['announceDate']) continue;		// quickly ignore anything not announced yet
 
 	$event = new Event($row);		// Copy the event, work with that.
 
 	$events[] = $event;
 
-	if ($event->isPastEvent())
+	if (!$row['announceDate'])
 	{
-		$pastEvents[] = $event;
+		$hiddenEvents[] = $event;
+	}
+	else if ($event->isHiddenOrVisiblePastEvent())
+	{
+		$allPastEvents[] = $event;	// Save all past events even if hidden
+		if ($event->isPastEvent())
+		{
+			$pastEvents[] = $event;	// Usually we use just the archival events though
+		}
 	}
 	else if ($event->isComingSoonEvent())
 	{
@@ -1332,6 +1342,7 @@ usort($currentShows,	array('Event', 'eventForwardCompare'));
 usort($currentOther,	array('Event', 'eventForwardCompare'));
 usort($laterEvents,		array('Event', 'eventForwardCompare'));
 usort($pastEvents,		array('Event', 'eventReverseCompare'));		// We want past events showing most-recent first
+usort($allPastEvents,	array('Event', 'eventReverseCompare'));		// We want past events showing most-recent first
 
 if ($staging)
 {
