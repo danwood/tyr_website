@@ -68,9 +68,8 @@ define('REQUIRED_FALSE', FALSE);
 
 /*
 
-I think I want to show the full calendar at https://fullcalendar.io … not sure if that will be editable or not.
 
-But then to pick individual dates, I should use http://multidatespickr.sourceforge.net  … to pick single or multiple dates.
+To pick individual dates, I should use http://multidatespickr.sourceforge.net  … to pick single or multiple dates.
 
 If this doesn't work out, I can go back and look at this list: http://www.hongkiat.com/blog/useful-calendar-date-picker-scripts-for-web-developers/
 
