@@ -4,6 +4,17 @@ require_once('_authenticate.php');
 require_once('_prelude.php');
 
 
+/*
+From CDN when ready for deployment:
+
+//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js
+//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css
+//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.print.css
+
+//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js
+
+ */
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +26,12 @@ $title='Tomorrow Youth Rep — Edit Event';
 $description='';
 include('_head.php');
 ?>
+<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>js/fullcalendar/fullcalendar.min.css" />
+<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>js/fullcalendar/fullcalendar.print.css" />
+
 <style>
 textarea { width:100%;}
+h4 { margin-top:1em; }
 
 </style>
 </head>
@@ -34,6 +49,13 @@ include('_header.php'); ?>
 					<main>
 						<section id="volunteer" class="clearfix capped-width">
 							<div class="inlinebox">
+
+<div id='calendar'></div>
+
+
+
+
+
 <?php
 
 define('SIZE_TINY',     0);
@@ -133,6 +155,11 @@ showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [
 
 
 ?>
+
+
+
+
+
 							</div>
 						</section>
 					</main>
@@ -142,6 +169,22 @@ showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [
 <?php include('_footer.php'); ?>
 	</div>
 <?php $includePinterest = FALSE; include('_body.end.php'); ?>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script>!window.jQuery && document.write('<script src="<?php echo htmlspecialchars($root); ?>js/moment.min.js"><\/script>')</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
+<script>!window.jQuery && document.write('<script src="<?php echo htmlspecialchars($root); ?>js/fullcalendar/fullcalendar.min.js"><\/script>')</script>
+
+<script>
+
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+    })
+
+
+</script>
+
 </body>
 </html>
 
