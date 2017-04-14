@@ -3,18 +3,6 @@
 require_once('_authenticate.php');
 require_once('_prelude.php');
 
-
-/*
-From CDN when ready for deployment:
-
-//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js
-//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css
-//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.print.css
-
-//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js
-
- */
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,8 +14,17 @@ $title='Tomorrow Youth Rep — Edit Event';
 $description='';
 include('_head.php');
 ?>
+
+<?php
+/* DON'T USE FULLCALENDAR FOR NOW
+
+//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css
+//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.print.css
+
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>js/fullcalendar/fullcalendar.min.css" />
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>js/fullcalendar/fullcalendar.print.css" />
+*/
+?>
 
 <style>
 textarea { width:100%;}
@@ -50,7 +47,6 @@ include('_header.php'); ?>
 						<section id="volunteer" class="clearfix capped-width">
 							<div class="inlinebox">
 
-<div id='calendar'></div>
 
 
 
@@ -170,6 +166,9 @@ showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [
 	</div>
 <?php $includePinterest = FALSE; include('_body.end.php'); ?>
 
+<?php
+/* DON'T USE FULLCALENDAR FOR NOW
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script>!window.jQuery && document.write('<script src="<?php echo htmlspecialchars($root); ?>js/moment.min.js"><\/script>')</script>
 
@@ -181,9 +180,11 @@ showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [
     $('#calendar').fullCalendar({
         // put your options and callbacks here
     })
-
-
 </script>
+
+*/
+?>
+
 
 </body>
 </html>
