@@ -49,6 +49,7 @@ include('_header.php'); ?>
 
 
 
+<div id="pre-select-dates" class="box"></div>
 
 
 
@@ -183,7 +184,18 @@ showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [
 
 */
 ?>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<script>!window.jQuery && document.write('<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.11.1.js"><\/script>')</script>
 
+<!-- no CDN? -->
+<script type="text/javascript" src="<?php echo htmlspecialchars($root); ?>js/jquery-ui.multidatespicker.js"></script>
+
+<script>
+var date = new Date();
+$('#pre-select-dates').multiDatesPicker({
+	addDates: [date.setDate(14), date.setDate(19)]
+});
+</script>
 
 </body>
 </html>
