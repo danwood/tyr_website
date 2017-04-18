@@ -80,9 +80,11 @@ If this doesn't work out, I can go back and look at this list: http://www.hongki
  */
 function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = SIZE_ONELINE, $isMarkdown = MARKDOWN_FALSE, $isRequired = REQUIRED_FALSE) {
 
+	global $event;
+
 	$type = 'text';
 	if ($sqlType == 'DATETIME') {
-		$type = 'date';
+		$type = 'text';					// disable native display of date picker since we have our own custom picker
 		$size = SIZE_TINY;
 	}
 
@@ -109,6 +111,11 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 		echo '<input type="' . $type . '" size="' . $width . '"';
 		echo ' name="' . $sqlColumn . '"';
 		if ($type == 'url') echo ' placeholder="http://..."';
+
+		if ($event) {
+			echo ' value="' . $event->{$sqlColumn} . '"';
+		}
+
 		echo ' />'. PHP_EOL;
 	}
 	else {
@@ -120,7 +127,7 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	// special case - datetime.  Do a time input after a date.
 	if (FALSE !== strpos(strtolower($sqlColumn), 'date') && FALSE !== strpos(strtolower($sqlColumn), 'time'))
 	{
-		echo '<input type="time" size="' . $width . '"';
+		echo '<input type="text" size="' . $width . '"';	// disable native time picker since we have custom picker
 		echo ' name="' . $sqlColumn . '_time"';
 		echo ' />'. PHP_EOL;
 	}
@@ -229,7 +236,7 @@ $('input[type="date"],input[type="datetime"]').multiDatesPicker({
 	maxDate: 30
 });
 
-	$('input[type="time"]').timepicki();
+$('input[type="time"]').timepicki();
 
 </script>
 
