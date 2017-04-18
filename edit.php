@@ -25,6 +25,7 @@ include('_head.php');
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>js/fullcalendar/fullcalendar.print.css" />
 */
 ?>
+<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/mdp.css" />
 
 <style>
 textarea { width:100%;}
@@ -79,7 +80,12 @@ If this doesn't work out, I can go back and look at this list: http://www.hongki
 function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = SIZE_ONELINE, $isMarkdown = MARKDOWN_FALSE, $isRequired = REQUIRED_FALSE) {
 
 	$type = 'text';
-	if ($sqlType == 'DATETIME') $type = 'datetime';
+	if ($sqlType == 'DATETIME') {
+		$type = 'date';
+		if (FALSE !== strpos(strtolower($sqlColumn), 'datetime')) $type = 'datetime';		// hack to get date & time both
+		$size = SIZE_TINY;
+	}
+
 	if (FALSE !== strpos(strtolower($sqlColumn), 'url')) $type = 'url';		// hack to enforce URL input
 
 	echo "<h4>" . htmlspecialchars($displayName) . "</h4>". PHP_EOL;
@@ -96,11 +102,14 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	}
 	if ($height == 1) {
 		echo '<input type="' . $type . '" size="' . $width . '"';
-		if ($type == 'url') echo ' placeholder = "http://..."';
-		echo '>'. PHP_EOL;
+		echo ' name="' . $sqlColumn . '"';
+		if ($type == 'url') echo ' placeholder="http://..."';
+		echo ' />'. PHP_EOL;
 	}
 	else {
-		echo '<textarea rows="' . $height . '"></textarea>'. PHP_EOL;
+		echo '<textarea rows="' . $height . '"';
+		echo ' name="' . $sqlColumn . '"';
+		echo '></textarea>'. PHP_EOL;
 	}
 }
 
@@ -191,9 +200,13 @@ showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [
 <script type="text/javascript" src="<?php echo htmlspecialchars($root); ?>js/jquery-ui.multidatespicker.js"></script>
 
 <script>
+
 var date = new Date();
-$('#pre-select-dates').multiDatesPicker({
-	addDates: [date.setDate(14), date.setDate(19)]
+$('input[type="date"],input[type="datetime"]').multiDatesPicker({
+	addDates: [date.setDate(14), date.setDate(19)],
+	maxPicks: 2,
+	minDate: 0,
+	maxDate: 30
 });
 </script>
 
