@@ -54,7 +54,7 @@ function outputList($eventArray, $headline)
 		echo '<div class="columnar">' . PHP_EOL;
 		foreach ($eventArray as $event)
 		{
-			echo '<p><a href="edit.php?event=' . $event->id() . '">' . htmlspecialchars($event->title()) . '</a></p>' . PHP_EOL;
+			echo '<p><a href="edit.php?id=' . $event->id() . '">' . htmlspecialchars($event->title()) . '</a></p>' . PHP_EOL;
 		}
 		echo '</div>' . PHP_EOL;
 	}
@@ -84,7 +84,7 @@ foreach ($allPastEvents as $event)
 	if ($event->isPastEvent()) {
 		echo '<b>';
 	}
-	echo '<a href="edit.php?event=' . $event->id() . '">' . htmlspecialchars($event->title()) . '</a>';
+	echo '<a href="edit.php?id=' . $event->id() . '">' . htmlspecialchars($event->title()) . '</a>';
 	if ($event->isPastEvent()) {
 		echo '</b>';
 	}
