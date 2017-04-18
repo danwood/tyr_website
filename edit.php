@@ -82,11 +82,15 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	$type = 'text';
 	if ($sqlType == 'DATETIME') {
 		$type = 'date';
-		if (FALSE !== strpos(strtolower($sqlColumn), 'datetime')) $type = 'datetime';		// hack to get date & time both
 		$size = SIZE_TINY;
 	}
 
 	if (FALSE !== strpos(strtolower($sqlColumn), 'url')) $type = 'url';		// hack to enforce URL input
+
+	// time but not date
+	if (FALSE === strpos(strtolower($sqlColumn), 'date') && FALSE !== strpos(strtolower($sqlColumn), 'time')) {
+		$type = 'time';
+	}
 
 	echo "<h4>" . htmlspecialchars($displayName) . "</h4>". PHP_EOL;
 	if (!empty($explain)) echo "<p><i>" . htmlspecialchars($explain) . "</i></p>" . PHP_EOL;
@@ -111,6 +115,16 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 		echo ' name="' . $sqlColumn . '"';
 		echo '></textarea>'. PHP_EOL;
 	}
+
+	// special case - datetime.  Do a time input after a date.
+	if (FALSE !== strpos(strtolower($sqlColumn), 'date') && FALSE !== strpos(strtolower($sqlColumn), 'time'))
+	{
+		echo '<input type="time" size="' . $width . '"';
+		echo ' name="' . $sqlColumn . '_time"';
+		echo ' />'. PHP_EOL;
+	}
+
+
 }
 
 
@@ -155,6 +169,10 @@ showEditor('callbackDateTime', 'DATETIME',   'callbackDateTime', 'When callbacks
 showEditor('signupEndDate', 'DATETIME',      'signupEndDate', 'Deadline for signups. (Before, "sign up soon" countdown. Afterward, "rehearsals starting soon")');
 showEditor('rehearsalStartDate', 'DATETIME', 'rehearsalStartDate', 'Rehearsals underway. After, "rehearsals in progress", no action for this show.');
 showEditor('ticketSaleDate', 'DATETIME',     'ticketSaleDate', 'Tickets now available.  If no tickets for sale, shows a countdown timer to first performance; click for cast details.');
+
+
+// Convert showFirstDate, showLastDate into eventDateRange
+
 showEditor('showFirstDate', 'DATETIME',      'showFirstDate', 'First performance (of any cast). Keep linking to ticket URL if available, otherwise show details. Use approximate date (1st of month)  when it’s in the distant future and date hasn’t been nailed down yet');
 showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [if applicable] Before this, show countdown to last performance. After this, show moves to past events & archives!');
 
