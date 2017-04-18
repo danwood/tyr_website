@@ -418,12 +418,12 @@ class Event
 			//error_log("Nullifying non-past event");
 			$event = NULL;
 		}
-		if ($event && !$mustBeArchive && !$event->isUpcomingEvent() )
-		{
-			//error_log("Nullifying non-past mustNotBeArchive event");
-			$event = NULL;
-		}
 		//error_log("event ended up being " . print_r($event, 1));
+		// if ($event && !$mustBeArchive && !$event->isUpcomingEvent() )
+		// {
+		// 	error_log("Nullifying non-past mustNotBeArchive event");
+		// 	$event = NULL;
+		// }
 		return $event;
 	}
 
