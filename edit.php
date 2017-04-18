@@ -26,6 +26,7 @@ include('_head.php');
 */
 ?>
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/mdp.css" />
+<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/timepicki.css" />
 
 <style>
 textarea { width:100%;}
@@ -215,7 +216,8 @@ showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [
 <script>!window.jQuery && document.write('<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.11.1.js"><\/script>')</script>
 
 <!-- no CDN? -->
-<script type="text/javascript" src="<?php echo htmlspecialchars($root); ?>js/jquery-ui.multidatespicker.js"></script>
+<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui.multidatespicker.js"></script>
+<script src="<?php echo htmlspecialchars($root); ?>js/timepicki.js"></script>
 
 <script>
 
@@ -226,6 +228,9 @@ $('input[type="date"],input[type="datetime"]').multiDatesPicker({
 	minDate: 0,
 	maxDate: 30
 });
+
+	$('input[type="time"]').timepicki();
+
 </script>
 
 </body>
