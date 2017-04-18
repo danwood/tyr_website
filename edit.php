@@ -13,9 +13,9 @@ $root='';
 $title='Tomorrow Youth Rep — Edit Event';
 $description='';
 include('_head.php');
-?>
 
-<?php
+$event = Event::getSpecifiedEvent(FALSE);
+
 /* DON'T USE FULLCALENDAR FOR NOW
 
 //cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css
@@ -113,7 +113,7 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 		if ($type == 'url') echo ' placeholder="http://..."';
 
 		if ($event) {
-			echo ' value="' . $event->{$sqlColumn} . '"';
+			echo ' value="' . $event->{$sqlColumn}() . '"';
 		}
 
 		echo ' />'. PHP_EOL;
