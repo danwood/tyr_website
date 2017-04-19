@@ -15,6 +15,11 @@ $description='';
 include('_head.php');
 
 $event = Event::getSpecifiedEvent(FALSE);
+$reflector = null;
+if ($event)
+{
+	$reflector = new ReflectionClass(get_class($event));
+}
 
 /* DON'T USE FULLCALENDAR FOR NOW
 
@@ -80,11 +85,13 @@ If this doesn't work out, I can go back and look at this list: http://www.hongki
  */
 function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = SIZE_ONELINE, $isMarkdown = MARKDOWN_FALSE, $isRequired = REQUIRED_FALSE) {
 
-	global $event;
+	global $event, $reflector;
 
+	$class = null;
 	$type = 'text';
 	if ($sqlType == 'DATETIME') {
 		$type = 'text';					// disable native display of date picker since we have our own custom picker
+		$class='datePicker';
 		$size = SIZE_TINY;
 	}
 
@@ -113,8 +120,14 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 		if ($type == 'url') echo ' placeholder="http://..."';
 
 		if ($event) {
-			echo ' value="' . $event->{$sqlColumn}() . '"';
+			$prop = $reflector->getProperty($sqlColumn);
+    		$value = $prop->isPrivate() ? $event->{$sqlColumn}() : $event->{$sqlColumn};
+    		if ($sqlType == 'DATETIME') {
+    			$value = ($value > 0) ? $value = date('M j Y', $value) : '';
+    		}
+			echo ' value="' . htmlspecialchars($value) . '"';
 		}
+		if ($class) echo ' class="' . $class .'"';
 
 		echo ' />'. PHP_EOL;
 	}
@@ -129,6 +142,7 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	{
 		echo '<input type="text" size="' . $width . '"';	// disable native time picker since we have custom picker
 		echo ' name="' . $sqlColumn . '_time"';
+		echo ' class="timePicker"';
 		echo ' />'. PHP_EOL;
 	}
 
@@ -229,14 +243,14 @@ showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [
 <script>
 
 var date = new Date();
-$('input[type="date"],input[type="datetime"]').multiDatesPicker({
+$('.datePicker').multiDatesPicker({
 	addDates: [date.setDate(14), date.setDate(19)],
 	maxPicks: 2,
 	minDate: 0,
 	maxDate: 30
 });
 
-$('input[type="time"]').timepicki();
+$('.timePicker').timepicki();
 
 </script>
 

@@ -294,43 +294,43 @@ class Event
 	private $id;						// Used to key other tables into this master table
 	private $title;					// Title for display
 	private $suffix;				// suffix like "jr", probably in smaller font or something
-	private $infoIfNoLogo;			// Small blurb to show if no logo, also shown below title main card/signup card
+	public $infoIfNoLogo;			// Small blurb to show if no logo, also shown below title main card/signup card
 	private $descriptionBefore;		// General blurb used for recruiting show, on the recruitment page. Several paragraphs is fine. **
 	private $logoFilename;			// An image with the name of the show in it; we won't display show title!  FILE
 	public $photoFilename;			// Photo of performance or publicity photo like Les Mis, shown WITH title. Supercedes above when available.
 	public $photoCredits;			// Human-readable list of people who took the photos we feature in column above
 	private $type;					// 'Audition Show', 'Class Show', or 'Event to Archive' or 'Event Announce-Only'  It had better be one of these?
 	private $signupDetails;			// Where classes are, audition preparations, what to expect, etc. **
-	private $whoCanGo;				// Tiny description to show on card. Just a few words -- make sure it fits on various window sizes!
+	public $whoCanGo;				// Tiny description to show on card. Just a few words -- make sure it fits on various window sizes!
 	private $signupAttachment;		// name of file in attachments directory, should be downloadable from signup details page.
 	private $performanceInfo;		// Details on when and where performances are.  **
 
 	public $howTheShowWent;		// After the show, some text to describe how it went. For people reading details about show from archives **
 	private $castList;				// Fill this in to show who got cast.  Goes away after rehearsal start date **
 
-	private $tuition;				// human-readable dollars
+	public $tuition;				// human-readable dollars
 	private $ticketURL;				// URL to buy tickets (otherwise free show?)
 	public $photoURL1;				// URL of a photo album for a show, after the run is over
 	public $photoURL2;				// URL of a second photo album for a show, after the run is over
 	private $publicityAttachment;	// downloadable PDF that parents can print out for a show that is ready for ticketing
-	private $auditionLocation;		// WHERE auditions will be held
+	public $auditionLocation;		// WHERE auditions will be held
 	private $auditionPrepare;		// WHAT to prepare for auditions **
 
-	private $classDays;				// Days of the week the rehearsals/camp/classes are, or maybe specific dates
-	private $startTime;				// time, in human-readable format, that auditions/camp/classes start
-	private $endTime;				// time, in human-readable format, that auditions/camp/classes end
+	public $classDays;				// Days of the week the rehearsals/camp/classes are, or maybe specific dates
+	public $startTime;				// time, in human-readable format, that auditions/camp/classes start
+	public $endTime;				// time, in human-readable format, that auditions/camp/classes end
 
 	private $googleCalendar;		// URL of google calendar … for linking or embedding
 
-	private $announceDate;			// We first want event to appear to the public. Before, hidden. On/After, visible in "later this year"
-	private $signupStartDate;		// Announce and make signup possible (Or announce rehearsals). Before, "later this year". After, "coming soon"
-	private $auditionDateTime1;		// (If audition) date AND time of audition. Before, announce this (and second) dates. After, only second date
-	private $auditionDateTime2;		// (If a second audition) ""   -- After, "rehearsals starting soon" [Assume cast notified by email]
-	private $callbackDateTime;		// When callbacks are scheduled, just to help cast families schedule if they get called back [Assume cast notified by email]
+	public $announceDate;			// We first want event to appear to the public. Before, hidden. On/After, visible in "later this year"
+	public $signupStartDate;		// Announce and make signup possible (Or announce rehearsals). Before, "later this year". After, "coming soon"
+	public $auditionDateTime1;		// (If audition) date AND time of audition. Before, announce this (and second) dates. After, only second date
+	public $auditionDateTime2;		// (If a second audition) ""   -- After, "rehearsals starting soon" [Assume cast notified by email]
+	public $callbackDateTime;		// When callbacks are scheduled, just to help cast families schedule if they get called back [Assume cast notified by email]
 
-	private $signupEndDate;			// Deadline for signups. (Before, "sign up soon" countdown. Afterward, "rehearsals starting soon")
-	private $rehearsalStartDate;	// Rehearsals underway. After, "rehearsals in progress", no action for this show.
-	private $ticketSaleDate;		// Tickets now available.  If no tickets for sale, shows a countdown timer to first performance; click for cast details.
+	public $signupEndDate;			// Deadline for signups. (Before, "sign up soon" countdown. Afterward, "rehearsals starting soon")
+	public $rehearsalStartDate;	// Rehearsals underway. After, "rehearsals in progress", no action for this show.
+	public $ticketSaleDate;		// Tickets now available.  If no tickets for sale, shows a countdown timer to first performance; click for cast details.
 
 	public $showFirstDate;			// First performance (of any cast). Keep linking to ticket URL if available, otherwise show details.
 									// Use approximate date (1st of month) when it's in the distant future and date hasn't been nailed down yet
