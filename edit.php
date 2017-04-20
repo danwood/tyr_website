@@ -30,7 +30,6 @@ if ($event)
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>js/fullcalendar/fullcalendar.print.css" />
 */
 ?>
-<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/mdp.css" />
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/timepicki.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
