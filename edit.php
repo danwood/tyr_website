@@ -32,6 +32,7 @@ if ($event)
 ?>
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/mdp.css" />
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/timepicki.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <style>
 textarea { width:100%;}
@@ -77,7 +78,6 @@ define('REQUIRED_FALSE', FALSE);
 /*
 
 
-To pick individual dates, I should use http://multidatespickr.sourceforge.net  … to pick single or multiple dates.
 
 If this doesn't work out, I can go back and look at this list: http://www.hongkiat.com/blog/useful-calendar-date-picker-scripts-for-web-developers/
 
@@ -91,7 +91,7 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	$type = 'text';
 	if ($sqlType == 'DATETIME') {
 		$type = 'text';					// disable native display of date picker since we have our own custom picker
-		$class='datePicker';
+		$class='datepicker';
 		$size = SIZE_TINY;
 	}
 
@@ -233,20 +233,14 @@ showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [
 
 */
 ?>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-<script>!window.jQuery && document.write('<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.11.1.js"><\/script>')</script>
-
-<!-- no CDN? -->
-<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui.multidatespicker.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script>window.jQuery.ui || document.write('<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.12.1.js"><\/script>')</script>
 <script src="<?php echo htmlspecialchars($root); ?>js/timepicki.js"></script>
 
 <script>
 
 var date = new Date();
-$('.datePicker').multiDatesPicker({
-	maxPicks: 1,
-	// minDate: 0,
-	// maxDate: 30,
+$('.datepicker').datepicker({
 	dateFormat: "m/d/y",
 
 });
