@@ -295,18 +295,18 @@ class Event
 	private $title;					// Title for display
 	private $suffix;				// suffix like "jr", probably in smaller font or something
 	public $infoIfNoLogo;			// Small blurb to show if no logo, also shown below title main card/signup card
-	private $descriptionBefore;		// General blurb used for recruiting show, on the recruitment page. Several paragraphs is fine. **
+	public $descriptionBefore;		// General blurb used for recruiting show, on the recruitment page. Several paragraphs is fine. **
 	private $logoFilename;			// An image with the name of the show in it; we won't display show title!  FILE
 	public $photoFilename;			// Photo of performance or publicity photo like Les Mis, shown WITH title. Supercedes above when available.
 	public $photoCredits;			// Human-readable list of people who took the photos we feature in column above
 	private $type;					// 'Audition Show', 'Class Show', or 'Event to Archive' or 'Event Announce-Only'  It had better be one of these?
-	private $signupDetails;			// Where classes are, audition preparations, what to expect, etc. **
+	public $signupDetails;			// Where classes are, audition preparations, what to expect, etc. **
 	public $whoCanGo;				// Tiny description to show on card. Just a few words -- make sure it fits on various window sizes!
 	private $signupAttachment;		// name of file in attachments directory, should be downloadable from signup details page.
-	private $performanceInfo;		// Details on when and where performances are.  **
+	public $performanceInfo;		// Details on when and where performances are.  **
 
 	public $howTheShowWent;		// After the show, some text to describe how it went. For people reading details about show from archives **
-	private $castList;				// Fill this in to show who got cast.  Goes away after rehearsal start date **
+	public $castList;				// Fill this in to show who got cast.  Goes away after rehearsal start date **
 
 	public $tuition;				// human-readable dollars
 	private $ticketURL;				// URL to buy tickets (otherwise free show?)
@@ -314,7 +314,7 @@ class Event
 	public $photoURL2;				// URL of a second photo album for a show, after the run is over
 	private $publicityAttachment;	// downloadable PDF that parents can print out for a show that is ready for ticketing
 	public $auditionLocation;		// WHERE auditions will be held
-	private $auditionPrepare;		// WHAT to prepare for auditions **
+	public $auditionPrepare;		// WHAT to prepare for auditions **
 
 	public $classDays;				// Days of the week the rehearsals/camp/classes are, or maybe specific dates
 	public $startTime;				// time, in human-readable format, that auditions/camp/classes start
