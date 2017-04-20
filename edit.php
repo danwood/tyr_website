@@ -123,7 +123,7 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 			$prop = $reflector->getProperty($sqlColumn);
     		$value = $prop->isPrivate() ? $event->{$sqlColumn}() : $event->{$sqlColumn};
     		if ($sqlType == 'DATETIME') {
-    			$value = ($value > 0) ? $value = date('M j Y', $value) : '';
+    			$value = ($value > 0) ? $value = date('n/j/y', $value) : '';
     		}
 			echo ' value="' . htmlspecialchars($value) . '"';
 		}
@@ -244,10 +244,11 @@ showEditor('showLastDate', 'DATETIME',       'showLastDate', 'Last performance [
 
 var date = new Date();
 $('.datePicker').multiDatesPicker({
-	addDates: [date.setDate(14), date.setDate(19)],
-	maxPicks: 2,
-	minDate: 0,
-	maxDate: 30
+	maxPicks: 1,
+	// minDate: 0,
+	// maxDate: 30,
+	dateFormat: "m/d/y",
+
 });
 
 $('.timePicker').timepicki();
