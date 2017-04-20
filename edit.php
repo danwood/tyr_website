@@ -244,7 +244,7 @@ $('.datepicker').datepicker({
 
 });
 
-$('.timePicker').timepicki();
+$('.timePicker').timepicki({reset: true});
 
 </script>
 
