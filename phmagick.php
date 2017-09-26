@@ -43,10 +43,10 @@ class phmagick{
     private $log = array();
 
     function __construct($sourceFile='', $destinationFile=''){
-        $this->originalFile = $sourceFile;
+        $this->originalFile = str_replace(' ','\ ',$sourceFile) ;
 
-        $this->source = $sourceFile ;
-        $this->destination = $destinationFile;
+        $this->source = str_replace(' ','\ ',$sourceFile) ;
+        $this->destination = str_replace(' ','\ ',$destinationFile) ;
 
         if(is_null($this->escapeChars) ){
             $this->escapeChars = !( strtolower ( substr( php_uname('s'), 0, 3))  == "win" ) ;
@@ -66,6 +66,7 @@ class phmagick{
     //-----------------
      function setSource ($path){
         $this->source = str_replace(' ','\ ',$path) ;
+        error_log("this->source = " . $this->source);
         return $this ;
     }
 
@@ -77,6 +78,7 @@ class phmagick{
      function setDestination ($path){
         $path = str_replace(' ','\ ',$path) ;
         $this->destination = $path ;
+        error_log("this->destination = " . $this->destination);
         return $this;
     }
 
