@@ -22,6 +22,8 @@ Header set X-Robots-Tag "noindex"
 # Don’t let people peek in the directories
 options -Indexes
 
+# Serve jpeg-2000 correctly (limited browser suport though)
+AddType image/jpeg2000 .jp2
 
 # Shortcuts
 
@@ -88,6 +90,3 @@ ErrorDocument 508 /ApacheError.php
 RewriteBase /
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
-
-
-
