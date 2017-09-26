@@ -57,6 +57,17 @@ if (0 == $errCode)
 {
 	// Only bother rebuilding files if we got our data
 
+
+	echo "<p><b>Loading from spreadsheet cache into sqlite3 database....</b></p>\n";
+
+	require_once('_importspreadsheet.php');
+
+
+
+
+
+
+
 	// Files to re-build from PHP into HTML
 
 	$files = array('about.php', 'payment.php', 'archives.php', 'donate.php', 'staff.php', 'index.php', 'index.rss.php', 'volunteer.php' );
