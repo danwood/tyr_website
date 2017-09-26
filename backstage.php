@@ -75,18 +75,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    	if ($type == 'poster' || $type == 'signup')	// Let large images go through unchanged
 	    	{
 		    	$tmp_name = $image['tmp_name'];
-				$moved = move_uploaded_file($tmp_name, $type . '/' . $currentFileName);
+				$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFileName);
 				if (!$moved)
 				{
 		    		$errorMessage = "Could not move upload";
 		    		goto giveup;
 				}
-				$currentLink = $type . '/' . $currentFileName;
+				$currentLink = 'shows/' . $type . '/' . $currentFileName;
 	   		}
 	   		else	// Want to shrink!
 	   		{
 	   			// But first copy in original.
-	   			$pathToOriginal = $type . '/original.' . $currentFileName;
+	   			$pathToOriginal = 'shows/' . $type . '/original.' . $currentFileName;
 		    	$tmp_name = $image['tmp_name'];
 				$moved = move_uploaded_file($tmp_name, $pathToOriginal);
 				if (!$moved)
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		    		$errorMessage = "Could not move original image";
 		    		goto giveup;
 				}
-	   			$pathToSized = $type . '/' . $currentFileName;
+	   			$pathToSized = 'shows/' . $type . '/' . $currentFileName;
 
 	   			$put = file_put_contents($pathToSized, 'Hi there');
 
@@ -130,16 +130,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    		goto giveup;
 			}
 
-			$moved = move_uploaded_file($tmp_name, $type . '/' . $currentFileName);
+			$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFileName);
 			if (!$moved)
 			{
 				echo "tmp_name = " . $tmp_name;
-				echo "dir = " . $type;
+				echo "dir = " . 'shows/' . $type;
 				echo "name = " . $currentFileName;
 	    		$errorMessage = "Could not move upload";
 	    		goto giveup;
 			}
-			$currentLink = $type . '/' . $currentFileName;
+			$currentLink = 'shows/' . $type . '/' . $currentFileName;
 	    }
 	    else if ($mimeType == 'audio/mpeg' && $type == 'signup')		// seems to be an PDF, and correct type
 	    {
@@ -153,16 +153,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    		goto giveup;
 			}
 
-			$moved = move_uploaded_file($tmp_name, $type . '/' . $currentFileName);
+			$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFileName);
 			if (!$moved)
 			{
 				echo "tmp_name = " . $tmp_name;
-				echo "dir = " . $type;
+				echo "dir = " . 'shows/' . $type;
 				echo "name = " . $currentFileName;
 	    		$errorMessage = "Could not move upload";
 	    		goto giveup;
 			}
-			$currentLink = $type . '/' . $currentFileName;
+			$currentLink = 'shows/' . $type . '/' . $currentFileName;
 	    }
 	    else
 	    {
