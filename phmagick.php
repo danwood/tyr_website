@@ -43,10 +43,10 @@ class phmagick{
     private $log = array();
 
     function __construct($sourceFile='', $destinationFile=''){
-        $this->originalFile = $sourceFile ;
+        $this->originalFile = $sourceFile;
 
         $this->source = $sourceFile ;
-        $this->destination = str_replace(' ','\ ',$destinationFile) ;
+        $this->destination = $destinationFile;
 
         if(is_null($this->escapeChars) ){
             $this->escapeChars = !( strtolower ( substr( php_uname('s'), 0, 3))  == "win" ) ;
