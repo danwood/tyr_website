@@ -43,9 +43,9 @@ class phmagick{
     private $log = array();
 
     function __construct($sourceFile='', $destinationFile=''){
-        $this->originalFile = str_replace(' ','\ ',$sourceFile) ;
+        $this->originalFile = $sourceFile ;
 
-        $this->source = str_replace(' ','\ ',$sourceFile) ;
+        $this->source = $sourceFile ;
         $this->destination = str_replace(' ','\ ',$destinationFile) ;
 
         if(is_null($this->escapeChars) ){
