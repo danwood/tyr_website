@@ -66,7 +66,6 @@ class phmagick{
     //-----------------
      function setSource ($path){
         $this->source = str_replace(' ','\ ',$path) ;
-        error_log("this->source = " . $this->source);
         return $this ;
     }
 
@@ -78,7 +77,6 @@ class phmagick{
      function setDestination ($path){
         $path = str_replace(' ','\ ',$path) ;
         $this->destination = $path ;
-        error_log("this->destination = " . $this->destination);
         return $this;
     }
 
