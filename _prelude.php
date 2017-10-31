@@ -92,13 +92,26 @@ define ('TYPE_BACKSTAGE_CAMP', 5);
 
 
 
-define ('NUMBER_OF_PAST_TO_SHOW', 6);
+define ('NUMBER_OF_PAST_TO_SHOW', 9);
 define ('NUMBER_ADDITIONAL_PAST_TITLES', 3);
 define ('MAX_NUMBER_TO_SHOW_ON_ARCHIVES', 6);
 
 
-define('STATE_PAST_ARCHIVE',				'STATE_PAST_ARCHIVE');		// Show is in the past; display in archive sections
-define('STATE_PAST_HIDE',					'STATE_PAST_HIDE');		// Show is in the past; don't show.
+define('STATE_PAST_ARCHIVE',				98);		// Show is in the past; display in archive sections
+define('STATE_PAST_HIDE',					99);		// Show is in the past; don't show.
+
+// We need numbers because we are doing range calculations!
+
+define('announceDate',        0);
+define('signupStartDate',     1);
+define('auditionDateTime1',   2);
+define('auditionDateTime2',   3);
+define('callbackDateTime',    4);
+define('signupEndDate',       5);
+define('rehearsalStartDate',  6);
+define('ticketSaleDate',      7);
+define('showFirstDate',       8);
+define('showLastDate',        9);
 
 
 // GLOBALS:  $now, $root, $staging, $urlBase
@@ -215,20 +228,21 @@ class Event
 
 		// Other initialization
 
-	$dateStates = array(
-		'announceDate',
-		'signupStartDate',
-		'auditionDateTime1',
-		'auditionDateTime2',
-		'callbackDateTime',
-		'signupEndDate',
-		'rehearsalStartDate',
-		'ticketSaleDate',
-		'showFirstDate',
-		'showLastDate');
+		$dateStates = array(
+			'announceDate',
+			'signupStartDate',
+			'auditionDateTime1',
+			'auditionDateTime2',
+			'callbackDateTime',
+			'signupEndDate',
+			'rehearsalStartDate',
+			'ticketSaleDate',
+			'showFirstDate',
+			'showLastDate');
 
-
-
+		$dateStatesForDebugging = $dateStates;
+		$dateStatesForDebugging[STATE_PAST_ARCHIVE] = 'STATE_PAST_ARCHIVE';
+		$dateStatesForDebugging[STATE_PAST_HIDE] = 'STATE_PAST_HIDE';
 
 
 		$bestStateMatch = STATE_PAST_ARCHIVE;
@@ -241,11 +255,13 @@ class Event
 			{
 				if ($now < $thisDate && $thisDate < $bestDateMatch)			// Assume date has time embedded if we want to not switch until time in that day?
 				{
-					$bestStateMatch = $key;
+					$bestStateMatch = array_search($key, $dateStates, TRUE);
 					$bestDateMatch = $thisDate;
 				}
 			}
 		}
+		if ($staging) error_log('####### ' . $this->title . ' ' . $this->id . " best state: " . $bestStateMatch . ' ' . $dateStatesForDebugging[$bestStateMatch]);
+
 		$this->state = $bestStateMatch;
 
 		$canArchive = (!$this->isAnnounceOnlyEvent() && (!$this->isBackstageCamp() || !empty($this->photoFilename)) );		// FIXME: CONVOLUTED LOGIC!
@@ -431,25 +447,25 @@ class Event
 	public function isComingSoonEvent()
 	{
 		global $now;
-		$result = $this->state > 'announceDate'
-				&& $this->state <= 'signupStartDate'
+		$result = $this->state > announceDate
+				&& $this->state <= signupStartDate
 				&& ($now < $this->signupStartDate - (86400 * 7) ) ;
 		// error_log($this->title . ' coming soon? ' . $result);
 		return $result;
 	}
 
 // Just before the signup date, up to the show last date
-	public function isUpcomingEvent()		{ return $this->state > 'announceDate' && $this->state <= 'showLastDate'; }
+	public function isUpcomingEvent()		{ return $this->state > announceDate && $this->state <= showLastDate; }
 
 // Only one state for past (archived) events
 	public function isPastEvent()			{ return $this->state == STATE_PAST_ARCHIVE; }
 	public function isHiddenOrVisiblePastEvent() { return $this->state == STATE_PAST_ARCHIVE || $this->state == STATE_PAST_HIDE; }
 
-	public function isDuringSignup()		{ return $this->state > 'signupStartDate' && $this->state <= 'signupEndDate'; }
-	public function isBeforeRehearsal()		{ return $this->state > 'signupStartDate' && $this->state <= 'rehearsalStartDate'; }
-	public function isAfterSignup()			{ return $this->state > ($this->signupEndDate ? 'signupEndDate' : 'rehearsalStartDate'); }
+	public function isDuringSignup()		{ return $this->state > signupStartDate && $this->state <= signupEndDate; }
+	public function isBeforeRehearsal()		{ return $this->state > signupStartDate && $this->state <= rehearsalStartDate; }
+	public function isAfterSignup()			{ return $this->state > ($this->signupEndDate ? signupEndDate : rehearsalStartDate); }
 
-	public function isSellingTickets()		{ return $this->state > 'ticketSaleDate' && $this->state <= 'showLastDate'; }
+	public function isSellingTickets()		{ return $this->state > ticketSaleDate && $this->state <= showLastDate; }
 
 	public function isArchiveEvent()		{ return $this->type == TYPE_EVENT_ARCHIVE; }
 	public function isAnnounceOnlyEvent()	{ return $this->type == TYPE_EVENT_ANNOUNCE_ONLY; }
@@ -664,7 +680,7 @@ class Event
 				. " After? " . $this->isAfterSignup());
 			if ($this->isDuringSignup())
 			{
-				if ($staging) error_log("ready for signup");
+				if ($staging) error_log($this->id . " during signup");
 				if ($this->isAuditionShow())
 				{
 					if ($staging) error_log("Yes, audition show...");
@@ -689,14 +705,14 @@ class Event
 			}
 			else if ($this->isAfterSignup())
 			{
-				if ($staging) error_log("not ready for signup");
+				if ($staging) error_log($this->id . " after signup");
 				if ($this->isSpecialEvent())
 				{
 					$date = smartDateRange($this->showFirstDate, $this->showLastDate, ' & ');
 				}
 				else if (!$this->isBackstageCamp())
 				{
-					if ($this->state > 'showFirstDate')
+					if ($this->state > showFirstDate)
 					{
 						$date = 'Closing ' . smartDate('M j', $this->showLastDate);
 					}
@@ -712,6 +728,7 @@ class Event
 			}
 			else
 			{
+				if ($staging) error_log($this->id . " not signing up yet");
 				// Not signing up yet
 				$date = 'Signups coming soon';
 
@@ -1167,7 +1184,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 			}
 		}
 
-		if ($this->state <= 'signupStartDate')
+		if ($this->state <= signupStartDate)
 		{
 			echo "<p><b>Registration will open " . date('F j', $this->signupStartDate) . "</b></p>\n";
 		}
