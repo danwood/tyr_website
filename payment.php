@@ -151,25 +151,26 @@ Shirt will be
 
 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="9XB6R5FAWMLTJ">
+<input type="hidden" name="hosted_button_id" value="B6ZNZMYXQGFCC">
 <table>
 <tr><td><input type="hidden" name="on0" value="Sizes">Sizes</td></tr><tr><td><select name="os0">
-<option value="Youth - Medium (8)">Youth - Medium (8) $10.00 USD</option>
-<option value="Youth - Large (10-12)">Youth - Large (10-12) $10.00 USD</option>
-<option value="Adult - Small">Adult - Small $10.00 USD</option>
-<option value="Adult - Medium">Adult - Medium $10.00 USD</option>
-<option value="Adult - Large">Adult - Large $10.00 USD</option>
-<option value="Adult - XL">Adult - XL $10.00 USD</option>
-<option value="Ladies - S">Ladies - S $10.00 USD</option>
-<option value="Ladies - M">Ladies - M $10.00 USD</option>
-<option value="Ladies - L">Ladies - L $10.00 USD</option>
-<option value="Ladies - XL">Ladies - XL $10.00 USD</option>
+	<option value="Ladies - XS">Ladies - XS $10.00 USD</option>
+	<option value="Ladies - Small">Ladies - Small $10.00 USD</option>
+	<option value="Ladies - Medium">Ladies - Medium $10.00 USD</option>
+	<option value="Ladies - Large">Ladies - Large $10.00 USD</option>
+	<option value="Ladies - XL">Ladies - XL $10.00 USD</option>
+	<option value="Adult - XS">Adult - XS $10.00 USD</option>
+	<option value="Adult - Small">Adult - Small $10.00 USD</option>
+	<option value="Adult - M">Adult - M $10.00 USD</option>
+	<option value="Adult - L">Adult - L $10.00 USD</option>
+	<option value="Adult - XL">Adult - XL $10.00 USD</option>
 </select> </td></tr>
 </table>
 <input type="hidden" name="currency_code" value="USD">
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
+
 
 
 
