@@ -32,6 +32,7 @@ if ($event)
 ?>
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/timepicki.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/style/font-awesome.min.css">
 
 <style>
 textarea { width:100%;}
@@ -41,6 +42,15 @@ h4 { margin-top:1em; }
 .date_title { font-weight:bold;}
 .date_input > input { width:7em}
 .date_explain { font-style:italic;}
+
+.editable {
+	background-color:white;
+	border:1px solid gray;
+	padding:0.5em;
+	width:100%;
+	resize:both; /* doesn't work???? */
+
+}
 
 </style>
 </head>
@@ -150,11 +160,24 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 		echo ' />'. PHP_EOL;
 	}
 	else {
-		echo '<textarea rows="' . $height . '"';
-		echo ' name="' . $sqlColumn . '"';
-		echo '>' . PHP_EOL;
-		if ($event) echo htmlspecialchars($value);
-		echo '</textarea>'. PHP_EOL;
+		if ($isMarkdown) {
+
+			echo '<div class="editable"';
+			echo ' name="' . $sqlColumn . '"';
+			echo ' id="' . $sqlColumn . '"';
+			echo 'style="min-height:'.$height.'em;"';
+			echo '>'. PHP_EOL;
+			if ($event) echo htmlspecialchars($value);
+			echo '</div>'. PHP_EOL;
+		} else {
+
+			echo '<textarea rows="' . $height . '"';
+			echo ' name="' . $sqlColumn . '"';
+			echo '>' . PHP_EOL;
+			if ($event) echo htmlspecialchars($value);
+			echo '</textarea>'. PHP_EOL;
+
+		}
 	}
 
 	// special case - date AND time.  Do a time input after a date.
@@ -256,8 +279,13 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 
 */
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <script>window.jQuery.ui || document.write('<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.12.1.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-core.js"></script>
+<script src="/js/hallo.js"></script>
+<script src="/js/showdown.js"></script>
+<script src="/js/to-markdown.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/timepicki.js"></script>
 
 <script>
@@ -270,7 +298,57 @@ $('.datepicker').datepicker({
 
 $('.timePicker').timepicki({reset: true});
 
+$('.editable').hallo({
+	plugins: {
+	    'halloformat': {},
+	    'halloheadings': {
+	        'formatBlocks': []
+	    },
+	    'hallolists': {
+	        "lists": {
+	            "ordered": true,
+	            "unordered": true,
+	        }
+	    },
+	    'hallojustify': {},
+	    'halloreundo': {},
+	    'hallolink': {},
+ 	},
+    toolbar: 'halloToolbarFixed'
+});
+
+/* USE THIS IF WE DECIDE ON AJAX UPDATING ....
+
+$('.editable').on('hallomodified', function(event, data) {
+    alert("New contents are " + data.content + ' ' + event.target);
+});
+
+*/
+
+// Adapted from Hallo demo page
+
+var markdownize = function(content) {
+var html = content.split("\n").map($.trim).filter(function(line) {
+  return line != "";
+}).join("\n");
+return toMarkdown(html);
+};
+
+var converter = new Showdown.converter();
+var htmlize = function(content) {
+return converter.makeHtml(content);
+};
+
+  var updateHtml = function(content) {
+    if (markdownize(jQuery('.editable').html()) == content) {
+      return;
+    }
+    var html = htmlize(content);
+    jQuery('.editable').html(html);
+  };
+
 </script>
+
 
 </body>
 </html>
