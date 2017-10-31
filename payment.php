@@ -79,7 +79,6 @@ include('_header.php'); ?>
 
 <!-- This is the all-experience, non-glossy program ad form - lower costs.  Just un-comment this whole section below and put in the title of the show, and we are set! -->
 
-<!--
 
 <h3>All Experience Program Ads</h3>
 
@@ -102,7 +101,6 @@ include('_header.php'); ?>
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
--->
 
 
 
