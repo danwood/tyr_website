@@ -1,9 +1,7 @@
 <?php
-error_log("start");
 
 $ALLOW_UNAUTHENTICATED = TRUE;
 require_once('_authenticate.php');
-error_log("past authentication");
 
 $return = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -14,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	}
 	if ($authenticated && !empty($return))
 	{
-error_log("gonna go to $return");
 		header('Location: ' . $return);		// Logged in; go to destination page.
 		exit;
 	}
@@ -24,7 +21,6 @@ else
 	if (isset($_GET['return'])) $return = $_GET['return'];
 }
 
-error_log("past return setting");
 
 ?>
 <!DOCTYPE html>
@@ -72,7 +68,7 @@ if ($authenticated) {
 Login with password: <input type="text" name="password" />
 </p>
 <p>
-	<input id="return" type="hidden" value="<?php echo htmlspecialchars($return); ?>" />
+	<input id="return" name="return" type="hidden" value="<?php echo htmlspecialchars($return); ?>" />
 	<input id="login" type="submit" value="Login" />
 </p>
 

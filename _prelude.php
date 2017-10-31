@@ -280,7 +280,7 @@ class Event
 			}
 		}
 
-	error_log($this->id . '  ' . $this->title . '     state: ' . $this->state . '   path: ' . $this->path);
+	if ($staging) error_log($this->id . '  ' . $this->title . '     state: ' . $this->state . '   path: ' . $this->path);
    }
 
     public $state;

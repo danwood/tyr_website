@@ -11,28 +11,22 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-	error_log(print_r($_POST, 1));
-
 	if (isset($_POST['password']))
 	{
-	error_log("password");
 		$password = trim($_POST['password']);
 		$authenticated = ($password == $backstage_password);
 		if ($authenticated)
 		{
-	error_log("matches!");
 			$_SESSION['authenticated'] = 1;
 		}
 	}
 	else
 	{
-	error_log("only authenticated if already authenticated");
 		$authenticated = isset($_SESSION['authenticated']) && $_SESSION['authenticated'] = 1;
 	}
 }
 else
 {
-	error_log("not post");
 	$authenticated = isset($_SESSION['authenticated']) && $_SESSION['authenticated'] = 1;
 }
 
