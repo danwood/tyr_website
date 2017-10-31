@@ -5,6 +5,8 @@ date_default_timezone_set('America/Los_Angeles');
 
 $authenticated = FALSE;
 
+require_once('../_private.php');
+
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -15,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
 	error_log("password");
 		$password = trim($_POST['password']);
-		$authenticated = ($password == 'XXX');
+		$authenticated = ($password == $backstage_password);
 		if ($authenticated)
 		{
 	error_log("matches!");
