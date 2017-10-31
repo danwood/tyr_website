@@ -319,7 +319,7 @@ $('.editable').hallo({
 	plugins: {
 	    'halloformat': {},
 	    'halloheadings': {
-	        'formatBlocks': []
+	        'formatBlocks': ['h4', 'h5']
 	    },
 	    'hallolists': {
 	        "lists": {
