@@ -70,7 +70,7 @@ if (0 == $errCode)
 
 	// Files to re-build from PHP into HTML
 
-	$files = array('about.php', 'payment.php', 'archives.php', 'donate.php', 'staff.php', 'index.php', 'index.rss.php', 'volunteer.php' );
+	$files = array('about.php', 'archives.php', 'donate.php', 'staff.php', 'index.php', 'index.rss.php', 'volunteer.php' );
 
 
 	foreach($files as $file) {
