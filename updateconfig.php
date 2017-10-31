@@ -22,6 +22,6 @@ foreach ($values as $key => $value) {
 
 write_config($values);
 
-header('Location: /reload.php');
+header('Location: /backstage.php');
 
 ?>
