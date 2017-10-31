@@ -463,7 +463,7 @@ class Event
 
 	public function isDuringSignup()		{ return $this->state > signupStartDate && $this->state <= signupEndDate; }
 	public function isBeforeRehearsal()		{ return $this->state > signupStartDate && $this->state <= rehearsalStartDate; }
-	public function isAfterSignup()			{ return $this->state > ($this->signupEndDate ? signupEndDate : rehearsalStartDate); }
+	public function isAfterSignup()			{ return ($this->signupEndDate ? $this->state > signupEndDate : $this->state >= rehearsalStartDate); }
 
 	public function isSellingTickets()		{ return $this->state > ticketSaleDate && $this->state <= showLastDate; }
 
