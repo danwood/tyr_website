@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 date_default_timezone_set('America/Los_Angeles');
 $authenticated = FALSE;
 session_start();
+require_once('../_private.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -13,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		// if password matches, login by setting local variable and session variable.
 
 		$password = trim($_POST['password']);
-		$authenticated = $_SESSION['authenticated'] = ($password == 'XXX');
+		$authenticated = $_SESSION['authenticated'] = ($password == $backstage_password);
 	}
 	else
 	{

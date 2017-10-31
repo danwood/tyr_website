@@ -8,6 +8,7 @@ $root='';
 $title='Tomorrow Youth Rep — Payment';
 $description='Make an online payment to Tomorrow Youth Rep';
 include('_head.php');
+include('../_private.php'); // for variables
 ?>
 </head>
 <body id="page-payment" class="orange-block">
@@ -38,17 +39,14 @@ include('_header.php'); ?>
 
 
 
-
-
-
-<!-- This is the generic Glossy-Program form.  Just un-comment this whole section below and put in the title of the show, and we are set!
-
--->
+<?php
+if ($payment_glossy_program) {
+?>
 
 
 
 
-<h3>Glossy Program Ad</h3>
+<h3><?php echo htmlspecialchars($payment_glossy_name); ?> Program Ad</h3>
 
 
 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -77,10 +75,13 @@ include('_header.php'); ?>
 </form>
 
 
-<!-- This is the all-experience, non-glossy program ad form - lower costs.  Just un-comment this whole section below and put in the title of the show, and we are set! -->
+<?php
+}
 
+if ($payment_blackandwhite_program) {
+?>
 
-<h3>All Experience Program Ads</h3>
+<h3><?php echo htmlspecialchars($payment_blackandwhite_name); ?> Program Ads</h3>
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
@@ -101,7 +102,9 @@ include('_header.php'); ?>
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
-
+<?php
+}
+?>
 
 
 
@@ -111,16 +114,16 @@ include('_header.php'); ?>
 						<section class="clearfix capped-width">
 							<div class="inlinebox">
 
+<?php
+
+if ($payment_tshirt) {
+?>
 
 
 
-<!-- This is the generic T-shirt form.  Just un-comment this whole section below and put in the title/description of the show, and we are set!
-
-<!--
 
 
-
-<h3>Mysterious Mainstage T-Shirt</h3>
+<h3><?php echo htmlspecialchars($payment_tshirt_name); ?> T-Shirt</h3>
 
 <p>
 Cast members, buy a shirt for yourself, and extras for your family!
@@ -134,7 +137,13 @@ There are two main styles:  Ladies (trimmer cut, with a V-neck) and Youth/Adult 
 </p>
 
 <p>
-Shirt will be black, with design on the front and the back.
+Shirt will be
+<?php
+	echo htmlspecialchars($payment_tshirt_color);
+	if ($payment_tshirt_twosided) {
+		echo ", with design on the front and the back";
+	}
+?>.
 </p>
 
 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -159,28 +168,9 @@ Shirt will be black, with design on the front and the back.
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
--->
-
-
-
-							</div>
-						</section>
-						<section class="clearfix capped-width">
-							<div class="inlinebox">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<?php
+}
+?>
 
 
 
