@@ -34,10 +34,14 @@ include('_head.php');
 $fullHeader = FALSE;
 include('_header.php'); ?>
 					<main>
-						<section id="volunteer" class="clearfix capped-width">
+						<section id="upload" class="clearfix capped-width">
 							<div class="inlinebox">
 								<h2>Backstage</h2>
-<p>Administrative functions...</p>
+
+								<h3>Manage Events</h3>
+
+<p><span style="color:red">Still under development — not ready for general use yet:</span></p>
+<p><a href="edit.php">Add a new event</a> or <a href="db.php">edit existing events</a>.</p>
 
 								<h3>Upload files for website</h3>
 
