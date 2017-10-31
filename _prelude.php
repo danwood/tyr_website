@@ -186,17 +186,17 @@ class Event
 
 	    foreach($rowAssoc as $key => $value) {
 
-	        if ($staging) error_log("$key : $value");
+//	        if ($staging) error_log("$key : $value");
 
 	    	if (FALSE !== strpos($key, 'Date')) {
 	    		if (empty($value)) {
 	    			$value = 0;
-	    			if ($staging) error_log(@"Empty $key");
+//	    			if ($staging) error_log(@"Empty $key");
 	    		}
 	    		else {
 	    			$value = strtotime($value);
 	    		}
-	        if ($staging) error_log("$key CHANGED TO : $value");
+//	        if ($staging) error_log("$key CHANGED TO : $value");
 	    	}
 	        $this->{$key} = $value;
 	    }
@@ -659,7 +659,9 @@ class Event
 		}
 		else	// Need more specifics of what the date is.
 		{
-			if ($staging) error_log("Not past or later");
+			if ($staging) error_log($this->id . " Not past or later During? "
+				. $this->isDuringSignup()
+				. " After? " . $this->isAfterSignup());
 			if ($this->isDuringSignup())
 			{
 				if ($staging) error_log("ready for signup");
