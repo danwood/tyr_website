@@ -71,7 +71,11 @@ foreach ($eventAssocArrays as $eventAssoc)		// don't use ampersand here, there w
 	if ($rehearsalStartDate)$rehearsalStartDate		= date('c', strtotime($rehearsalStartDate));
 	if ($ticketSaleDate)	$ticketSaleDate			= date('c', strtotime($ticketSaleDate));
 	if ($showFirstDate)		$showFirstDate			= date('c', strtotime($showFirstDate));
- 	if ($showLastDate)		$showLastDate			= date('c', strtotime($showLastDate));
+ 	if ($showLastDate) {
+		// Adjust last date to end of day
+		$showLastDate = date('c', strtotime(date('Y-m-d',strtotime($showLastDate)).' 23:59:59'));
+	}
+
 
 
 	$types = array('unknown', 'event announce-only', 'event to archive', 'audition show',
