@@ -31,8 +31,6 @@ include('_header.php'); ?>
 								</p>
 							</div>
 						</section>
-						<section class="clearfix capped-width">
-							<div class="inlinebox">
 
 
 
@@ -43,6 +41,8 @@ include('_header.php'); ?>
 if ($payment_glossy_program) {
 ?>
 
+						<section class="clearfix capped-width">
+							<div class="inlinebox">
 
 
 
@@ -75,11 +75,19 @@ if ($payment_glossy_program) {
 </form>
 
 
+							</div>
+						</section>
+
 <?php
 }
 
 if ($payment_blackandwhite_program) {
 ?>
+
+
+						<section class="clearfix capped-width">
+							<div class="inlinebox">
+
 
 <h3><?php echo htmlspecialchars($payment_blackandwhite_name); ?> Program Ads</h3>
 
@@ -102,23 +110,18 @@ if ($payment_blackandwhite_program) {
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
-<?php
-}
-?>
-
-
-
 
 							</div>
 						</section>
-						<section class="clearfix capped-width">
-							<div class="inlinebox">
 
 <?php
+}
 
 if ($payment_tshirt) {
 ?>
 
+						<section class="clearfix capped-width">
+							<div class="inlinebox">
 
 
 
@@ -168,14 +171,18 @@ Shirt will be
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
+
+
+
+							</div>
+						</section>
+
 <?php
 }
 ?>
 
 
 
-							</div>
-						</section>
 					</main>
 				</div><!-- end before-sticky-footer -->
 			</div><!-- end clearfix -->
