@@ -49,10 +49,18 @@ h4 { margin-top:1em; }
 	padding:0.5em;
 	width:100%;
 	resize:both; /* doesn't work???? */
-
+}
+.source {
+	background:pink;
+	width:100%;
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    white-space: pre;
 }
 
 </style>
+<script src="/js/showdown.js"></script>
 </head>
 <body id="" class="lightgray-block">
 	<div class="clearfix outside-sticky-footer">
@@ -162,12 +170,22 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	else {
 		if ($isMarkdown) {
 
+echo '<div class="source">' . htmlspecialchars( $event ? $value : 'NONE') . '</div>';
 			echo '<div class="editable"';
 			echo ' name="' . $sqlColumn . '"';
 			echo ' id="' . $sqlColumn . '"';
 			echo 'style="min-height:'.$height.'em;"';
 			echo '>'. PHP_EOL;
-			if ($event) echo htmlspecialchars($value);
+			if ($event) {
+?>
+<script>
+var converter = new Showdown.converter();
+var content = <?php echo json_encode($value); ?>;
+document.write(converter.makeHtml(content));
+</script>
+<?php
+			}
+
 			echo '</div>'. PHP_EOL;
 		} else {
 
@@ -284,7 +302,6 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 <script>window.jQuery.ui || document.write('<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.12.1.js"><\/script>')</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-core.js"></script>
 <script src="/js/hallo.js"></script>
-<script src="/js/showdown.js"></script>
 <script src="/js/to-markdown.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/timepicki.js"></script>
 
@@ -334,10 +351,6 @@ var html = content.split("\n").map($.trim).filter(function(line) {
 return toMarkdown(html);
 };
 
-var converter = new Showdown.converter();
-var htmlize = function(content) {
-return converter.makeHtml(content);
-};
 
   var updateHtml = function(content) {
     if (markdownize(jQuery('.editable').html()) == content) {
