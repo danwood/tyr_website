@@ -215,8 +215,6 @@ class Event
 
 		// Other initialization
 
-		// $this->showLastDateMidnight = strtotime(date('Y-m-d',$this->eventTimeLast).' 00:00:00');
-
 	$dateStates = array(
 		'announceDate',
 		'signupStartDate',
