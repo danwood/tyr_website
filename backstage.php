@@ -244,7 +244,7 @@ The first four images are the most important, and will be rotated in as thumbnai
 
 						<section id="payment" class="clearfix capped-width">
 							<div class="inlinebox">
-								<h3>Configure Payment Page</h3>
+								<h3>Configure <a href="/pay">Payment Page</a></h3>
 
 <?php
 $values = read_config();
