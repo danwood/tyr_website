@@ -56,7 +56,7 @@ h4 { margin-top:1em; }
     display: block;
     unicode-bidi: embed;
     font-family: monospace;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 </style>
