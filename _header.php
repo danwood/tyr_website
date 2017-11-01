@@ -1,7 +1,7 @@
 					<header class="black-block">
 						<div class="clearfix capped-width">
 							<div class="inlinebox tyr-logo">
-								<a class="page-home" href="./"><img class="fullwidth" style="max-width:458px;" src="<?php echo $root; ?>img/logo-transparent-white.png" alt="TYR Logo" /><span class="visuallyhidden">Tomorrow Youth Repertory</span></a>
+								<a class="page-home" href="./<?php echo htmlspecialchars(currentIndexPath()); ?>"><img class="fullwidth" style="max-width:458px;" src="<?php echo $root; ?>img/logo-transparent-white.png" alt="TYR Logo" /><span class="visuallyhidden">Tomorrow Youth Repertory</span></a>
 							</div>
 							<div id="header-navmenu" class="navmenu inlinebox icon-menu">
 								<span class="visuallyhidden">Menu</span>
@@ -9,22 +9,22 @@
 							<nav class="inlinebox hideablenav">
 								<ul class="Main-Menu">
 									<li class="page-upcoming">
-										<a href="<?php echo htmlspecialchars($root); ?>upcoming.html">Sign Up</a>
+										<a href="<?php echo htmlspecialchars($root); ?>upcoming.<?php echo htmlspecialchars(currentExtension()); ?>">Sign Up</a>
 									</li>
 									<li class="page-archives">
-										<a href="<?php echo htmlspecialchars($root); ?>archives.html">Archives</a>
+										<a href="<?php echo htmlspecialchars($root); ?>archives.<?php echo htmlspecialchars(currentExtension()); ?>">Archives</a>
 									</li>
 									<li class="page-about">
-										<a href="<?php echo htmlspecialchars($root); ?>about.html">About Us</a>
+										<a href="<?php echo htmlspecialchars($root); ?>about.<?php echo htmlspecialchars(currentExtension()); ?>">About Us</a>
 									</li>
 									<li class="page-staff">
-										<a href="<?php echo htmlspecialchars($root); ?>staff.html">Staff</a>
+										<a href="<?php echo htmlspecialchars($root); ?>staff.<?php echo htmlspecialchars(currentExtension()); ?>">Staff</a>
 									</li>
 									<li class="page-volunteer">
-										<a href="<?php echo htmlspecialchars($root); ?>volunteer.html">Volunteer</a>
+										<a href="<?php echo htmlspecialchars($root); ?>volunteer.<?php echo htmlspecialchars(currentExtension()); ?>">Volunteer</a>
 									</li>
 									<li class="page-donate">
-										<a href="<?php echo htmlspecialchars($root); ?>donate.html">Donate</a>
+										<a href="<?php echo htmlspecialchars($root); ?>donate.<?php echo htmlspecialchars(currentExtension()); ?>">Donate</a>
 									</li>
 									<li>
 										<a title="RSS Feed" href="<?php echo htmlspecialchars($root); ?>index.rss"><img style="margin-bottom:5px;" src="<?php echo $root; ?>img/RSS.png" width="26" height="26" alt="RSS" /></a>

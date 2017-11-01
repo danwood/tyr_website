@@ -189,12 +189,30 @@ function smartDateRange($timestamp1, $timestamp2, $separator = ' - ', $isFullMon
 
 // Be able to navigate both
 function currentExtension() {
-	$str = $_SERVER['REQUEST_URI'];
-	$test = '.php';
-	if (substr_compare($str, $test, strlen($str)-strlen($test), strlen($test)) === 0) {
-		return "php";
+	if ($_SERVER['REQUEST_URI'] == '/reload.php') {
+		// We are in the process of building the .html files, so the extension is html
+		$result = "html";
 	}
-	return "html";
+	else {
+		$result = "php";
+	}
+	if (!empty($_SERVER['QUERY_STRING'])) {
+		$result .= '?' . $_SERVER['QUERY_STRING'];
+	}
+	return $result;
+}
+function currentIndexPath() {
+	if ($_SERVER['REQUEST_URI'] == '/reload.php') {
+		// We are in the process of building the .html files, so the extension is html
+		$result = "";
+	}
+	else {
+		$result = "index.php";
+	}
+	if (!empty($_SERVER['QUERY_STRING'])) {
+		$result .= '?' . $_SERVER['QUERY_STRING'];
+	}
+	return $result;
 }
 
 // The Main EVENT

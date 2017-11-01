@@ -97,21 +97,21 @@ include('_header.php'); ?>
 										<p>
 											How and why to sign your boys and girls for upcoming TYR productions. Get the details about upcoming productions here.
 										</p>
-										<p><a class="button" href="upcoming.html">Learn More</a></p>
+										<p><a class="button" href="upcoming.<?php echo htmlspecialchars(currentExtension()); ?>">Learn More</a></p>
 									</div>
 									<div class="inlinebox action">
 										<h3>Volunteers Needed</h3>
 										<p>
 											Our shows are awesome… and part of that is thanks to awesome parent volunteers, helping behind the scenes (or behind the stage). Find out how you can get involved too.
 										</p>
-										<p><a class="button" href="volunteer.html">Learn More</a></p>
+										<p><a class="button" href="volunteer.<?php echo htmlspecialchars(currentExtension()); ?>">Learn More</a></p>
 									</div>
 									<div class="inlinebox action">
 										<h3>Donate</h3>
 										<p>
 											As a non-profit organization, TYR relies on the generosity of donations to keep its programs going and tuition costs reasonable. Your tax-deductible donation, even a small amount, can make a lot of difference.
 										</p>
-										<p><a class="button" href="donate.html">Learn More</a></p>
+										<p><a class="button" href="donate.<?php echo htmlspecialchars(currentExtension()); ?>">Learn More</a></p>
 									</div>
 									<div class="inlinebox action facebook-292">
 										<h3>TYR on Facebook</h3>

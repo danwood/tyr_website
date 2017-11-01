@@ -82,11 +82,11 @@ include('_header.php'); ?>
 								</p>
 								<p>
 									<img class="snapshot floated medium-block opposite" alt="Tyler getting kids ready to go on stage" src="<?php echo htmlspecialchars($root); ?>img/misc-tyler-conducting.jpg" />
-									By partnering with some creative forces, such as TonyaMarie of <a href="http://gypsycatstudios.com/">Gypsy Cat Studios</a> and some dynamite parent and teen <a href="volunteer.html">volunteers</a>, we are one of the few youth theater programs that is committed to providing a full theater experience for our students.  We don’t just help kids learn to act and sing, we want them to feel the true magic of the artform.  And for this reason we put great effort into the sets, costumes, and other elements of theater that make these shows come alive.  We believe we have some of the very best designers in the area, and we are so proud to be able to offer this level of quality to our students.
+									By partnering with some creative forces, such as TonyaMarie of <a href="http://gypsycatstudios.com/">Gypsy Cat Studios</a> and some dynamite parent and teen <a href="volunteer.<?php echo htmlspecialchars(currentExtension()); ?>">volunteers</a>, we are one of the few youth theater programs that is committed to providing a full theater experience for our students.  We don’t just help kids learn to act and sing, we want them to feel the true magic of the artform.  And for this reason we put great effort into the sets, costumes, and other elements of theater that make these shows come alive.  We believe we have some of the very best designers in the area, and we are so proud to be able to offer this level of quality to our students.
 								</p>
 
 								<p style="clear:all">
-									TYR is a 501(c)(3) non-profit organization.  <a href="donate.html">Donations</a> are tax-deductible. The current board of directors of TYR are:
+									TYR is a 501(c)(3) non-profit organization.  <a href="donate.<?php echo htmlspecialchars(currentExtension()); ?>">Donations</a> are tax-deductible. The current board of directors of TYR are:
 								</p>
 								<ul>
 									<li>Howard Clowes</li>

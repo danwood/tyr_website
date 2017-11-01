@@ -14,7 +14,7 @@
 								<div class="inlinebox" id="about-us">
 									<p>
 										Tomorrow Youth Rep is an educational theater program based in Alameda, CA, offering after-school classes and camps for youths of all experience levels.
-										&nbsp;&nbsp; <a href="about.html">More about us</a>
+										&nbsp;&nbsp; <a href="about.<?php echo htmlspecialchars(currentExtension()); ?>">More about us</a>
 
 									</p>
 								</div>
@@ -182,7 +182,7 @@ foreach ($lessRecentEvents as $event)
 }
 ?>
 								<div class="inlinebox nobottom archive-button">
-									<p style="float:right;"><a class="button" href="archives.html" style="display:block">Archives</a></p>
+									<p style="float:right;"><a class="button" href="archives.<?php echo htmlspecialchars(currentExtension()); ?>" style="display:block">Archives</a></p>
 								</div>
 							</section>
 						</div>
