@@ -352,13 +352,18 @@ return toMarkdown(html);
 };
 
 
-  var updateHtml = function(content) {
-    if (markdownize(jQuery('.editable').html()) == content) {
-      return;
-    }
-    var html = htmlize(content);
-    jQuery('.editable').html(html);
-  };
+
+
+$( "#submit" ).submit(function( event ) {
+  alert( "Handler for .submit() called." );
+
+//     if (markdownize(jQuery('.editable').html()) == content) {
+
+
+  event.preventDefault();
+});
+
+
 
 </script>
 
