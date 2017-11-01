@@ -108,11 +108,12 @@ table {
 	border-spacing: 0;
 }
 
-//Screws up slider
-// ul, ol {
-// 	margin-left:1.5em;
-// 	line-height: $p-line-height;
-// }
+// Screws up slider ????
+//
+ul, ol {
+	margin-left:1.5em;
+	line-height: $p-line-height;
+}
 
 // -----------------------------------------------------------------------------------------------
 // From HTML5Boilerplate; accessible text.
