@@ -1,4 +1,5 @@
 <?php
+require_once('_prelude.php');
 
 $ALLOW_UNAUTHENTICATED = TRUE;
 require_once('_authenticate.php');
