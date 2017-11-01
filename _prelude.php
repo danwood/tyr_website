@@ -187,6 +187,16 @@ function smartDateRange($timestamp1, $timestamp2, $separator = ' - ', $isFullMon
 	return $result;
 }
 
+// Be able to navigate both
+function currentExtension() {
+	$str = $_SERVER['REQUEST_URI'];
+	$test = '.php';
+	if (substr_compare($str, $test, strlen($str)-strlen($test), strlen($test)) === 0) {
+		return "php";
+	}
+	return "html";
+}
+
 // The Main EVENT
 
 class Event
