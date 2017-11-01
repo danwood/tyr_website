@@ -82,7 +82,8 @@ include('_header.php'); ?>
 <div id="pre-select-dates" class="box"></div>
 
 <p>
-	Be sure to SAVE your edits at the bottom of this page.
+	<!-- Be sure to SAVE your edits at the bottom of this page. -->
+	<span style="color:red;"><b>This is not a fully functioning editor; nothing is saved!</b></span>
 </p>
 
 <?php
@@ -170,7 +171,7 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	else {
 		if ($isMarkdown) {
 
-echo '<div class="source">' . htmlspecialchars( $event ? $value : 'NONE') . '</div>';
+// echo '<div class="source">' . htmlspecialchars( $event ? $value : 'NONE') . '</div>';
 			echo '<div class="editable"';
 			echo ' name="' . $sqlColumn . '"';
 			echo ' id="' . $sqlColumn . '"';
