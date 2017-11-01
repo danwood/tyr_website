@@ -63,7 +63,7 @@ include('_head.php');
 	.datepicker { z-index:999; display:block; position:absolute; top:0; left:0; width:20%; }	/* only show in full screen for your convenience */
 }
 	</style>
-	<link href="/style/jquery.bxslider.css" rel="stylesheet" />
+	<link href="<?php echo htmlspecialchars($root); ?>style/jquery.bxslider.css" rel="stylesheet" />
 </head>
 <body id="page-home">
 	<div class="clearfix outside-sticky-footer">

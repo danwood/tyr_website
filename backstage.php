@@ -42,6 +42,7 @@ include('_header.php'); ?>
 
 <p><span style="color:red">Still under development — not ready for general use yet:</span></p>
 <p><a href="edit.php">Add a new event</a> or <a href="db.php">edit existing events</a>.</p>
+<p>View website using <a href="<?php echo htmlspecialchars($root); ?>index.php?when=<?php echo date('Y-m-d'); ?>">Time Machine</a>.</p>
 
 								<h3>Upload files for website</h3>
 
@@ -248,7 +249,7 @@ The first four images are the most important, and will be rotated in as thumbnai
 
 						<section id="payment" class="clearfix capped-width">
 							<div class="inlinebox">
-								<h3>Configure <a href="/pay">Payment Page</a></h3>
+								<h3>Configure <a href="<?php echo htmlspecialchars($root); ?>pay">Payment Page</a></h3>
 
 <?php
 $values = read_config();
