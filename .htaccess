@@ -2,7 +2,7 @@
 # TEMP -- I COMMENTED OUT THE suPHP_ConfigPath
 
 RewriteEngine On
-RewriteRule    ^(.+)\.html$    $1.php    [NC,L]
+# RewriteRule    ^(.+)\.html$    $1.php    [NC,L]
 
 # Use a local configuration for PHP to allow ‘exec’ to be used (for image processing)
 # --- PAY ATTENTION TO PATH; DIFFERENT BETWEEN STAGING AND PUBLIC SITE
