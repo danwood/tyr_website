@@ -46,7 +46,7 @@ include('_header.php'); ?>
 <p>When data has changed, <a href="<?php echo htmlspecialchars($root); ?>reload.php">Reload</a> the entire site.</p>
 
 
-								<h3>Upload files for website</h3>
+								<h3>Upload files for website (Max 20 at a time)</h3>
 
 
 <?php
@@ -222,8 +222,8 @@ else	// input form
 E.g. <i>2012narnia1.jpg</i>, <i>2012narnia2.jpg</i>, <i>2012narnia3.jpg</i>, <i>2012narnia4.jpg</i>.
 These files can be chosen all at once in the file chooser.
 The images will be resized (and cropped if needed) to 608x342 pixels.
-(Ideally, you should pre-crop the photos yourself to have a 16:9 aspect ratio, with plenty of space at the top for the show title.)
-The first four images are the most important, and will be rotated in as thumbnails representing the whole show and avaialble for social media sharing.
+Ideally, you should pre-crop the photos yourself to have a 16:9 aspect ratio. Since we also present the large sizes, the images should be scaled down to about 2400 pixels wide (since any more is just wasted space). Feel free to optimize the JPEG images before uploading.
+The first four images are the most important, and will be rotated in as thumbnails representing the whole show and available for social media sharing. Make sure images 1 through 4 have some neutral space near the top so the show title can be overlaid.
 </label>
 </p>
 <p>
