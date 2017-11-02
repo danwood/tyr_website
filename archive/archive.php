@@ -97,7 +97,7 @@ include('../_header.php'); ?>
 			{
 				// Look for movie
 				$movieFile =  $base . ($i+1) . '.mp4';
-				$movieInstead = (file_exists('../shows/photo/' . $movieFile));
+				$movieInstead = (file_exists('../shows/photo/'  . $event->getYear() . '/' .  $movieFile));
 
 ?>
 									<div class="inlinebox archive-photo<?php if (!$movieInstead) echo ' enlargable';?>">
@@ -106,7 +106,7 @@ if ($movieInstead)
 {
 ?>
 										<video class="full-block" controls="controls" poster="<?php echo $root . 'photo/' . $base . ($i+1) . '.' . $extension; ?>">
-											<source src="<?php echo $root; ?>shows/photo/<?php echo $movieFile; ?>" />
+											<source src="<?php echo $root . 'shows/photo/' . $event->getYear() . '/' . $movieFile; ?>" />
 										</video>
 
 <?php
@@ -114,15 +114,15 @@ if ($movieInstead)
 else
 {
 ?>
-										<img class="full-block" src="<?php echo $root . 'shows/photo/' . $base . ($i+1) . '.' . $extension; ?>"
+										<img class="full-block" src="<?php echo $root . 'shows/photo/' . $event->getYear() . '/' . $base . ($i+1) . '.' . $extension; ?>"
 											alt="<?php echo htmlspecialchars($event->title() . ' photo ' . ($i+1)); ?>">
 
 
 <?php
-	if (file_exists('../shows/photo/original.' . $base . ($i+1) . '.' . $extension ))
+	if (file_exists('../shows/photo/' . $event->getYear() . '/original/' . $base . ($i+1) . '.' . $extension ))
 	{
 ?>
-											<a href="<?php echo $root . 'shows/photo/original.' . $base . ($i+1) . '.' . $extension; ?>"
+											<a href="<?php echo $root . 'shows/photo/' . $event->getYear() . '/original/' . $base . ($i+1) . '.' . $extension; ?>"
 												title="<?php echo htmlspecialchars($event->title()); ?>"
 												rel="enclosure"></a>
 
@@ -131,7 +131,7 @@ else
 	else
 	{
 ?>
-											<a href="<?php echo $root . 'shows/photo/' . $base . ($i+1) . '.' . $extension; ?>"
+											<a href="<?php echo $root . 'shows/photo/' . $event->getYear() . '/' . $base . ($i+1) . '.' . $extension; ?>"
 												title="<?php echo htmlspecialchars($event->title()); ?>"
 												rel="enclosure"></a>
 
@@ -156,7 +156,7 @@ else
 		{
 ?>
 									<div class="inlinebox archive-photo">
-										<img class="full-block" src="<?php echo $root; ?>shows/photo/<?php echo $photoFilename; ?> ">
+										<img class="full-block" src="<?php echo $root; ?>shows/photo/<?php echo $event->getYear() . '/' . $photoFilename; ?> ">
 									</div>
 <?php
 		}

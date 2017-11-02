@@ -602,7 +602,7 @@ class Event
 				$mediaURL = '';		// Hey, it BETTER be here!
 				if ($this->shouldShowPhoto())
 				{
-					$mediaURL = $urlBase . 'shows/photo/' . $this->photoFilename;
+					$mediaURL = $urlBase . 'shows/photo/' . $this->getYear() . '/' . $this->photoFilename;
 				}
 				else if ($this->shouldShowLogo())
 				{
@@ -858,7 +858,7 @@ class Event
 		}
 		else if ($this->shouldShowPhoto())
 		{
-			echo '<img src="' . $root . 'shows/photo/' . htmlspecialchars($photoFilename) . '" '
+			echo '<img src="' . $root . 'shows/photo/'  . $this->getYear() . '/' . htmlspecialchars($photoFilename) . '" '
 				. 'alt = "' . htmlspecialchars($this->title . ' Photo') . '" />' . PHP_EOL;
 		}
 		else	// Text card, but might have mini-logo in corner
@@ -1240,7 +1240,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 					echo '<meta name="twitter:card" content="gallery">' . PHP_EOL;
 					for ($i = 0 ; $i < $photoCount ; $i++)
 					{
-						echo '<meta name="twitter:image' . $i . '" content="' . $urlBase . 'shows/photo/' . $matches[1] . ($i+1) . '.' . $matches[3] . '">' . PHP_EOL;
+						echo '<meta name="twitter:image' . $i . '" content="' . $urlBase . 'shows/photo/'  . $this->getYear() . '/' . $matches[1] . ($i+1) . '.' . $matches[3] . '">' . PHP_EOL;
 					}
 				}
 			}
@@ -1248,12 +1248,12 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 			if ($photoCount == 1)	// Only 1? OK, do it here as a photo card.
 			{
 				echo '<meta name="twitter:card" content="photo">' . PHP_EOL;
-				echo '<meta name="twitter:image" content="' . $urlBase . 'shows/photo/' . $photoFilename . '">' . PHP_EOL;
+				echo '<meta name="twitter:image" content="' . $urlBase . 'shows/photo/'  . $this->getYear() . '/' . $photoFilename . '">' . PHP_EOL;
 				// <meta name="twitter:image:width" content="610">
 				// <meta name="twitter:image:height" content="610">
 			}
 			// Facebook only one photo, so just take the last (highest number) one, which is $photoFilename
-			echo '<meta property="og:image" content="' . $urlBase . 'shows/photo/' . $photoFilename . '">' . PHP_EOL;
+			echo '<meta property="og:image" content="' . $urlBase . 'shows/photo/'  . $this->getYear() . '/' . $photoFilename . '">' . PHP_EOL;
 			// <meta property="og:image:type" content="image/png">
 			// <meta property="og:image:width" content="1024">
 			// <meta property="og:image:height" content="1024">
