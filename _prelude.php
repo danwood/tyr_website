@@ -288,7 +288,7 @@ class Event
 				}
 			}
 		}
-		if ($staging) error_log('####### ' . $this->title . ' ' . $this->id . " best state: " . $bestStateMatch . ' ' . $dateStatesForDebugging[$bestStateMatch]);
+//		if ($staging) error_log('####### ' . $this->title . ' ' . $this->id . " best state: " . $bestStateMatch . ' ' . $dateStatesForDebugging[$bestStateMatch]);
 
 		$this->state = $bestStateMatch;
 
@@ -322,7 +322,7 @@ class Event
 			}
 		}
 
-	if ($staging) error_log($this->id . '  ' . $this->title . '     state: ' . $this->state . '   path: ' . $this->path);
+//	if ($staging) error_log($this->id . '  ' . $this->title . '     state: ' . $this->state . '   path: ' . $this->path);
    }
 
     public $state;
