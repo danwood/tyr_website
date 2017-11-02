@@ -40,11 +40,11 @@
 ?>
 						<div class="capped-width slider-holder position-container">
 							<ul class="bxslider">
-								<li><img src="/shows/slider/footloose1.jpg" alt="Tomorrow Youth Rep Banner image, from Footloose, 2012" title="Footloose, 2012" /></li>
+								<li><img src="/shows/slider_past/footloose1.jpg" alt="Tomorrow Youth Rep Banner image, from Footloose, 2012" title="Footloose, 2012" /></li>
 
 <?php if ($now <= strtotime('2017-01-30T00:00:00-08:00')) { ?>
-								<li><img src="/shows/slider/rumors_upcoming.jpg" alt="Neil Simon's Rumors" title="" /></li>
-								<li><img src="/shows/slider/drood_upcoming.jpg" alt="The Mystery of Edwin Drood" title="" /></li>
+								<li><img src="/shows/slider_promo/rumors_upcoming.jpg" alt="Neil Simon's Rumors" title="" /></li>
+								<li><img src="/shows/slider_promo/drood_upcoming.jpg" alt="The Mystery of Edwin Drood" title="" /></li>
 <?php } ?>
 
 
@@ -52,22 +52,22 @@
 
 
 
-							 	<li><img src="/shows/slider/fiddler.jpg" alt="Tomorrow Youth Rep Banner image, from Fiddler on the Roof, 2016" title="Fiddler on the Roof, 2016" /></li>
-							 	<li><img src="/shows/slider/hsm2.jpg" alt="Tomorrow Youth Rep Banner image, from High School Musical, 2015" title="High School Musical, 2015" /></li>
-							 	<li><img src="/shows/slider/annie3.jpg" alt="Tomorrow Youth Rep Banner image, from Annie, 2014" title="Annie, 2014" /></li>
-							 	<li><img src="/shows/slider/beautybeast.jpg" alt="Tomorrow Youth Rep Banner image, from Beauty and the Beast, 2014" title="Beauty and the Beast, 2014" /></li>
-							 	<li><img src="/shows/slider/narnia.jpg" alt="Tomorrow Youth Rep Banner image, from Narnia, 2013" title="Narnia, 2013" /></li>
-							 	<li><img src="/shows/slider/annie2.jpg" alt="Tomorrow Youth Rep Banner image, from Annie, 2014" title="Annie, 2014" /></li>
-							 	<li><img src="/shows/slider/lesmiserables.jpg" alt="Tomorrow Youth Rep Banner image, from Les Misérables, 2013" title="Les Misérables, 2013" /></li>
-								<li><img src="/shows/slider/into_the_woods_2016.jpg" alt="Tomorrow Youth Rep Banner image, from Into The Woods, 2016" title="Into The Woods, 2016" /></li>
-								<li><img src="/shows/slider/seussical.jpg" alt="Tomorrow Youth Rep Banner image, from Seussical, 2015" title="Seussical, 2015" /></li>
-							 	<li><img src="/shows/slider/hsm1.jpg" alt="Tomorrow Youth Rep Banner image, from High School Musical, 2015" title="High School Musical, 2015" /></li>
-							 	<li><img src="/shows/slider/alice.jpg" alt="Tomorrow Youth Rep Banner image, from Alice in Wonderland, 2015" title="Alice in Wonderland, 2015" /></li>
-							 	<li><img src="/shows/slider/shrek2.jpg" alt="Tomorrow Youth Rep Banner image, from Shrek, 2014" title="Shrek, 2014" /></li>
-							 	<li><img src="/shows/slider/oz.jpg" alt="Tomorrow Youth Rep Banner image, from Wizard of Oz, 2014" title="Wizard of Oz, 2014" /></li>
-							 	<li><img src="/shows/slider/annie1.jpg" alt="Tomorrow Youth Rep Banner image, from Annie, 2014" title="Annie, 2014" /></li>
-							 	<li><img src="/shows/slider/shrek1.jpg" alt="Tomorrow Youth Rep Banner image, from Shrek, 2014" title="Shrek, 2014" /></li>
-							 	<li><img src="/shows/slider/footloose2.jpg" alt="Tomorrow Youth Rep Banner image, from Footloose, 2012" title="Footloose, 2012" /></li>
+							 	<li><img src="/shows/slider_past/fiddler.jpg" alt="Tomorrow Youth Rep Banner image, from Fiddler on the Roof, 2016" title="Fiddler on the Roof, 2016" /></li>
+							 	<li><img src="/shows/slider_past/hsm2.jpg" alt="Tomorrow Youth Rep Banner image, from High School Musical, 2015" title="High School Musical, 2015" /></li>
+							 	<li><img src="/shows/slider_past/annie3.jpg" alt="Tomorrow Youth Rep Banner image, from Annie, 2014" title="Annie, 2014" /></li>
+							 	<li><img src="/shows/slider_past/beautybeast.jpg" alt="Tomorrow Youth Rep Banner image, from Beauty and the Beast, 2014" title="Beauty and the Beast, 2014" /></li>
+							 	<li><img src="/shows/slider_past/narnia.jpg" alt="Tomorrow Youth Rep Banner image, from Narnia, 2013" title="Narnia, 2013" /></li>
+							 	<li><img src="/shows/slider_past/annie2.jpg" alt="Tomorrow Youth Rep Banner image, from Annie, 2014" title="Annie, 2014" /></li>
+							 	<li><img src="/shows/slider_past/lesmiserables.jpg" alt="Tomorrow Youth Rep Banner image, from Les Misérables, 2013" title="Les Misérables, 2013" /></li>
+								<li><img src="/shows/slider_past/into_the_woods_2016.jpg" alt="Tomorrow Youth Rep Banner image, from Into The Woods, 2016" title="Into The Woods, 2016" /></li>
+								<li><img src="/shows/slider_past/seussical.jpg" alt="Tomorrow Youth Rep Banner image, from Seussical, 2015" title="Seussical, 2015" /></li>
+							 	<li><img src="/shows/slider_past/hsm1.jpg" alt="Tomorrow Youth Rep Banner image, from High School Musical, 2015" title="High School Musical, 2015" /></li>
+							 	<li><img src="/shows/slider_past/alice.jpg" alt="Tomorrow Youth Rep Banner image, from Alice in Wonderland, 2015" title="Alice in Wonderland, 2015" /></li>
+							 	<li><img src="/shows/slider_past/shrek2.jpg" alt="Tomorrow Youth Rep Banner image, from Shrek, 2014" title="Shrek, 2014" /></li>
+							 	<li><img src="/shows/slider_past/oz.jpg" alt="Tomorrow Youth Rep Banner image, from Wizard of Oz, 2014" title="Wizard of Oz, 2014" /></li>
+							 	<li><img src="/shows/slider_past/annie1.jpg" alt="Tomorrow Youth Rep Banner image, from Annie, 2014" title="Annie, 2014" /></li>
+							 	<li><img src="/shows/slider_past/shrek1.jpg" alt="Tomorrow Youth Rep Banner image, from Shrek, 2014" title="Shrek, 2014" /></li>
+							 	<li><img src="/shows/slider_past/footloose2.jpg" alt="Tomorrow Youth Rep Banner image, from Footloose, 2012" title="Footloose, 2012" /></li>
 <?php /*
 		not sure why video isn't working any more. It's not gettting real dimensions.
 
