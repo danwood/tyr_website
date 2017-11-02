@@ -57,7 +57,7 @@ $currentFileName = NULL;
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	$type = $_POST['type'];
-	if (! in_array($type, array('signup', 'poster', 'logo', 'photo')))
+	if (! in_array($type, array('logo', 'photo', 'poster', 'signup', 'slider_past', 'slider_promo')))
 	{
     		$errorMessage = "Something was wrong with the file type";
     		goto giveup;
@@ -80,7 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 	    if (0 === strpos($mimeType, 'image/') )		// seems to be an image
 	    {
-	    	if ($type == 'poster' || $type == 'signup')	// Let large images go through unchanged
+	    	// Let large images go through unchanged
+
+	    	if ($type == 'poster' || $type == 'signup' || $type == 'slider_past' || $type == 'slider_promo')
 	    	{
 		    	$tmp_name = $image['tmp_name'];
 				$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFileName);
@@ -91,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				}
 				$currentLink = 'shows/' . $type . '/' . $currentFileName;
 	   		}
-	   		else	// Want to shrink!
+	   		else	// Want to shrink!  … logo, photo
 	   		{
 	   			// But first copy in original.
 	   			$pathToOriginal = 'shows/' . $type . '/original.' . $currentFileName;
@@ -149,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			}
 			$currentLink = 'shows/' . $type . '/' . $currentFileName;
 	    }
-	    else if ($mimeType == 'audio/mpeg' && $type == 'signup')		// seems to be an PDF, and correct type
+	    else if ($mimeType == 'audio/mpeg' && $type == 'signup')		// seems to be an MP3, and correct type
 	    {
 	    	$tmp_name = $image['tmp_name'];
 			$fp = fopen($tmp_name, 'r');
@@ -222,16 +224,23 @@ else	// input form
 E.g. <i>2012narnia1.jpg</i>, <i>2012narnia2.jpg</i>, <i>2012narnia3.jpg</i>, <i>2012narnia4.jpg</i>.
 These files can be chosen all at once in the file chooser.
 The images will be resized (and cropped if needed) to 608x342 pixels.
-Ideally, you should pre-crop the photos yourself to have a 16:9 aspect ratio. Since we also present the large sizes, the images should be scaled down to about 2400 pixels wide (since any more is just wasted space). Feel free to optimize the JPEG images before uploading.
+Ideally, you should pre-crop the photos yourself to have a 16:9 aspect ratio. Since we also present the large sizes, the images should be scaled down to about 2400 pixels wide (since any more is just wasted space). Feel free to optimize the .jpg images before uploading.
 The first four images are the most important, and will be rotated in as thumbnails representing the whole show and available for social media sharing. Make sure images 1 through 4 have some neutral space near the top so the show title can be overlaid.
 </label>
 </p>
 <p>
-<input class="single" type="radio" name="type" id="signup" value="signup" /> <label for="signup"><b>Signup</b> registration attachment: please provide a .pdf file, not a Microsoft Word document!  Also, you can upload .mp3 audio files or JPEG images.</label>
+<input class="single" type="radio" name="type" id="signup" value="signup" /> <label for="signup"><b>Signup</b> registration attachment: please provide a .pdf file, not a Microsoft Word document!  Also, you can upload .mp3 audio files or .jpg images.</label>
 </p>
 <p>
-<input class="single" type="radio" name="type" id="poster" value="poster" /> <label for="poster"><b>Publicity</b> attachment: please provide a .pdf or suitably large .jpg image.</label>
+<input class="single" type="radio" name="type" id="poster" value="poster" /> <label for="poster"><b>Publicity</b> attachment for downloading: please provide a .pdf or suitably large .jpg image.</label>
 </p>
+<p>
+<input class="single" type="radio" name="type" id="slider_past" value="slider_past" /> <label for="slider_past">Home-page, historical <b>Slider</b> attachment: an 1832 x 822 .jpg image of a notable moment from a past show.</label>
+</p>
+<p>
+<input class="single" type="radio" name="type" id="slider_promo" value="slider_promo" /> <label for="slider_promo"><b>Publicity</b> attachment: an 1832 x 822 .jpg image promoting an upcoming show; it will go away after show is done.</label>
+</p>
+
 <p>
   <input style="width:100%;" id="fileinput" type='file' name='file[]' disabled />
 </p>
