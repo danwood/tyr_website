@@ -4,8 +4,8 @@
 		{
 		"path":".",
 			"follow_symlinks": true,
-			"file_exclude_patterns":["config.codekit", "*.js", "*.html", "_Markdown*", "*.acorn", "*.css", "jquery*", "*.command", "*.sublime*", "_spreadsheet.php", "importspreadsheet.php", "phpliteadmin*"],
-			"folder_exclude_patterns":["logo", "photo", "poster", "signup", "HIDE", "plugins", "cache", "attachments", "teambox", "Michelf", "img", "wireframes", "textsources","svg-sources", "icon", "fonts", "frameworks", "*.oo3"]
+			"file_exclude_patterns":["*.sqlite3", "*.jpg", "*.png", "*.gif", "*.jpeg", "*.js", "*.html", "_Markdown*", "*.acorn", "*.css", "*.codekit*", "jquery*", "*.command", "*.sublime*", "_spreadsheet.php", "importspreadsheet.php", "phpliteadmin*"],
+			"folder_exclude_patterns":["shows", "slider_past", "slider_promo", "logo", "photo", "poster", "signup", "HIDE", "plugins", "cache", "attachments", "teambox", "Michelf", "img", "wireframes", "textsources","svg-sources", "icon", "fonts", "frameworks", "*.oo3"]
 		}
 	]
 }
