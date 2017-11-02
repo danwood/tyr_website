@@ -97,11 +97,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	   		else	// Want to shrink!  … logo, photo
 	   		{
 	   			// But first copy in original
-	   			$pathStart = 'shows/';
-	   			if ($type == 'show') {
-	   				$pathStart .= $year . '/';
+	   			$typeAndMaybeYear = $type . '/';
+	   			if ($type == 'photo') {
+	   				$typeAndMaybeYear .= $year . '/';
 	   			}
-	   			$pathToOriginal = $pathStart . $type . '/original/' . $currentFileName;
+
+
+	   			$pathToOriginal = 'shows/' . $typeAndMaybeYear . '/original/' . $currentFileName;
 		    	$tmp_name = $image['tmp_name'];
 				$moved = move_uploaded_file($tmp_name, $pathToOriginal);
 				if (!$moved)
@@ -110,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		    		$errorMessage = "Could not move original image";
 		    		goto giveup;
 				}
-	   			$pathToSized = $pathStart . $type . '/' . $currentFileName;
+	   			$pathToSized = 'shows/' . $typeAndMaybeYear . $currentFileName;
 
 	   			$put = file_put_contents($pathToSized, 'Hi there');
 
@@ -241,7 +243,7 @@ if ($month == 1) $year -= 1;		// currently near the beginning of the year so ass
 for ($x = 2012; $x <= 2021; $x++) {
 	echo '<option value="' . $x . '"';
 	if ($x == $year) echo ' selected';
-	echo '>' . PHP_EOL;
+	echo '>' . $x . '</option>' . PHP_EOL;
 }
 ?>
 </select>
