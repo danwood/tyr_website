@@ -28,6 +28,10 @@ foreach ($eventAssocArrays as $eventAssoc)		// don't use ampersand here, there w
 	$descriptionBefore					= $eventAssoc[BEFORE_DescriptionBefore];
 	$logoFilename						= $eventAssoc[BEFORE_LogoFilename];
 	$photoFilename						= $eventAssoc[BEFORE_PhotoFilename];
+
+// Get rid of the legacy year embedded in the filenames
+	$photoFilename = preg_replace('/^[0-9]+/', '', $photoFilename);
+
 	$photoCredits						= $eventAssoc[BEFORE_PhotoCredits];
 	$typeString							= $eventAssoc[BEFORE_Type];
 	$signupDetails						= $eventAssoc[BEFORE_SignupDetails];
