@@ -46,7 +46,7 @@ include('_header.php'); ?>
 <p>When data has changed, <a href="<?php echo htmlspecialchars($root); ?>reload.php">Reload</a> the entire site.</p>
 
 
-								<h3>Upload files for website (Max 20 at a time)</h3>
+								<h3>Upload files for website</h3>
 
 
 <?php
@@ -57,6 +57,7 @@ $currentFileName = NULL;
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	$type = $_POST['type'];
+	$year = $_POST['year'];		// for photo uploads
 	if (! in_array($type, array('logo', 'photo', 'poster', 'signup', 'slider_past', 'slider_promo')))
 	{
     		$errorMessage = "Something was wrong with the file type";
@@ -95,8 +96,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	   		}
 	   		else	// Want to shrink!  … logo, photo
 	   		{
-	   			// But first copy in original.
-	   			$pathToOriginal = 'shows/' . $type . '/original.' . $currentFileName;
+	   			// But first copy in original
+	   			$pathStart = 'shows/';
+	   			if ($type == 'show') {
+	   				$pathStart .= $year . '/';
+	   			}
+	   			$pathToOriginal = $pathStart . $type . '/original/' . $currentFileName;
 		    	$tmp_name = $image['tmp_name'];
 				$moved = move_uploaded_file($tmp_name, $pathToOriginal);
 				if (!$moved)
@@ -105,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		    		$errorMessage = "Could not move original image";
 		    		goto giveup;
 				}
-	   			$pathToSized = 'shows/' . $type . '/' . $currentFileName;
+	   			$pathToSized = $pathStart . $type . '/' . $currentFileName;
 
 	   			$put = file_put_contents($pathToSized, 'Hi there');
 
@@ -220,13 +225,26 @@ else	// input form
 <input class="single" type="radio" name="type" id="logo" value="logo" /> <label for="logo"><b>Logo</b>: please provide a .jpg or .png image</logo>
 </p>
 <p>
-<input class="multi" type="radio" name="type" id="photo" value="photo" /> <label for="photo"><b>Show Photos</b>: please provide several .jpg images.  The file names should have sequential numbers 1, 2, 3, 4 before the ".jpg" extension.
-E.g. <i>2012narnia1.jpg</i>, <i>2012narnia2.jpg</i>, <i>2012narnia3.jpg</i>, <i>2012narnia4.jpg</i>.
+<input class="multi" type="radio" name="type" id="photo" value="photo" /> <label for="photo"><b>Show Photos</b>: please provide <b>up to 20</b> .jpg images at a time.  The file names should have sequential numbers 1, 2, 3, 4 before the ".jpg" extension.
+E.g. <i>narnia1.jpg</i>, <i>narnia2.jpg</i>, <i>narnia3.jpg</i>, <i>narnia4.jpg</i>.
 These files can be chosen all at once in the file chooser.
 The images will be resized (and cropped if needed) to 608x342 pixels.
 Ideally, you should pre-crop the photos yourself to have a 16:9 aspect ratio. Since we also present the large sizes, the images should be scaled down to about 2400 pixels wide (since any more is just wasted space). Feel free to optimize the .jpg images before uploading.
 The first four images are the most important, and will be rotated in as thumbnails representing the whole show and available for social media sharing. Make sure images 1 through 4 have some neutral space near the top so the show title can be overlaid.
 </label>
+<select name="year">
+<?php
+$year = (integer)date('Y');
+$month = (integer)date('n');
+if ($month == 1) $year -= 1;		// currently near the beginning of the year so assume we are uploading pictures from last year show
+
+for ($x = 2012; $x <= 2021; $x++) {
+	echo '<option value="' . $x . '"';
+	if ($x == $year) echo ' selected';
+	echo '>' . PHP_EOL;
+}
+?>
+</select>
 </p>
 <p>
 <input class="single" type="radio" name="type" id="signup" value="signup" /> <label for="signup"><b>Signup</b> registration attachment: please provide a .pdf file, not a Microsoft Word document!  Also, you can upload .mp3 audio files or .jpg images.</label>
