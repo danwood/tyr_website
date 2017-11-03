@@ -108,7 +108,8 @@ If this doesn't work out, I can go back and look at this list: http://www.hongki
 
 
  */
-function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = SIZE_ONELINE, $isMarkdown = MARKDOWN_FALSE, $isRequired = REQUIRED_FALSE) {
+function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = SIZE_ONELINE, $isMarkdown = MARKDOWN_FALSE, $isRequired = REQUIRED_FALSE)
+{
 
 	global $event, $reflector;
 
@@ -214,13 +215,16 @@ document.write(converter.makeHtml(content));
 	}
 
 }
+?>
 
-
-
+<form action="save.php" method="POST">
+<?php
 
 showEditor('title', 'TEXT',                  'Title', '', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
 showEditor('suffix', 'TEXT',                 'Suffix', 'must be short!', SIZE_TINY);
-showEditor('infoIfNoLogo', 'TEXT',           'Longer title', 'Shown only when no logo', SIZE_SMALL);
+showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Shown only when no logo', SIZE_ONELINE);
+
+if ($event) {
 showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General blurb used for recruiting show, on the recruitment page', SIZE_MULTILINE, MARKDOWN_TRUE);
 //showEditor('logoFilename', 'TEXT',           'logoFilename'
 //showEditor('photoFilename', 'TEXT',
@@ -262,12 +266,21 @@ showEditor('callbackDateTime', 'DATETIME',   'Callback', 'When callbacks are sch
 showEditor('signupEndDate', 'DATETIME',      'Signup last date', 'Deadline for signups.');
 showEditor('rehearsalStartDate', 'DATETIME', 'Rehearsal start', 'Rehearsals underway.');
 showEditor('ticketSaleDate', 'DATETIME',     'Ticket sale date', 'Tickets now available.  If no tickets for sale, shows a countdown timer to first performance; click for cast details.');
+}
+else
+{
+	echo '<hr /><p>…you can fill in most of the details about this event once it has been initially created…</p><hr />' . PHP_EOL;
+}
+
 showEditor('showFirstDate', 'DATETIME',      'Opening/Event date', 'First performance (of any cast). Keep linking to ticket URL if available, otherwise show details. Use approximate date (1st of month)  when it’s in the distant future and date hasn’t been nailed down yet');
 showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last performance [if applicable]');
 ?>
 </table>
 
-
+<p>
+	<input type="submit" name="submit" value="<?php if ($event) echo 'Update Event'; else echo 'Create Event'; ?>" />
+</p>
+</form>
 
 
 							</div>
