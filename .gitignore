@@ -9,3 +9,4 @@ tyr.sqlite3
 *.html
 *.command
 /config.codekit3
+/config.codekit
