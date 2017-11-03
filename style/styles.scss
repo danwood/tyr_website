@@ -610,6 +610,9 @@ input[type="submit"] {
 	border:none;
 	-webkit-appearance: none;
 	font: 1em $type-family;
+	padding:0.5em;
+	background-color:$blue;
+	color:white;
 }
 
 
