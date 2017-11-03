@@ -58,7 +58,9 @@ if (0 == $errCode)
 	// Only bother rebuilding files if we got our data
 
 
-	echo "<p><b>Loading from spreadsheet cache into sqlite3 database....</b></p>\n";
+	echo "<p>Loading from spreadsheet cache into sqlite3 database....</p>\n";
+
+	echo "<p><b>(If it says database is locked, reload this page to try again.)</b></p>\n";
 
 	require_once('_importspreadsheet.php');
 
