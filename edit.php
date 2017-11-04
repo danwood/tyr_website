@@ -266,6 +266,10 @@ showEditor('callbackDateTime', 'DATETIME',   'Callback', 'When callbacks are sch
 showEditor('signupEndDate', 'DATETIME',      'Signup last date', 'Deadline for signups.');
 showEditor('rehearsalStartDate', 'DATETIME', 'Rehearsal start', 'Rehearsals underway.');
 showEditor('ticketSaleDate', 'DATETIME',     'Ticket sale date', 'Tickets now available.  If no tickets for sale, shows a countdown timer to first performance; click for cast details.');
+
+?>
+<input type="hidden" name="id" value="<?php echo htmlspecialchars($event->id()); ?>" />
+<?php
 }
 else
 {
