@@ -77,7 +77,11 @@ include('_header.php'); ?>
 						<section id="volunteer" class="clearfix capped-width">
 							<div class="inlinebox">
 
-
+<?php
+if (isset($_GET['created'])) {
+	echo "<p><b style='color:green'>New event has been created. You can fill in more information now.</b></p>";
+}
+?>
 
 <div id="pre-select-dates" class="box"></div>
 

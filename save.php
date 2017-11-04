@@ -67,7 +67,7 @@ else
 	}
 	$id = $db->lastInsertRowID();
 
-	header('Location: /edit.php?id=' . $id);
+	header('Location: /edit.php?created=$id&id=' . $id);
 }
 
 
