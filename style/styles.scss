@@ -606,7 +606,7 @@ textarea {
 }
 
 
-input[type="submit"] {
+input[type="submit"], input[type="button"] {
 	border:none;
 	-webkit-appearance: none;
 	font: 1em $type-family;
