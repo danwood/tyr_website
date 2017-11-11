@@ -9,7 +9,7 @@ require_once('_spreadsheet.php');
 $eventAssocArrays = getEventAssocArrays();		// Sorted by BEFORE_ShowFirstDate
 
 
-$db = new SQLite3('tyr.sqlite3') or die('Unable to open database');
+$db = new SQLite3('db/tyr.sqlite3') or die('Unable to open database');
 
 // Clear out the table
 	$ret = $db->exec('DELETE FROM EVENTS');

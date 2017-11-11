@@ -1332,8 +1332,8 @@ $currentOther = array();
 $laterEvents = array();
 $hiddenEvents = array();
 
-$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/tyr.sqlite3';
-
+$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/db/tyr.sqlite3';
+error_log($dbPath);
 $db = new SQLite3($dbPath) or die('Unable to open database');
 
 $query = 'select * from events';

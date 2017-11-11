@@ -12,7 +12,7 @@ class MyDB extends SQLite3
 {
     function __construct()
     {
-		$dbPath = $_SERVER['DOCUMENT_ROOT'] . 'tyr.sqlite3';
+		$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/db/tyr.sqlite3';
 
         $this->open($dbPath, SQLITE3_OPEN_READWRITE);
     }
@@ -27,24 +27,33 @@ if (isset($_POST['id'])) {
 
 	$query = 'select * from events where id=' . $id;
 
-	$ret = $db->query($query, true);
+	$ret = $db->query($query);
 	if(!$ret) {
 		echo $db->lastErrorMsg();
 		die;
 	}
 	while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 
-		print_r($row);
 		$event = new Event($row);		// Copy the event, work with that.
 	}
 
-	$query = 'update event set ';
+	$valuesList = '';
+	$query = 'update events set ';
 	foreach ($inputs as $key => $value) {
 		$query .= $key . '=';
 		$valuesList .= "'" . $value . "',";
 	}
 	$query = substr($query, 0, -1);	// take out last ,
-	$query = ' where id=' . $id;
+	$query .= ' where id=' . $id;
+
+error_log($query);
+	$ret = $db->query($query);
+	if(!$ret) {
+		echo $db->lastErrorMsg();
+		die;
+	}
+
+	header("Location: /edit.php?saved=$id&id=$id");
 }
 else
 {
@@ -60,6 +69,7 @@ else
 	$query = substr($query, 0, -1);	// take out last ,
 	$query .= ')';
 
+error_log($query);
 	$ret = $db->query($query);
 	if(!$ret) {
 		echo $db->lastErrorMsg();
@@ -67,7 +77,7 @@ else
 	}
 	$id = $db->lastInsertRowID();
 
-	header('Location: /edit.php?created=$id&id=' . $id);
+	header("Location: /edit.php?created=$id&id=$id");
 }
 
 
