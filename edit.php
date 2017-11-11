@@ -226,7 +226,7 @@ document.write(converter.makeHtml(content));
 }
 ?>
 
-<form action="save.php" method="POST">
+<form id="mainform" action="save.php" method="POST">
 <h3>General</h3>
 <?php
 showEditor('title', 'TEXT',                  'Title', '', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
@@ -392,7 +392,7 @@ return toMarkdown(html);
 
 
 
-$( "#submit" ).submit(function( event ) {
+$( "#mainform" ).submit(function( event ) {
   alert( "Handler for .submit() called." );
 
 //     if (markdownize(jQuery('.editable').html()) == content) {
