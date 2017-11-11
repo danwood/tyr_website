@@ -36,7 +36,8 @@ if ($event)
 
 <style>
 textarea { width:100%;}
-h4 { margin-top:1em; }
+h3, h4 { margin-top:1em; }
+h3 { color:#666;}
 .dates_table { width:100%; }
 .dates_table th, .dates_table td { padding:15px; }
 .date_title { font-weight:bold;}
@@ -80,7 +81,10 @@ include('_header.php'); ?>
 <?php
 if (isset($_GET['created'])) {
 	echo "<p><b style='color:green'>New event has been created. You can fill in more information now.</b></p>";
+} else if (isset($_GET['saved'])) {
+	echo "<p><b style='color:orange'>Updates have been saved.</b></p>";
 }
+
 ?>
 
 <div id="pre-select-dates" class="box"></div>
@@ -205,6 +209,7 @@ document.write(converter.makeHtml(content));
 	}
 
 	// special case - date AND time.  Do a time input after a date.
+	// For submission, we have to recombine!
 	if (FALSE !== strpos(strtolower($sqlColumn), 'date') && FALSE !== strpos(strtolower($sqlColumn), 'time'))
 	{
 		echo '<input type="text" size="' . $width . '"';	// disable native time picker since we have custom picker
@@ -222,17 +227,18 @@ document.write(converter.makeHtml(content));
 ?>
 
 <form action="save.php" method="POST">
+<h3>General</h3>
 <?php
-
 showEditor('title', 'TEXT',                  'Title', '', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
 showEditor('suffix', 'TEXT',                 'Suffix', 'must be short!', SIZE_TINY);
 showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Shown only when no logo', SIZE_ONELINE);
 
 if ($event) {
+
+echo '<h3>Recruitment</h3>' . PHP_EOL;
+
 showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General blurb used for recruiting show, on the recruitment page', SIZE_MULTILINE, MARKDOWN_TRUE);
 //showEditor('logoFilename', 'TEXT',           'logoFilename'
-//showEditor('photoFilename', 'TEXT',
-showEditor('photoCredits', 'TEXT',           'Photo credits', 'Who took the photos after the show/event', SIZE_ONELINE);
 //showEditor('type', 'INTEGER',                'type'
 
 showEditor('signupDetails', 'TEXT',          'Signup details', 'Where classes are, audition preparations, what to expect, etc.', SIZE_MULTILINE, MARKDOWN_TRUE);
@@ -240,20 +246,30 @@ showEditor('signupDetails', 'TEXT',          'Signup details', 'Where classes ar
 showEditor('whoCanGo', 'TEXT',               'Who can go', 'Age or grade range etc.', SIZE_TINY);
 //showEditor('signupAttachment', 'TEXT',
 showEditor('performanceInfo', 'TEXT',        'Performance Info', 'Details on when and where performances are', SIZE_MULTILINE, MARKDOWN_TRUE);
-showEditor('howTheShowWent', 'TEXT',         'How the show went', 'After the show, some text to describe how it went. For people reading details about show from archives', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('castList', 'TEXT',               'Cast list', 'Fill this in to show who got cast.  Goes away after rehearsal start date', SIZE_MULTILINE, MARKDOWN_TRUE);
 //showEditor('sharedCast', 'BOOLEAN',
 showEditor('tuition', 'TEXT',                'Tuition', 'Human-readable dollar amount or amounts', SIZE_ONELINE);
 
-showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper Tickets etc. if needed', SIZE_ONELINE);
-showEditor('photoURL1', 'TEXT',              'Photo URL #1', 'URL of a photo album for a show, after the run is over', SIZE_ONELINE);
-showEditor('photoURL2', 'TEXT',              'Photo URL #2', 'URL of any second photo album for a show, after the run is over', SIZE_ONELINE);
-//showEditor('publicityAttachment', 'TEXT',    'publicityAttachment',
 showEditor('auditionLocation', 'TEXT',       'Audition location', 'Where auditions will be held', SIZE_ONELINE);
 showEditor('auditionPrepare', 'TEXT',        'Audition preparation', 'What to prepare for auditions', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('classDays', 'TEXT',              'Class days', 'Days of the week the rehearsals/camp/classes are, or maybe specific dates', SIZE_ONELINE);
 showEditor('startTime', 'TEXT',              'Start time', 'time, in human-readable format, that auditions/camp/classes start', SIZE_SMALL);
 showEditor('endTime', 'TEXT',                'End time', 'time, in human-readable format, that auditions/camp/classes end', SIZE_SMALL);
+
+echo '<h3>Publicity</h3>' . PHP_EOL;
+
+showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper Tickets etc. if needed', SIZE_ONELINE);
+//showEditor('publicityAttachment', 'TEXT',    'publicityAttachment',
+
+
+echo '<h3>Archives</h3>' . PHP_EOL;
+showEditor('howTheShowWent', 'TEXT',         'How the show went', 'After the show, some text to describe how it went. For people reading details about show from archives', SIZE_MULTILINE, MARKDOWN_TRUE);
+//showEditor('photoFilename', 'TEXT',
+showEditor('photoCredits', 'TEXT',           'Photo credits', 'Who took the photos after the show/event', SIZE_ONELINE);
+showEditor('photoURL1', 'TEXT',              'Photo URL #1', 'URL of a photo album for a show, after the run is over', SIZE_ONELINE);
+showEditor('photoURL2', 'TEXT',              'Photo URL #2', 'URL of any second photo album for a show, after the run is over', SIZE_ONELINE);
+
+
 
 ?>
 <h4>Dates</h4>
