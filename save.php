@@ -8,6 +8,14 @@ require_once('_prelude.php');
 $inputs = $_POST;
 unset($inputs['submit']);
 
+function endswith($string, $test) {
+    $strlen = strlen($string);
+    $testlen = strlen($test);
+    if ($testlen > $strlen) return false;
+    return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
+}
+
+
 class MyDB extends SQLite3
 {
     function __construct()
@@ -37,11 +45,12 @@ if (isset($_POST['id'])) {
 		$event = new Event($row);		// Copy the event, work with that.
 	}
 
-	$valuesList = '';
 	$query = 'update events set ';
 	foreach ($inputs as $key => $value) {
-		$query .= $key . '=';
-		$valuesList .= "'" . $value . "',";
+		if (!endswith($key, '_time')) {
+			$query .= $key . '=';
+			$query .= "'" . SQLite3::escapeString($value) . "',";
+		}
 	}
 	$query = substr($query, 0, -1);	// take out last ,
 	$query .= ' where id=' . $id;
@@ -60,8 +69,10 @@ else
 	$valuesList = '';
 	$query = 'insert into events (';
 	foreach ($inputs as $key => $value) {
-		$query .= $key . ',';
-		$valuesList .= "'" . $value . "',";
+		if (!endswith($key, '_time')) {
+			$query .= $key . ',';
+			$valuesList .= "'" . SQLite3::escapeString($value) . "',";
+		}
 	}
 	$query = substr($query, 0, -1);	// take out last ,
 	$query .= ') values(';
