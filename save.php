@@ -15,6 +15,18 @@ function endswith($string, $test) {
     return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
 }
 
+function dateTo8601($value) {
+	$time = strtotime($value);
+	$value = date('c', $time);
+	return $value;
+}
+
+function datetimeTo8601($value) {
+	$time = strtotime($value);
+	$value = date('c', $time);
+	return $value;
+}
+
 
 class MyDB extends SQLite3
 {
@@ -49,6 +61,12 @@ if (isset($_POST['id'])) {
 	foreach ($inputs as $key => $value) {
 		if (!endswith($key, '_time')) {
 			$query .= $key . '=';
+
+			if (endswith($key, 'Date')) {
+				$value = dateTo8601($value);
+			} else if (endswith($key, 'DateTime') || endswith(substr($key,0,-1), 'DateTime')) {
+				$value = datetimeTo8601($value);
+			}
 			$query .= "'" . SQLite3::escapeString($value) . "',";
 		}
 	}
@@ -71,6 +89,13 @@ else
 	foreach ($inputs as $key => $value) {
 		if (!endswith($key, '_time')) {
 			$query .= $key . ',';
+
+			if (endswith($key, 'Date')) {
+				$value = dateTo8601($value);
+			} else if (endswith($key, 'DateTime') || endswith(substr($key,0,-1), 'DateTime')) {
+				$value = datetimeTo8601($value);
+			}
+
 			$valuesList .= "'" . SQLite3::escapeString($value) . "',";
 		}
 	}

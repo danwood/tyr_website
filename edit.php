@@ -160,11 +160,14 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	}
 
 	$value = NULL;
+	$timeValue = NULL;		// fill in just in case
 	if ($event) {
 		$prop = $reflector->getProperty($sqlColumn);
 		$value = $prop->isPrivate() ? $event->{$sqlColumn}() : $event->{$sqlColumn};
 		if ($sqlType == 'DATETIME') {
-			$value = ($value > 0) ? $value = date('n/j/y', $value) : '';
+			$timeValue = ($value > 0) ? date('h:i A', $value) : '';
+			if ($timeValue == '12:00 AM') $timeValue = '';
+			$value = ($value > 0) ? date('n/j/y', $value) : '';
 		}
 	}
 
@@ -217,6 +220,7 @@ $('#<?php echo htmlspecialchars($sqlColumn); ?>_html').html(contentHTML);
 	{
 		echo '<input type="text" size="' . $width . '"';	// disable native time picker since we have custom picker
 		echo ' name="' . $sqlColumn . '_time"';
+		echo ' value="' . $timeValue . '"';
 		echo ' class="timePicker"';
 		echo ' />'. PHP_EOL;
 	}
@@ -353,7 +357,7 @@ $('.datepicker').datepicker({
 
 });
 
-$('.timePicker').timepicki({reset: true});
+$('.timePicker').timepicki({step_size_minutes:15, reset: true});
 
 $('.editable').hallo({
 	plugins: {
