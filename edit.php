@@ -58,10 +58,13 @@ h3 { color:#666;}
     unicode-bidi: embed;
     font-family: monospace;
     white-space: pre-wrap;
+    display:none;
 }
 
 </style>
 <script src="/js/showdown.js"></script>
+<!-- jquery early so we can build up web form contents as we load page -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body id="" class="lightgray-block">
 	<div class="clearfix outside-sticky-footer">
@@ -180,23 +183,23 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	else {
 		if ($isMarkdown) {
 
-// echo '<div class="source">' . htmlspecialchars( $event ? $value : 'NONE') . '</div>';
+	echo '<textarea class="source" name="' . $sqlColumn . '" id="' . $sqlColumn . '_markdown">' . htmlspecialchars( $event ? $value : 'NONE') . '</textarea>';
 			echo '<div class="editable"';
-			echo ' name="' . $sqlColumn . '"';
-			echo ' id="' . $sqlColumn . '"';
+			echo ' id="' . $sqlColumn . '_html"';
 			echo 'style="min-height:'.$height.'em;"';
 			echo '>'. PHP_EOL;
+			echo '</div>'. PHP_EOL;
 			if ($event) {
 ?>
 <script>
 var converter = new Showdown.converter();
 var content = <?php echo json_encode($value); ?>;
-document.write(converter.makeHtml(content));
+var contentHTML = converter.makeHtml(content);
+$('#<?php echo htmlspecialchars($sqlColumn); ?>_html').html(contentHTML);
 </script>
 <?php
 			}
 
-			echo '</div>'. PHP_EOL;
 		} else {
 
 			echo '<textarea rows="' . $height . '"';
@@ -335,7 +338,6 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 
 */
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <script>window.jQuery.ui || document.write('<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.12.1.js"><\/script>')</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-core.js"></script>
@@ -403,15 +405,20 @@ $("input[name*=_time]").each(function(){
 
 	   	var date = $("input[name="+ inputname + "]").val();
 
-		$("input[name="+ inputname + "]").val(time + " " + date);
+		$("input[name="+ inputname + "]").val(date + " " + time);
 	}
 });
 
-//     if (markdownize(jQuery('.editable').html()) == content) {
+$(".editable").each(function(){
+	var html = $(this).html();
+	var markdown = markdownize(html);
+	var htmlID = $(this).attr("id");
+	var markdownID = htmlID.replace("_html", "_markdown");
+	$('#' + markdownID).text(markdown);
+});
 
 
 // let submission go through
-  // event.preventDefault();
 });
 
 
