@@ -393,12 +393,25 @@ return toMarkdown(html);
 
 
 $( "#mainform" ).submit(function( event ) {
-  alert( "Handler for .submit() called." );
+
+$("input[name*=_time]").each(function(){
+
+	var time = $(this).val();
+	if (time != '') {
+	    var inputname = ($(this).attr("name"));
+	    inputname = inputname.slice(0, -5);
+
+	   	var date = $("input[name="+ inputname + "]").val();
+
+		$("input[name="+ inputname + "]").val(time + " " + date);
+	}
+});
 
 //     if (markdownize(jQuery('.editable').html()) == content) {
 
 
-  event.preventDefault();
+// let submission go through
+  // event.preventDefault();
 });
 
 
