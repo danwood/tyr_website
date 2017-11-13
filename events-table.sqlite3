@@ -14,5 +14,68 @@ DROP TABLE IF EXISTS "events";
 ----
 -- Table structure for events
 ----
-CREATE TABLE 'events' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'title' TEXT, 'suffix' TEXT, 'infoIfNoLogo' TEXT, 'descriptionBefore' TEXT, 'logoFilename' TEXT, 'photoFilename' TEXT, 'photoCredits' TEXT, 'type' INTEGER, 'signupDetails' TEXT, 'whoCanGo' TEXT, 'signupAttachment' TEXT, 'performanceInfo' TEXT, 'howTheShowWent' TEXT, 'castList' TEXT, 'sharedCast' BOOLEAN, 'tuition' TEXT, 'ticketURL' TEXT, 'photoURL1' TEXT, 'photoURL2' TEXT, 'publicityAttachment' TEXT, 'auditionLocation' TEXT, 'auditionPrepare' TEXT, 'classDays' TEXT, 'startTime' TEXT, 'endTime' TEXT, 'announceDate' DATETIME, 'signupStartDate' DATETIME, 'auditionDateTime1' DATETIME, 'auditionDateTime2' DATETIME, 'callbackDateTime' DATETIME, 'signupEndDate' DATETIME, 'rehearsalStartDate' DATETIME, 'ticketSaleDate' DATETIME, 'showFirstDate' DATETIME, 'showLastDate' DATETIME);
+CREATE TABLE 'events' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+
+ 'prefix' TEXT,
+ 'title' TEXT,
+ 'suffix' TEXT,
+ 'infoIfNoLogo' TEXT,
+ 'storyOverview' TEXT,
+ 'venue' TEXT,
+ 'venueAddress' TEXT,
+ 'credits' TEXT,
+
+ 'descriptionBefore' TEXT,
+ 'logoFilename' TEXT,
+ 'type' INTEGER,
+ 'signupDetails' TEXT,
+ 'whoCanGo' TEXT,
+ 'signupAttachment' TEXT,
+ 'performanceInfo' TEXT,
+ 'parentID' INTEGER,
+
+ 'rehearsalInfo' TEXT,
+ 'parentalPassword' TEXT,
+
+ 'castList' TEXT,
+
+ 'sharedCast' BOOLEAN,
+ 'tuition' TEXT,
+ 'auditionLocation' TEXT,
+ 'auditionPrepare' TEXT,
+ 'classDays' TEXT,
+ 'startTime' TEXT,
+ 'endTime' TEXT,
+
+
+ 'sliderPromoFilename' TEXT,
+ 'ticketURL' TEXT,
+ 'publicityAttachment' TEXT,
+
+
+ 'howTheShowWent' TEXT,
+ 'directorQuote' TEXT,
+ 'photoFilename' TEXT,
+ 'photoCredits' TEXT,
+ 'photoURL1' TEXT,
+ 'photoURL2' TEXT,
+ 'photoURL3' TEXT,
+ 'photoURL4' TEXT,
+ 'photoSource1' TEXT,
+ 'photoSource2' TEXT,
+ 'photoSource3' TEXT,
+ 'photoSource4' TEXT,
+ 'sliderArchiveFilename' TEXT,
+
+ 'announceDate' DATETIME,
+ 'signupStartDate' DATETIME,
+ 'auditionDateTime1' DATETIME,
+ 'auditionDateTime2' DATETIME,
+ 'callbackDateTime' DATETIME,
+ 'signupEndDate' DATETIME,
+ 'rehearsalStartDate' DATETIME,
+ 'ticketSaleDate' DATETIME,
+ 'showFirstDate' DATETIME,
+ 'showLastDate' DATETIME);
 COMMIT;
