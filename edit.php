@@ -232,10 +232,11 @@ $('#<?php echo htmlspecialchars($sqlColumn); ?>_html').html(contentHTML);
 
 // Crazy way we have to initialize the time picker by data attributes instead of it just parsing the value
 // of the input!
-		echo  ' data-timepicki-tim="' . $hourValue  . '"';
-		echo ' data-timepicki-mini="' . $miniValue  . '"';
-		echo ' data-timepicki-meri="' . $meriValue  . '"';
-
+		if (!empty($hourValue)) {
+			echo  ' data-timepicki-tim="' . $hourValue  . '"';
+			echo ' data-timepicki-mini="' . $miniValue  . '"';
+			echo ' data-timepicki-meri="' . $meriValue  . '"';
+		}
 
 		echo ' />'. PHP_EOL;
 	}
