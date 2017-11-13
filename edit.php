@@ -160,12 +160,19 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	}
 
 	$value = NULL;
-	$timeValue = NULL;		// fill in just in case
+	$timeValue = '';		// fill in just in case
+	$hourValue = $miniValue = $meriValue = NULL;
+
 	if ($event) {
 		$prop = $reflector->getProperty($sqlColumn);
 		$value = $prop->isPrivate() ? $event->{$sqlColumn}() : $event->{$sqlColumn};
 		if ($sqlType == 'DATETIME') {
-			$timeValue = ($value > 0) ? date('h:i A', $value) : '';
+			if ($value  >0) {
+				$timeValue = date('h:i A', $value);
+				$hourValue = date('h', $value);
+				$miniValue = date('i', $value);
+				$meriValue = date('A', $value);
+			}
 			if ($timeValue == '12:00 AM') $timeValue = '';
 			$value = ($value > 0) ? date('n/j/y', $value) : '';
 		}
@@ -222,6 +229,14 @@ $('#<?php echo htmlspecialchars($sqlColumn); ?>_html').html(contentHTML);
 		echo ' name="' . $sqlColumn . '_time"';
 		echo ' value="' . $timeValue . '"';
 		echo ' class="timePicker"';
+
+// Crazy way we have to initialize the time picker by data attributes instead of it just parsing the value
+// of the input!
+		echo  ' data-timepicki-tim="' . $hourValue  . '"';
+		echo ' data-timepicki-mini="' . $miniValue  . '"';
+		echo ' data-timepicki-meri="' . $meriValue  . '"';
+
+
 		echo ' />'. PHP_EOL;
 	}
 
@@ -357,7 +372,16 @@ $('.datepicker').datepicker({
 
 });
 
-$('.timePicker').timepicki({step_size_minutes:15, reset: true});
+function getTimepickiTime(obj) {
+    var timeValue = obj.val();
+    var trimmedTimeValue = timeValue.replace(/ /g,'');
+    var resultSplit = trimmedTimeValue.split(':');
+    return resultSplit;
+};
+$('.timePicker').timepicki({
+	step_size_minutes:15,
+	reset: true
+});
 
 $('.editable').hallo({
 	plugins: {
