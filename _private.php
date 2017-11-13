@@ -2,7 +2,12 @@
 
 // The 'live' version of this file should be placed one level above the web root.  Fill it in with appropriate values
 
+// Password for 'backstage.php' administration area
 $backstage_password = 'XXX';
+
+// Password for phpliteadmin.php … really only for programmer!
+$password = 'XXX';
+
 
 
 
