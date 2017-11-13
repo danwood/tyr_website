@@ -22,7 +22,7 @@ $subdirectories = false;
 //if any of the databases do not exist as they are referenced by their path, they will be created automatically
 $databases = array(
 	array(
-		'path'=> 'tyr.sqlite3',
+		'path'=> 'db/tyr.sqlite3',
 		'name'=> 'TYR Events'
 	),
 );
