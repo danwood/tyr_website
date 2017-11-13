@@ -251,15 +251,23 @@ $('#<?php echo htmlspecialchars($sqlColumn); ?>_html').html(contentHTML);
 <form id="mainform" action="save.php" method="POST">
 <h3>General</h3>
 <?php
+showEditor('prefix', 'TEXT',                 'Prefix', 'e.g. "William Shakespeare’s"', SIZE_TINY);
 showEditor('title', 'TEXT',                  'Title', '', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
 showEditor('suffix', 'TEXT',                 'Suffix', 'must be short!', SIZE_TINY);
 showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Shown only when no logo', SIZE_ONELINE);
 
 if ($event) {
 
+echo '<h3>General Information</h3>' . PHP_EOL;
+
+showEditor('storyOverview', 'TEXT',      	 'Plot overview', 'Teaser plot of story', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('venue', 'TEXT',                  'Venue', 'Theatre etc. of performances', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
+showEditor('venueAddress', 'TEXT',            'Address of venue', 'Address of venue, for publicizing event', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
+showEditor('credits', 'TEXT',      	 		 'Credits', 'Director, book, special arrangements etc.', SIZE_MULTILINE, MARKDOWN_TRUE);
+
 echo '<h3>Recruitment</h3>' . PHP_EOL;
 
-showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General blurb used for recruiting show, on the recruitment page', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General blurb used for recruiting show. GOES AWAY after signups are done', SIZE_MULTILINE, MARKDOWN_TRUE);
 //showEditor('logoFilename', 'TEXT',           'logoFilename'
 //showEditor('type', 'INTEGER',                'type'
 
@@ -278,6 +286,10 @@ showEditor('classDays', 'TEXT',              'Class days', 'Days of the week the
 showEditor('startTime', 'TEXT',              'Start time', 'time, in human-readable format, that auditions/camp/classes start', SIZE_SMALL);
 showEditor('endTime', 'TEXT',                'End time', 'time, in human-readable format, that auditions/camp/classes end', SIZE_SMALL);
 
+showEditor('rehearsalInfo', 'TEXT',          'Private rehearsal info', '(When implemented) private(?) rehearsal info', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('parentalPassword', 'TEXT',       'Password for Parents', '(When implemented) secret password for parents of this show to see private rehearsal info', SIZE_SMALL);
+
+
 echo '<h3>Publicity</h3>' . PHP_EOL;
 
 showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper Tickets etc. if needed', SIZE_ONELINE);
@@ -286,6 +298,7 @@ showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper T
 
 echo '<h3>Archives</h3>' . PHP_EOL;
 showEditor('howTheShowWent', 'TEXT',         'How the show went', 'After the show, some text to describe how it went. For people reading details about show from archives', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('directorQuote', 'TEXT',         'Director’s Notes', 'Quote from director in the first person', SIZE_MULTILINE, MARKDOWN_TRUE);
 //showEditor('photoFilename', 'TEXT',
 showEditor('photoCredits', 'TEXT',           'Photo credits', 'Who took the photos after the show/event', SIZE_ONELINE);
 showEditor('photoURL1', 'TEXT',              'Photo URL #1', 'URL of a photo album for a show, after the run is over', SIZE_ONELINE);

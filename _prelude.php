@@ -336,7 +336,16 @@ class Event
 
 	private $id;						// Used to key other tables into this master table
 	private $title;					// Title for display
+	private $prefix;				//
 	private $suffix;				// suffix like "jr", probably in smaller font or something
+	public $storyOverview;
+	public $venue;
+	public $venueAddress;
+	public $credits;
+	public $rehearsalInfo;
+	public $parentalPassword;
+	public $directorQuote;
+
 	public $infoIfNoLogo;			// Small blurb to show if no logo, also shown below title main card/signup card
 	public $descriptionBefore;		// General blurb used for recruiting show, on the recruitment page. Several paragraphs is fine. **
 	private $logoFilename;			// An image with the name of the show in it; we won't display show title!  FILE
@@ -510,6 +519,7 @@ class Event
 	public function getYear()				{ $dateComponents = getdate($this->showFirstDate); return $dateComponents["year"]; }
 
 	public function title() { return $this->title; }
+	public function prefix() { return $this->prefix; }
 	public function suffix() { return $this->suffix; }
 	public function id() { return $this->id; }
 
