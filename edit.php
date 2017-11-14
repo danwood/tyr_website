@@ -287,8 +287,7 @@ showEditor('classDays', 'TEXT',              'Class days', 'Days of the week the
 showEditor('startTime', 'TEXT',              'Start time', 'time, in human-readable format, that auditions/camp/classes start', SIZE_SMALL);
 showEditor('endTime', 'TEXT',                'End time', 'time, in human-readable format, that auditions/camp/classes end', SIZE_SMALL);
 
-showEditor('rehearsalInfo', 'TEXT',          'Private rehearsal info', '(When implemented) private(?) rehearsal info', SIZE_MULTILINE, MARKDOWN_TRUE);
-showEditor('parentalPassword', 'TEXT',       'Password for Parents', '(When implemented) secret password for parents of this show to see private rehearsal info', SIZE_SMALL);
+showEditor('rehearsalInfo', 'TEXT',          'Rehearsal info', 'Info about rehearsals visible during recruitment and rehearsals', SIZE_MULTILINE, MARKDOWN_TRUE);
 
 
 echo '<h3>Publicity</h3>' . PHP_EOL;

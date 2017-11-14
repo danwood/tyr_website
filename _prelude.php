@@ -343,7 +343,6 @@ class Event
 	public $venueAddress;
 	public $credits;
 	public $rehearsalInfo;
-	public $parentalPassword;
 	public $directorQuote;
 
 	public $infoIfNoLogo;			// Small blurb to show if no logo, also shown below title main card/signup card

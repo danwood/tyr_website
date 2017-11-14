@@ -36,7 +36,6 @@ CREATE TABLE 'events' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
  'parentID' INTEGER,
 
  'rehearsalInfo' TEXT,
- 'parentalPassword' TEXT,
 
  'castList' TEXT,
 
