@@ -23,11 +23,12 @@
 	<link rel="apple-touch-icon" sizes="120x120" href="<?php echo htmlspecialchars($root); ?>icon/apple-touch-icon-120x120.png?md=20171031" />
 	<link rel="apple-touch-icon" sizes="144x144" href="<?php echo htmlspecialchars($root); ?>icon/apple-touch-icon-144x144.png?md=20171031" />
 	<link rel="apple-touch-icon" sizes="152x152" href="<?php echo htmlspecialchars($root); ?>icon/apple-touch-icon-152x152.png?md=20171031" />
-
 	<!--<![endif]-->
-	<!--[if lte IE 7]>
-	<link rel="stylesheet" type="text/css" media="screen, projection" href="http://universal-ie6-css.googlecode.com/files/ie6.0.3.css" />
-	<![endif]-->
+
+	<!--[if lte IE 9]>
+    <style>header, main { display: none }
+    <![endif]-->
+
 <?php
 if (isset($event) && $event)
 {
