@@ -58,7 +58,6 @@ h3 { color:#666;}
     unicode-bidi: embed;
     font-family: monospace;
     white-space: pre-wrap;
-    display:none;
 }
 
 </style>
