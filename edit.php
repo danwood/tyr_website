@@ -61,6 +61,8 @@ h3 { color:#666;}
     font-family: monospace;
     white-space: pre-wrap;
 }
+a.wym_wymeditor_link { display:none !important;}
+.wym_classes { display:none !important;}
 
 </style>
 </head>
@@ -389,9 +391,32 @@ var converter = new Showdown.converter();
 var content, contentHTML;
 <?php echo $editorInitializationScript; ?>
 
-$('.wymeditor').wymeditor({
-	skin: 'compact'
-});
+var options = {
+	skin: 'compact',
+    toolsItems: [
+            {'name': 'Bold', 'title': 'Strong', 'css': 'wym_tools_strong'},
+            {'name': 'Italic', 'title': 'Emphasis', 'css': 'wym_tools_emphasis'},
+            {'name': 'CreateLink', 'title': 'Link', 'css': 'wym_tools_link'},
+            {'name': 'Unlink', 'title': 'Unlink', 'css': 'wym_tools_unlink'},
+            {'name': 'InsertOrderedList', 'title': 'Ordered_List',
+                'css': 'wym_tools_ordered_list'},
+            {'name': 'InsertUnorderedList', 'title': 'Unordered_List',
+                'css': 'wym_tools_unordered_list'},
+            {'name': 'Undo', 'title': 'Undo', 'css': 'wym_tools_undo'},
+            {'name': 'Redo', 'title': 'Redo', 'css': 'wym_tools_redo'}
+        ], */
+    containersItems: [
+            {'name': 'P', 'title': 'Paragraph', 'css': 'wym_containers_p'},
+            {'name': 'H4', 'title': 'Heading_4', 'css': 'wym_containers_h4'},
+            {'name': 'H5', 'title': 'Heading_5', 'css': 'wym_containers_h5'},
+            {'name': 'H6', 'title': 'Heading_6', 'css': 'wym_containers_h6'},
+            {'name': 'BLOCKQUOTE', 'title': 'Blockquote',
+                'css': 'wym_containers_blockquote'},
+        ],
+
+};
+$('.wymeditor').wymeditor(options);
+
 
 /* USE THIS IF WE DECIDE ON AJAX UPDATING ....
 
