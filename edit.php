@@ -404,7 +404,7 @@ var options = {
                 'css': 'wym_tools_unordered_list'},
             {'name': 'Undo', 'title': 'Undo', 'css': 'wym_tools_undo'},
             {'name': 'Redo', 'title': 'Redo', 'css': 'wym_tools_redo'}
-        ], */
+        ],
     containersItems: [
             {'name': 'P', 'title': 'Paragraph', 'css': 'wym_containers_p'},
             {'name': 'H4', 'title': 'Heading_4', 'css': 'wym_containers_h4'},
