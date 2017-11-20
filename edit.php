@@ -489,12 +489,18 @@ $( "#mainform" ).submit(function( event ) {
 	$(".wymeditor").each(function(){
 
 		// Convert latest HTML contents to markdown for submission
+		var textArea = $(this)[0];
+		var myWym = $.getWymeditorByTextarea(textArea);
+		if (myWym) {
+		    var html = myWym.html();
+			var markdown = markdownize(html);
+			var htmlID = $(this).attr("id");
+			var markdownID = htmlID.replace("_html", "_markdown");
+			$('#' + markdownID).text(markdown);
+		}
 
-		var html = $(this).text();	// use text to get raw HTML out of textarea
-		var markdown = markdownize(html);
-		var htmlID = $(this).attr("id");
-		var markdownID = htmlID.replace("_html", "_markdown");
-		$('#' + markdownID).text(markdown);
+
+
 	});
 
 	// let submission go through
