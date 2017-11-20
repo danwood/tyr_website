@@ -490,7 +490,7 @@ $( "#mainform" ).submit(function( event ) {
 
 		// Convert latest HTML contents to markdown for submission
 
-		var html = $(this).html();
+		var html = $(this).text();	// use text to get raw HTML out of textarea
 		var markdown = markdownize(html);
 		var htmlID = $(this).attr("id");
 		var markdownID = htmlID.replace("_html", "_markdown");
