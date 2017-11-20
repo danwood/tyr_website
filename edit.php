@@ -33,7 +33,7 @@ if ($event)
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/timepicki.css" />
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/jquery-ui.min.css">
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/font-awesome.min.css">
-<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>wymeditor/dist/wymeditor/skins/compact/skin.css">
+<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>wymeditor/skins/compact/skin.css">
 
 
 <style>
@@ -192,16 +192,26 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 			echo '<div class="wymeditor_container"';
 			echo ' id="' . $sqlColumn . '_container"';
 			echo '>'. PHP_EOL;
-			if ($event && $value) {
+			if ($event) {
 
 				// Some script to append to end of file later
 				// Wrap the output in the textarea since jquery escapes html tags in textarea
 				ob_start();
+				if ($value) {
 ?>
 content = <?php echo json_encode($value); ?>;
 contentHTML = converter.makeHtml(content);
+<?php
+				}
+?>
 contentHTML = '<textarea class="wymeditor" id="<?php echo htmlspecialchars($sqlColumn); ?>_html">'
+<?php
+if ($value) {
+?>
 	+ contentHTML
+<?php
+}
+?>
 	+ '</textarea>';
 $('#<?php echo htmlspecialchars($sqlColumn); ?>_container').html(contentHTML);
 <?php
@@ -354,10 +364,10 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 <script src="<?php echo htmlspecialchars($root); ?>js/showdown.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/jquery-1.12.4.min.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.12.1.min.js"></script>
-<script src="<?php echo htmlspecialchars($root); ?>js/jquery.wymeditor.min.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/rangy-core.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/to-markdown.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/timepicki.js"></script>
+<script src="<?php echo htmlspecialchars($root); ?>wymeditor/jquery.wymeditor.min.js"></script>
 
 <script>
 
