@@ -56,10 +56,10 @@ h3 { color:#666;}
 .source {
 	background:pink;
 	width:100%;
-    display: block;
     unicode-bidi: embed;
     font-family: monospace;
     white-space: pre-wrap;
+    display: none;
 }
 a.wym_wymeditor_link { display:none !important;}
 .wym_classes { display:none !important;}
