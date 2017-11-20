@@ -31,8 +31,10 @@ if ($event)
 */
 ?>
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/timepicki.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/style/font-awesome.min.css">
+<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/jquery-ui.min.css">
+<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/font-awesome.min.css">
+<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>wymeditor/dist/wymeditor/skins/compact/skin.css">
+
 
 <style>
 textarea { width:100%;}
@@ -61,9 +63,6 @@ h3 { color:#666;}
 }
 
 </style>
-<script src="/js/showdown.js"></script>
-<!-- jquery early so we can build up web form contents as we load page -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body id="" class="lightgray-block">
 	<div class="clearfix outside-sticky-footer">
@@ -110,18 +109,12 @@ define('SHORT_FALSE',    FALSE);
 define('MARKDOWN_FALSE', FALSE);
 define('REQUIRED_FALSE', FALSE);
 
-/*
+$editorInitializationScript = '';	// We will add to this script every time we show an editor.
 
-
-
-If this doesn't work out, I can go back and look at this list: http://www.hongkiat.com/blog/useful-calendar-date-picker-scripts-for-web-developers/
-
-
- */
 function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = SIZE_ONELINE, $isMarkdown = MARKDOWN_FALSE, $isRequired = REQUIRED_FALSE)
 {
 
-	global $event, $reflector;
+	global $event, $reflector, $editorInitializationScript;
 
 	$class = null;
 	$type = 'text';
@@ -192,22 +185,29 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 	else {
 		if ($isMarkdown) {
 
-	echo '<textarea class="source" name="' . $sqlColumn . '" id="' . $sqlColumn . '_markdown">' . htmlspecialchars( $event ? $value : 'NONE') . '</textarea>';
-			echo '<div class="editable"';
-			echo ' id="' . $sqlColumn . '_html"';
-			echo 'style="min-height:'.$height.'em;"';
+			// Source markdown, normally hidden
+			echo '<textarea class="source" name="' . $sqlColumn . '" id="' . $sqlColumn . '_markdown">' . htmlspecialchars( $event ? $value : 'NONE') . '</textarea>' . PHP_EOL;
+
+			// Editor
+			echo '<div class="wymeditor_container"';
+			echo ' id="' . $sqlColumn . '_container"';
 			echo '>'. PHP_EOL;
-			echo '</div>'. PHP_EOL;
-			if ($event) {
+			if ($event && $value) {
+
+				// Some script to append to end of file later
+				// Wrap the output in the textarea since jquery escapes html tags in textarea
+				ob_start();
 ?>
-<script>
-var converter = new Showdown.converter();
-var content = <?php echo json_encode($value); ?>;
-var contentHTML = converter.makeHtml(content);
-$('#<?php echo htmlspecialchars($sqlColumn); ?>_html').html(contentHTML);
-</script>
+content = <?php echo json_encode($value); ?>;
+contentHTML = converter.makeHtml(content);
+contentHTML = '<textarea class="wymeditor" id="<?php echo htmlspecialchars($sqlColumn); ?>_html">'
+	+ contentHTML
+	+ '</textarea>';
+$('#<?php echo htmlspecialchars($sqlColumn); ?>_container').html(contentHTML);
 <?php
+				$editorInitializationScript .= ob_get_clean();
 			}
+			echo '</div>'. PHP_EOL;
 
 		} else {
 
@@ -351,29 +351,12 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 	</div>
 <?php $includePinterest = FALSE; include('_body.end.php'); ?>
 
-<?php
-/* DON'T USE FULLCALENDAR FOR NOW
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script>!window.jQuery && document.write('<script src="<?php echo htmlspecialchars($root); ?>js/moment.min.js"><\/script>')</script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
-<script>!window.jQuery && document.write('<script src="<?php echo htmlspecialchars($root); ?>js/fullcalendar/fullcalendar.min.js"><\/script>')</script>
-
-<script>
-
-    $('#calendar').fullCalendar({
-        // put your options and callbacks here
-    })
-</script>
-
-*/
-?>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-<script>window.jQuery.ui || document.write('<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.12.1.js"><\/script>')</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-core.js"></script>
-<script src="/js/hallo.js"></script>
-<script src="/js/to-markdown.js"></script>
+<script src="<?php echo htmlspecialchars($root); ?>js/showdown.js"></script>
+<script src="<?php echo htmlspecialchars($root); ?>js/jquery-1.12.4.min.js"></script>
+<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.12.1.min.js"></script>
+<script src="<?php echo htmlspecialchars($root); ?>js/jquery.wymeditor.min.js"></script>
+<script src="<?php echo htmlspecialchars($root); ?>js/rangy-core.js"></script>
+<script src="<?php echo htmlspecialchars($root); ?>js/to-markdown.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/timepicki.js"></script>
 
 <script>
@@ -384,34 +367,20 @@ $('.datepicker').datepicker({
 
 });
 
-function getTimepickiTime(obj) {
-    var timeValue = obj.val();
-    var trimmedTimeValue = timeValue.replace(/ /g,'');
-    var resultSplit = trimmedTimeValue.split(':');
-    return resultSplit;
-};
 $('.timePicker').timepicki({
 	step_size_minutes:15,
 	reset: true
 });
 
-$('.editable').hallo({
-	plugins: {
-	    'halloformat': {},
-	    'halloheadings': {
-	        'formatBlocks': ['h4', 'h5']
-	    },
-	    'hallolists': {
-	        "lists": {
-	            "ordered": true,
-	            "unordered": true,
-	        }
-	    },
-	    'hallojustify': {},
-	    'halloreundo': {},
-	    'hallolink': {},
- 	},
-    toolbar: 'halloToolbarFixed'
+// Initialize all wymeditor blocks.
+//
+// First, replay the script I accumulated.
+var converter = new Showdown.converter();
+var content, contentHTML;
+<?php echo $editorInitializationScript; ?>
+
+$('.wymeditor').wymeditor({
+	skin: 'compact'
 });
 
 /* USE THIS IF WE DECIDE ON AJAX UPDATING ....
@@ -422,7 +391,7 @@ $('.editable').on('hallomodified', function(event, data) {
 
 */
 
-// Adapted from Hallo demo page
+// Support function to convert HTML to markdown
 
 var markdownize = function(content) {
 var html = content.split("\n").map($.trim).filter(function(line) {
@@ -431,41 +400,40 @@ var html = content.split("\n").map($.trim).filter(function(line) {
 return toMarkdown(html);
 };
 
-
-
+// Function to call on form submission
 
 $( "#mainform" ).submit(function( event ) {
 
-$("input[name*=_time]").each(function(){
+	// Convert separate time and date fields to single time/date
 
-	var time = $(this).val();
-	if (time != '') {
-	    var inputname = ($(this).attr("name"));
-	    inputname = inputname.slice(0, -5);
+	$("input[name*=_time]").each(function(){
 
-	   	var date = $("input[name="+ inputname + "]").val();
+		var time = $(this).val();
+		if (time != '') {
+		    var inputname = ($(this).attr("name"));
+		    inputname = inputname.slice(0, -5);
 
-		$("input[name="+ inputname + "]").val(date + " " + time);
-	}
+		   	var date = $("input[name="+ inputname + "]").val();
+
+			$("input[name="+ inputname + "]").val(date + " " + time);
+		}
+	});
+
+	$(".wymeditor").each(function(){
+
+		// Convert latest HTML contents to markdown for submission
+
+		var html = $(this).html();
+		var markdown = markdownize(html);
+		var htmlID = $(this).attr("id");
+		var markdownID = htmlID.replace("_html", "_markdown");
+		$('#' + markdownID).text(markdown);
+	});
+
+	// let submission go through
 });
-
-$(".editable").each(function(){
-	var html = $(this).html();
-	var markdown = markdownize(html);
-	var htmlID = $(this).attr("id");
-	var markdownID = htmlID.replace("_html", "_markdown");
-	$('#' + markdownID).text(markdown);
-});
-
-
-// let submission go through
-});
-
-
 
 </script>
-
-
 </body>
 </html>
 
