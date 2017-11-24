@@ -370,6 +370,7 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 <script src="<?php echo htmlspecialchars($root); ?>js/to-markdown.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/timepicki.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>wymeditor/jquery.wymeditor.min.js"></script>
+<script src="<?php echo htmlspecialchars($root); ?>wymeditor/plugins/resizable/jquery.wymeditor.resizable.js"></script>
 
 <script>
 
@@ -445,6 +446,9 @@ var options = {
             {'name': 'BLOCKQUOTE', 'title': 'Blockquote',
                 'css': 'wym_containers_blockquote'},
         ],
+    postInit: function(wym) {
+	            wym.resizable();
+            }
 
 };
 $('.wymeditor').wymeditor(options);
