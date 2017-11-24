@@ -37,7 +37,10 @@ if ($event)
 
 
 <style>
-textarea { width:100%; min-height:300px;}
+#mainform { width:842px;} /* Try to match the wymeditor stuff */
+.wym_area_main { background-color:white;}
+.wym_skin_seamless .wym_dropdown h2 { line-height:1.0; margin-bottom:0 !important;}
+textarea { width:100%; min-height:150px;}
 h3, h4 { margin-top:1em; }
 h3 { color:#666;}
 .dates_table { width:100%; }
@@ -51,7 +54,6 @@ h3 { color:#666;}
 	border:1px solid gray;
 	padding:0.5em;
 	width:100%;
-	resize:both; /* doesn't work???? */
 }
 .source {
 	background:pink;
@@ -370,7 +372,6 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 <script src="<?php echo htmlspecialchars($root); ?>js/to-markdown.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/timepicki.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>wymeditor/jquery.wymeditor.min.js"></script>
-<script src="<?php echo htmlspecialchars($root); ?>wymeditor/plugins/resizable/jquery.wymeditor.resizable.js"></script>
 
 <script>
 
@@ -446,9 +447,6 @@ var options = {
             {'name': 'BLOCKQUOTE', 'title': 'Blockquote',
                 'css': 'wym_containers_blockquote'},
         ],
-    postInit: function(wym) {
-	            wym.resizable();
-            },
     // We already included the seamless skin's javascript so that we could
     // use this constant
     iframeHtml: WYMeditor.SKINS.seamless.OPTS.iframeHtml
