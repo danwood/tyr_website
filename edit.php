@@ -312,7 +312,6 @@ showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper T
 echo '<h3>Archives</h3>' . PHP_EOL;
 showEditor('howTheShowWent', 'TEXT',         'How the show went', 'After the show, some text to describe how it went. For people reading details about show from archives', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('directorQuote', 'TEXT',         'Director’s Notes', 'Quote from director in the first person', SIZE_MULTILINE, MARKDOWN_TRUE);
-//showEditor('photoFilename', 'TEXT',
 showEditor('photoCredits', 'TEXT',           'Photo credits', 'Who took the photos after the show/event', SIZE_ONELINE);
 showEditor('photoURL1', 'TEXT',              'Photo URL #1', 'URL of a photo album for a show, after the run is over', SIZE_ONELINE);
 showEditor('photoURL2', 'TEXT',              'Photo URL #2', 'URL of any second photo album for a show, after the run is over', SIZE_ONELINE);
@@ -320,7 +319,26 @@ showEditor('photoURL2', 'TEXT',              'Photo URL #2', 'URL of any second 
 
 
 ?>
-<h4>Dates</h4>
+
+<h4>Show Photos</h4>
+<div style="font-size:80%">
+
+<p>Please provide <b>up to 20</b> (at a time) .jpg images at a time.  Make sure the files are good web-friendly, unique names. The file names should have sequential numbers 1, 2, 3, 4 before the ".jpg" extension.
+E.g. <i>narnia1.jpg</i>, <i>narnia2.jpg</i>, <i>narnia3.jpg</i>, <i>narnia4.jpg</i>.
+These files can be chosen all at once in the file chooser.
+The images will be resized (and cropped if needed) to 608x342 pixels.
+Ideally, you should pre-crop the photos yourself to have a 16:9 aspect ratio. Since we also present the large sizes, the images should be scaled down to about 2400 pixels wide (since any more is just wasted space). Feel free to optimize the .jpg images before uploading.
+The first four images are the most important, and will be rotated in as thumbnails representing the whole show and available for social media sharing. Make sure images 1 through 4 have some neutral space near the top so the show title can be overlaid.
+<span style="color:red;">Do we have clearance/permission to show the childen in the photos?</span>
+</p>
+</div>
+
+<iframe style="width:100%; height:100px;" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=photo&amp;multiple=multiple"></iframe>
+<?php
+showEditor('photoFilename', 'TEXT', 'Name of last photo file', 'E.g. "narnia28.jpg". Name pattern should match photos uploaded above.', SIZE_SMALL);
+?>
+
+<h3>Dates</h3>
 <table class="dates_table">
 <?php
 
