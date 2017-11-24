@@ -112,7 +112,7 @@ error_log("max file name is now $maxFilename with numerical value $maxFileValue"
 	   			}
 
 
-	   			$pathToOriginal = 'shows/' . $typeAndMaybeYear . '/original/' . $currentFilename;
+	   			$pathToOriginal = 'shows/' . $typeAndMaybeYear . 'original/' . $currentFilename;
 		    	$tmp_name = $image['tmp_name'];
 				$moved = move_uploaded_file($tmp_name, $pathToOriginal);
 				if (!$moved)

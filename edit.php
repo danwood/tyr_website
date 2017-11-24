@@ -286,9 +286,19 @@ echo '<h3>Recruitment</h3>' . PHP_EOL;
 showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General blurb used for recruiting show. GOES AWAY after signups are done', SIZE_MULTILINE, MARKDOWN_TRUE);
 ?>
 <h4>Logo File</h4>
-<p>File should be about 3:2 aspect ratio like and old TV.  Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> file.
+<p>File should be about 3:2 aspect ratio like an old TV, 544 pixels wide (or wider).  Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> file.
 </p>
 <iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=logo&amp;property=logoFilename"></iframe>
+<h4>Type of Event</h4>
+<select name="type">
+	<option value="0">-- PLEASE CHOOSE --</option>
+	<option value="1" <?php if ($event->type == 1) { echo 'selected '; } ?>>Event: Announce Only (not in archives)</option>
+	<option value="2" <?php if ($event->type == 2) { echo 'selected '; } ?>>Event to archive</option>
+	<option value="3" <?php if ($event->type == 3) { echo 'selected '; } ?>>Audition Show</option>
+	<option value="4" <?php if ($event->type == 4) { echo 'selected '; } ?>>Class Show</option>
+	<option value="5" <?php if ($event->type == 5) { echo 'selected '; } ?>>Backstage Camp</option>
+</select>
+
 <?php
 
 //showEditor('type', 'INTEGER',                'type'
@@ -299,7 +309,7 @@ showEditor('whoCanGo', 'TEXT',               'Who can go', 'Age or grade range e
 
 ?>
 <h4>Signup Attachment</h4>
-<p>Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span>, <span class="extension">.png</span>, <span class="extension">.pdf</span>, or <span class="extension">.mp3</span> file.
+<p>Something that parents can download to help them sign their kids up. Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span>, <span class="extension">.png</span>, <span class="extension">.pdf</span>, or <span class="extension">.mp3</span> file.
 </p>
 <iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=signup&amp;property=signupAttachment"></iframe>
 <?php
@@ -323,7 +333,7 @@ echo '<h3>Publicity</h3>' . PHP_EOL;
 showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper Tickets etc. if needed', SIZE_ONELINE);
 ?>
 <h4>Publicity Attachment</h4>
-<p>File should be about 3:2 aspect ratio like and old TV.  Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> or <span class="extension">.pdf</span> file.
+<p>Usually a poster that people can print out and display or email. Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> or <span class="extension">.pdf</span> file.
 </p>
 <iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=poster&amp;property=publicityAttachment"></iframe>
 <?php
@@ -353,9 +363,6 @@ The first four images are the most important, and will be rotated in as thumbnai
 </div>
 
 <iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=photo&amp;multiple=multiple&amp;property=photoFilename"></iframe>
-<?php
-showEditor('photoFilename', 'TEXT', 'Name of last photo file', 'E.g. "narnia28.jpg". Name pattern should match photos uploaded above.', SIZE_SMALL);
-?>
 
 <h3>Dates</h3>
 <table class="dates_table">

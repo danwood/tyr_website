@@ -350,7 +350,7 @@ class Event
 	public $logoFilename;			// An image with the name of the show in it; we won't display show title!  FILE
 	public $photoFilename;			// Photo of performance or publicity photo like Les Mis, shown WITH title. Supercedes above when available.
 	public $photoCredits;			// Human-readable list of people who took the photos we feature in column above
-	private $type;					// 'Audition Show', 'Class Show', or 'Event to Archive' or 'Event Announce-Only'  It had better be one of these?
+	public $type;					// 'Audition Show', 'Class Show', or 'Event to Archive' or 'Event Announce-Only'  It had better be one of these?
 	public $signupDetails;			// Where classes are, audition preparations, what to expect, etc. **
 	public $whoCanGo;				// Tiny description to show on card. Just a few words -- make sure it fits on various window sizes!
 	public $signupAttachment;		// name of file in attachments directory, should be downloadable from signup details page.

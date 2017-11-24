@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	   			}
 
 
-	   			$pathToOriginal = 'shows/' . $typeAndMaybeYear . '/original/' . $currentFileName;
+	   			$pathToOriginal = 'shows/' . $typeAndMaybeYear . 'original/' . $currentFileName;
 		    	$tmp_name = $image['tmp_name'];
 				$moved = move_uploaded_file($tmp_name, $pathToOriginal);
 				if (!$moved)
