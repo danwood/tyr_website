@@ -62,10 +62,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	$propertyName = $_POST['property'];
 	$prop = $reflector->getProperty($propertyName);
 	$maxFilename = $prop->isPrivate() ? $event->{$propertyName}() : $event->{$propertyName};
-error_log('current value of property ' . $propertyName . ' is ' . $maxFilename);
 
-	$maxFileValue = (integer) preg_match('/[0-9]+/', $maxFilename);
-error_log('current number value is ' . $maxFileValue);
+	$maxFileValue = 0;
+	$matches = array();
+	if ((integer) preg_match('/[0-9]+/', $maxFilename, $matches)) {
+		$maxFileValue = (integer) $matches[0];
+	}
 
 	for($i = 0; $i < count($uploadedFiles['name']); $i++){
 	    $image = array(
@@ -81,12 +83,16 @@ error_log('current number value is ' . $maxFileValue);
 	    $mimeType = $image['type'];
 
 	    // Figure out number embedded in each file name, and compare to number
-	    $thisFileValue = (integer) preg_match('/[0-9]+/', $currentFilename);
+	    $thisFileValue = 0;
+	    if (preg_match('/[0-9]+/', $currentFilename, $matches)) {
+
+			$thisFileValue = (integer) $matches[0];
+		}
 	    if ($thisFileValue >= $maxFileValue) {
 	    	$maxFileValue = $thisFileValue;
 	    	$maxFilename = $currentFilename;
-error_log("max file name is now $maxFilename with numerical value $maxFileValue");
 	    }
+
 
 	    if (0 === strpos($mimeType, 'image/') )		// seems to be an image
 	    {
@@ -114,6 +120,7 @@ error_log("max file name is now $maxFilename with numerical value $maxFileValue"
 
 	   			$pathToOriginal = 'shows/' . $typeAndMaybeYear . 'original/' . $currentFilename;
 		    	$tmp_name = $image['tmp_name'];
+error_log("move '$tmp_name' to '$pathToOriginal'");
 				$moved = move_uploaded_file($tmp_name, $pathToOriginal);
 				if (!$moved)
 				{
@@ -209,7 +216,6 @@ error_log("max file name is now $maxFilename with numerical value $maxFileValue"
 	$query .= "'" . SQLite3::escapeString($maxFilename) . "'";
 	$query .= ' where id=' . $id;
 
-error_log($query);
 	$ret = $db->query($query);
 	if(!$ret) {
 		echo $db->lastErrorMsg();
@@ -238,7 +244,6 @@ else	// input form
 	$propertyName = $_GET['property'];
 	$prop = $reflector->getProperty($propertyName);
 	$maxFilename = $prop->isPrivate() ? $event->{$propertyName}() : $event->{$propertyName};
-error_log('current value of property ' . $propertyName . ' is ' . $maxFilename);
 ?>
 
 <form id="uploader" action="/edit_uploader.php" method="post" enctype="multipart/form-data">
