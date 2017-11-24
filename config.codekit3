@@ -273,6 +273,13 @@
 		"oAP": "\/edit.php",
 		"oF": 0
 		},
+	"\/edit_uploader.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/edit_uploader.php",
+		"oF": 0
+		},
 	"\/events-table.sqlite3": {
 		"cB": 0,
 		"ft": 8192,
@@ -2408,6 +2415,16 @@
 		"oA": 2,
 		"oAP": "\/js\/pie.htc",
 		"oF": 0
+		},
+	"\/js\/rangy-core.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/min\/rangy-core-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
 		},
 	"\/js\/showdown.js": {
 		"ft": 64,
@@ -19959,6 +19976,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"\/style\/images\/ui-icons_444444_256x240.png": {
+		"ft": 32768,
+		"iS": 3266,
+		"oA": 0,
+		"oAP": "\/style\/images\/ui-icons_444444_256x240.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"\/style\/images\/ui-icons_8c291d_256x240.png": {
 		"ft": 32768,
 		"iS": 4369,
@@ -20024,6 +20052,16 @@
 		"opt": 0,
 		"oT": 1,
 		"q": 100
+		},
+	"\/style\/jquery-ui.min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/style\/jquery-ui.min-min.css",
+		"oF": 0,
+		"oS": 3
 		},
 	"\/style\/jquery.bxslider.css": {
 		"aP": 1,
@@ -20737,6 +20775,13 @@
 		"oT": 1,
 		"q": 100
 		},
+	"\/tyr.sqlite3": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/tyr.sqlite3",
+		"oF": 0
+		},
 	"\/upcoming.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -20778,6 +20823,1162 @@
 		"oA": 2,
 		"oAP": "\/Website.sublime-workspace",
 		"oF": 0
+		},
+	"\/wymeditor\/iframe\/default\/lbl-article.png": {
+		"ft": 32768,
+		"iS": 172,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-article.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-aside.png": {
+		"ft": 32768,
+		"iS": 168,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-aside.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-blockquote.png": {
+		"ft": 32768,
+		"iS": 196,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-blockquote.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-command.png": {
+		"ft": 32768,
+		"iS": 162,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-command.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-details.png": {
+		"ft": 32768,
+		"iS": 186,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-details.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-div.png": {
+		"ft": 32768,
+		"iS": 206,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-div.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-figcaption.png": {
+		"ft": 32768,
+		"iS": 180,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-figcaption.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-figure.png": {
+		"ft": 32768,
+		"iS": 173,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-figure.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-footer.png": {
+		"ft": 32768,
+		"iS": 168,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-footer.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-h1.png": {
+		"ft": 32768,
+		"iS": 140,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-h1.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-h2.png": {
+		"ft": 32768,
+		"iS": 146,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-h2.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-h3.png": {
+		"ft": 32768,
+		"iS": 149,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-h3.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-h4.png": {
+		"ft": 32768,
+		"iS": 141,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-h4.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-h5.png": {
+		"ft": 32768,
+		"iS": 147,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-h5.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-h6.png": {
+		"ft": 32768,
+		"iS": 145,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-h6.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-header.png": {
+		"ft": 32768,
+		"iS": 181,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-header.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-hgroup.png": {
+		"ft": 32768,
+		"iS": 178,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-hgroup.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-mark.png": {
+		"ft": 32768,
+		"iS": 163,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-mark.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-meter.png": {
+		"ft": 32768,
+		"iS": 169,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-meter.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-nav.png": {
+		"ft": 32768,
+		"iS": 163,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-nav.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-p.png": {
+		"ft": 32768,
+		"iS": 129,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-p.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-pre.png": {
+		"ft": 32768,
+		"iS": 157,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-pre.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-progress.png": {
+		"ft": 32768,
+		"iS": 191,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-progress.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-rp.png": {
+		"ft": 32768,
+		"iS": 147,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-rp.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-rt.png": {
+		"ft": 32768,
+		"iS": 145,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-rt.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-ruby.png": {
+		"ft": 32768,
+		"iS": 171,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-ruby.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-section.png": {
+		"ft": 32768,
+		"iS": 169,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-section.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-summary.png": {
+		"ft": 32768,
+		"iS": 189,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-summary.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/lbl-time.png": {
+		"ft": 32768,
+		"iS": 151,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/lbl-time.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/default\/wymiframe.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/default\/wymiframe-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/iframe\/default\/wymiframe.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/wymeditor\/iframe\/default\/wymiframe.html",
+		"oF": 0
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-article.png": {
+		"ft": 32768,
+		"iS": 172,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-article.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-aside.png": {
+		"ft": 32768,
+		"iS": 168,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-aside.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-blockquote.png": {
+		"ft": 32768,
+		"iS": 196,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-blockquote.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-command.png": {
+		"ft": 32768,
+		"iS": 162,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-command.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-details.png": {
+		"ft": 32768,
+		"iS": 186,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-details.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-div.png": {
+		"ft": 32768,
+		"iS": 206,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-div.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-figcaption.png": {
+		"ft": 32768,
+		"iS": 180,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-figcaption.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-figure.png": {
+		"ft": 32768,
+		"iS": 173,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-figure.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-footer.png": {
+		"ft": 32768,
+		"iS": 168,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-footer.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-h1.png": {
+		"ft": 32768,
+		"iS": 140,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-h1.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-h2.png": {
+		"ft": 32768,
+		"iS": 146,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-h2.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-h3.png": {
+		"ft": 32768,
+		"iS": 149,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-h3.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-h4.png": {
+		"ft": 32768,
+		"iS": 141,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-h4.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-h5.png": {
+		"ft": 32768,
+		"iS": 147,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-h5.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-h6.png": {
+		"ft": 32768,
+		"iS": 145,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-h6.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-header.png": {
+		"ft": 32768,
+		"iS": 181,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-header.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-hgroup.png": {
+		"ft": 32768,
+		"iS": 178,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-hgroup.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-mark.png": {
+		"ft": 32768,
+		"iS": 163,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-mark.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-meter.png": {
+		"ft": 32768,
+		"iS": 169,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-meter.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-nav.png": {
+		"ft": 32768,
+		"iS": 163,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-nav.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-p.png": {
+		"ft": 32768,
+		"iS": 129,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-p.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-pre.png": {
+		"ft": 32768,
+		"iS": 157,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-pre.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-progress.png": {
+		"ft": 32768,
+		"iS": 191,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-progress.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-rp.png": {
+		"ft": 32768,
+		"iS": 147,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-rp.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-rt.png": {
+		"ft": 32768,
+		"iS": 145,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-rt.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-ruby.png": {
+		"ft": 32768,
+		"iS": 171,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-ruby.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-section.png": {
+		"ft": 32768,
+		"iS": 169,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-section.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-summary.png": {
+		"ft": 32768,
+		"iS": 189,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-summary.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/lbl-time.png": {
+		"ft": 32768,
+		"iS": 151,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/lbl-time.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/legacy\/wymiframe.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/legacy\/wymiframe-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/iframe\/legacy\/wymiframe.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/wymeditor\/iframe\/legacy\/wymiframe.html",
+		"oF": 0
+		},
+	"\/wymeditor\/iframe\/pretty\/development.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/wymeditor\/iframe\/pretty\/development.html",
+		"oF": 0
+		},
+	"\/wymeditor\/iframe\/pretty\/icon.png": {
+		"ft": 32768,
+		"iS": 484,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/pretty\/icon.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/iframe\/pretty\/visitor1.eot": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/wymeditor\/iframe\/pretty\/visitor1.eot",
+		"oF": 0
+		},
+	"\/wymeditor\/iframe\/pretty\/visitor1.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/wymeditor\/iframe\/pretty\/visitor1.ttf",
+		"oF": 0
+		},
+	"\/wymeditor\/iframe\/pretty\/visitor1.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/wymeditor\/iframe\/pretty\/visitor1.woff",
+		"oF": 0
+		},
+	"\/wymeditor\/iframe\/pretty\/wymiframe.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/pretty\/wymiframe-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/iframe\/pretty\/wymiframe.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/wymeditor\/iframe\/pretty\/wymiframe.html",
+		"oF": 0
+		},
+	"\/wymeditor\/iframe\/pretty\/wymiframe.ie.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/iframe\/pretty\/wymiframe.ie-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/jquery.wymeditor.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/min\/jquery.wymeditor-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/jquery.wymeditor.min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/min\/jquery.wymeditor.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/plugins\/embed\/jquery.wymeditor.embed.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/embed\/min\/jquery.wymeditor.embed-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/plugins\/fullscreen\/icon_fullscreen.gif": {
+		"ft": 4194304,
+		"iS": 509,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/fullscreen\/icon_fullscreen.gif",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/wymeditor\/plugins\/fullscreen\/jquery.wymeditor.fullscreen.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/fullscreen\/min\/jquery.wymeditor.fullscreen-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/plugins\/hovertools\/jquery.wymeditor.hovertools.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/hovertools\/min\/jquery.wymeditor.hovertools-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/plugins\/list\/jquery.wymeditor.list.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/list\/min\/jquery.wymeditor.list-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/plugins\/rdfa\/jquery.wymeditor.rdfa.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/rdfa\/min\/jquery.wymeditor.rdfa-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/plugins\/resizable\/jquery.wymeditor.resizable.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/resizable\/min\/jquery.wymeditor.resizable-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/plugins\/structured_headings\/jquery.wymeditor.structured_headings.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/structured_headings\/min\/jquery.wymeditor.structured_headings-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/plugins\/structured_headings\/ruler_arrow.png": {
+		"ft": 32768,
+		"iS": 787,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/structured_headings\/ruler_arrow.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/plugins\/structured_headings\/structured_headings.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/structured_headings\/structured_headings-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/plugins\/table\/jquery.wymeditor.table.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/table\/min\/jquery.wymeditor.table-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/plugins\/table\/table_delete_column.png": {
+		"ft": 32768,
+		"iS": 744,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/table\/table_delete_column.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/plugins\/table\/table_delete_row.png": {
+		"ft": 32768,
+		"iS": 683,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/table\/table_delete_row.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/plugins\/table\/table_insert_column.png": {
+		"ft": 32768,
+		"iS": 720,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/table\/table_insert_column.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/plugins\/table\/table_insert_row.png": {
+		"ft": 32768,
+		"iS": 667,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/table\/table_insert_row.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/plugins\/table\/table_join_row.png": {
+		"ft": 32768,
+		"iS": 685,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/table\/table_join_row.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/plugins\/tidy\/jquery.wymeditor.tidy.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/tidy\/min\/jquery.wymeditor.tidy-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/wymeditor\/plugins\/tidy\/wand.png": {
+		"ft": 32768,
+		"iS": 715,
+		"oA": 0,
+		"oAP": "\/wymeditor\/plugins\/tidy\/wand.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/popup.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/wymeditor\/popup.html",
+		"oF": 0
+		},
+	"\/wymeditor\/skins\/compact\/icons.png": {
+		"ft": 32768,
+		"iS": 3651,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/compact\/icons.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/skins\/compact\/skin.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/compact\/skin-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/skins\/default\/icons.png": {
+		"ft": 32768,
+		"iS": 3651,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/default\/icons.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/skins\/default\/skin.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/default\/skin-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/skins\/legacy\/icons.png": {
+		"ft": 32768,
+		"iS": 3651,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/legacy\/icons.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/skins\/legacy\/skin.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/legacy\/skin-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/skins\/minimal\/images\/bg.header.gif": {
+		"ft": 4194304,
+		"iS": 781,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/minimal\/images\/bg.header.gif",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/wymeditor\/skins\/minimal\/images\/bg.selector.silver.gif": {
+		"ft": 4194304,
+		"iS": 1621,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/minimal\/images\/bg.selector.silver.gif",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/wymeditor\/skins\/minimal\/images\/bg.wymeditor.png": {
+		"ft": 32768,
+		"iS": 498,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/minimal\/images\/bg.wymeditor.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/skins\/minimal\/images\/icons.silver.gif": {
+		"ft": 4194304,
+		"iS": 15382,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/minimal\/images\/icons.silver.gif",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/wymeditor\/skins\/minimal\/skin.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/minimal\/skin-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/skins\/seamless\/icons.png": {
+		"ft": 32768,
+		"iS": 3651,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/seamless\/icons.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/skins\/seamless\/skin.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/seamless\/skin-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/skins\/silver\/images\/bg.header.gif": {
+		"ft": 4194304,
+		"iS": 781,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/silver\/images\/bg.header.gif",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/wymeditor\/skins\/silver\/images\/bg.selector.silver.gif": {
+		"ft": 4194304,
+		"iS": 1621,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/silver\/images\/bg.selector.silver.gif",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/wymeditor\/skins\/silver\/images\/bg.wymeditor.png": {
+		"ft": 32768,
+		"iS": 498,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/silver\/images\/bg.wymeditor.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/skins\/silver\/images\/icons.silver.gif": {
+		"ft": 4194304,
+		"iS": 15382,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/silver\/images\/icons.silver.gif",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/wymeditor\/skins\/silver\/skin.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/silver\/skin-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/skins\/twopanels\/icons.png": {
+		"ft": 32768,
+		"iS": 3651,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/twopanels\/icons.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/wymeditor\/skins\/twopanels\/skin.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/twopanels\/skin-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/wymeditor\/skins\/wymeditor_icon.png": {
+		"ft": 32768,
+		"iS": 1028,
+		"oA": 0,
+		"oAP": "\/wymeditor\/skins\/wymeditor_icon.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
 		}
 	},
 "hooks": [

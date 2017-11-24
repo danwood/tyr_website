@@ -614,6 +614,9 @@ input[type="submit"], input[type="button"] {
 	background-color:$blue;
 	color:white;
 }
+input[type="submit"]:disabled, input[type="button"]:disabled {
+	opacity:0.3;
+}
 
 
 .basic-input {
