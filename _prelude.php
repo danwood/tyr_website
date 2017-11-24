@@ -347,13 +347,13 @@ class Event
 
 	public $infoIfNoLogo;			// Small blurb to show if no logo, also shown below title main card/signup card
 	public $descriptionBefore;		// General blurb used for recruiting show, on the recruitment page. Several paragraphs is fine. **
-	private $logoFilename;			// An image with the name of the show in it; we won't display show title!  FILE
+	public $logoFilename;			// An image with the name of the show in it; we won't display show title!  FILE
 	public $photoFilename;			// Photo of performance or publicity photo like Les Mis, shown WITH title. Supercedes above when available.
 	public $photoCredits;			// Human-readable list of people who took the photos we feature in column above
 	private $type;					// 'Audition Show', 'Class Show', or 'Event to Archive' or 'Event Announce-Only'  It had better be one of these?
 	public $signupDetails;			// Where classes are, audition preparations, what to expect, etc. **
 	public $whoCanGo;				// Tiny description to show on card. Just a few words -- make sure it fits on various window sizes!
-	private $signupAttachment;		// name of file in attachments directory, should be downloadable from signup details page.
+	public $signupAttachment;		// name of file in attachments directory, should be downloadable from signup details page.
 	public $performanceInfo;		// Details on when and where performances are.  **
 
 	public $howTheShowWent;		// After the show, some text to describe how it went. For people reading details about show from archives **
@@ -464,12 +464,16 @@ class Event
 		{
 			$event = Event::getEventByID(0 + $_GET['id']);
 		}
+		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && !empty($_POST['id']))
+		{
+			$event = Event::getEventByID(0 + $_POST['id']);
+		}
 		if ( $event && $mustBeArchive && !$event->isPastEvent() )
 		{
 			//error_log("Nullifying non-past event");
 			$event = NULL;
 		}
-		//error_log("event ended up being " . print_r($event, 1));
+		// error_log("event ended up being " . print_r($event, 1));
 		// if ($event && !$mustBeArchive && !$event->isUpcomingEvent() )
 		// {
 		// 	error_log("Nullifying non-past mustNotBeArchive event");
@@ -1342,7 +1346,6 @@ $laterEvents = array();
 $hiddenEvents = array();
 
 $dbPath = $_SERVER['DOCUMENT_ROOT'] . '/db/tyr.sqlite3';
-error_log($dbPath);
 $db = new SQLite3($dbPath) or die('Unable to open database');
 
 $query = 'select * from events';
@@ -1401,18 +1404,18 @@ usort($allPastEvents,	array('Event', 'eventReverseCompare'));		// We want past e
 
 if ($staging)
 {
-	error_log(count($currentShows) . " current shows!");
+//	error_log(count($currentShows) . " current shows!");
 
-foreach ($currentShows as $show)		// don't use ampersand here, there was a mysterious issue with the penultimate item in the array duplicated.
-{
-	error_log($show->title() . ' ' . date(DATE_RSS, $show->showFirstDate) . ' ' . date(DATE_RSS, $show->showLastDate));
-}
+// foreach ($currentShows as $show)		// don't use ampersand here, there was a mysterious issue with the penultimate item in the array duplicated.
+// {
+// 	error_log($show->title() . ' ' . date(DATE_RSS, $show->showFirstDate) . ' ' . date(DATE_RSS, $show->showLastDate));
+// }
 
-	error_log(count($currentOther) . " current others!");
-	error_log(count($laterEvents) . " later events");
-	error_log(count($pastEvents) . " past events");
+	// error_log(count($currentOther) . " current others!");
+	// error_log(count($laterEvents) . " later events");
+	// error_log(count($pastEvents) . " past events");
 
-	error_log(count($events) . " ALL events");
+	// error_log(count($events) . " ALL events");
 
 }
 

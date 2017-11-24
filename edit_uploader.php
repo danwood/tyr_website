@@ -22,11 +22,32 @@ include('_head.php');
 
 <?php
 
+class MyDB extends SQLite3
+{
+    function __construct()
+    {
+		$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/db/tyr.sqlite3';
+
+        $this->open($dbPath, SQLITE3_OPEN_READWRITE);
+    }
+}
+
+$event = Event::getSpecifiedEvent(FALSE);
+
+if (!$event) { echo "ERROR: where is the event?"; die; }
+
+$reflector = null;
+if ($event)
+{
+	$reflector = new ReflectionClass(get_class($event));
+}
+
 $errorMessage = NULL;
-$currentFileName = NULL;
+$currentFilename = NULL;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
+
 	$type = $_POST['type'];
 	$year = $_POST['year'];		// for photo uploads
 	if (! in_array($type, array('logo', 'photo', 'poster', 'signup', 'slider_past', 'slider_promo')))
@@ -37,6 +58,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 	$uploadedFiles = $_FILES['file'];
 
+	// Get the current value of the property, which may have a number in it
+	$propertyName = $_POST['property'];
+	$prop = $reflector->getProperty($propertyName);
+	$maxFilename = $prop->isPrivate() ? $event->{$propertyName}() : $event->{$propertyName};
+error_log('current value of property ' . $propertyName . ' is ' . $maxFilename);
+
+	$maxFileValue = (integer) preg_match('/[0-9]+/', $maxFilename);
+error_log('current number value is ' . $maxFileValue);
+
 	for($i = 0; $i < count($uploadedFiles['name']); $i++){
 	    $image = array(
 	        'name' => $uploadedFiles['name'][$i],
@@ -46,9 +76,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	        'error' => $uploadedFiles['error'][$i]
 	    );
 
-	    $currentFileName = $image['name'];		// global scope, for error message if failure
+	    $currentFilename = $image['name'];		// global scope, for error message if failure
 	    $currentLink = '';
 	    $mimeType = $image['type'];
+
+	    // Figure out number embedded in each file name, and compare to number
+	    $thisFileValue = (integer) preg_match('/[0-9]+/', $currentFilename);
+	    if ($thisFileValue >= $maxFileValue) {
+	    	$maxFileValue = $thisFileValue;
+	    	$maxFilename = $currentFilename;
+error_log("max file name is now $maxFilename with numerical value $maxFileValue");
+	    }
 
 	    if (0 === strpos($mimeType, 'image/') )		// seems to be an image
 	    {
@@ -57,13 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    	if ($type == 'poster' || $type == 'signup' || $type == 'slider_past' || $type == 'slider_promo')
 	    	{
 		    	$tmp_name = $image['tmp_name'];
-				$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFileName);
+				$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFilename);
 				if (!$moved)
 				{
 		    		$errorMessage = "Could not move upload";
 		    		goto giveup;
 				}
-				$currentLink = 'shows/' . $type . '/' . $currentFileName;
+				$currentLink = 'shows/' . $type . '/' . $currentFilename;
 	   		}
 	   		else	// Want to shrink!  … logo, photo
 	   		{
@@ -74,16 +112,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	   			}
 
 
-	   			$pathToOriginal = 'shows/' . $typeAndMaybeYear . '/original/' . $currentFileName;
+	   			$pathToOriginal = 'shows/' . $typeAndMaybeYear . '/original/' . $currentFilename;
 		    	$tmp_name = $image['tmp_name'];
 				$moved = move_uploaded_file($tmp_name, $pathToOriginal);
 				if (!$moved)
 				{
-					$currentFileName = $pathToOriginal;	// for error message
+					$currentFilename = $pathToOriginal;	// for error message
 		    		$errorMessage = "Could not move original image";
 		    		goto giveup;
 				}
-	   			$pathToSized = 'shows/' . $typeAndMaybeYear . $currentFileName;
+	   			$pathToSized = 'shows/' . $typeAndMaybeYear . $currentFilename;
 
 	   			$put = file_put_contents($pathToSized, 'Hi there');
 
@@ -118,16 +156,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    		goto giveup;
 			}
 
-			$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFileName);
+			$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFilename);
 			if (!$moved)
 			{
 				echo "tmp_name = " . $tmp_name;
 				echo "dir = " . 'shows/' . $type;
-				echo "name = " . $currentFileName;
+				echo "name = " . $currentFilename;
 	    		$errorMessage = "Could not move upload";
 	    		goto giveup;
 			}
-			$currentLink = 'shows/' . $type . '/' . $currentFileName;
+			$currentLink = 'shows/' . $type . '/' . $currentFilename;
 	    }
 	    else if ($mimeType == 'audio/mpeg' && $type == 'signup')		// seems to be an MP3, and correct type
 	    {
@@ -141,58 +179,85 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    		goto giveup;
 			}
 
-			$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFileName);
+			$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFilename);
 			if (!$moved)
 			{
 				echo "tmp_name = " . $tmp_name;
 				echo "dir = " . 'shows/' . $type;
-				echo "name = " . $currentFileName;
+				echo "name = " . $currentFilename;
 	    		$errorMessage = "Could not move upload";
 	    		goto giveup;
 			}
-			$currentLink = 'shows/' . $type . '/' . $currentFileName;
+			$currentLink = 'shows/' . $type . '/' . $currentFilename;
 	    }
 	    else
 	    {
 	    	$errorMessage = "Couldn't use file ($mimeType)";
 	    	goto giveup;
 	    }
-	    echo '<p>Moved "<a href="' . $currentLink . '">' . $currentFileName . '"</a> into place.</p>' . PHP_EOL;
-	    echo '<p><img style-"max-width:100px;" src="' . $currentLink . '" />' . PHP_EOL;
+	    echo '<p>Moved "<a target="_BLANK" href="' . $currentLink . '">' . $currentFilename . '"</a> into place.</p>' . PHP_EOL;
+
 
 	}
+
+	// NOW SAVE FILE NAME TO DATABASE
+
+	$db = new MyDB();
+	$id = $_POST['id'];
+
+	$query = 'update events set ' . $propertyName . ' = ';
+	$query .= "'" . SQLite3::escapeString($maxFilename) . "'";
+	$query .= ' where id=' . $id;
+
+error_log($query);
+	$ret = $db->query($query);
+	if(!$ret) {
+		echo $db->lastErrorMsg();
+		die;
+	}
+	$db->close();
 
 giveup:
 	if ($errorMessage)
 	{
 		echo '<p style="color:red;">' . htmlspecialchars($errorMessage);
-		if ($currentFileName)
+		if ($currentFilename)
 		{
-			echo ': "' . htmlspecialchars($currentFileName) . '"';
+			echo ': "' . htmlspecialchars($currentFilename) . '"';
 		}
 		echo "</p>" . PHP_EOL;
 		echo "<pre>\n";
 		print_r($uploadedFiles);
 		echo "\n</pre>\n";
 	}
-?>
-	<p><a href="backstage.php">Upload some more</a></p>
-<?php
+
+	if (isset($_GET['multiple'])) { echo '<p><a href="backstage.php">Upload some more</a></p>'; }
 }
 else	// input form
 {
+	$propertyName = $_GET['property'];
+	$prop = $reflector->getProperty($propertyName);
+	$maxFilename = $prop->isPrivate() ? $event->{$propertyName}() : $event->{$propertyName};
+error_log('current value of property ' . $propertyName . ' is ' . $maxFilename);
 ?>
 
-<form id="uploader" action="/edit_photouploader.php" method="post" enctype="multipart/form-data">
+<form id="uploader" action="/edit_uploader.php" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>" />
 <input type="hidden" name="type" value="<?php echo htmlspecialchars($_GET['type']); ?>" />
 <input type="hidden" name="year" value="<?php echo htmlspecialchars($_GET['year']); ?>" />
+<input type="hidden" name="property" value="<?php echo htmlspecialchars($_GET['property']); ?>" />
+<?php
+	if (!empty($maxFilename)) {
+?>
+	<p>Currently set to: <?php echo htmlspecialchars($maxFilename); ?></p>
+<?php
+	}
+?>
 <p>
-  <input style="width:100%;" id="fileinput" <?php
+  <input id="fileinput" <?php
 if (isset($_GET['multiple'])) { echo 'multiple="multiple" '; }
 ?>type='file' name='file[]' enabled />
-</p>
-<p>
+
   <input id="submit" type="submit" value="Upload" disabled /> <span id="status"></span>
 </p>
 </form>

@@ -65,6 +65,8 @@ h3 { color:#000; background-color:#F88; padding:0.3em 0.2em;}
 }
 a.wym_wymeditor_link { display:none !important;}
 .wym_classes { display:none !important;}
+iframe.uploader { width:100%; height:100px; }
+.extension { color:purple;}
 
 </style>
 </head>
@@ -282,13 +284,26 @@ showEditor('credits', 'TEXT',      	 		 'Credits', 'Director, book, special arra
 echo '<h3>Recruitment</h3>' . PHP_EOL;
 
 showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General blurb used for recruiting show. GOES AWAY after signups are done', SIZE_MULTILINE, MARKDOWN_TRUE);
-//showEditor('logoFilename', 'TEXT',           'logoFilename'
+?>
+<h4>Logo File</h4>
+<p>File should be about 3:2 aspect ratio like and old TV.  Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> file.
+</p>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=logo&amp;property=logoFilename"></iframe>
+<?php
+
 //showEditor('type', 'INTEGER',                'type'
 
 showEditor('signupDetails', 'TEXT',          'Signup details', 'Where classes are, audition preparations, what to expect, etc.', SIZE_MULTILINE, MARKDOWN_TRUE);
 
 showEditor('whoCanGo', 'TEXT',               'Who can go', 'Age or grade range etc.', SIZE_TINY);
-//showEditor('signupAttachment', 'TEXT',
+
+?>
+<h4>Signup Attachment</h4>
+<p>Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span>, <span class="extension">.png</span>, <span class="extension">.pdf</span>, or <span class="extension">.mp3</span> file.
+</p>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=signup&amp;property=signupAttachment"></iframe>
+<?php
+
 showEditor('performanceInfo', 'TEXT',        'Performance Info', 'Details on when and where performances are', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('castList', 'TEXT',               'Cast list', 'Fill this in to show who got cast.  Goes away after rehearsal start date', SIZE_MULTILINE, MARKDOWN_TRUE);
 //showEditor('sharedCast', 'BOOLEAN',
@@ -308,10 +323,10 @@ echo '<h3>Publicity</h3>' . PHP_EOL;
 showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper Tickets etc. if needed', SIZE_ONELINE);
 ?>
 <h4>Publicity Attachment</h4>
-
-<iframe style="width:100%; height:100px;" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=poster"></iframe>
+<p>File should be about 3:2 aspect ratio like and old TV.  Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> or <span class="extension">.pdf</span> file.
+</p>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=poster&amp;property=publicityAttachment"></iframe>
 <?php
-showEditor('publicityAttachment', 'TEXT',    'Publicity File', 'File name of the above file', SIZE_SMALL);
 
 echo '<h3>Archives</h3>' . PHP_EOL;
 showEditor('howTheShowWent', 'TEXT',         'How the show went', 'After the show, some text to describe how it went. For people reading details about show from archives', SIZE_MULTILINE, MARKDOWN_TRUE);
@@ -327,17 +342,17 @@ showEditor('photoURL2', 'TEXT',              'Photo URL #2', 'URL of any second 
 <h4>Show Photos</h4>
 <div style="font-size:80%">
 
-<p>Please provide <b>up to 20</b> (at a time) .jpg images at a time.  Make sure the files are good web-friendly, unique names. The file names should have sequential numbers 1, 2, 3, 4 before the ".jpg" extension.
+<p>Please provide <b>up to 20</b> (at a time) <span class="extension">.jpg</span> images at a time.  Make sure the files are good web-friendly, unique names. The file names should have sequential numbers 1, 2, 3, 4 before the "<span class="extension">.jpg</span>" extension.
 E.g. <i>narnia1.jpg</i>, <i>narnia2.jpg</i>, <i>narnia3.jpg</i>, <i>narnia4.jpg</i>.
 These files can be chosen all at once in the file chooser.
 The images will be resized (and cropped if needed) to 608x342 pixels.
-Ideally, you should pre-crop the photos yourself to have a 16:9 aspect ratio. Since we also present the large sizes, the images should be scaled down to about 2400 pixels wide (since any more is just wasted space). Feel free to optimize the .jpg images before uploading.
+Ideally, you should pre-crop the photos yourself to have a 16:9 aspect ratio. Since we also present the large sizes, the images should be scaled down to about 2400 pixels wide (since any more is just wasted space). Feel free to optimize the images before uploading.
 The first four images are the most important, and will be rotated in as thumbnails representing the whole show and available for social media sharing. Make sure images 1 through 4 have some neutral space near the top so the show title can be overlaid.
 <span style="color:red;">Do we have clearance/permission to show the childen in the photos?</span>
 </p>
 </div>
 
-<iframe style="width:100%; height:100px;" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=photo&amp;multiple=multiple"></iframe>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=photo&amp;multiple=multiple&amp;property=photoFilename"></iframe>
 <?php
 showEditor('photoFilename', 'TEXT', 'Name of last photo file', 'E.g. "narnia28.jpg". Name pattern should match photos uploaded above.', SIZE_SMALL);
 ?>
