@@ -33,11 +33,11 @@ if ($event)
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/timepicki.css" />
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/jquery-ui.min.css">
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/font-awesome.min.css">
-<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>wymeditor/skins/compact/skin.css">
+<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>wymeditor/skins/seamless/skin.css">
 
 
 <style>
-textarea { width:100%;}
+textarea { width:100%; min-height:300px;}
 h3, h4 { margin-top:1em; }
 h3 { color:#666;}
 .dates_table { width:100%; }
@@ -393,7 +393,7 @@ var content, contentHTML;
 <?php echo $editorInitializationScript; ?>
 
 var options = {
-	skin: 'compact',
+	skin: 'seamless',
 
     toolsItems: [
             {
@@ -448,7 +448,10 @@ var options = {
         ],
     postInit: function(wym) {
 	            wym.resizable();
-            }
+            },
+    // We already included the seamless skin's javascript so that we could
+    // use this constant
+    iframeHtml: WYMeditor.SKINS.seamless.OPTS.iframeHtml
 
 };
 $('.wymeditor').wymeditor(options);
