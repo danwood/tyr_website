@@ -363,7 +363,7 @@ class Event
 	private $ticketURL;				// URL to buy tickets (otherwise free show?)
 	public $photoURL1;				// URL of a photo album for a show, after the run is over
 	public $photoURL2;				// URL of a second photo album for a show, after the run is over
-	private $publicityAttachment;	// downloadable PDF that parents can print out for a show that is ready for ticketing
+	public $publicityAttachment;	// downloadable PDF that parents can print out for a show that is ready for ticketing
 	public $auditionLocation;		// WHERE auditions will be held
 	public $auditionPrepare;		// WHAT to prepare for auditions **
 

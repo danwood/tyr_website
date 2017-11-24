@@ -42,7 +42,7 @@ if ($event)
 .wym_skin_seamless .wym_dropdown h2 { line-height:1.0; margin-bottom:0 !important;}
 textarea { width:100%; min-height:150px;}
 h3, h4 { margin-top:1em; }
-h3 { color:#666;}
+h3 { color:#000; background-color:#F88; padding:0.3em 0.2em;}
 .dates_table { width:100%; }
 .dates_table th, .dates_table td { padding:15px; }
 .date_title { font-weight:bold;}
@@ -306,8 +306,12 @@ showEditor('rehearsalInfo', 'TEXT',          'Rehearsal info', 'Info about rehea
 echo '<h3>Publicity</h3>' . PHP_EOL;
 
 showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper Tickets etc. if needed', SIZE_ONELINE);
-//showEditor('publicityAttachment', 'TEXT',    'publicityAttachment',
+?>
+<h4>Publicity Attachment</h4>
 
+<iframe style="width:100%; height:100px;" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=poster"></iframe>
+<?php
+showEditor('publicityAttachment', 'TEXT',    'Publicity File', 'File name of the above file', SIZE_SMALL);
 
 echo '<h3>Archives</h3>' . PHP_EOL;
 showEditor('howTheShowWent', 'TEXT',         'How the show went', 'After the show, some text to describe how it went. For people reading details about show from archives', SIZE_MULTILINE, MARKDOWN_TRUE);
