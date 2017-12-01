@@ -36,8 +36,8 @@ Better build in years, into the paths (archive/2014/) and such.  Break down imag
 // SharedCast								// 'Shared' (multiple casts rehearse together) or 'Separate' (casts rehearse separately, e.g. schools)
 // Tuition									// human-readable dollars
 // TicketURL								// URL to buy tickets (otherwise free show?)
-// PhotoURL1								// URL of a photo album for a show, after the run is over
-// PhotoURL2								// URL of a second photo album for a show, after the run is over
+// PhotoURLs								// URL of photo albums for a show, after the run is over.  Can have space then description for hyperlink.
+// VideoURLs								// Similar but YouTube style URLs.
 // PublicityAttachment						// downloadable PDF that parents can print out for a show that is ready for ticketing
 // AuditionLocation							// WHERE auditions will be held
 // AuditionPrepare							// WHAT to prepare for auditions **
@@ -358,8 +358,8 @@ class Event
 
 	public $tuition;				// human-readable dollars
 	private $ticketURL;				// URL to buy tickets (otherwise free show?)
-	public $photoURL1;				// URL of a photo album for a show, after the run is over
-	public $photoURL2;				// URL of a second photo album for a show, after the run is over
+	public $photoURLs;				// URLs of photo albums for a show, after the run is over
+	public $videoURLs;				//
 	public $publicityAttachment;	// downloadable PDF that parents can print out for a show that is ready for ticketing
 	public $auditionLocation;		// WHERE auditions will be held
 	public $auditionPrepare;		// WHAT to prepare for auditions **
