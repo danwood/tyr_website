@@ -857,7 +857,8 @@ class Event
 		echo '<div class="card-title'
 			. ($this->shouldShowLogo() ? ' logo-hides-title':'')
 			. '">' . PHP_EOL;
-			echo htmlspecialchars($this->title) . PHP_EOL;
+			if (!empty($this->prefix)) { echo ' <div class="prefix">' . htmlspecialchars($this->prefix) . '</div>'; }
+			echo '<span class="title">' . htmlspecialchars($this->title) . '</span>' . PHP_EOL;
 			if (!empty($this->suffix)) { echo ' <span class="suffix">' . htmlspecialchars($this->suffix) . '</span>'; }
 		echo '</div>' . PHP_EOL;
 
@@ -915,7 +916,9 @@ class Event
 		global $root;
 		global $staging;
 
-		echo '<h3>' . htmlspecialchars($this->title);
+		echo '<h3>';
+		if (!empty($this->prefix)) { echo ' <span class="suffix">' . htmlspecialchars($this->prefix) . '</span> '; }
+		echo htmlspecialchars($this->title);
 		if (!empty($this->suffix)) { echo ' <span class="suffix">' . htmlspecialchars($this->suffix) . '</span>'; }
 	 	echo '</h3>' . PHP_EOL;
 

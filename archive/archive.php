@@ -63,6 +63,7 @@ include('../_header.php'); ?>
 							<section id="event" class="clearfix capped-width pullbottom">
 								<div class="inlinebox nobottom">
 									<h2>
+										<div class="suffix"><?php echo htmlspecialchars($event->prefix()); ?></div>
 										<?php echo htmlspecialchars($event->title()); ?>
 										<span class="suffix"><?php echo htmlspecialchars($event->suffix()); ?></span>
 									</h2>

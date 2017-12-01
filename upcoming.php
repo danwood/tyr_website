@@ -31,7 +31,7 @@ include('_head.php');
 ?>
 	<style>
 
-.suffix { color:#ddd;}
+.prefix, .suffix { color:#ddd;}
 .info { margin-bottom:80px;}
 ul { margin-bottom:1em;}
 

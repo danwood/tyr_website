@@ -6,6 +6,12 @@
 // Get the database loaded from the Google cache file
 require_once('_spreadsheet.php');
 
+function startsWith($haystack, $needle)
+{
+     $length = strlen($needle);
+     return (substr($haystack, 0, $length) === $needle);
+}
+
 $eventAssocArrays = getEventAssocArrays();		// Sorted by BEFORE_ShowFirstDate
 
 
@@ -24,6 +30,7 @@ foreach ($eventAssocArrays as $eventAssoc)		// don't use ampersand here, there w
 	$id									= $eventAssoc[BEFORE_ID];
 	$title								= $eventAssoc[BEFORE_Title];
 	$suffix								= $eventAssoc[BEFORE_Suffix];
+	$prefix = '';	// not in spreadsheet
 	$infoIfNoLogo						= $eventAssoc[BEFORE_InfoIfNoLogo];
 	$descriptionBefore					= $eventAssoc[BEFORE_DescriptionBefore];
 	$logoFilename						= $eventAssoc[BEFORE_LogoFilename];
@@ -80,6 +87,32 @@ foreach ($eventAssocArrays as $eventAssoc)		// don't use ampersand here, there w
 		$showLastDate = date('c', strtotime(date('Y-m-d',strtotime($showLastDate)).' 23:59:59'));
 	}
 
+	if ($suffix == 'TYR Mainstage Presents') {
+		$prefix = $suffix;
+		$suffix = '';
+	}
+	if (startsWith($title, "William Shakespeare's")) {
+		$prefix = "William Shakespeare’s";
+		$title = substr($title, strlen("William Shakespeare's"));
+	}
+	if (startsWith($title, "William Shakespeare’s")) {
+		$prefix = "William Shakespeare’s";
+		$title = substr($title, strlen("William Shakespeare’s"));
+	}
+
+
+	if ($title == "Romeo & Juliet" || $title == "A Midsummer Night's Dream") {
+		$prefix = "William Shakespeare’s";
+	}
+	if ($title == 'AS YOU LIKE IT') { $title = "As You Like It"; }
+	if ($title == 'TWELFTH NIGHT') { $title = "Twelfth Night"; }
+	if ($title == 'THE COMEDY OF ERRORS') { $title = "The Comedy of Errors"; }
+
+	if ($title == "Neil Simon's Rumors") {
+		$prefix = "Neil Simon’s";
+		$title = "Rumors";
+	}
+
 
 
 	$types = array('unknown', 'event announce-only', 'event to archive', 'audition show',
@@ -93,6 +126,7 @@ INSERT INTO events (
   	id,
   	title,
   	suffix,
+  	prefix,
   	infoIfNoLogo,
   	descriptionBefore,
   	logoFilename,
@@ -134,6 +168,7 @@ EOD;
 $query .= $id . ", ";
 $query .= "'" . $db->escapeString($title) . "', ";
 $query .= "'" . $db->escapeString($suffix) . "', ";
+$query .= "'" . $db->escapeString($prefix) . "', ";
 $query .= "'" . $db->escapeString($infoIfNoLogo) . "', ";
 $query .= "'" . $db->escapeString($descriptionBefore) . "', ";
 $query .= "'" . $db->escapeString($logoFilename) . "', ";
