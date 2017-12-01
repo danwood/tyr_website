@@ -20,15 +20,6 @@ if ($event)
 {
 	$reflector = new ReflectionClass(get_class($event));
 }
-
-/* DON'T USE FULLCALENDAR FOR NOW
-
-//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css
-//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.print.css
-
-<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>js/fullcalendar/fullcalendar.min.css" />
-<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>js/fullcalendar/fullcalendar.print.css" />
-*/
 ?>
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/timepicki.css" />
 <link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/jquery-ui.min.css">
