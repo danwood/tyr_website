@@ -113,7 +113,15 @@ foreach ($eventAssocArrays as $eventAssoc)		// don't use ampersand here, there w
 		$title = "Rumors";
 	}
 
+	$photoURLs = $photoURL1;
+	if (!empty($photoURLs)) {
+		$photoURLs .= ' foobar doobar';
+	}
+	if (!empty($photoURL2)) $photoURLs .= PHP_EOL . $photoURL2;
 
+error_log($title . "  " . $photoURLs);
+
+	$videoURLs = '';  // none in the spreadsheet.
 
 	$types = array('unknown', 'event announce-only', 'event to archive', 'audition show',
 		 'class show', 'backstage camp');
@@ -142,8 +150,8 @@ INSERT INTO events (
   	sharedCast,
   	tuition,
   	ticketURL,
-  	photoURL1,
-  	photoURL2,
+  	photoURLs,
+  	videoURLs,
   	publicityAttachment,
   	auditionLocation,
   	auditionPrepare,
@@ -184,8 +192,8 @@ $query .= "'" . $db->escapeString($castList) . "', ";
 $query .= ($sharedCast ? 1 : 0) . ", ";					// Boolean, so Integer
 $query .= "'" . $db->escapeString($tuition) . "', ";
 $query .= "'" . $db->escapeString($ticketURL) . "', ";
-$query .= "'" . $db->escapeString($photoURL1) . "', ";
-$query .= "'" . $db->escapeString($photoURL2) . "', ";
+$query .= "'" . $db->escapeString($photoURLs) . "', ";
+$query .= "'" . $db->escapeString($videoURLs) . "', ";
 $query .= "'" . $db->escapeString($publicityAttachment) . "', ";
 $query .= "'" . $db->escapeString($auditionLocation) . "', ";
 $query .= "'" . $db->escapeString($auditionPrepare) . "', ";

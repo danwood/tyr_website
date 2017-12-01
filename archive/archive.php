@@ -196,15 +196,31 @@ if ($multiDate)
 }
 echo htmlspecialchars(date(', Y', ($event->showFirstDate)));
 echo '</p>' . PHP_EOL;
-if (!empty($event->photoURL1))
+if (!empty($event->photoURLs))
 {
-	echo '<p><a href="' . htmlspecialchars($event->photoURL1) . '">More photos</a>';
-
-	if (!empty($event->photoURL2))
-	{
-		echo ' and <a href="' . htmlspecialchars($event->photoURL2) . '">even more photos</a>';
+	$lines = explode("\n", $event->photoURLs);
+	foreach ($lines as $line) {
+		$whereSpace = strpos($line, " ");
+		$linkText = "More Photos";
+		if (FALSE !== $whereSpace) {
+			$linkText = substr($line, $whereSpace+1);
+			$line = substr($line, 0, $whereSpace);
+		}
+		echo '<p><a href="' . htmlspecialchars($line) . '">' . htmlspecialchars($linkText) . '</a></p>' . PHP_EOL;
 	}
-	echo '</p>' . PHP_EOL;
+}
+if (!empty($event->videoURLs))
+{
+	$lines = explode("\n", $event->videoURLs);
+	foreach ($lines as $line) {
+		$whereSpace = strpos($line, " ");
+		$linkText = "Video";
+		if (FALSE !== $whereSpace) {
+			$linkText = substr($line, $whereSpace+1);
+			$line = substr($line, 0, $whereSpace-1);
+		}
+		echo '<p><a href="' . htmlspecialchars($line) . '">' . htmlspecialchars($linkText) . '</a></p>' . PHP_EOL;
+	}
 }
 
 

@@ -333,8 +333,8 @@ echo '<h3>Archives</h3>' . PHP_EOL;
 showEditor('howTheShowWent', 'TEXT',         'How the show went', 'After the show, some text to describe how it went. For people reading details about show from archives', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('directorQuote', 'TEXT',         'Director’s Notes', 'Quote from director in the first person', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('photoCredits', 'TEXT',           'Photo credits', 'Who took the photos after the show/event', SIZE_ONELINE);
-showEditor('photoURL1', 'TEXT',              'Photo URL #1', 'URL of a photo album for a show, after the run is over', SIZE_ONELINE);
-showEditor('photoURL2', 'TEXT',              'Photo URL #2', 'URL of any second photo album for a show, after the run is over', SIZE_ONELINE);
+showEditor('photoURLs', 'TEXT',              'Photo URLs', 'URLs of a photo album for a show, after the run is over. One per line. Can be followed by a space and link text', SIZE_MULTILINE);
+showEditor('videoURLs', 'TEXT',              'Video URLs', 'URLs of videos for the show', SIZE_MULTILINE);
 
 
 
