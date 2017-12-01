@@ -116,6 +116,7 @@ INSERT INTO events (
   	classDays,
   	startTime,
   	endTime,
+  	googleCalendar,
   	announceDate,
   	signupStartDate,
   	auditionDateTime1,
@@ -156,6 +157,7 @@ $query .= "'" . $db->escapeString($auditionPrepare) . "', ";
 $query .= "'" . $db->escapeString($classDays) . "', ";
 $query .= "'" . $db->escapeString($startTime) . "', ";
 $query .= "'" . $db->escapeString($endTime) . "', ";
+$query .= "'" . $db->escapeString($googleCalendar) . "', ";
 $query .= "'" . $db->escapeString($announceDate) . "', ";
 $query .= "'" . $db->escapeString($signupStartDate) . "', ";
 $query .= "'" . $db->escapeString($auditionDateTime1) . "', ";
