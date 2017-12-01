@@ -99,7 +99,7 @@ foreach ($eventAssocArrays as $eventAssoc)		// don't use ampersand here, there w
 		$prefix = "William Shakespeare’s";
 		$title = substr($title, strlen("William Shakespeare’s"));
 	}
-
+	$title = trim($title);
 
 	if ($title == "Romeo & Juliet" || $title == "A Midsummer Night's Dream") {
 		$prefix = "William Shakespeare’s";
