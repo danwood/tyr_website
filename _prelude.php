@@ -46,7 +46,7 @@ Better build in years, into the paths (archive/2014/) and such.  Break down imag
 // StartTime								// time, in human-readable format, that auditions/camp/classes start
 // EndTime									// time, in human-readable format, that auditions/camp/classes end
 
-// GoogleCalendar							// URL of google calendar … for linking or embedding
+// googleCalendarURL						// URL of google calendar … for linking or embedding
 
 											// When... (In order they should be happening)
 //
@@ -368,7 +368,7 @@ class Event
 	public $startTime;				// time, in human-readable format, that auditions/camp/classes start
 	public $endTime;				// time, in human-readable format, that auditions/camp/classes end
 
-	private $googleCalendar;		// URL of google calendar … for linking or embedding
+	public $googleCalendarURL;		// URL of google calendar … for linking or embedding
 
 	public $announceDate;			// We first want event to appear to the public. Before, hidden. On/After, visible in "later this year"
 	public $signupStartDate;		// Announce and make signup possible (Or announce rehearsals). Before, "later this year". After, "coming soon"
@@ -384,6 +384,8 @@ class Event
 									// Use approximate date (1st of month) when it's in the distant future and date hasn't been nailed down yet
 	public $showLastDate;			// Last performance [if applicable] Before this, show countdown to last performance. After this, show moves to past events & archives!
 
+	public $sliderPromoFilename;
+	public $sliderArchiveFilename;
 
   // Static methods
 
@@ -877,7 +879,7 @@ class Event
 			if ($this->isBackstageCamp() && $this->logoFilename)
 			{
 				echo '<img class="miniicon" src="' . $root . 'shows/logo/' . htmlspecialchars($this->logoFilename) . '" '
-					. 'alt = "' . htmlspecialchars($this->title . ' Logo') . '" />' . PHP_EOL;
+					. 'alt = "' . htmlspecialchars($this->title . ': ' . htmlspecialchars($this->infoIfNoLogo)) . '" />' . PHP_EOL;
 			}
 			if ($this->isPastEvent() && !$this->shouldShowPhoto())
 			{
@@ -1232,13 +1234,13 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 
 		if (!$this->isSellingTickets())		// Don't show calendar if we are now selling tickets; too much clutter
 		{
-			$googleCalendar = trim($this->googleCalendar);
-			if ($staging) error_log('Google calendar URL = ' . $googleCalendar);
-			if ($googleCalendar)
+			$googleCalendarURL = trim($this->googleCalendarURL);
+			if ($staging) error_log('Google calendar URL = ' . $googleCalendarURL);
+			if ($googleCalendarURL)
 			{
-				echo '<p><a href="' . htmlspecialchars($googleCalendar) . '">Schedule — Google Calendar</a>';
+				echo '<p><a href="' . htmlspecialchars($googleCalendarURL) . '">Schedule — Google Calendar</a>';
 
-				$matched = preg_match('/src=(.+)&/', $googleCalendar, $matches);
+				$matched = preg_match('/src=(.+)&/', $googleCalendarURL, $matches);
 				if ($matched)
 				{
 					$fragment = $matches[1];

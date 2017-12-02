@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	   		{
 	   			// But first copy in original
 	   			$typeAndMaybeYear = $type . '/';
-	   			if ($type == 'photo') {
+	   			if ($type == 'photo' || $type == 'slider_past' || $type == 'slider_promo') {
 	   				$typeAndMaybeYear .= $year . '/';
 	   			}
 

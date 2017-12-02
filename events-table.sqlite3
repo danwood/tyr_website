@@ -33,7 +33,6 @@ CREATE TABLE 'events' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
  'whoCanGo' TEXT,
  'signupAttachment' TEXT,
  'performanceInfo' TEXT,
- 'parentID' INTEGER,
 
  'rehearsalInfo' TEXT,
 
@@ -46,7 +45,7 @@ CREATE TABLE 'events' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
  'classDays' TEXT,
  'startTime' TEXT,
  'endTime' TEXT,
- 'googleCalendar' TEXT,
+ 'googleCalendarURL' TEXT,
 
 
  'sliderPromoFilename' TEXT,

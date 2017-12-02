@@ -111,7 +111,34 @@ foreach ($eventAssocArrays as $eventAssoc)		// don't use ampersand here, there w
 	if ($title == "Neil Simon's Rumors") {
 		$prefix = "Neil Simon’s";
 		$title = "Rumors";
+
 	}
+
+	$sliderArchiveFilename = '';
+	if ($title == 'Annie') $sliderArchiveFilename = 'annie1.jpg';
+	if ($title == 'Beauty and the Beast') $sliderArchiveFilename = 'beautybeast.jpg';
+	if ($title == 'Fiddler on the Roof') $sliderArchiveFilename = 'fiddler.jpg';
+	if ($title == 'Footloose') $sliderArchiveFilename = 'footloose1.jpg';
+	if ($title == 'High School Musical') $sliderArchiveFilename = 'hsm.jpg';
+	if ($title == 'Into the Woods') $sliderArchiveFilename = 'into_the_woods.jpg';
+	if ($title == 'Les Miserables') $sliderArchiveFilename = 'lesmiserables.jpg';
+	if ($title == 'Narnia') $sliderArchiveFilename = 'narnia.jpg';
+	if ($title == 'The Wizard of Oz') $sliderArchiveFilename = 'oz.jpg';
+	if ($title == 'Seussical') $sliderArchiveFilename = 'seussical.jpg';
+	if ($title == 'Shrek') $sliderArchiveFilename = 'shrek1.jpg';
+
+	$sliderPromoFilename = '';
+	if ($title == 'The Mystery of Edwin Drood') $sliderPromoFilename = 'drood_upcoming.jpg';
+	if ($title == 'Rumors') $sliderPromoFilename = 'rumors_upcoming.jpg';
+
+
+
+
+
+
+
+
+
 
 	$photoURLs = $photoURL1;
 	if (!empty($photoURL2)) $photoURLs .= PHP_EOL . $photoURL2;
@@ -153,7 +180,7 @@ INSERT INTO events (
   	classDays,
   	startTime,
   	endTime,
-  	googleCalendar,
+  	googleCalendarURL,
   	announceDate,
   	signupStartDate,
   	auditionDateTime1,
@@ -163,7 +190,9 @@ INSERT INTO events (
   	rehearsalStartDate,
   	ticketSaleDate,
   	showFirstDate,
-  	showLastDate)
+  	showLastDate,
+  	sliderArchiveFilename,
+  	sliderPromoFilename)
 VALUES (
 EOD;
 
@@ -205,7 +234,9 @@ $query .= "'" . $db->escapeString($signupEndDate) . "', ";
 $query .= "'" . $db->escapeString($rehearsalStartDate) . "', ";
 $query .= "'" . $db->escapeString($ticketSaleDate) . "', ";
 $query .= "'" . $db->escapeString($showFirstDate) . "', ";
-$query .= "'" . $db->escapeString($showLastDate) . "')";
+$query .= "'" . $db->escapeString($showLastDate) . "', ";
+$query .= "'" . $db->escapeString($sliderArchiveFilename) . "', ";
+$query .= "'" . $db->escapeString($sliderPromoFilename) . "')";
 
 
 //echo $query;

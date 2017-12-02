@@ -258,10 +258,10 @@ $('#<?php echo htmlspecialchars($sqlColumn); ?>_container').html(contentHTML);
 <form id="mainform" action="save.php" method="POST">
 <h3>General</h3>
 <?php
-showEditor('prefix', 'TEXT',                 'Prefix', 'e.g. "William Shakespeare’s"', SIZE_TINY);
+showEditor('prefix', 'TEXT',                 'Prefix', 'e.g. "William Shakespeare’s"', SIZE_SMALL);
 showEditor('title', 'TEXT',                  'Title', '', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
 showEditor('suffix', 'TEXT',                 'Suffix', 'must be short!', SIZE_TINY);
-showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Shown only when no logo', SIZE_ONELINE);
+showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Text shown if no logo specified, also helpful for people who cannot read the logo', SIZE_ONELINE);
 
 if ($event) {
 
@@ -307,14 +307,18 @@ showEditor('whoCanGo', 'TEXT',               'Who can go', 'Age or grade range e
 
 showEditor('performanceInfo', 'TEXT',        'Performance Info', 'Details on when and where performances are', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('castList', 'TEXT',               'Cast list', 'Fill this in to show who got cast.  Goes away after rehearsal start date', SIZE_MULTILINE, MARKDOWN_TRUE);
-//showEditor('sharedCast', 'BOOLEAN',
+
+// NOT USED: SHAREDCAST
+
 showEditor('tuition', 'TEXT',                'Tuition', 'Human-readable dollar amount or amounts', SIZE_ONELINE);
 
 showEditor('auditionLocation', 'TEXT',       'Audition location', 'Where auditions will be held', SIZE_ONELINE);
 showEditor('auditionPrepare', 'TEXT',        'Audition preparation', 'What to prepare for auditions', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('classDays', 'TEXT',              'Class days', 'Days of the week the rehearsals/camp/classes are, or maybe specific dates', SIZE_ONELINE);
-showEditor('startTime', 'TEXT',              'Start time', 'time, in human-readable format, that auditions/camp/classes start', SIZE_SMALL);
-showEditor('endTime', 'TEXT',                'End time', 'time, in human-readable format, that auditions/camp/classes end', SIZE_SMALL);
+showEditor('startTime', 'TEXT',              'Start time', 'Time, in human-readable format, that auditions/camp/classes start', SIZE_SMALL);
+showEditor('endTime', 'TEXT',                'End time', 'Time, in human-readable format, that auditions/camp/classes end', SIZE_SMALL);
+
+showEditor('googleCalendarURL', 'TEXT',                'Google Calendar URL', 'http URL of google rehearsal calendar for embedding', SIZE_ONELINE);
 
 showEditor('rehearsalInfo', 'TEXT',          'Rehearsal info', 'Info about rehearsals visible during recruitment and rehearsals', SIZE_MULTILINE, MARKDOWN_TRUE);
 
@@ -327,6 +331,11 @@ showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper T
 <p>Usually a poster that people can print out and display or email. Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> or <span class="extension">.pdf</span> file.
 </p>
 <iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=poster&amp;property=publicityAttachment"></iframe>
+<h4>Promotional Slider Graphic</h4>
+<p>An image rotated on the home page promoting the show's upcoming performance. Should be 1932 × 822 in size, and tighly compressed <span class="extension">.jpg</span> file.
+</p>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=slider_promo&amp;property=sliderPromoFilename"></iframe>
+
 <?php
 
 echo '<h3>Archives</h3>' . PHP_EOL;
@@ -354,6 +363,11 @@ The first four images are the most important, and will be rotated in as thumbnai
 </div>
 
 <iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=photo&amp;multiple=multiple&amp;property=photoFilename"></iframe>
+
+<h4>Promotional Slider Graphic</h4>
+<p>An image rotated on the home page with a showcase photo of TYR's best performances. Only set this for a dozen or so total shows. Should be 1932 × 822 in size, and tighly compressed <span class="extension">.jpg</span> file.
+</p>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=slider_past&amp;property=sliderArchiveFilename"></iframe>
 
 <h3>Dates</h3>
 <table class="dates_table">
