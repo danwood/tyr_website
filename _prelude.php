@@ -1387,6 +1387,8 @@ $currentOther = array();
 $laterEvents = array();
 $hiddenEvents = array();
 
+$sliderRecords = array();	// build this up as we find slider past & promo info
+
 $dbPath = $_SERVER['DOCUMENT_ROOT'] . '/db/tyr.sqlite3';
 $db = new SQLite3($dbPath) or die('Unable to open database');
 
@@ -1431,12 +1433,31 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 			$currentShows[] = $event;
 		}
 	}
+
+	if (!empty($event->sliderArchiveFilename) && $event->isPastEvent()) {
+		$path = 'slider_past/' . $event->getYear() . '/' . $event->sliderArchiveFilename;
+		$sliderInfo = array(
+			'filename' => $path,
+			'year' => $event->getYear(),
+			'title' => $event->title(),
+			);
+		$sliderRecords[] = $sliderInfo;
+	}
+	if (!empty($event->sliderPromoFilename) && $event ->isUpcomingEvent()) {
+		$path = 'slider_promo/' . $event->getYear() . '/' . $event->sliderPromoFilename;
+		$sliderInfo = array(
+			'filename' => $path,
+			'year' => $event->getYear(),
+			'title' => $event->title()
+			);
+		// Put promo at the START of the array
+		array_unshift($sliderRecords, $sliderInfo);
+	}
+
+	// Some way to sort these, or un-sort them, randomly each time?
+
 }
 $db->close();
-
-
-
-
 
 usort($currentShows,	array('Event', 'eventForwardCompare'));
 usort($currentOther,	array('Event', 'eventForwardCompare'));

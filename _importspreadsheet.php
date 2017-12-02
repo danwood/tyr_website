@@ -119,8 +119,8 @@ foreach ($eventAssocArrays as $eventAssoc)		// don't use ampersand here, there w
 	if ($title == 'Beauty and the Beast') $sliderArchiveFilename = 'beautybeast.jpg';
 	if ($title == 'Fiddler on the Roof') $sliderArchiveFilename = 'fiddler.jpg';
 	if ($title == 'Footloose') $sliderArchiveFilename = 'footloose1.jpg';
-	if ($title == 'High School Musical') $sliderArchiveFilename = 'hsm.jpg';
-	if ($title == 'Into the Woods') $sliderArchiveFilename = 'into_the_woods.jpg';
+	if ($title == 'High School Musical') $sliderArchiveFilename = 'hsm1.jpg';
+	if ($title == 'Into the Woods') $sliderArchiveFilename = 'into_the_woods_2016.jpg';
 	if ($title == 'Les Miserables') $sliderArchiveFilename = 'lesmiserables.jpg';
 	if ($title == 'Narnia') $sliderArchiveFilename = 'narnia.jpg';
 	if ($title == 'The Wizard of Oz') $sliderArchiveFilename = 'oz.jpg';
