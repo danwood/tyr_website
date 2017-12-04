@@ -93,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    	$maxFilename = $currentFilename;
 	    }
 
+		$showsTypeAndYearSlash = 'shows/' . $type . '/' . $year . '/';
 
 	    if (0 === strpos($mimeType, 'image/') )		// seems to be an image
 	    {
@@ -101,24 +102,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    	if ($type == 'poster' || $type == 'signup' || $type == 'slider_past' || $type == 'slider_promo')
 	    	{
 		    	$tmp_name = $image['tmp_name'];
-				$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFilename);
+				$moved = move_uploaded_file($tmp_name, $showsTypeAndYearSlash . $currentFilename);
 				if (!$moved)
 				{
 		    		$errorMessage = "Could not move upload";
 		    		goto giveup;
 				}
-				$currentLink = 'shows/' . $type . '/' . $currentFilename;
+				$currentLink = $showsTypeAndYearSlash . $currentFilename;
 	   		}
 	   		else	// Want to shrink!  … logo, photo
 	   		{
-	   			// But first copy in original
-	   			$typeAndMaybeYear = $type . '/';
-	   			if ($type == 'photo' || $type == 'slider_past' || $type == 'slider_promo') {
-	   				$typeAndMaybeYear .= $year . '/';
-	   			}
-
-
-	   			$pathToOriginal = 'shows/' . $typeAndMaybeYear . 'original/' . $currentFilename;
+	   			$pathToOriginal = $showsTypeAndYearSlash . 'original/' . $currentFilename;
 		    	$tmp_name = $image['tmp_name'];
 error_log("move '$tmp_name' to '$pathToOriginal'");
 				$moved = move_uploaded_file($tmp_name, $pathToOriginal);
@@ -128,7 +122,7 @@ error_log("move '$tmp_name' to '$pathToOriginal'");
 		    		$errorMessage = "Could not move original image";
 		    		goto giveup;
 				}
-	   			$pathToSized = 'shows/' . $typeAndMaybeYear . $currentFilename;
+	   			$pathToSized = $showsTypeAndYearSlash . $currentFilename;
 
 	   			$put = file_put_contents($pathToSized, 'Hi there');
 
@@ -163,16 +157,16 @@ error_log("move '$tmp_name' to '$pathToOriginal'");
 	    		goto giveup;
 			}
 
-			$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFilename);
+			$moved = move_uploaded_file($tmp_name, $showsTypeAndYearSlash . $currentFilename);
 			if (!$moved)
 			{
 				echo "tmp_name = " . $tmp_name;
-				echo "dir = " . 'shows/' . $type;
+				echo "dir = " . $showsTypeAndYearSlash;
 				echo "name = " . $currentFilename;
 	    		$errorMessage = "Could not move upload";
 	    		goto giveup;
 			}
-			$currentLink = 'shows/' . $type . '/' . $currentFilename;
+			$currentLink = $showsTypeAndYearSlash . $currentFilename;
 	    }
 	    else if ($mimeType == 'audio/mpeg' && $type == 'signup')		// seems to be an MP3, and correct type
 	    {
@@ -186,16 +180,16 @@ error_log("move '$tmp_name' to '$pathToOriginal'");
 	    		goto giveup;
 			}
 
-			$moved = move_uploaded_file($tmp_name, 'shows/' . $type . '/' . $currentFilename);
+			$moved = move_uploaded_file($tmp_name, $showsTypeAndYearSlash . $currentFilename);
 			if (!$moved)
 			{
 				echo "tmp_name = " . $tmp_name;
-				echo "dir = " . 'shows/' . $type;
+				echo "dir = " . $showsTypeAndYearSlash;
 				echo "name = " . $currentFilename;
 	    		$errorMessage = "Could not move upload";
 	    		goto giveup;
 			}
-			$currentLink = 'shows/' . $type . '/' . $currentFilename;
+			$currentLink = $showsTypeAndYearSlash . $currentFilename;
 	    }
 	    else
 	    {
