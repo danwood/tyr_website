@@ -38,6 +38,9 @@ function retrieveGoogleTable($tableNumber)
 
 
 echo "<p>It's now " . date('r', time()) . "</p>" . PHP_EOL;
+
+echo "<p><b>No longer fetching data from Google spreadsheet!</b></p>" . PHP_EOL;
+/*
 echo "<p>Retrieving Google Table 0...</p>\n";
 $errCode = retrieveGoogleTable(0);
 if (0 == $errCode)
@@ -63,7 +66,7 @@ if (0 == $errCode)
 	echo "<p><b>(If it says database is locked, reload this page to try again.)</b></p>\n";
 
 	require_once('_importspreadsheet.php');
-
+*/
  	// Files to re-build from PHP into HTML
 
 	$files = array('about.php', 'archives.php', 'donate.php', 'staff.php', 'index.php', 'index.rss.php', 'volunteer.php' );
@@ -92,6 +95,5 @@ if (0 == $errCode)
 
 
 	echo "<p><a href='/'>Back to home page</a></p>";
-}
 
 ?>

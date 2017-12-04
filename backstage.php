@@ -40,7 +40,6 @@ include('_header.php'); ?>
 
 								<h3>Manage Events</h3>
 
-<p><span style="color:red">Still under development — not ready for general use yet:</span></p>
 <p><a href="edit.php">Add a new event</a> or <a href="db.php">edit existing events</a>.</p>
 <p>View website using <a href="<?php echo htmlspecialchars($root); ?>index.php?when=<?php echo date('Y-m-d'); ?>">Time Machine</a>.</p>
 <p>When data has changed, <a href="<?php echo htmlspecialchars($root); ?>reload.php">Reload</a> the entire site.</p>
