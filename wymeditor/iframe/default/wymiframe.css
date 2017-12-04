@@ -2,7 +2,7 @@
 
 /* basic */
 body  {
-    background: #e1e8f1;
+    background: #fff;
     margin: 0;
     vertical-align: baseline;
 }
@@ -80,6 +80,7 @@ td {
 }
 
 /* labels */
+/*
 p {
     background-image: url(lbl-p.png);
 }
@@ -110,7 +111,7 @@ blockquote{
 pre {
     background-image: url(lbl-pre.png);
 }
-
+*/
 
 /* visual feedback for invalid nesting of elements */
 h1 h1,
