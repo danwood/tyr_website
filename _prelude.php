@@ -618,7 +618,7 @@ class Event
 				}
 				else if ($this->shouldShowLogo())
 				{
-					$mediaURL = $urlBase . 'shows/logo/' . $this->logoFilename;
+					$mediaURL = $urlBase . 'shows/logo/' . $this->getYear() . '/' . $this->logoFilename;
 				}
 				echo '<a target="_blank" href="http://www.pinterest.com/pin/create/button/?url=' . urlencode($this->link())
 				. '&amp;media=' . urlencode($mediaURL)
@@ -866,7 +866,7 @@ class Event
 
 		if ($this->shouldShowLogo())
 		{
-			echo '<img src="' . $root . 'shows/logo/' . htmlspecialchars($this->logoFilename) . '" '
+			echo '<img src="' . $root . 'shows/logo/' . $this->getYear() . '/' . htmlspecialchars($this->logoFilename) . '" '
 				. 'alt = "' . htmlspecialchars($this->title . ' Logo') . '" />' . PHP_EOL;
 		}
 		else if ($this->shouldShowPhoto())
@@ -878,7 +878,7 @@ class Event
 		{
 			if ($this->isBackstageCamp() && $this->logoFilename)
 			{
-				echo '<img class="miniicon" src="' . $root . 'shows/logo/' . htmlspecialchars($this->logoFilename) . '" '
+				echo '<img class="miniicon" src="' . $root . 'shows/logo/' . $this->getYear() . '/' . htmlspecialchars($this->logoFilename) . '" '
 					. 'alt = "' . htmlspecialchars($this->title . ': ' . htmlspecialchars($this->infoIfNoLogo)) . '" />' . PHP_EOL;
 			}
 			if ($this->isPastEvent() && !$this->shouldShowPhoto())
@@ -1084,7 +1084,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 					$att = trim($att);
 					if ($att)
 					{
-						echo '<p><a href="shows/signup/' . htmlspecialchars(rawurlencode($att)) . '">';
+						echo '<p><a href="shows/signup/' . $this->getYear() . '/' . htmlspecialchars(rawurlencode($att)) . '">';
 
 						$attachment = $att;
 						$extension = strtolower(pathinfo($attachment, PATHINFO_EXTENSION));
@@ -1128,7 +1128,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 				//
 				if ($this->signupAttachment)
 				{
-					echo '<p><a href="shows/signup/' . htmlspecialchars(rawurlencode($this->signupAttachment)) . '">';
+					echo '<p><a href="shows/signup/' . $this->getYear() . '/' . htmlspecialchars(rawurlencode($this->signupAttachment)) . '">';
 
 					$extension = strtolower(pathinfo($this->signupAttachment, PATHINFO_EXTENSION));
 					$iconfilename = 'teambox/' . $extension . '.png';
@@ -1207,7 +1207,7 @@ error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditi
 		if ($this->publicityAttachment)
 		{
 			echo '<p><b><i>Help get the word out!</i></b> Download this file and print it out, or email to your friends!</p>' . PHP_EOL;
-			echo '<p><a href="shows/poster/' . htmlspecialchars(rawurlencode($this->publicityAttachment)) . '">';
+			echo '<p><a href="shows/poster/' . $this->getYear() . '/' . htmlspecialchars(rawurlencode($this->publicityAttachment)) . '">';
 
 			$extension = strtolower(pathinfo($this->publicityAttachment, PATHINFO_EXTENSION));
 			$iconfilename = 'teambox/' . $extension . '.png';
@@ -1319,8 +1319,8 @@ scrolling="no"></iframe>
 			$logo = $this->logoFilename;
 			if ($logo)
 			{
-				echo '<meta name="twitter:image" content="' . $urlBase . 'shows/logo/' . $logo .  '">' . PHP_EOL;
-				echo '<meta property="og:image" content="' . $urlBase . 'shows/logo/' . $logo . '">' . PHP_EOL;
+				echo '<meta name="twitter:image" content="' . $urlBase . 'shows/logo/' . $this->getYear() . '/' . $logo .  '">' . PHP_EOL;
+				echo '<meta property="og:image" content="' . $urlBase . 'shows/logo/' . $this->getYear() . '/' . $logo . '">' . PHP_EOL;
 			}
 		}
 
