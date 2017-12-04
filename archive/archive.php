@@ -170,7 +170,7 @@ else
 			$numberOfImagesForPinterest = 1;
 ?>
 									<div class="inlinebox archive-photo">
-										<img class="full-block" src="<?php echo $root; ?>logo/<?php echo $logo; ?> ">
+										<img class="full-block" src="<?php echo $root; ?>shows/logo/<?php echo $event->getYear() . '/' . $logo; ?> ">
 									</div>
 <?php
 		}
