@@ -102,6 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    	if ($type == 'poster' || $type == 'signup' || $type == 'slider_past' || $type == 'slider_promo')
 	    	{
 		    	$tmp_name = $image['tmp_name'];
+		    	mkdir($showsTypeAndYearSlash, 0777, TRUE);
 				$moved = move_uploaded_file($tmp_name, $showsTypeAndYearSlash . $currentFilename);
 				if (!$moved)
 				{
@@ -112,7 +113,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	   		}
 	   		else	// Want to shrink!  … logo, photo
 	   		{
-	   			$pathToOriginal = $showsTypeAndYearSlash . 'original/' . $currentFilename;
+	   			$originalDirectory = $showsTypeAndYearSlash . 'original/';
+	   			mkdir($originalDirectory, 0777, TRUE);
+	   			$pathToOriginal = $originalDirectory . $currentFilename;
 		    	$tmp_name = $image['tmp_name'];
 				$moved = move_uploaded_file($tmp_name, $pathToOriginal);
 				if (!$moved)
@@ -155,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    		$errorMessage = "Something was wrong with the contents of the PDF file";
 	    		goto giveup;
 			}
-
+			mkdir($showsTypeAndYearSlash, 0777, TRUE);
 			$moved = move_uploaded_file($tmp_name, $showsTypeAndYearSlash . $currentFilename);
 			if (!$moved)
 			{
@@ -178,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	    		$errorMessage = "Something was wrong with the contents of this .mp3 file";
 	    		goto giveup;
 			}
-
+			mkdir($showsTypeAndYearSlash, 0777, TRUE);
 			$moved = move_uploaded_file($tmp_name, $showsTypeAndYearSlash . $currentFilename);
 			if (!$moved)
 			{
