@@ -61,7 +61,7 @@ include('../_header.php'); ?>
 					<main>
 						<div class="white-block">
 							<section id="event" class="clearfix capped-width pullbottom">
-								<div class="inlinebox nobottom">
+								<div class="inlinebox">
 <?php
 if ($event->logoFilename) {
 	echo '<div style="float:right; margin-bottom:1em;">' . PHP_EOL;
@@ -76,12 +76,11 @@ if ($event->logoFilename) {
 										<span class="suffix"><?php echo htmlspecialchars($event->suffix()); ?></span>
 									</h2>
 <?php
-if ($event->storyOverview()) {
-?>
-									<p>
-										<?php echo htmlspecialchars($event->storyOverview()); ?>
-									</p>
-<?php
+if ($event->storyOverview) {
+
+		$html = Markdown::defaultTransform($event->storyOverview);
+		echo $html;
+
 }
 ?>
 								</div>
