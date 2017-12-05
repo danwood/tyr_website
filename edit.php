@@ -58,6 +58,7 @@ a.wym_wymeditor_link { display:none !important;}
 .wym_classes { display:none !important;}
 iframe.uploader { width:100%; height:100px; }
 .extension { color:purple;}
+.limit { color:#FFF; font-weight:bold; font-size:80%;}
 
 </style>
 </head>
@@ -184,6 +185,9 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 		if ($class) echo ' class="' . $class .'"';
 
 		echo ' />'. PHP_EOL;
+		if ($limit) {
+			echo '<span class="limit">Limit ' . $limit . '</span>' . PHP_EOL;
+		}
 	}
 	else {
 		if ($isMarkdown) {
