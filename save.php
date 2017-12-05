@@ -59,6 +59,7 @@ if (isset($_POST['id'])) {
 
 	$query = 'update events set ';
 	foreach ($inputs as $key => $value) {
+		$value = trim($value);
 		if (!endswith($key, '_time')) {
 			$query .= $key . '=';
 

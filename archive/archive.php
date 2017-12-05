@@ -75,6 +75,15 @@ if ($event->logoFilename) {
 										<?php echo htmlspecialchars($event->title()); ?>
 										<span class="suffix"><?php echo htmlspecialchars($event->suffix()); ?></span>
 									</h2>
+<?php
+if ($event->storyOverview()) {
+?>
+									<p>
+										<?php echo htmlspecialchars($event->storyOverview()); ?>
+									</p>
+<?php
+}
+?>
 								</div>
 								<div> <!-- similar elements together, for nth-child -->
 

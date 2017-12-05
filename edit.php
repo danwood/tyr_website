@@ -269,7 +269,7 @@ if ($event) {
 
 echo '<h3>General Information</h3>' . PHP_EOL;
 
-showEditor('storyOverview', 'TEXT',      	 'Plot overview', 'Teaser plot of story', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('storyOverview', 'TEXT',      	 'Plot overview', 'Teaser plot of story (NOT the performance. Will be used pre-show and post-show.)', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('venue', 'TEXT',                  'Venue', 'Theatre etc. of performances', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
 showEditor('venueAddress', 'TEXT',            'Address of venue', 'Address of venue, for publicizing event', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
 showEditor('credits', 'TEXT',      	 		 'Credits', 'Director, book, special arrangements etc.', SIZE_MULTILINE, MARKDOWN_TRUE);
@@ -550,6 +550,7 @@ $( "#mainform" ).submit(function( event ) {
 		if (myWym) {
 		    var html = myWym.html();
 			var markdown = markdownize(html);
+			markdown = trim(markdown);
 			var htmlID = $(this).attr("id");
 			var markdownID = htmlID.replace("_html", "_markdown");
 			$('#' + markdownID).text(markdown);
