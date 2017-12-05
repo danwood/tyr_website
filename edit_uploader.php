@@ -239,19 +239,30 @@ else	// input form
 	$prop = $reflector->getProperty($propertyName);
 	$maxFilename = $prop->isPrivate() ? $event->{$propertyName}() : $event->{$propertyName};
 ?>
+<?php
+	$imagePath = '';
+	if (!empty($maxFilename)) {
+		$imagePath = 'shows/' . $_GET['type'] . '/' . $_GET['year'] . '/' . $maxFilename;
+?>
+<div style="width:100%; height:100%; background-image:url(<?php echo htmlspecialchars($imagePath); ?>); background-repeat:no-repeat; background-position:right top; background-size:contain">
+<?php
+	} else {
+?>
+	<div>
+<?php
+	}
+?>
+	<p>Currently set to: <a target="_BLANK" href="<?php echo htmlspecialchars($imagePath); ?>"><?php echo htmlspecialchars($maxFilename); ?></a>
+<?php
+if (isset($_GET['multiple'])) { echo " (last one in a series)"; }
+?>
+	</p>
 
 <form id="uploader" action="/edit_uploader.php" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>" />
 <input type="hidden" name="type" value="<?php echo htmlspecialchars($_GET['type']); ?>" />
 <input type="hidden" name="year" value="<?php echo htmlspecialchars($_GET['year']); ?>" />
 <input type="hidden" name="property" value="<?php echo htmlspecialchars($_GET['property']); ?>" />
-<?php
-	if (!empty($maxFilename)) {
-?>
-	<p>Currently set to: <?php echo htmlspecialchars($maxFilename); ?></p>
-<?php
-	}
-?>
 <p>
   <input id="fileinput" <?php
 if (isset($_GET['multiple'])) { echo 'multiple="multiple" '; }
@@ -260,6 +271,7 @@ if (isset($_GET['multiple'])) { echo 'multiple="multiple" '; }
   <input id="submit" type="submit" value="Upload" disabled /> <span id="status"></span>
 </p>
 </form>
+</div>
 
 <script src="<?php echo htmlspecialchars($root); ?>js/jquery-1.12.4.min.js"></script>
 <script>

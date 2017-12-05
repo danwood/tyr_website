@@ -31,7 +31,7 @@ if ($event)
 #mainform { width:842px;} /* Try to match the wymeditor stuff */
 .wym_area_main { background-color:white;}
 .wym_skin_seamless .wym_dropdown h2 { line-height:1.0; margin-bottom:0 !important;}
-textarea { width:100%; min-height:150px;}
+textarea { width:100%; min-height:50px;}
 h3, h4 { margin-top:1em; }
 h3 { color:#000; background-color:#F88; padding:0.3em 0.2em;}
 .dates_table { width:100%; }
@@ -77,6 +77,7 @@ include('_header.php'); ?>
 							<div class="inlinebox">
 
 <?php
+
 if (isset($_GET['created'])) {
 	echo "<p><b style='color:green'>New event has been created. You can fill in more information now.</b></p>";
 } else if (isset($_GET['saved'])) {
@@ -88,8 +89,7 @@ if (isset($_GET['created'])) {
 <div id="pre-select-dates" class="box"></div>
 
 <p>
-	<!-- Be sure to SAVE your edits at the bottom of this page. -->
-	<span style="color:red;"><b>This is not a fully functioning editor; nothing is saved!</b></span>
+	<span style="color:red;"><b>Be sure to SAVE your edits at the bottom of this page!</b></span>
 </p>
 
 <?php
@@ -97,8 +97,9 @@ if (isset($_GET['created'])) {
 define('SIZE_TINY',     0);
 define('SIZE_SMALL',     1);
 define('SIZE_ONELINE',     2);
-define('SIZE_MULTILINE',     3);
-define('SIZE_GIANT',     4);
+define('SIZE_FEWLINE',     3);
+define('SIZE_MULTILINE',     4);
+define('SIZE_GIANT',     5);
 
 define('MARKDOWN_TRUE',  TRUE);
 define('REQUIRED_TRUE',  TRUE);
@@ -144,6 +145,7 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 		case SIZE_TINY:		$width = 12;	break;
 		case SIZE_SMALL:	$width = 20;	break;
 		case SIZE_ONELINE:	$width = 50;	break;
+		case SIZE_FEWLINE:	$height = 4;	break;
 		case SIZE_MULTILINE:$height = 12;	break;
 		case SIZE_GIANT:	$height = 20;	break;
 	}
@@ -342,8 +344,8 @@ echo '<h3>Archives</h3>' . PHP_EOL;
 showEditor('howTheShowWent', 'TEXT',         'How the show went', 'After the show, some text to describe how it went. For people reading details about show from archives', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('directorQuote', 'TEXT',         'Director’s Notes', 'Quote from director in the first person', SIZE_MULTILINE, MARKDOWN_TRUE);
 showEditor('photoCredits', 'TEXT',           'Photo credits', 'Who took the photos after the show/event', SIZE_ONELINE);
-showEditor('photoURLs', 'TEXT',              'Photo URLs', 'URLs of a photo album for a show, after the run is over. One per line. Can be followed by a space and link text', SIZE_MULTILINE);
-showEditor('videoURLs', 'TEXT',              'Video URLs', 'URLs of videos for the show', SIZE_MULTILINE);
+showEditor('photoURLs', 'TEXT',              'Photo URLs', 'URLs of a photo album for a show, after the run is over. One per line. Can be followed by a space and link text', SIZE_FEWLINE);
+showEditor('videoURLs', 'TEXT',              'Video URLs', 'URLs of videos for the show', SIZE_FEWLINE);
 
 
 
@@ -399,7 +401,7 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 </table>
 
 <p>
-	<input type="submit" name="submit" value="<?php if ($event) echo 'Update Event'; else echo 'Create Event'; ?>" />
+	<input type="submit" name="submit" value="<?php if ($event) echo 'Save Changes'; else echo 'Create Event'; ?>" />
 </p>
 </form>
 
