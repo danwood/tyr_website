@@ -550,7 +550,7 @@ $( "#mainform" ).submit(function( event ) {
 		if (myWym) {
 		    var html = myWym.html();
 			var markdown = markdownize(html);
-			markdown = trim(markdown);
+			markdown = markdown.trim();
 			var htmlID = $(this).attr("id");
 			var markdownID = htmlID.replace("_html", "_markdown");
 			$('#' + markdownID).text(markdown);
