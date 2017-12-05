@@ -949,7 +949,6 @@ class Event
 			if ($this->isAuditionShow())
 			{
 				echo '<p><b>Audition:</b> ';
-error_log("audition dates: " . $this->auditionDateTime1 . ' & ' .  $this->auditionDateTime2);
 				if ($this->auditionDateTime1)
 				{
 

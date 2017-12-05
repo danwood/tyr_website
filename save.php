@@ -74,7 +74,6 @@ if (isset($_POST['id'])) {
 	$query = substr($query, 0, -1);	// take out last ,
 	$query .= ' where id=' . $id;
 
-error_log($query);
 	$ret = $db->query($query);
 	if(!$ret) {
 		echo $db->lastErrorMsg();
@@ -106,7 +105,6 @@ else
 	$query = substr($query, 0, -1);	// take out last ,
 	$query .= ')';
 
-error_log($query);
 	$ret = $db->query($query);
 	if(!$ret) {
 		echo $db->lastErrorMsg();

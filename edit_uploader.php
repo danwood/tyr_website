@@ -114,7 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	   		{
 	   			$pathToOriginal = $showsTypeAndYearSlash . 'original/' . $currentFilename;
 		    	$tmp_name = $image['tmp_name'];
-error_log("move '$tmp_name' to '$pathToOriginal'");
 				$moved = move_uploaded_file($tmp_name, $pathToOriginal);
 				if (!$moved)
 				{
