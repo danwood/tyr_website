@@ -109,7 +109,7 @@ define('REQUIRED_FALSE', FALSE);
 
 $editorInitializationScript = '';	// We will add to this script every time we show an editor.
 
-function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = SIZE_ONELINE, $isMarkdown = MARKDOWN_FALSE, $isRequired = REQUIRED_FALSE)
+function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = SIZE_ONELINE, $limit = 0, $isMarkdown = MARKDOWN_FALSE, $isRequired = REQUIRED_FALSE)
 {
 
 	global $event, $reflector, $editorInitializationScript;
@@ -173,6 +173,10 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 		echo '<input type="' . $type . '" size="' . $width . '"';
 		echo ' name="' . $sqlColumn . '"';
 		if ($type == 'url') echo ' placeholder="http://..."';
+
+		if ($limit) {
+			echo ' maxlength="' . $limit . '"';
+		}
 
 		if ($event) {
 			echo ' value="' . htmlspecialchars($value) . '"';
@@ -260,23 +264,23 @@ $('#<?php echo htmlspecialchars($sqlColumn); ?>_container').html(contentHTML);
 <form id="mainform" action="save.php" method="POST">
 <h3>General</h3>
 <?php
-showEditor('prefix', 'TEXT',                 'Prefix', 'e.g. "William Shakespeare’s"', SIZE_SMALL);
-showEditor('title', 'TEXT',                  'Title', '', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
-showEditor('suffix', 'TEXT',                 'Suffix', 'must be short!', SIZE_TINY);
-showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Text shown if no logo specified, also helpful for people who cannot read the logo', SIZE_ONELINE);
+showEditor('prefix', 'TEXT',                 'Prefix', 'e.g. "William Shakespeare’s"', SIZE_SMALL, 25);
+showEditor('title', 'TEXT',                  'Title', '', SIZE_ONELINE, 55, MARKDOWN_FALSE, REQUIRED_TRUE);
+showEditor('suffix', 'TEXT',                 'Suffix', 'must be short!', SIZE_TINY, 25);
+showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Text shown if no logo specified, also helpful for people who cannot read the logo', SIZE_ONELINE, 80);
 
 if ($event) {
 
 echo '<h3>General Information</h3>' . PHP_EOL;
 
-showEditor('storyOverview', 'TEXT',      	 'Plot overview', 'Teaser plot of story (NOT the performance. Will be used pre-show and post-show.)', SIZE_MULTILINE, MARKDOWN_TRUE);
-showEditor('venue', 'TEXT',                  'Venue', 'Theatre etc. of performances', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
-showEditor('venueAddress', 'TEXT',            'Address of venue', 'Address of venue, for publicizing event', SIZE_ONELINE, MARKDOWN_FALSE, REQUIRED_TRUE);
-showEditor('credits', 'TEXT',      	 		 'Credits', 'Director, book, special arrangements etc.', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('storyOverview', 'TEXT',      	 'Plot overview', 'Teaser plot of story (NOT the performance. Will be used pre-show and post-show.)', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
+showEditor('venue', 'TEXT',                  'Venue', 'Theatre etc. of performances', SIZE_ONELINE, 100, MARKDOWN_FALSE, REQUIRED_TRUE);
+showEditor('venueAddress', 'TEXT',            'Address of venue', 'Address of venue, for publicizing event', SIZE_ONELINE, 100, MARKDOWN_FALSE, REQUIRED_TRUE);
+showEditor('credits', 'TEXT',      	 		 'Credits', 'Director, book, special arrangements etc.', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
 
 echo '<h3>Recruitment</h3>' . PHP_EOL;
 
-showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General blurb used for recruiting show. GOES AWAY after signups are done', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General blurb used for recruiting show. GOES AWAY after signups are done', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
 ?>
 <h4>Logo File</h4>
 <p>File should be about 3:2 aspect ratio like an old TV, 544 pixels wide (or wider).  Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> file.
@@ -296,9 +300,9 @@ showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General 
 
 //showEditor('type', 'INTEGER',                'type'
 
-showEditor('signupDetails', 'TEXT',          'Signup details', 'Where classes are, audition preparations, what to expect, etc.', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('signupDetails', 'TEXT',          'Signup details', 'Where classes are, audition preparations, what to expect, etc.', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
 
-showEditor('whoCanGo', 'TEXT',               'Who can go', 'Age or grade range etc.', SIZE_TINY);
+showEditor('whoCanGo', 'TEXT',               'Who can go', 'Age or grade range etc.', SIZE_TINY, 15);
 
 ?>
 <h4>Signup Attachment</h4>
@@ -307,27 +311,27 @@ showEditor('whoCanGo', 'TEXT',               'Who can go', 'Age or grade range e
 <iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=signup&amp;property=signupAttachment"></iframe>
 <?php
 
-showEditor('performanceInfo', 'TEXT',        'Performance Info', 'Details on when and where performances are', SIZE_MULTILINE, MARKDOWN_TRUE);
-showEditor('castList', 'TEXT',               'Cast list', 'Fill this in to show who got cast.  Goes away after rehearsal start date', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('performanceInfo', 'TEXT',        'Performance Info', 'Details on when and where performances are', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
+showEditor('castList', 'TEXT',               'Cast list', 'Fill this in to show who got cast.  Goes away after rehearsal start date', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
 
 // NOT USED: SHAREDCAST
 
-showEditor('tuition', 'TEXT',                'Tuition', 'Human-readable dollar amount or amounts', SIZE_ONELINE);
+showEditor('tuition', 'TEXT',                'Tuition', 'Human-readable dollar amount or amounts', SIZE_ONELINE, 25);
 
-showEditor('auditionLocation', 'TEXT',       'Audition location', 'Where auditions will be held', SIZE_ONELINE);
-showEditor('auditionPrepare', 'TEXT',        'Audition preparation', 'What to prepare for auditions', SIZE_MULTILINE, MARKDOWN_TRUE);
-showEditor('classDays', 'TEXT',              'Class days', 'Days of the week the rehearsals/camp/classes are, or maybe specific dates', SIZE_ONELINE);
-showEditor('startTime', 'TEXT',              'Start time', 'Time, in human-readable format, that auditions/camp/classes start', SIZE_SMALL);
-showEditor('endTime', 'TEXT',                'End time', 'Time, in human-readable format, that auditions/camp/classes end', SIZE_SMALL);
+showEditor('auditionLocation', 'TEXT',       'Audition location', 'Where auditions will be held', SIZE_ONELINE, 50);
+showEditor('auditionPrepare', 'TEXT',        'Audition preparation', 'What to prepare for auditions', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
+showEditor('classDays', 'TEXT',              'Class days', 'Days of the week the rehearsals/camp/classes are, or maybe specific dates', SIZE_ONELINE, 25);
+showEditor('startTime', 'TEXT',              'Start time', 'Time, in human-readable format, that auditions/camp/classes start', SIZE_SMALL, 15);
+showEditor('endTime', 'TEXT',                'End time', 'Time, in human-readable format, that auditions/camp/classes end', SIZE_SMALL, 15);
 
-showEditor('googleCalendarURL', 'TEXT',                'Google Calendar URL', 'http URL of google rehearsal calendar for embedding', SIZE_ONELINE);
+showEditor('googleCalendarURL', 'TEXT',                'Google Calendar URL', 'http URL of google rehearsal calendar for embedding', SIZE_ONELINE, 100);
 
-showEditor('rehearsalInfo', 'TEXT',          'Rehearsal info', 'Info about rehearsals visible during recruitment and rehearsals', SIZE_MULTILINE, MARKDOWN_TRUE);
+showEditor('rehearsalInfo', 'TEXT',          'Rehearsal info', 'Info about rehearsals visible during recruitment and rehearsals', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
 
 
 echo '<h3>Publicity</h3>' . PHP_EOL;
 
-showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper Tickets etc. if needed', SIZE_ONELINE);
+showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper Tickets etc. if needed', SIZE_ONELINE, 100);
 ?>
 <h4>Publicity Attachment</h4>
 <p>Usually a poster that people can print out and display or email. Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> or <span class="extension">.pdf</span> file.
@@ -341,11 +345,11 @@ showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper T
 <?php
 
 echo '<h3>Archives</h3>' . PHP_EOL;
-showEditor('howTheShowWent', 'TEXT',         'How the show went', 'After the show, some text to describe how it went. For people reading details about show from archives', SIZE_MULTILINE, MARKDOWN_TRUE);
-showEditor('directorQuote', 'TEXT',         'Director’s Notes', 'Quote from director in the first person', SIZE_MULTILINE, MARKDOWN_TRUE);
-showEditor('photoCredits', 'TEXT',           'Photo credits', 'Who took the photos after the show/event', SIZE_ONELINE);
-showEditor('photoURLs', 'TEXT',              'Photo URLs', 'URLs of a photo album for a show, after the run is over. One per line. Can be followed by a space and link text', SIZE_FEWLINE);
-showEditor('videoURLs', 'TEXT',              'Video URLs', 'URLs of videos for the show', SIZE_FEWLINE);
+showEditor('howTheShowWent', 'TEXT',         'How the show went', 'After the show, some text to describe how it went. For people reading details about show from archives', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
+showEditor('directorQuote', 'TEXT',         'Director’s Notes', 'Quote from director in the first person', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
+showEditor('photoCredits', 'TEXT',           'Photo credits', 'Who took the photos after the show/event', SIZE_ONELINE, 40);
+showEditor('photoURLs', 'TEXT',              'Photo URLs', 'URLs of a photo album for a show, after the run is over. One per line. Can be followed by a space and link text', SIZE_FEWLINE, 0);
+showEditor('videoURLs', 'TEXT',              'Video URLs', 'URLs of videos for the show', SIZE_FEWLINE, 0);
 
 
 
