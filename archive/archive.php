@@ -62,6 +62,14 @@ include('../_header.php'); ?>
 						<div class="white-block">
 							<section id="event" class="clearfix capped-width pullbottom">
 								<div class="inlinebox nobottom">
+<?php
+if ($event->logoFilename) {
+	echo '<div style="float:right; margin-bottom:1em;">' . PHP_EOL;
+	echo '<img style="max-width:150px;" src="/shows/logo/' . $event->getYear() . '/' . htmlspecialchars($event->logoFilename) . '" '
+				. 'alt = "' . htmlspecialchars($event->title() . ' Logo') . '" />' . PHP_EOL;
+	echo '</div>' . PHP_EOL;
+}
+?>
 									<h2>
 										<div class="suffix"><?php echo htmlspecialchars($event->prefix()); ?></div>
 										<?php echo htmlspecialchars($event->title()); ?>
