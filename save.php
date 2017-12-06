@@ -16,12 +16,14 @@ function endswith($string, $test) {
 }
 
 function dateTo8601($value) {
+	if (!$value) return '';
 	$time = strtotime($value);
 	$value = date('c', $time);
 	return $value;
 }
 
 function datetimeTo8601($value) {
+	if (!$value) return '';
 	$time = strtotime($value);
 	$value = date('c', $time);
 	return $value;
