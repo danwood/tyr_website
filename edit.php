@@ -523,12 +523,23 @@ $('.editable').on('hallomodified', function(event, data) {
 */
 
 // Support function to convert HTML to markdown
+// https://github.com/domchristie/to-markdown
 
 var markdownize = function(content) {
 var html = content.split("\n").map($.trim).filter(function(line) {
   return line != "";
 }).join("\n");
-return toMarkdown(html);
+return toMarkdown(html, { converters: [
+
+	// Clear out any spans leftover. To get rid of mysterious colors.
+	{
+		filter: 'span',
+		replacement: function(innerHTML, node) {
+			return innerHTML;
+  		}
+	}
+
+] });
 };
 
 // Function to call on form submission
