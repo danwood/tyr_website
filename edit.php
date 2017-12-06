@@ -307,7 +307,7 @@ showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General 
 
 showEditor('signupDetails', 'TEXT',          'Signup details', 'Where classes are, audition preparations, what to expect, etc.', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
 
-showEditor('whoCanGo', 'TEXT',               'Who can go', 'Age or grade range etc.', SIZE_TINY, 15);
+showEditor('whoCanGo', 'TEXT',               'Who can go', 'Age or grade range etc.', SIZE_SMALL, 40);
 
 ?>
 <h4>Signup Attachment</h4>
