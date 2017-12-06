@@ -42,7 +42,7 @@ include('_header.php'); ?>
 
 <p><a href="edit.php">Add a new event</a> or <a href="db.php">edit existing events</a>.</p>
 <p>View website using <a href="<?php echo htmlspecialchars($root); ?>index.php?when=<?php echo date('Y-m-d'); ?>">Time Machine</a>.</p>
-<p>When data has changed, <a href="<?php echo htmlspecialchars($root); ?>reload.php">Reload</a> the entire site.</p>
+<p>When data has changed, <a target="_BLANK" href="<?php echo htmlspecialchars($root); ?>reload.php">Reload</a> the entire site.</p>
 
 
 
