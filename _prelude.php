@@ -1234,7 +1234,6 @@ class Event
 		if (!$this->isSellingTickets())		// Don't show calendar if we are now selling tickets; too much clutter
 		{
 			$googleCalendarURL = trim($this->googleCalendarURL);
-			if ($staging) error_log('Google calendar URL = ' . $googleCalendarURL);
 			if ($googleCalendarURL)
 			{
 				echo '<p><a href="' . htmlspecialchars($googleCalendarURL) . '">Schedule — Google Calendar</a>';
