@@ -277,6 +277,7 @@ showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Text shown if no lo
 if ($event) {
 
 echo '<h3>General Information</h3>' . PHP_EOL;
+echo '<p><i style="color:green">Use SHIFT-return to insert new line rather than new paragraph.</i></p>';
 
 showEditor('storyOverview', 'TEXT',      	 'Plot overview', 'Teaser plot of story (NOT the performance. Will be used pre-show and post-show.)', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
 showEditor('venue', 'TEXT',                  'Venue', 'Theatre etc. of performances', SIZE_ONELINE, 100, MARKDOWN_FALSE, REQUIRED_TRUE);
