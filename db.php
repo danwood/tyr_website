@@ -62,6 +62,7 @@ function outputList($eventArray, $headline)
 }
 
 outputList($hiddenEvents, 'Unpublished Events');
+outputList($unannouncedEvents, 'Unannounced Events');
 outputList($currentShows, 'Upcoming Shows');
 outputList($currentOther, 'Upcoming Events');
 outputList($laterEvents, 'Later This Year');

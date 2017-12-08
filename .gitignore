@@ -8,3 +8,4 @@ cache/cache.0.csv
 *.command
 /config.codekit3
 /config.codekit
+backup.*.sqlite3

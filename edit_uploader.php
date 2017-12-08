@@ -22,16 +22,6 @@ include('_head.php');
 
 <?php
 
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-		$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/db/tyr.sqlite3';
-
-        $this->open($dbPath, SQLITE3_OPEN_READWRITE);
-    }
-}
-
 $event = Event::getSpecifiedEvent(FALSE);
 
 if (!$event) { echo "ERROR: where is the event?"; die; }
@@ -218,6 +208,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		die;
 	}
 	$db->close();
+
+	$db->backup();
 
 giveup:
 	if ($errorMessage)

@@ -111,6 +111,25 @@ define('showFirstDate',       8);
 define('showLastDate',        9);
 
 
+class MyDB extends SQLite3
+{
+    function __construct()
+    {
+		$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/db/tyr.sqlite3';
+
+        $this->open($dbPath, SQLITE3_OPEN_READWRITE);
+    }
+
+    function backup()
+    {
+		$dbPath = $_SERVER['DOCUMENT_ROOT'] . 'db/tyr.sqlite3';
+		$copyPath = $_SERVER['DOCUMENT_ROOT'] . 'db/backup.' . date('Y-m-d.G;i;s') . '.sqlite3';
+		copy($dbPath, $copyPath);
+		error_log("copy $dbPath to $copyPath");
+    }
+}
+
+
 // GLOBALS:  $now, $root, $staging, $urlBase
 
 $urlBase = 'http://' . $_SERVER['HTTP_HOST'] . '/';
@@ -1384,6 +1403,7 @@ $currentShows = array();
 $currentOther = array();
 $laterEvents = array();
 $hiddenEvents = array();
+$unannouncedEvents = array();
 
 $sliderRecords = array();	// build this up as we find slider past & promo info
 
@@ -1415,6 +1435,10 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 		{
 			$pastEvents[] = $event;	// Usually we use just the archival events though
 		}
+		else
+		{
+//			if ($staging) { error_log("Not including hidden past event " . $event->id() . ' ' . $event->title()); }
+		}
 	}
 	else if ($event->isComingSoonEvent())
 	{
@@ -1430,6 +1454,10 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 		{
 			$currentShows[] = $event;
 		}
+	}
+	else	// not announced yet
+	{
+		$unannouncedEvents[] = $event;
 	}
 
 	if (!empty($event->sliderArchiveFilename) && $event->isPastEvent()) {
@@ -1457,28 +1485,31 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 }
 $db->close();
 
-usort($currentShows,	array('Event', 'eventForwardCompare'));
-usort($currentOther,	array('Event', 'eventForwardCompare'));
-usort($laterEvents,		array('Event', 'eventForwardCompare'));
+usort($currentShows,	 array('Event', 'eventForwardCompare'));
+usort($currentOther,	 array('Event', 'eventForwardCompare'));
+usort($laterEvents,		 array('Event', 'eventForwardCompare'));
+usort($unannouncedEvents,array('Event', 'eventForwardCompare'));
+
 usort($pastEvents,		array('Event', 'eventReverseCompare'));		// We want past events showing most-recent first
 usort($allPastEvents,	array('Event', 'eventReverseCompare'));		// We want past events showing most-recent first
 
-if ($staging)
-{
-//	error_log(count($currentShows) . " current shows!");
-
-// foreach ($currentShows as $show)		// don't use ampersand here, there was a mysterious issue with the penultimate item in the array duplicated.
+// if ($staging)
 // {
-// 	error_log($show->title() . ' ' . date(DATE_RSS, $show->showFirstDate) . ' ' . date(DATE_RSS, $show->showLastDate));
+// 	error_log(count($currentShows) . " current shows!");
+
+// 	foreach ($currentShows as $show)		// don't use ampersand here, there was a mysterious issue with the penultimate item in the array duplicated.
+// 	{
+// 		error_log($show->title() . ' ' . date(DATE_RSS, $show->showFirstDate) . ' ' . date(DATE_RSS, $show->showLastDate));
+// 	}
+
+// 	error_log(count($currentOther) . " current others!");
+// 	error_log(count($laterEvents) . " later events");
+// 	error_log(count($pastEvents) . " past events");
+// 	error_log(count($unannouncedEvents) . " unannounced events");
+
+// 	error_log(count($events) . " ALL events");
+
 // }
-
-	// error_log(count($currentOther) . " current others!");
-	// error_log(count($laterEvents) . " later events");
-	// error_log(count($pastEvents) . " past events");
-
-	// error_log(count($events) . " ALL events");
-
-}
 
 $event = NULL;
 

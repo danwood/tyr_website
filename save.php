@@ -30,15 +30,6 @@ function datetimeTo8601($value) {
 }
 
 
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-		$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/db/tyr.sqlite3';
-
-        $this->open($dbPath, SQLITE3_OPEN_READWRITE);
-    }
-}
 
 $db = new MyDB();
 
@@ -135,3 +126,4 @@ foreach ($inputs as $key => $value) {
 
 
 $db->close();
+$db->backup();
