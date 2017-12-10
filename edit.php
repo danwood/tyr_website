@@ -206,6 +206,12 @@ function showEditor($sqlColumn, $sqlType, $displayName, $explain = '', $size = S
 				// Wrap the output in the textarea since jquery escapes html tags in textarea
 				ob_start();
 				if ($value) {
+// Note: This kind of input has a bug with Showdown 0.9, latest version.  We just need to clean up the input a bit to avoid.
+// **Classes run: **1/30-4/24 (no class 4/3)  
+// **Tech Rehearsal:** THURSDAY 4/26 5pm-8:30pm  
+// -->
+// <strong>Classes run: <em>*1/30-4/24 (no class 4/3)   <br />
+// *</em>Tech Rehearsal:</strong> THURSDAY 4/26 5pm-8:30pm   <br />
 ?>
 content = <?php echo json_encode($value); ?>;
 contentHTML = converter.makeHtml(content);
