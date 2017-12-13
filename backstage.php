@@ -1,7 +1,9 @@
 <?php
-
 require_once('_authenticate.php');	// Login required
-require_once('_prelude.php');
+require_once('_functions.php');
+require_once('_classes.php');
+require_once('_globals.php');
+
 require_once('phmagick.php');
 require_once('_parse_config.php');
 
@@ -42,10 +44,6 @@ include('_header.php'); ?>
 
 <p><a href="edit.php">Add a new event</a> or <a href="db.php">edit existing events</a>.</p>
 <p>View website using <a href="<?php echo htmlspecialchars($root); ?>index.php?when=<?php echo date('Y-m-d'); ?>">Time Machine</a>.</p>
-<p>When data has changed, <a target="_BLANK" href="<?php echo htmlspecialchars($root); ?>reload.php">Reload</a> the entire site.</p>
-
-
-
 
 						<section id="payment" class="clearfix capped-width">
 							<div class="inlinebox">

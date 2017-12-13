@@ -1,12 +1,12 @@
 <?php
+require_once('_functions.php');
+require_once('_classes.php');
+require_once('_globals.php');
 
 include '_Markdown.php';
 include '_MarkdownExtra.php';
 
 // http://michelf.ca/projects/php-markdown/configuration/
-
-
-require_once('_prelude.php');
 
 $event = Event::getSpecifiedEvent(FALSE);		// want an upcoming event
 

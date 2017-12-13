@@ -1,7 +1,9 @@
 <?php
-
 require_once('_authenticate.php');	// Login required
-require_once('_prelude.php');
+require_once('_functions.php');
+require_once('_classes.php');
+require_once('_globals.php');
+
 require_once('phmagick.php');
 require_once('_parse_config.php');
 

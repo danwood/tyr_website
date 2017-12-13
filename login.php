@@ -1,8 +1,10 @@
 <?php
-require_once('_prelude.php');
-
 $ALLOW_UNAUTHENTICATED = TRUE;
 require_once('_authenticate.php');
+
+require_once('_functions.php');
+require_once('_classes.php');
+require_once('_globals.php');
 
 $return = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
