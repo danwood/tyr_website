@@ -1,28 +1,12 @@
 <?php
 $ALLOW_UNAUTHENTICATED = TRUE;
-require_once('../_authenticate.php');
+require_once('_authenticate.php');
 require_once('../_functions.php');
 require_once('../_classes.php');
 require_once('../_globals.php');
 
 $return = '';
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-	if (isset($_POST['return']))
-	{
-		$return = $_POST['return'];
-	}
-	if ($authenticated && !empty($return))
-	{
-		header('Location: ' . $return);		// Logged in; go to destination page.
-		exit;
-	}
-}
-else
-{
-	if (isset($_GET['return'])) $return = $_GET['return'];
-}
-
+if (isset($_GET['return'])) $return = $_GET['return'];
 
 ?>
 <!DOCTYPE html>
@@ -54,7 +38,7 @@ include('../_header.php'); ?>
 <?php
 if ($authenticated) {
 ?>
-<form id="the_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<form id="the_form" action="login_post.php" method="post">
 
 <p>
   <input id="logout" type="submit" value="Logout" />
@@ -65,7 +49,7 @@ if ($authenticated) {
 <?php
 } else {
 ?>
-<form id="the_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<form id="the_form" action="login_post.php" method="post">
 <p>
 Login with password: <input type="text" name="password" autofocus />
 </p>
