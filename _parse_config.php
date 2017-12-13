@@ -5,7 +5,7 @@
 
 function read_config()
 {
-	$configfile = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '../_private.php');
+	$configfile = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/../_private.php');
 
 	$lines = explode("\n", $configfile);
 
@@ -34,7 +34,7 @@ function read_config()
 
 function write_config($newValues)
 {
-	$configfile = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '../_private.php');
+	$configfile = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/../_private.php');
 
 	$output = '';
 
@@ -86,7 +86,7 @@ function write_config($newValues)
 			$output .= $line;
 		}
 	}
-	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '../_private.php', $output);
+	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/../_private.php', $output);
 }
 
 ?>

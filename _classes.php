@@ -14,8 +14,8 @@ class MyDB extends SQLite3
 
     function backup()
     {
-		$dbPath = $_SERVER['DOCUMENT_ROOT'] . 'db/tyr.sqlite3';
-		$copyPath = $_SERVER['DOCUMENT_ROOT'] . 'db/backup.' . date('Y-m-d.G;i;s') . '.sqlite3';
+		$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/db/tyr.sqlite3';
+		$copyPath = $_SERVER['DOCUMENT_ROOT'] . '/db/backup.' . date('Y-m-d.G;i;s') . '.sqlite3';
 		copy($dbPath, $copyPath);
 		error_log("copy $dbPath to $copyPath");
     }

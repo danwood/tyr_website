@@ -5,7 +5,7 @@ date_default_timezone_set('America/Los_Angeles');
 
 $authenticated = FALSE;
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '../_private.php');	// make sure it's level above document root NOT example
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../_private.php');	// make sure it's level above document root NOT example
 
 session_start();
 
