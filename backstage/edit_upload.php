@@ -5,7 +5,6 @@ require_once('../_classes.php');
 require_once('../_globals.php');
 
 require_once('../_phmagick.php');
-require_once('../_parse_config.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

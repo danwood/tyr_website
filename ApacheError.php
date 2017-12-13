@@ -2,8 +2,6 @@
 require_once('_functions.php');
 require_once('_classes.php');
 require_once('_globals.php');
-
-require_once('phmagick.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
