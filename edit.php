@@ -436,7 +436,7 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 <script src="<?php echo htmlspecialchars($root); ?>js/jquery-1.12.4.min.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.12.1.min.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/rangy-core.js"></script>
-<script src="<?php echo htmlspecialchars($root); ?>js/to-markdown.js?cb=20171206"></script>
+<script src="<?php echo htmlspecialchars($root); ?>js/to-markdown.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>js/timepicki.js"></script>
 <script src="<?php echo htmlspecialchars($root); ?>wymeditor/jquery.wymeditor.min.js"></script>
 
