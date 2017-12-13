@@ -68,7 +68,7 @@ if ($authenticated) {
 ?>
 <form id="the_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 <p>
-Login with password: <input type="text" name="password" />
+Login with password: <input type="text" name="password" autofocus />
 </p>
 <p>
 	<input id="return" name="return" type="hidden" value="<?php echo htmlspecialchars($return); ?>" />
