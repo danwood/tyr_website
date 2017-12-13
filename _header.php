@@ -4,7 +4,7 @@
 					<header class="black-block">
 						<div class="clearfix capped-width">
 							<div class="inlinebox tyr-logo">
-								<a class="page-home" href="./<?php echo htmlspecialchars(currentIndexPath()); ?>"><img class="fullwidth" style="max-width:458px;" src="<?php echo $root; ?>img/logo-transparent-white.png" alt="TYR Logo" /><span class="visuallyhidden">Tomorrow Youth Repertory</span></a>
+								<a class="page-home" href="<?php echo $root . htmlspecialchars(currentIndexPath()); ?>"><img class="fullwidth" style="max-width:458px;" src="<?php echo $root; ?>img/logo-transparent-white.png" alt="TYR Logo" /><span class="visuallyhidden">Tomorrow Youth Repertory</span></a>
 							</div>
 							<div id="header-navmenu" class="navmenu inlinebox icon-menu">
 								<span class="visuallyhidden">Menu</span>
