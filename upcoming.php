@@ -167,7 +167,7 @@ If you have any questions, please contact <a href="mailto:programs@tomorrowyouth
 <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FTomorrowYouthRep&amp;width=90&amp;height=21&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;send=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px; margin-bottom:-6px" allowTransparency="true"></iframe>
 								and our email&nbsp;newsletter:
 								<form style="display:inline" action="http://tomorrowyouthrep.us7.list-manage.com/subscribe/post?u=7bb3cec11974d7013061a676a&amp;id=8a1e91d946" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-									<input placeholder="Your email address" style="width:11em" type="email" name="EMAIL" class="required email" id="mce-EMAIL" autofocus>&nbsp;<input type="submit" value="Subscribe" id="mc-embedded-subscribe" class="button" />
+									<input placeholder="Your email address" style="width:11em" type="email" name="EMAIL" class="required email" id="mce-EMAIL">&nbsp;<input type="submit" value="Subscribe" id="mc-embedded-subscribe" class="button" />
 								</form>
 							</div>
 
