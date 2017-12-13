@@ -217,7 +217,7 @@ $('#date-input').change(function(event)
 });
 
 	</script>
-	<script src="/js/jquery.bxslider.js"></script>
+	<script src="/js/jquery.bxslider.min.js"></script>
 	<script>
 
 // $(window).resize(function() {
