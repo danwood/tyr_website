@@ -133,14 +133,14 @@ for($i = 0; $i < count($uploadedFiles['name']); $i++){
 				$phMagick->debug = TRUE;
 				$phMagick->setImageQuality(75);			// Used to be 50, but since I may be optimizing, go ahead and get a better quality
 				$phMagick->resizeExactly(608,342);
-				error_log(print_r($phMagick->getLog(), 1));
+				//error_log(print_r($phMagick->getLog(), 1));
 			}
 			else 	// logo, we want 544 wide.
 			{
 				$phMagick = new phMagick($pathToOriginal, $fullPathToSized);
 				$phMagick->setImageQuality(75);			// Used to be 50, but since I may be optimizing, go ahead and get a better quality
 				$phMagick->resize(544);
-				error_log(print_r($phMagick->getLog(), 1));
+				//error_log(print_r($phMagick->getLog(), 1));
 			}
 			$currentLink = $pathToSized;
 
