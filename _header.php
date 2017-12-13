@@ -12,25 +12,25 @@
 							<nav class="inlinebox hideablenav">
 								<ul class="Main-Menu">
 									<li class="page-upcoming">
-										<a href="<?php echo htmlspecialchars($root); ?>upcoming.<?php echo htmlspecialchars(currentExtension()); ?>">Sign Up</a>
+										<a href="<?php echo $root; ?>upcoming.<?php echo htmlspecialchars(currentExtension()); ?>">Sign Up</a>
 									</li>
 									<li class="page-archives">
-										<a href="<?php echo htmlspecialchars($root); ?>archives.<?php echo htmlspecialchars(currentExtension()); ?>">Archives</a>
+										<a href="<?php echo $root; ?>archives.<?php echo htmlspecialchars(currentExtension()); ?>">Archives</a>
 									</li>
 									<li class="page-about">
-										<a href="<?php echo htmlspecialchars($root); ?>about.<?php echo htmlspecialchars(currentExtension()); ?>">About Us</a>
+										<a href="<?php echo $root; ?>about.<?php echo htmlspecialchars(currentExtension()); ?>">About Us</a>
 									</li>
 									<li class="page-staff">
-										<a href="<?php echo htmlspecialchars($root); ?>staff.<?php echo htmlspecialchars(currentExtension()); ?>">Staff</a>
+										<a href="<?php echo $root; ?>staff.<?php echo htmlspecialchars(currentExtension()); ?>">Staff</a>
 									</li>
 									<li class="page-volunteer">
-										<a href="<?php echo htmlspecialchars($root); ?>volunteer.<?php echo htmlspecialchars(currentExtension()); ?>">Volunteer</a>
+										<a href="<?php echo $root; ?>volunteer.<?php echo htmlspecialchars(currentExtension()); ?>">Volunteer</a>
 									</li>
 									<li class="page-donate">
-										<a href="<?php echo htmlspecialchars($root); ?>donate.<?php echo htmlspecialchars(currentExtension()); ?>">Donate</a>
+										<a href="<?php echo $root; ?>donate.<?php echo htmlspecialchars(currentExtension()); ?>">Donate</a>
 									</li>
 									<li>
-										<a title="RSS Feed" href="<?php echo htmlspecialchars($root); ?>index.rss"><img style="margin-bottom:5px;" src="<?php echo $root; ?>img/RSS.png" width="26" height="26" alt="RSS" /></a>
+										<a title="RSS Feed" href="<?php echo $root; ?>index.rss"><img style="margin-bottom:5px;" src="<?php echo $root; ?>img/RSS.png" width="26" height="26" alt="RSS" /></a>
 									</li>
 								</ul>
 							</nav>
@@ -46,7 +46,7 @@
 <?php
 foreach ($sliderRecords as $sliderRecord) {
 ?>
-								<li><img src="/shows/<?php echo htmlspecialchars($sliderRecord['filename']); ?>" alt="Tomorrow Youth Rep Banner image, from <?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" title="<?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" /></li>
+								<li><img src="<?php echo root; ?>shows/<?php echo htmlspecialchars($sliderRecord['filename']); ?>" alt="Tomorrow Youth Rep Banner image, from <?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" title="<?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" /></li>
 <?php
 }
 ?>

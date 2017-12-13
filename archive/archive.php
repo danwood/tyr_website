@@ -45,7 +45,7 @@ p.credits
 	.archive-photo { width:50%; }
 }
 	</style>
-	<link rel="stylesheet" type="text/css" href="../colorbox.css">
+	<link rel="stylesheet" type="text/css" href="../style/colorbox.css">
 </head>
 <body id="page-event">
 	<div class="clearfix outside-sticky-footer">
@@ -64,7 +64,7 @@ include('../_header.php'); ?>
 <?php
 if ($event->logoFilename) {
 	echo '<div style="float:right; margin-bottom:1em;">' . PHP_EOL;
-	echo '<img style="max-width:150px;" src="/shows/logo/' . $event->getYear() . '/' . htmlspecialchars($event->logoFilename) . '" '
+	echo '<img style="max-width:150px;" src="<?php echo root; ?>shows/logo/' . $event->getYear() . '/' . htmlspecialchars($event->logoFilename) . '" '
 				. 'alt = "' . htmlspecialchars($event->title() . ' Logo') . '" />' . PHP_EOL;
 	echo '</div>' . PHP_EOL;
 }

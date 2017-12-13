@@ -34,7 +34,7 @@ else
 
 if (!isset($ALLOW_UNAUTHENTICATED) || !$ALLOW_UNAUTHENTICATED) {
 	if (!$authenticated) {
-		header('Location: /login.php?return=' . urlencode($_SERVER['REQUEST_URI']));		// Force login first
+		header('Location: /backstage/login.php?return=' . urlencode($_SERVER['REQUEST_URI']));		// Force login first
 	}
 }
 

@@ -1,18 +1,18 @@
 <?php
-require_once('_authenticate.php');	// Login required
-require_once('_functions.php');
-require_once('_classes.php');
-require_once('_globals.php');
+require_once('../_authenticate.php');	// Login required
+require_once('../_functions.php');
+require_once('../_classes.php');
+require_once('../_globals.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <?php
 $base='';
-$root='';
+$root='../';	// Needed for prelude since we aren't at top level directory
 $title='Tomorrow Youth Rep — Edit Event';
 $description='';
-include('_head.php');
+include('../_head.php');
 
 $event = Event::getSpecifiedEvent(FALSE);
 $reflector = null;
@@ -21,10 +21,10 @@ if ($event)
 	$reflector = new ReflectionClass(get_class($event));
 }
 ?>
-<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/timepicki.css" />
-<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/jquery-ui.min.css">
-<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>style/font-awesome.min.css">
-<link rel="stylesheet" href="<?php echo htmlspecialchars($root); ?>wymeditor/skins/seamless/skin.css">
+<link rel="stylesheet" href="<?php echo $root; ?>style/timepicki.css" />
+<link rel="stylesheet" href="<?php echo $root; ?>style/jquery-ui.min.css">
+<link rel="stylesheet" href="<?php echo $root; ?>style/font-awesome.min.css">
+<link rel="stylesheet" href="<?php echo $root; ?>wymeditor/skins/seamless/skin.css">
 
 
 <style>
@@ -72,7 +72,7 @@ iframe.uploader { width:100%; height:100px; }
 
 <?php
 $fullHeader = FALSE;
-include('_header.php'); ?>
+include('../_header.php'); ?>
 					<main>
 						<section id="volunteer" class="clearfix capped-width">
 							<div class="inlinebox">
@@ -428,17 +428,17 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 				</div><!-- end before-sticky-footer -->
 			</div><!-- end clearfix -->
 		</div><!-- end contain-sticky-footer -->
-<?php include('_footer.php'); ?>
+<?php include('../_footer.php'); ?>
 	</div>
-<?php $includePinterest = FALSE; include('_body.end.php'); ?>
+<?php $includePinterest = FALSE; include('../_body.end.php'); ?>
 
-<script src="<?php echo htmlspecialchars($root); ?>js/showdown.js"></script>
-<script src="<?php echo htmlspecialchars($root); ?>js/jquery-1.12.4.min.js"></script>
-<script src="<?php echo htmlspecialchars($root); ?>js/jquery-ui-1.12.1.min.js"></script>
-<script src="<?php echo htmlspecialchars($root); ?>js/rangy-core.js"></script>
-<script src="<?php echo htmlspecialchars($root); ?>js/to-markdown.js"></script>
-<script src="<?php echo htmlspecialchars($root); ?>js/timepicki.js"></script>
-<script src="<?php echo htmlspecialchars($root); ?>wymeditor/jquery.wymeditor.min.js"></script>
+<script src="<?php echo $root; ?>js/showdown.js"></script>
+<script src="<?php echo $root; ?>js/jquery-1.12.4.min.js"></script>
+<script src="<?php echo $root; ?>js/jquery-ui-1.12.1.min.js"></script>
+<script src="<?php echo $root; ?>js/rangy-core.js"></script>
+<script src="<?php echo $root; ?>js/to-markdown.js"></script>
+<script src="<?php echo $root; ?>js/timepicki.js"></script>
+<script src="<?php echo $root; ?>wymeditor/jquery.wymeditor.min.js"></script>
 
 <script>
 

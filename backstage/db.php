@@ -1,18 +1,18 @@
 <?php
-require_once('_authenticate.php');	// Login required
-require_once('_functions.php');
-require_once('_classes.php');
-require_once('_globals.php');
+require_once('../_authenticate.php');	// Login required
+require_once('../_functions.php');
+require_once('../_classes.php');
+require_once('../_globals.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <?php
 $base='';
-$root='';
+$root='../';	// Needed for prelude since we aren't at top level directory
 $title='Tomorrow Youth Rep — Database';
 $description='';
-include('_head.php');
+include('../_head.php');
 ?>
 	<style>
 	h3, h4 { margin-top:20px; }
@@ -37,13 +37,13 @@ include('_head.php');
 
 <?php
 $fullHeader = FALSE;
-include('_header.php'); ?>
+include('../_header.php'); ?>
 					<main>
 						<section id="volunteer" class="clearfix capped-width">
 							<div class="inlinebox">
 
 
-<p><a href="backstage.php">« Backstage</a></p>
+<p><a href="../">« Backstage</a></p>
 <p>&#10133; <a href="edit.php"><b>Add a show or event</b></a></p>
 <?php
 
@@ -106,9 +106,9 @@ echo '</div>' . PHP_EOL; 	// close out previous columnar div
 				</div><!-- end before-sticky-footer -->
 			</div><!-- end clearfix -->
 		</div><!-- end contain-sticky-footer -->
-<?php include('_footer.php'); ?>
+<?php include('../_footer.php'); ?>
 	</div>
-<?php $includePinterest = FALSE; include('_body.end.php'); ?>
+<?php $includePinterest = FALSE; include('../_body.end.php'); ?>
 </body>
 </html>
 

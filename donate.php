@@ -69,7 +69,7 @@ include('_header.php'); ?>
 </form>
 </p>
 <p>
-	<img class="snapshot floated large-block opposite" alt="A girl waits in the wings to go onstage in Narnia production" src="<?php echo htmlspecialchars($root); ?>img/misc-tech-rehearsal.jpg" />
+	<img class="snapshot floated large-block opposite" alt="A girl waits in the wings to go onstage in Narnia production" src="<?php echo $root; ?>img/misc-tech-rehearsal.jpg" />
 Or you can send a check of any amount to:
 </p>
 <p>

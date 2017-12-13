@@ -1,8 +1,8 @@
 <?php
-require_once('_authenticate.php');	// Login required
-require_once('_functions.php');
-require_once('_classes.php');
-require_once('_globals.php');
+require_once('../_authenticate.php');	// Login required
+require_once('../_functions.php');
+require_once('../_classes.php');
+require_once('../_globals.php');
 
 $inputs = $_POST;
 unset($inputs['submit']);
@@ -72,7 +72,7 @@ if (isset($_POST['id'])) {
 		die;
 	}
 
-	header("Location: /edit.php?saved=$id&id=$id");
+	header("Location: /backstage/edit.php?saved=$id&id=$id");
 }
 else
 {
@@ -104,7 +104,7 @@ else
 	}
 	$id = $db->lastInsertRowID();
 
-	header("Location: /edit.php?created=$id&id=$id");
+	header("Location: /backstage/edit.php?created=$id&id=$id");
 }
 
 
@@ -127,6 +127,6 @@ foreach ($inputs as $key => $value) {
 $db->close();
 $db->backup();
 
-include('_reload.php');	// not a function, and not called from a function, so all globals work right.
+include('../_reload.php');	// not a function, and not called from a function, so all globals work right.
 
 ?>

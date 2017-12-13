@@ -1,10 +1,9 @@
 <?php
 $ALLOW_UNAUTHENTICATED = TRUE;
-require_once('_authenticate.php');
-
-require_once('_functions.php');
-require_once('_classes.php');
-require_once('_globals.php');
+require_once('../_authenticate.php');
+require_once('../_functions.php');
+require_once('../_classes.php');
+require_once('../_globals.php');
 
 $return = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -31,10 +30,10 @@ else
 <head>
 <?php
 $base='';
-$root='';
+$root='../';	// Needed for prelude since we aren't at top level directory
 $title='Tomorrow Youth Rep — Login';
 $description='';
-include('_head.php');
+include('../_head.php');
 ?>
 </head>
 <body id="" class="lightgray-block">
@@ -47,7 +46,7 @@ include('_head.php');
 
 <?php
 $fullHeader = FALSE;
-include('_header.php'); ?>
+include('../_header.php'); ?>
 					<main>
 						<section id="volunteer" class="clearfix capped-width">
 							<div class="inlinebox">
@@ -88,9 +87,9 @@ Login with password: <input type="text" name="password" autofocus />
 				</div><!-- end before-sticky-footer -->
 			</div><!-- end clearfix -->
 		</div><!-- end contain-sticky-footer -->
-<?php include('_footer.php'); ?>
+<?php include('../_footer.php'); ?>
 	</div>
-<?php $includePinterest = FALSE; include('_body.end.php'); ?>
+<?php $includePinterest = FALSE; include('../_body.end.php'); ?>
 </body>
 </html>
 
