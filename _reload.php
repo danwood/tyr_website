@@ -1,6 +1,8 @@
 <?php
 
 // This is included, not a function, so that all the globals can work in global scope.
+require_once('_functions.php');
+require_once('_classes.php');
 
 include('_globals.php');		// This should rebuild the globals, so we don't have OLD data.
 
