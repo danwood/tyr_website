@@ -61,7 +61,7 @@ include('_header.php'); ?>
 								   Tomorrow Youth Repertory prides itself on its ability to offer a full theater experience for young actors, and for providing individual attention for every student — whether they have been acting and singing for ten years, or they’ve never been on stage before in their life.
 								</p>
 								<p>
-									<img class="snapshot centered large-block" alt="Amy Marie with a big circle of kids at a rehearsal" src="<?php echo $root; ?>img/misc-big-circle.jpg" />
+									<img class="snapshot centered large-block" alt="Amy Marie with a big circle of kids at a rehearsal" src="<?php echo htmlspecialchars($root); ?>img/misc-big-circle.jpg" />
 								</p>
 
 							</div>
@@ -70,7 +70,7 @@ include('_header.php'); ?>
 							<div class="inlinebox">
 								<h3 style="clear:both">What We Do</h3>
 								<p>
-								 	<img style="-webkit-transform: rotate(3deg); transform: rotate(3deg);" class="snapshot floated opposite large-block" alt="Circle of kids running through a script at Narnia rehearsal" src="<?php echo $root; ?>img/misc-group-rehearsal.jpg" />
+								 	<img style="-webkit-transform: rotate(3deg); transform: rotate(3deg);" class="snapshot floated opposite large-block" alt="Circle of kids running through a script at Narnia rehearsal" src="<?php echo htmlspecialchars($root); ?>img/misc-group-rehearsal.jpg" />
 								  Tomorrow Youth Repertory currently runs several weekly theater production classes every fall and spring, at a variety of locations in Alameda, CA.  Many classes begin just as school lets out, and TYR is an excellent activity that keeps kids both entertained and challenged.  Most of our classes are associated with a production, and at the end of the class term (generally somewhere around 10-12 weeks) the kids get to perform their show for friends and family, with lights, sets, costumes, and the full magic of theater.
 								</p>
 								<p>
@@ -81,11 +81,11 @@ include('_header.php'); ?>
 								</p>
 															<h3 style="clear:both">How We Do it</h3>
 								<p>
-									<img style="-webkit-transform: rotate(-3deg); transform: rotate(-3deg);" class="snapshot floated small-block" alt="Breakout session; 3 kids work on a scene" src="<?php echo $root; ?>img/misc-script-rehearsal.jpg" />
+									<img style="-webkit-transform: rotate(-3deg); transform: rotate(-3deg);" class="snapshot floated small-block" alt="Breakout session; 3 kids work on a scene" src="<?php echo htmlspecialchars($root); ?>img/misc-script-rehearsal.jpg" />
 								   We believe very strongly in supplying every student with the challenges they need to grow, and the support to meet those challenges.  Unless the class is listed as “audition only”, every student enrolled in a TYR class is guaranteed a part, and we approach theater as a “team sport.”  We reject the idea of ‘stars’ and ‘supporting players’, and teach kids that to succeed at anything, you must support your peers, just as you’d wish for them to do for you.  Our staff and instructors work very hard to ensure that every student is given the opportunity to shine on stage, regardless of what role they are assigned, and that every student understands that they are all in this together.
 								</p>
 								<p>
-									<img class="snapshot floated medium-block opposite" alt="Tyler getting kids ready to go on stage" src="<?php echo $root; ?>img/misc-tyler-conducting.jpg" />
+									<img class="snapshot floated medium-block opposite" alt="Tyler getting kids ready to go on stage" src="<?php echo htmlspecialchars($root); ?>img/misc-tyler-conducting.jpg" />
 									By partnering with some creative forces, such as TonyaMarie of <a href="http://gypsycatstudios.com/">Gypsy Cat Studios</a> and some dynamite parent and teen <a href="volunteer.<?php echo htmlspecialchars(currentExtension()); ?>">volunteers</a>, we are one of the few youth theater programs that is committed to providing a full theater experience for our students.  We don’t just help kids learn to act and sing, we want them to feel the true magic of the artform.  And for this reason we put great effort into the sets, costumes, and other elements of theater that make these shows come alive.  We believe we have some of the very best designers in the area, and we are so proud to be able to offer this level of quality to our students.
 								</p>
 

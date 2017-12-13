@@ -45,7 +45,7 @@ p.credits
 	.archive-photo { width:50%; }
 }
 	</style>
-	<link rel="stylesheet" type="text/css" href="../style/colorbox.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $root; ?>style/colorbox.css">
 </head>
 <body id="page-event">
 	<div class="clearfix outside-sticky-footer">
@@ -64,7 +64,7 @@ include('../_header.php'); ?>
 <?php
 if ($event->logoFilename) {
 	echo '<div style="float:right; margin-bottom:1em;">' . PHP_EOL;
-	echo '<img style="max-width:150px;" src="<?php echo root; ?>shows/logo/' . $event->getYear() . '/' . htmlspecialchars($event->logoFilename) . '" '
+	echo '<img style="max-width:150px;" src="/shows/logo/' . $event->getYear() . '/' . htmlspecialchars($event->logoFilename) . '" '
 				. 'alt = "' . htmlspecialchars($event->title() . ' Logo') . '" />' . PHP_EOL;
 	echo '</div>' . PHP_EOL;
 }
@@ -113,7 +113,7 @@ if ($event->storyOverview) {
 			{
 				// Look for movie
 				$movieFile =  $base . ($i+1) . '.mp4';
-				$movieInstead = (file_exists('../shows/photo/'  . $event->getYear() . '/' .  $movieFile));
+				$movieInstead = (file_exists($root . 'shows/photo/'  . $event->getYear() . '/' .  $movieFile));
 
 ?>
 									<div class="inlinebox archive-photo<?php if (!$movieInstead) echo ' enlargable';?>">
@@ -135,7 +135,7 @@ else
 
 
 <?php
-	if (file_exists('../shows/photo/' . $event->getYear() . '/original/' . $base . ($i+1) . '.' . $extension ))
+	if (file_exists($root . 'shows/photo/' . $event->getYear() . '/original/' . $base . ($i+1) . '.' . $extension ))
 	{
 ?>
 											<a href="<?php echo $root . 'shows/photo/' . $event->getYear() . '/original/' . $base . ($i+1) . '.' . $extension; ?>"
@@ -270,7 +270,7 @@ if (!empty($event->videoURLs))
 	</div>
 <?php $includePinterest = TRUE; include('../_body.end.php'); ?>
 
-		<script charset="utf-8" src="../js/jquery.colorbox.min.js"></script>
+		<script charset="utf-8" src="<?php echo $root; ?>js/jquery.colorbox.min.js"></script>
 		<script>
 			var pixelsWide = $(window).width()  * window.devicePixelRatio;
 			var pixelsHigh = $(window).height() * window.devicePixelRatio;
