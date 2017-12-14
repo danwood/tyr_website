@@ -28,6 +28,25 @@ function datetimeTo8601($value) {
 	return $value;
 }
 
+if (   empty($inputs['type'])
+	|| empty($inputs['title'])
+	|| empty($inputs['season'])
+	|| (empty($inputs['showFirstDate']) && empty($inputs['showLastDate']))
+
+
+	)
+{
+?>
+	<h1>Insufficient Information!</h1>
+	<p>You must specify an event type, show title, dates, and season!
+	</p>
+	<p>
+		Please go back with your browser and correct this.
+	</p>
+<?php
+	die;
+}
+?>
 
 
 $db = new MyDB();

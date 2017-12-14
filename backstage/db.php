@@ -54,7 +54,11 @@ function outputList($eventArray, $headline)
 		echo '<div class="columnar">' . PHP_EOL;
 		foreach ($eventArray as $event)
 		{
-			echo '<p><a href="edit.php?id=' . $event->id() . '">' . htmlspecialchars($event->title()) . '</a></p>' . PHP_EOL;
+			echo '<p><a href="edit.php?id=' . $event->id() . '">' . htmlspecialchars($event->title());
+			if (empty($event->title())) {
+				echo '[UNTITLED]';				// Make sure that untitled events can be seen here!
+			}
+			echo '</a></p>' . PHP_EOL;
 		}
 		echo '</div>' . PHP_EOL;
 	}
@@ -66,7 +70,8 @@ outputList($currentShows, 'Upcoming Shows');
 outputList($currentOther, 'Upcoming Events');
 outputList($laterEvents, 'Later This Year');
 
-echo '<h3>Archives</h3>';
+echo '<h3>Past Events</h3>';
+echo '<p><i>Boldfaced titles are shown in the archives</i></p>';
 
 $lastYearShown = 0;
 foreach ($allPastEvents as $event)
@@ -93,7 +98,6 @@ foreach ($allPastEvents as $event)
 }
 echo '</div>' . PHP_EOL; 	// close out previous columnar div
 ?>
-<p><i>Boldfaced titles are shown in the archives</i></p>
 
 
 

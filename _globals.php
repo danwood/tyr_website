@@ -87,6 +87,7 @@ define ('TYPE_AUDITION_SHOW', 3);
 define ('TYPE_CLASS_SHOW', 4);
 define ('TYPE_BACKSTAGE_CAMP', 5);
 define ('TYPE_COMBO_SHOW', 6);		// Audition + Class ensemble show
+define ('TYPE_GROUP', 7);		// Grouping for auditions.  Not archived.
 
 
 

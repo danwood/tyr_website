@@ -271,21 +271,43 @@ $('#<?php echo htmlspecialchars($sqlColumn); ?>_container').html(contentHTML);
 	}
 
 }
-if ($event) { echo '<p>(ID of this event: ' . $event->id() . ')</p>' . PHP_EOL; }
+if ($event) {
+	echo '<p>(ID of this event: ' . $event->id();
+	if ($event ->type == TYPE_GROUP) {
+		echo '. <b>Use this ID for individual shows under this grouping.</b>';
+	}
+	echo ')</p>' . PHP_EOL;
+}
 ?>
 
 <form id="mainform" action="save.php" method="POST">
 <h3>General</h3>
+<h4>Type of Event</h4>
+<select name="type">
+	<option value="0">-- PLEASE CHOOSE --</option>
+	<option value="1" <?php if ($event && $event->type == 1) { echo 'selected '; } ?>>Event: Announce Only (not in archives)</option>
+	<option value="2" <?php if ($event && $event->type == 2) { echo 'selected '; } ?>>Event to archive</option>
+	<option value="3" <?php if ($event && $event->type == 3) { echo 'selected '; } ?>>Audition Show</option>
+	<option value="4" <?php if ($event && $event->type == 4) { echo 'selected '; } ?>>Class Show</option>
+	<option value="6" <?php if ($event && $event->type == 6) { echo 'selected '; } ?>>Audition + Ensemble Class Show</option>
+	<option value="5" <?php if ($event && $event->type == 5) { echo 'selected '; } ?>>Backstage Camp</option>
+	<option value="7" <?php if ($event && $event->type == 7) { echo 'selected '; } ?>>Show Grouping</option>
+</select>
 <?php
 showEditor('prefix', 'TEXT',                 'Prefix', 'e.g. "William Shakespeare’s"', SIZE_SMALL, 25);
 showEditor('title', 'TEXT',                  'Title', '', SIZE_ONELINE, 55, MARKDOWN_FALSE, REQUIRED_TRUE);
 showEditor('suffix', 'TEXT',                 'Suffix', 'must be short!', SIZE_TINY, 25);
 showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Text shown if no logo specified, also helpful for people who cannot read the logo', SIZE_ONELINE, 80);
+?>
+<?php
 
 if ($event) {
 
+if ($event->isAuditionShow()) {
+	showEditor('parentEventID', 'INTEGER',                'ID of Show Grouping event', 'If this show is part of a Show Grouping, e.g. "A Mysterious Mainstage" enter that ID here.', SIZE_TINY, 4);
+}
 
-showEditor('parentEventID', 'INTEGER',                'ID of audition grouping event', 'If this show is grouped under another event, e.g. "A Mysterious Mainstage" enter that ID here.', SIZE_TINY, 4);
+if ($event ->type != TYPE_GROUP) {
 
 echo '<h3>General Information</h3>' . PHP_EOL;
 echo '<p><i style="color:green">Use SHIFT-return to insert new line rather than new paragraph.</i></p>';
@@ -295,6 +317,8 @@ showEditor('venue', 'TEXT',                  'Venue', 'Theatre etc. of performan
 showEditor('venueAddress', 'TEXT',            'Address of venue', 'Address of venue, for publicizing event', SIZE_ONELINE, 100, MARKDOWN_FALSE, REQUIRED_TRUE);
 showEditor('credits', 'TEXT',      	 		 'Credits', 'Director, book, special arrangements etc.', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
 
+}
+
 echo '<h3>Recruitment</h3>' . PHP_EOL;
 
 showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General blurb used for recruiting show. GOES AWAY after signups are done', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
@@ -303,16 +327,6 @@ showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General 
 <p>File should be about 3:2 aspect ratio like an old TV, 544 pixels wide (or wider).  Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> file.
 </p>
 <iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=logo&amp;property=logoFilename"></iframe>
-<h4>Type of Event</h4>
-<select name="type">
-	<option value="0">-- PLEASE CHOOSE --</option>
-	<option value="1" <?php if ($event->type == 1) { echo 'selected '; } ?>>Event: Announce Only (not in archives)</option>
-	<option value="2" <?php if ($event->type == 2) { echo 'selected '; } ?>>Event to archive</option>
-	<option value="3" <?php if ($event->type == 3) { echo 'selected '; } ?>>Audition Show</option>
-	<option value="4" <?php if ($event->type == 4) { echo 'selected '; } ?>>Class Show</option>
-	<option value="6" <?php if ($event->type == 6) { echo 'selected '; } ?>>Audition + Ensemble Class Show</option>
-	<option value="5" <?php if ($event->type == 5) { echo 'selected '; } ?>>Backstage Camp</option>
-</select>
 
 <?php
 
@@ -367,6 +381,7 @@ showEditor('googleCalendarURL', 'TEXT',                'Google Calendar URL', 'h
 
 showEditor('rehearsalInfo', 'TEXT',          'Rehearsal info', 'Info about rehearsals visible during recruitment and rehearsals', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
 
+if ($event ->type != TYPE_GROUP) {
 
 echo '<h3>Publicity</h3>' . PHP_EOL;
 
@@ -390,8 +405,6 @@ showEditor('photoCredits', 'TEXT',           'Photo credits', 'Who took the phot
 showEditor('photoURLs', 'TEXT',              'Photo URLs', 'URLs of a photo album for a show, after the run is over. One per line. Can be followed by a space and link text', SIZE_FEWLINE, 0);
 showEditor('videoURLs', 'TEXT',              'Video URLs', 'URLs of videos for the show', SIZE_FEWLINE, 0);
 
-
-
 ?>
 
 <h4>Show Photos</h4>
@@ -413,6 +426,10 @@ The first four images are the most important, and will be rotated in as thumbnai
 <p>An image rotated on the home page with a showcase photo of TYR's best performances. Only set this for a dozen or so total shows. Should be 1932 × 822 in size, and tighly compressed <span class="extension">.jpg</span> file.
 </p>
 <iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=slider_past&amp;property=sliderArchiveFilename"></iframe>
+
+<?php
+}		// end of TYPE_GROUP check
+?>
 
 <h3>Dates</h3>
 <table class="dates_table">
@@ -448,10 +465,10 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 	<td>
 		<select name="season">
 			<option value="0">-- PLEASE CHOOSE --</option>
-			<option value="1" <?php if ($event->season == 1) { echo 'selected '; } ?>>Winter</option>
-			<option value="2" <?php if ($event->season == 2) { echo 'selected '; } ?>>Spring</option>
-			<option value="3" <?php if ($event->season == 3) { echo 'selected '; } ?>>Summer</option>
-			<option value="4" <?php if ($event->season == 4) { echo 'selected '; } ?>>Fall</option>
+			<option value="1" <?php if ($event && $event->season == 1) { echo 'selected '; } ?>>Winter</option>
+			<option value="2" <?php if ($event && $event->season == 2) { echo 'selected '; } ?>>Spring</option>
+			<option value="3" <?php if ($event && $event->season == 3) { echo 'selected '; } ?>>Summer</option>
+			<option value="4" <?php if ($event && $event->season == 4) { echo 'selected '; } ?>>Fall</option>
 		</select>
 	</td>
 	<td class="date_explain">For early announcement of rehearsals and show, without indicating exact dates to website visitor.
