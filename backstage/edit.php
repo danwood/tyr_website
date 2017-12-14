@@ -267,6 +267,7 @@ $('#<?php echo htmlspecialchars($sqlColumn); ?>_container').html(contentHTML);
 	if ($sqlType == 'DATETIME') {
 		echo "</td>". PHP_EOL;
 		if (!empty($explain)) echo '<td class="date_explain">' . htmlspecialchars($explain) . "</td>". PHP_EOL;
+		echo '</tr>' . PHP_EOL;
 	}
 
 }
@@ -409,6 +410,8 @@ showEditor('ticketSaleDate', 'DATETIME',     'Ticket sale date', 'Tickets now av
 else
 {
 	echo '<hr /><p>…you can fill in most of the details about this event once it has been initially created…</p><hr />' . PHP_EOL;
+
+	echo '<table class="dates_table">';
 }
 
 showEditor('showFirstDate', 'DATETIME',      'Opening/Event date', 'First performance (of any cast). Keep linking to ticket URL if available, otherwise show details. Use approximate date (1st of month)  when it’s in the distant future and date hasn’t been nailed down yet');
