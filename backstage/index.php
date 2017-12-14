@@ -43,6 +43,8 @@ include('../_header.php'); ?>
 <p><a href="edit.php">Add a new event</a> or <a href="db.php">edit existing events</a>.</p>
 <p>View website using <a href="<?php echo $root; ?>index.php?when=<?php echo date('Y-m-d'); ?>">Time Machine</a>.</p>
 
+<p>Advanced: <a href="<?php echo $root; ?>phpliteadmin.php">Direct database admin</a> (requires separate password).</p>
+
 						<section id="payment" class="clearfix capped-width">
 							<div class="inlinebox">
 								<h3>Configure <a href="<?php echo $root; ?>pay">Payment Page</a></h3>
