@@ -1,3 +1,8 @@
+<html>
+<head>
+<meta http-equiv="refresh" content="3; url=/">
+</head>
+<body>
 <?php
 
 // This file is used by the cron job only now; no need to do manually.
@@ -11,3 +16,5 @@ include('_reload.php');	// not a function, and not called from a function, so al
 <p>So there is generally no need to do this manually, unless the HTML has changed and this needs to be rebuilt.</p>
 <hr />
 <p>This process is also done every night, so that each day's website shows fresh data.</p>
+</body>
+</html>
