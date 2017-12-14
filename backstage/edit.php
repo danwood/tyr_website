@@ -271,6 +271,7 @@ $('#<?php echo htmlspecialchars($sqlColumn); ?>_container').html(contentHTML);
 	}
 
 }
+if ($event) { echo '<p>(ID of this event: ' . $event->id() . ')</p>' . PHP_EOL; }
 ?>
 
 <form id="mainform" action="save.php" method="POST">
@@ -282,6 +283,9 @@ showEditor('suffix', 'TEXT',                 'Suffix', 'must be short!', SIZE_TI
 showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Text shown if no logo specified, also helpful for people who cannot read the logo', SIZE_ONELINE, 80);
 
 if ($event) {
+
+
+showEditor('parentEventID', 'INTEGER',                'ID of audition grouping event', 'If this show is grouped under another event, e.g. "A Mysterious Mainstage" enter that ID here.', SIZE_TINY, 4);
 
 echo '<h3>General Information</h3>' . PHP_EOL;
 echo '<p><i style="color:green">Use SHIFT-return to insert new line rather than new paragraph.</i></p>';
@@ -311,13 +315,34 @@ showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General 
 
 <?php
 
-//showEditor('type', 'INTEGER',                'type'
-
 showEditor('signupDetails', 'TEXT',          'Signup details', 'Where classes are, audition preparations, what to expect, etc.', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
 
 showEditor('whoCanGo', 'TEXT',               'Who can go', 'Age or grade range etc.', SIZE_SMALL, 40);
 
+showEditor('similarEventID', 'INTEGER',                'Previous TYR production', "If TYR did a production of this show before, enter its ID here. Website will show photos for recruiting", SIZE_TINY, 4);
 ?>
+<h4>Photo from a different company's production</h4>
+<p><i>If TYR has never done a production of this show, the website can show a photo from another company's production to help recruit kids. We would need to get permission to include their photo, though.</i></p>
+<table>
+	<tr>
+		<th style="text-align:right"><em>Image from&nbsp;</em></th>
+		<td>
+			<input type="text" size="20" name="similarImageAttribution" maxlength="40" value="<?php echo htmlspecialchars($event->similarImageAttribution); ?>" />
+			<em>, used by permission</em>
+		</td>
+	</tr>
+	<tr>
+		<th style="text-align:right">URL:</th>
+		<td>
+			<input type="text" size="20" name="similarImageSourceURL" maxlength="64" value="<?php echo htmlspecialchars($event->similarImageSourceURL); ?>" placeholder="http://..." />
+		</td>
+	</tr>
+</table>
+<p>File:</p>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=recruiting&amp;property=similarImageFilename"></iframe>
+
+
+
 <h4>Signup Attachment</h4>
 <p>Something that parents can download to help them sign their kids up. Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span>, <span class="extension">.png</span>, <span class="extension">.pdf</span>, or <span class="extension">.mp3</span> file.
 </p>
@@ -417,8 +442,22 @@ else
 showEditor('showFirstDate', 'DATETIME',      'Opening/Event date', 'First performance (of any cast). Keep linking to ticket URL if available, otherwise show details. Use approximate date (1st of month)  when it’s in the distant future and date hasn’t been nailed down yet');
 showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last performance [if applicable]');
 ?>
-</table>
+<tr>
+	<td class="date_title">Season of the year</td>
+	<td>
+		<select name="season">
+			<option value="0">-- PLEASE CHOOSE --</option>
+			<option value="1" <?php if ($event->season == 1) { echo 'selected '; } ?>>Winter</option>
+			<option value="2" <?php if ($event->season == 2) { echo 'selected '; } ?>>Spring</option>
+			<option value="3" <?php if ($event->season == 3) { echo 'selected '; } ?>>Summer</option>
+			<option value="4" <?php if ($event->season == 4) { echo 'selected '; } ?>>Fall</option>
+		</select>
+	</td>
+	<td class="date_explain">For early announcement of rehearsals and show, without indicating exact dates to website visitor.
+	</td>
+</tr>
 
+</table>
 <p>
 	<input type="submit" name="submit" value="<?php if ($event) echo 'Save Changes'; else echo 'Create Event'; ?>" />
 </p>

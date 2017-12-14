@@ -197,6 +197,13 @@ class Event
 	public $sliderPromoFilename;
 	public $sliderArchiveFilename;
 
+	public $parentEventID;				// If there is a grouping like 'A mysterious mainstage' this is foreign key to that ID
+	public $similarEventID;				// If there is an older TYR show of this same title, this will pull photos from it for recruiting
+	public $similarImageFilename;		// For recruiting, bring in a photo of some other production. Filename if we upload something
+	public $similarImageSourceURL;		// For recruiting, bring in a photo of some other production. URL of source page/company
+	public $similarImageAttribution;	// For recruiting, bring in a photo of some other production. Permission statement.
+	public $season;						// Quarter = 1 winter, 2 spring, 3 summer, 4 fall, for not-ready-to-sign-up upcoming events.
+
   // Static methods
 
 	public static function eventAnnounceCompare($aEvent, $bEvent)

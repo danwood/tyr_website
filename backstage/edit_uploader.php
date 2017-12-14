@@ -38,12 +38,16 @@ $currentFilename = NULL;
 $propertyName = $_GET['property'];
 $prop = $reflector->getProperty($propertyName);
 $maxFilename = $prop->isPrivate() ? $event->{$propertyName}() : $event->{$propertyName};
-
 $imagePath = '';
 if (!empty($maxFilename)) {
 	$imagePath = 'shows/' . $_GET['type'] . '/' . $_GET['year'] . '/' . $maxFilename;
 ?>
 <div style="width:100%; height:100%; background-image:url('<?php echo $root . htmlspecialchars($imagePath); ?>'); background-repeat:no-repeat; background-position:right top; background-size:contain">
+
+<p>Currently set to: <a target="_BLANK" href="<?php echo $root . htmlspecialchars($imagePath); ?>"><?php echo htmlspecialchars($maxFilename); ?></a>
+	<?php if (isset($_GET['multiple'])) { echo " (last one in a series)"; } ?>
+</p>
+
 <?php
 } else {
 ?>
@@ -51,9 +55,6 @@ if (!empty($maxFilename)) {
 <?php
 }
 ?>
-<p>Currently set to: <a target="_BLANK" href="<?php echo $root . htmlspecialchars($imagePath); ?>"><?php echo htmlspecialchars($maxFilename); ?></a>
-	<?php if (isset($_GET['multiple'])) { echo " (last one in a series)"; } ?>
-</p>
 
 <form id="uploader" action="edit_upload.php" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id']); ?>" />

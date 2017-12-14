@@ -45,7 +45,7 @@ $year = $_POST['year'];		// for photo uploads
 
 if ($year == 1969) { echo "1969"; die; }
 
-if (! in_array($type, array('logo', 'photo', 'poster', 'signup', 'slider_past', 'slider_promo')))
+if (! in_array($type, array('logo', 'photo', 'poster', 'signup', 'recruiting', 'slider_past', 'slider_promo')))
 {
 		$errorMessage = "Something was wrong with the file type";
 		goto giveup;
@@ -126,7 +126,7 @@ for($i = 0; $i < count($uploadedFiles['name']); $i++){
    			$put = file_put_contents($fullPathToSized, 'ImageMagick did not work');
 
    			// Photos: We want 608x342.  Tight JPEG compression.
-			if ($type == 'photo')
+			if ($type == 'photo' || $type == 'recruiting')
 			{
 				$phMagick = new phMagick($pathToOriginal, $fullPathToSized);
 				$phMagick->debug = TRUE;
