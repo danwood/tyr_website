@@ -157,7 +157,7 @@ class Event
 	public $logoFilename;			// An image with the name of the show in it; we won't display show title!  FILE
 	public $photoFilename;			// Photo of performance or publicity photo like Les Mis, shown WITH title. Supercedes above when available.
 	public $photoCredits;			// Human-readable list of people who took the photos we feature in column above
-	public $type;					// 'Audition Show', 'Class Show', or 'Event to Archive' or 'Event Announce-Only'  It had better be one of these?
+	public $type;					// 'Audition Show', 'Class Show', 'Combo Show', or 'Event to Archive' or 'Event Announce-Only'  It had better be one of these?
 	public $signupDetails;			// Where classes are, audition preparations, what to expect, etc. **
 	public $whoCanGo;				// Tiny description to show on card. Just a few words -- make sure it fits on various window sizes!
 	public $signupAttachment;		// name of file in attachments directory, should be downloadable from signup details page.
@@ -326,8 +326,8 @@ class Event
 	public function isArchiveEvent()		{ return $this->type == TYPE_EVENT_ARCHIVE; }
 	public function isAnnounceOnlyEvent()	{ return $this->type == TYPE_EVENT_ANNOUNCE_ONLY; }
 	public function isSpecialEvent()		{ return $this->type == TYPE_EVENT_ARCHIVE || $this->type == TYPE_EVENT_ANNOUNCE_ONLY; }
-	public function isShow()				{ return $this->type == TYPE_AUDITION_SHOW || $this->type == TYPE_CLASS_SHOW; }
-	public function isAuditionShow()		{ return $this->type == TYPE_AUDITION_SHOW; }
+	public function isShow()				{ return $this->type == TYPE_AUDITION_SHOW || $this->type == TYPE_CLASS_SHOW || $this->type == TYPE_COMBO_SHOW; }
+	public function isAuditionShow()		{ return $this->type == TYPE_AUDITION_SHOW || $this->type == TYPE_COMBO_SHOW; }
 	public function isBackstageCamp()		{ return $this->type == TYPE_BACKSTAGE_CAMP; }		// Gets put in a separate list from regular shows
 
 	public function shouldShowLogo()		{ return $this->isUpcomingEvent() 	&& !empty($this->logoFilename) && !$this->isBackstageCamp(); }

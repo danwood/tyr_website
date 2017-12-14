@@ -86,6 +86,7 @@ define ('TYPE_EVENT_ARCHIVE', 2);
 define ('TYPE_AUDITION_SHOW', 3);
 define ('TYPE_CLASS_SHOW', 4);
 define ('TYPE_BACKSTAGE_CAMP', 5);
+define ('TYPE_COMBO_SHOW', 6);		// Audition + Class ensemble show
 
 
 

@@ -310,6 +310,7 @@ showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General 
 	<option value="2" <?php if ($event->type == 2) { echo 'selected '; } ?>>Event to archive</option>
 	<option value="3" <?php if ($event->type == 3) { echo 'selected '; } ?>>Audition Show</option>
 	<option value="4" <?php if ($event->type == 4) { echo 'selected '; } ?>>Class Show</option>
+	<option value="6" <?php if ($event->type == 6) { echo 'selected '; } ?>>Audition + Ensemble Class Show</option>
 	<option value="5" <?php if ($event->type == 5) { echo 'selected '; } ?>>Backstage Camp</option>
 </select>
 
