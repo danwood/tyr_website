@@ -46,7 +46,6 @@ if (   empty($inputs['type'])
 <?php
 	die;
 }
-?>
 
 
 $db = new MyDB();
