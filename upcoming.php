@@ -34,16 +34,16 @@ include('_head.php');
 .prefix, .suffix { color:#ddd;}
 .info { margin-bottom:80px;}
 ul { margin-bottom:1em;}
+.card { margin-bottom:1em;}
 
 @media only screen and (min-width:36em) and (max-width:47.99em)
 {
-	.card, .info { width:50%; }
+	.card { width:50%; margin-left:25%; }
 }
 
 @media only screen and (min-width:48em)
 {
-	.card { width:33.33%;}
-	.info { width:66.67%;}
+	.card { width:33.33%; margin-left:33.33%;}
 }
 
 @media only screen and (min-width:36em)
@@ -108,47 +108,32 @@ include('_header.php'); ?>
 									<img style="-webkit-transform: rotate(-10deg); transform: rotate(-10deg);" class="snapshot fullwidth" alt="having fun for the camera" src="img/misc-crazy-fun.jpg" />
 								</div>
 							</div>
-							<div class="inlinebox nobottom"><h2>Upcoming TYR Events</h2></div>
+							<div class="inlinebox nobottom"><h2>Upcoming TYR Shows, Classes, Camps</h2></div>
 							<div class="inlinebox">
+								<div class="clearfix">
+
 <?php
 foreach ($currentShows as $event)
 {
-	echo '<div class="clearfix outdented">' . PHP_EOL;
-	echo '<div class="inlinebox card" id="THECARD_' . $event->id() . '">' . PHP_EOL;
-	$event->outputEventCard(FALSE, FALSE);
+	if (!$event->isSellingTickets()) {
+		echo '<div class="card">' . PHP_EOL;
+		$event->outputEventCard(TRUE, TRUE);
 	echo "</div>\n";
-	echo '<div class="inlinebox info" id="THECARD_' . $event->id() . '_info">' . PHP_EOL;
-	$event->outputEventCurrentBlurb();
-
-	// Special case for Romeo and Juliet
-	if ($event->id() == 510)
-	{
-?>
-<div class='youtube-container'>
-	<iframe src='http://www.youtube.com/embed/BrZqrqSj7b0' frameborder='0' allowfullscreen></iframe>
-</div>
-<?php
 	}
-
-	echo "</div>\n";
-	echo "</div>\n";
 
 }
 
 
 foreach ($currentOther as $event)
 {
-	echo '<div class="clearfix outdented">' . PHP_EOL;
-	echo '<div class="inlinebox card" id="THECARD_' . $event->id() . '">' . PHP_EOL;
-	$event->outputEventCard(FALSE, FALSE);
-	echo "</div>\n";
-	echo '<div class="inlinebox info" id="THECARD_' . $event->id() . '_info">' . PHP_EOL;
-	$event->outputEventCurrentBlurb();
-	echo "</div>\n";
+	if (!$event->isSellingTickets()) {
+		echo '<div class="card">' . PHP_EOL;
+		$event->outputEventCard(TRUE, TRUE);
 	echo "</div>\n";
 }
+}
 ?>
-
+							</div>
 							</div>
 						</section>
 						<section class="clearfix capped-width pullbottom">

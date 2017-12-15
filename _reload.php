@@ -24,7 +24,7 @@ function endsWith($string, $test) {
 
 // Files to re-build from PHP into HTML
 
-$ignore = array("upcoming.php", "phpliteadmin.config.php", "phpliteadmin.php", "ApacheError.php",
+$ignore = array("phpliteadmin.config.php", "phpliteadmin.php", "ApacheError.php",
 	"reload.php", "index.inline-styles.css.php", "index.ajax.php", "payment.php");
 
 $all = scandir('.');

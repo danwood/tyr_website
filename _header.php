@@ -4,7 +4,7 @@
 					<header class="black-block">
 						<div class="clearfix capped-width">
 							<div class="inlinebox tyr-logo">
-								<a class="page-home" href="<?php echo $root . htmlspecialchars(currentIndexPath()); ?>"><img class="fullwidth" style="max-width:458px;" src="<?php echo $root; ?>img/logo-transparent-white.png" alt="TYR Logo" /><span class="visuallyhidden">Tomorrow Youth Repertory</span></a>
+								<a class="page-home" href="<?php echo currentIndexPath(TRUE); ?>"><img class="fullwidth" style="max-width:458px;" src="<?php echo $root; ?>img/logo-transparent-white.png" alt="TYR Logo" /><span class="visuallyhidden">Tomorrow Youth Repertory</span></a>
 							</div>
 							<div id="header-navmenu" class="navmenu inlinebox icon-menu">
 								<span class="visuallyhidden">Menu</span>
@@ -12,22 +12,22 @@
 							<nav class="inlinebox hideablenav">
 								<ul class="Main-Menu">
 									<li class="page-upcoming">
-										<a href="<?php echo $root; ?>upcoming.<?php echo htmlspecialchars(currentExtension()); ?>">Sign Up</a>
+										<a href="<?php echo $root; ?>upcoming.<?php echo currentExtension(); ?>">Sign Up</a>
 									</li>
 									<li class="page-archives">
-										<a href="<?php echo $root; ?>archives.<?php echo htmlspecialchars(currentExtension()); ?>">Archives</a>
+										<a href="<?php echo $root; ?>archives.<?php echo currentExtension(); ?>">Archives</a>
 									</li>
 									<li class="page-about">
-										<a href="<?php echo $root; ?>about.<?php echo htmlspecialchars(currentExtension()); ?>">About Us</a>
+										<a href="<?php echo $root; ?>about.<?php echo currentExtension(); ?>">About Us</a>
 									</li>
 									<li class="page-staff">
-										<a href="<?php echo $root; ?>staff.<?php echo htmlspecialchars(currentExtension()); ?>">Staff</a>
+										<a href="<?php echo $root; ?>staff.<?php echo currentExtension(); ?>">Staff</a>
 									</li>
 									<li class="page-volunteer">
-										<a href="<?php echo $root; ?>volunteer.<?php echo htmlspecialchars(currentExtension()); ?>">Volunteer</a>
+										<a href="<?php echo $root; ?>volunteer.<?php echo currentExtension(); ?>">Volunteer</a>
 									</li>
 									<li class="page-donate">
-										<a href="<?php echo $root; ?>donate.<?php echo htmlspecialchars(currentExtension()); ?>">Donate</a>
+										<a href="<?php echo $root; ?>donate.<?php echo currentExtension(); ?>">Donate</a>
 									</li>
 									<li>
 										<a title="RSS Feed" href="<?php echo $root; ?>index.rss"><img style="margin-bottom:5px;" src="<?php echo $root; ?>img/RSS.png" width="26" height="26" alt="RSS" /></a>
@@ -46,7 +46,7 @@
 <?php
 foreach ($sliderRecords as $sliderRecord) {
 ?>
-								<li><img src="<?php echo root; ?>shows/<?php echo htmlspecialchars($sliderRecord['filename']); ?>" alt="Tomorrow Youth Rep Banner image, from <?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" title="<?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" /></li>
+								<li><img src="<?php echo $root; ?>shows/<?php echo htmlspecialchars($sliderRecord['filename']); ?>" alt="Tomorrow Youth Rep Banner image, from <?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" title="<?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" /></li>
 <?php
 }
 ?>

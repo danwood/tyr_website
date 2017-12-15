@@ -47,8 +47,10 @@ Redirect Permanent /archive/2013-july-4th-parade http://tomorrowyouthrep.org/arc
 # We need to do some URL rewriting
 RewriteEngine on
 
-# Parse requests for “upcoming.html” as a request for the upcoming.php file, just so visitors don’t have to see the “.php” extension.
-RewriteRule ^upcoming.html(.?)$                 /upcoming.php$1 [NE,L]
+# Parse old requests for “upcoming.html” with an ID param to go to the event page now
+RewriteCond %{QUERY_STRING} id=(.*)
+RewriteRule ^upcoming.html(.?)$                 /upcoming/$2 [R,NE,L]
+
 
 # Parse requests in the “archive” directory as the “name” parameter passed to the archive.php page. This allows us to have virtual URLs that are bookmarkable and don’t look messy.
 RewriteRule ^archive/([0-9a-z-]+)$   /archive/archive.php?name=$1 [NE,L]

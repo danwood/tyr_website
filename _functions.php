@@ -70,16 +70,18 @@ function currentExtension() {
 	}
 	return $result;
 }
-function currentIndexPath() {
+function currentIndexPath($absolute = FALSE) {
 
 	global $isRebuilding;
 
+	$slashOrEmpty = $absolute ? '/' : '';
+
 	if (isset($isRebuilding) && $isRebuilding) {
 		// We are in the process of building the .html files, so the extension is html
-		$result = "";
+		$result = $slashOrEmpty;
 	}
 	else {
-		$result = "index.php";
+		$result = $slashOrEmpty . "index.php";
 
 		// If navigating with PHP and time machine 'when' parameter, then keep the query string.
 		if ( isset($_GET['when']) && !empty($_GET['when']) ) {
@@ -87,7 +89,7 @@ function currentIndexPath() {
 		}
 		else	// no "when" parameter so link will go to HTML actually
 		{
-			$result = "";
+			$result = $slashOrEmpty;
 		}
 	}
 	return $result;

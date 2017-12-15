@@ -47,7 +47,7 @@ p.credits
 	</style>
 	<link rel="stylesheet" type="text/css" href="<?php echo $root; ?>style/colorbox.css">
 </head>
-<body id="page-event">
+<body>
 	<div class="clearfix outside-sticky-footer">
 		<!-- Specify grid system. All boxes must be clearfix. Specify layout direction. -->
 		<div class="contain-sticky-footer fullwidth">

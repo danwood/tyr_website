@@ -122,7 +122,7 @@ class Event
 		}
 		else
 		{
-			$this->path = 'upcoming.html?id=' . $this->id;
+			$this->path = 'upcoming/?id=' . $this->id;
 			if (isset($_GET['when']))
 			{
 				$this->path .= '&when=' . $_GET['when'];
