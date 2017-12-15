@@ -66,8 +66,61 @@ include('_head.php');
 
 	.datepicker { z-index:999; display:block; position:absolute; top:0; left:0; width:20%; }	/* only show in full screen for your convenience */
 }
+
+
+
+/*! http://responsiveslides.com v1.55 by @viljamis */
+
+.rslides {
+  position: relative;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  }
+
+.rslides li {
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  display: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+  }
+
+.rslides li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+  }
+
+.rslides img {
+  display: block;
+  height: auto;
+  float: left;
+  width: 100%;
+  border: 0;
+  }
+
+.caption {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px 15px;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.25);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.25) 0%, transparent 50%, transparent 100%);
+  color: #fff;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  display: block;
+  font-size: .85em;
+}
+
+
 	</style>
-	<link href="<?php echo $root; ?>style/jquery.bxslider.css?md=20171212" rel="stylesheet" />
 </head>
 <body id="page-home">
 	<div class="clearfix outside-sticky-footer">
@@ -217,26 +270,29 @@ $('#date-input').change(function(event)
 });
 
 	</script>
-	<script src="<?php echo $root; ?>js/jquery.bxslider.min.js"></script>
+	<script src="<?php echo $root; ?>js/responsiveslides.min.js"></script>
 	<script>
 
-// $(window).resize(function() {
-//     clearTimeout(resizeTimeout);
-//     resizeTimeout = setTimeout(function() { resizedw(); }, 100);
-//     var foo = $('.bxslider').resizeWindow;
-// });
+
 $(window).load(function() { resizedw(); });
 
-$(document).ready(function(){
-  $('.bxslider').bxSlider({
-	  adaptiveHeight: false,
-	  captions: true,
-	  responsive: true,
-	  auto: true,
-	  autoHover: true,
-	  resizeChain: resizedw,
-	});
-
+$(".rslides").responsiveSlides({
+  auto: true,             // Boolean: Animate automatically, true or false
+  speed: 500,            // Integer: Speed of the transition, in milliseconds
+  timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
+  pager: false,           // Boolean: Show pager, true or false
+  nav: false,             // Boolean: Show navigation, true or false
+  random: true,          // Boolean: Randomize the order of the slides, true or false
+  pause: true,           // Boolean: Pause on hover, true or false
+  pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+  prevText: "Previous",   // String: Text for the "previous" button
+  nextText: "Next",       // String: Text for the "next" button
+  maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+  navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+  manualControls: "",     // Selector: Declare custom pager navigation
+  namespace: "rslides",   // String: Change the default namespace used
+  before: function(){},   // Function: Before callback
+  after: function(){}     // Function: After callback
 });
 
 

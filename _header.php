@@ -41,12 +41,35 @@
 <?php if ($fullHeader)
 {
 ?>
-						<div class="capped-width slider-holder position-container">
-							<ul class="bxslider">
+						<div class="slider-holder">
+							<ul class="rslides">
 <?php
 foreach ($sliderRecords as $sliderRecord) {
 ?>
-								<li><img src="<?php echo $root; ?>shows/<?php echo htmlspecialchars($sliderRecord['filename']); ?>" alt="Tomorrow Youth Rep Banner image, from <?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" title="<?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" /></li>
+								<li>
+<?php
+	// Link image if no caption. Otherwise we will link caption.
+	if (isset($sliderRecord['link']) && !isset($sliderRecord['caption'])) { echo '<a href="' . $sliderRecord['link'] . '">'; }
+?>
+								<img
+									src="<?php echo $root; ?>shows/<?php echo htmlspecialchars($sliderRecord['filename']); ?>"
+									alt="Tomorrow Youth Rep Banner image, from <?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>"
+									title="<?php echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']); ?>" />
+<?php
+	if (isset($sliderRecord['link'])) { echo '</a>'; }
+
+	if (isset($sliderRecord['caption'])) {
+?>
+									<p class="caption">
+<?php
+	if (isset($sliderRecord['link']) && isset($sliderRecord['caption'])) { echo '<a href="' . $sliderRecord['link'] . '">'; }
+	echo htmlspecialchars($sliderRecord['title']); ?>, <?php echo htmlspecialchars($sliderRecord['year']);
+	if (isset($sliderRecord['link']) && isset($sliderRecord['caption'])) { echo '</a>'; }
+?>
+									</p>
+<?php
+	}
+?>								</li>
 <?php
 }
 ?>

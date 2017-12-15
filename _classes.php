@@ -346,6 +346,8 @@ class Event
 
 	public function link() { global $urlBase; return $urlBase . $this->path; }
 
+	public function linkOrTicketURL() { return ($this->isSellingTickets() && $this->ticketURL()) ? $this->ticketURL() : $this->link();  }
+
 	public function matchesFromPhotoFilename()
 	{
 		$result = NULL;

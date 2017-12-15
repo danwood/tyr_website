@@ -210,6 +210,8 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 			'filename' => $path,
 			'year' => $event->getYear(),
 			'title' => $event->title(),
+			'caption' => $event->title(),
+			'link' => $event->link()
 			);
 		$sliderRecords[] = $sliderInfo;
 	}
@@ -218,10 +220,15 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 		$sliderInfo = array(
 			'filename' => $path,
 			'year' => $event->getYear(),
-			'title' => $event->title()
+			'title' => $event->title(),
+			'link' => $event->linkOrTicketURL()
 			);
-		// Put promo at the START of the array
+		// Put promo at the START of the array ... not really important if we are randomizing.
 		array_unshift($sliderRecords, $sliderInfo);
+
+		// Put an EXTRA copy of each promo in the list so it will show up twice as often when randomizing
+		$sliderRecords[] = $sliderInfo;
+
 	}
 
 	// Some way to sort these, or un-sort them, randomly each time?
