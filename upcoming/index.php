@@ -24,15 +24,9 @@ if (!$event)
 $base='';
 $root='../';
 
-$title = $event ? 'Tomorrow Youth Rep Upcoming: ' . $event->title() : 'Tomorrow Youth Rep Upcoming Shows and Events';
-if ($event)
-{
-	$description='Find out about upcoming shows and events, like "' . $event->title() . ',"" put on by TYR in Alameda, CA';
-}
-else
-{
-	$description='Find out about upcoming shows and events put on by Tomorrow Youth Repertory in Alameda, California.';
-}
+$title = 'Tomorrow Youth Rep Upcoming: ' . $event->title();
+$description='Find out about "' . $event->title() . ',"" put on by TYR in Alameda, CA';
+
 include('../_head.php');
 ?>
 	<style>
@@ -41,6 +35,9 @@ include('../_head.php');
 .info { margin-bottom:80px;}
 ul { margin-bottom:1em;}
 .card { margin-bottom:1em;}
+.similar-photo-background { background-color:black;}
+
+.similar-photo { width:50%;}
 
 @media only screen and (min-width:36em) and (max-width:47.99em)
 {
@@ -59,6 +56,7 @@ ul { margin-bottom:1em;}
 	.bigger-left{ margin-left:-25%}
 	.bigger-right{ margin-right:-25%;}
 	.front { page-break-before:always; position:relative; }
+	.similar-photo { width:25%;}
 }
 
 	</style>
@@ -86,13 +84,62 @@ $fullHeader = FALSE;
 include('../_header.php'); ?>
 					<main>
 						<section class="clearfix capped-width pullbottom">
-							<div class="inlinebox nobottom"><h2>Upcoming TYR Shows, Classes, Camps</h2></div>
 								<div class="clearfix">
 									<div class="inlinebox card">
 <?php
 	$event->outputEventCard(FALSE, FALSE);
 ?>
 									</div>
+								</div>
+						</section>
+<?php
+if ($event->similarEventID) {
+
+	$startIndex = 0; $stopIndex = 4;
+
+	$similarEvent = Event::getEventByID($event->similarEventID);
+	$photoFilename = $similarEvent->photoFilename();
+	if ($photoFilename)
+	{
+		$numberOfImagesForPinterest = 1;
+		$matches = $similarEvent->matchesFromPhotoFilename();
+		$photoCount = 1;
+		// Look for ending number, e.g. narnia3.jpg.  If so, that means we should 1 through n, so RANDOMLY pick one of them.
+		if ($matches)
+		{
+?>
+						<div class="similar-photo-background">
+<?php
+			$photoCount = $matches[2];
+			$base = $matches[1];
+			$extension = $matches[3];
+			$numberOfImagesForPinterest = $photoCount;
+
+			for ($i = $startIndex ; $i < $photoCount ; $i++)
+			{
+				// Look for movie
+				$movieFile =  $base . ($i+1) . '.mp4';
+				$movieInstead = (file_exists($root . 'shows/photo/'  . $similarEvent->getYear() . '/' .  $movieFile));
+				if ($movieInstead) continue;		// don't show movie here
+
+				echo '<img class="similar-photo" src="' . $root . 'shows/photo/' . $similarEvent->getYear() . '/' . $base . ($i+1) . '.' . $extension . '" ';
+				echo 'alt="' . htmlspecialchars($similarEvent->title() . ' photo ' . ($i+1)) . '">';
+				if ($i+1 >= $stopIndex) {
+					echo PHP_EOL;
+					break;
+				}
+			}
+?>
+						</div>
+<?php
+		}
+	}
+}
+?>
+
+
+						<section class="clearfix capped-width pullbottom">
+								<div class="clearfix">
 									<div class="inlinebox info">
 <?php
 	$event->outputEventCurrentBlurb();
@@ -110,10 +157,60 @@ include('../_header.php'); ?>
 									</div>
 								</div>
 						</section>
-						<section class="clearfix inlinebox capped-width pullbottom">
-							<p>
-								<a href="./#scholarship">TYR Scholarship Policy</a>
-							</p>
+<?php
+if ($event->similarEventID) {
+
+	$startIndex = 4; $stopIndex = 8;
+
+	$similarEvent = Event::getEventByID($event->similarEventID);
+	$photoFilename = $similarEvent->photoFilename();
+	if ($photoFilename)
+	{
+		$numberOfImagesForPinterest = 1;
+		$matches = $similarEvent->matchesFromPhotoFilename();
+		$photoCount = 1;
+		// Look for ending number, e.g. narnia3.jpg.  If so, that means we should 1 through n, so RANDOMLY pick one of them.
+		if ($matches)
+		{
+?>
+						<div class="similar-photo-background">
+<?php
+			$photoCount = $matches[2];
+			$base = $matches[1];
+			$extension = $matches[3];
+			$numberOfImagesForPinterest = $photoCount;
+
+			for ($i = $startIndex ; $i < $photoCount ; $i++)
+			{
+				// Look for movie
+				$movieFile =  $base . ($i+1) . '.mp4';
+				$movieInstead = (file_exists($root . 'shows/photo/'  . $similarEvent->getYear() . '/' .  $movieFile));
+				if ($movieInstead) continue;		// don't show movie here
+
+				echo '<img class="similar-photo" src="' . $root . 'shows/photo/' . $similarEvent->getYear() . '/' . $base . ($i+1) . '.' . $extension . '" ';
+				echo 'alt="' . htmlspecialchars($similarEvent->title() . ' photo ' . ($i+1)) . '">';
+				if ($i+1 >= $stopIndex) {
+					echo PHP_EOL;
+					break;
+				}
+			}
+?>
+						</div>
+						<div class="inlinebox">
+							<p>Photos from TYR's <?php echo htmlspecialchars($similarEvent->getYear()); ?> production of <a href="<?php echo htmlspecialchars($similarEvent->link()); ?>"><?php echo htmlspecialchars($similarEvent->title()); ?></a></p>
+						</div>
+<?php
+		}
+	}
+}
+?>
+
+						<section class="clearfix capped-width pullbottom">
+							<div class="inlinebox">
+								<p>
+									<a href="./#scholarship">TYR Scholarship Policy</a>
+								</p>
+							</div>
 						</section>
 					</main>
 				</div><!-- end before-sticky-footer -->
