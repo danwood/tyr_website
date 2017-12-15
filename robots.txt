@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /backstage/
+Disallow: /upcoming/
+Disallow: /poster/
+Disallow: /signup/
+Disallow: /show/poster/
+Disallow: /show/signup/
+
