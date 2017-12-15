@@ -36,6 +36,29 @@ include('_head.php');
 ul { margin-bottom:1em;}
 .card { margin-bottom:1em;}
 
+.snapshot1 { transform: rotate(3deg); }
+.snapshot2 { transform: rotate(-2deg); }
+.snapshot3 { transform: rotate(-10deg); }
+.snapshot4 { transform: rotate(5deg); }
+.snapshot5 { transform: rotate(-2deg); }
+.snapshot6 { transform: rotate(8deg); }
+.snapshot {
+			transition: all 1s ease;
+}
+.snapshot:hover {
+	transform: scale(1.4);
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 1);
+	z-index:9999;
+	border:8px solid #EED;
+
+}
+.snapshot1:hover { transform: rotate(15deg); }
+.snapshot2:hover { transform: rotate3d(10,0,10,-30deg); }
+.snapshot3:hover { transform: rotate(-3deg); }
+.snapshot4:hover { transform: rotate(-3deg); }
+.snapshot5:hover { transform: rotate3d(40,-40,10,20deg); }
+.snapshot6:hover { transform: rotate(-3deg); }
+
 @media only screen and (min-width:36em) and (max-width:47.99em)
 {
 	.card { width:50%; margin-left:25%; }
@@ -97,15 +120,15 @@ include('_header.php'); ?>
 							</div>
 							<div class="inlinebox third down">
 								<div class="bigger-right">
-									<img style="-webkit-transform: rotate(3deg); transform: rotate(3deg);" class="snapshot fullwidth" alt="Amy Marie warms up students with a game of 'zip zap zop'" src="img/misc-warmup-game.jpg" />
+									<img class="snapshot snapshot1 fullwidth" alt="Amy Marie warms up students with a game of 'zip zap zop'" src="img/misc-warmup-game.jpg" />
 								</div>
 							</div>
 							<div class="inlinebox third front">
-								<img style="-webkit-transform: rotate(-2deg); transform: rotate(-2deg);" class="snapshot fullwidth" alt="Rob overwhelmed by boys during a break" src="img/misc-rob-and-boys.jpg" />
+								<img class="snapshot snapshot2 fullwidth" alt="Rob overwhelmed by boys during a break" src="img/misc-rob-and-boys.jpg" />
 							</div>
 							<div class="inlinebox third down">
 								<div class="bigger-left">
-									<img style="-webkit-transform: rotate(-10deg); transform: rotate(-10deg);" class="snapshot fullwidth" alt="having fun for the camera" src="img/misc-crazy-fun.jpg" />
+									<img class="snapshot snapshot3 fullwidth" alt="having fun for the camera" src="img/misc-crazy-fun.jpg" />
 								</div>
 							</div>
 							<div class="inlinebox nobottom"><h2>Upcoming TYR Shows, Classes, Camps</h2></div>
@@ -157,15 +180,15 @@ If you have any questions, please contact <a href="mailto:programs@tomorrowyouth
 							</div>
 
 							<div class="inlinebox third down front">
-								<img style="-webkit-transform: rotate(5deg); transform: rotate(5deg);" class="snapshot fullwidth" alt="Staging a sequence from a musical number in Phantom Tollbooth" src="img/misc-staging.jpg" />
+								<img class="snapshot snapshot4 fullwidth" alt="Staging a sequence from a musical number in Phantom Tollbooth" src="img/misc-staging.jpg" />
 							</div>
 							<div class="inlinebox third">
 								<div class="bigger-left bigger-right">
-									<img style="-webkit-transform: rotate(-2deg); transform: rotate(-2deg);" class="snapshot fullwidth" alt="Kids introducting themselves at the start of a class" src="img/misc-stand-up.jpg" />
+									<img class="snapshot snapshot5 fullwidth" alt="Kids introducting themselves at the start of a class" src="img/misc-stand-up.jpg" />
 								</div>
 							</div>
 							<div class="inlinebox third down front">
-								<img style="-webkit-transform: rotate(8deg); transform: rotate(8deg);" class="snapshot fullwidth" alt="Tyler works the lights" src="img/misc-lights.jpg" />
+								<img class="snapshot snapshot6 fullwidth" alt="Tyler works the lights" src="img/misc-lights.jpg" />
 							</div>
 
 						</section>
