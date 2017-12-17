@@ -1,3 +1,4 @@
+.two-up-only { display:none; }
 
 /* ==========================================================================
    Breakpoints
@@ -9,7 +10,10 @@
 
 @media only screen and (min-width:36em) and (max-width:47.99em)
 {
-	.current-show, .current-event, .later, .past, .past-six { width:50%; }
+	.current-show, .current-event, .later, .past, .past-nine { width:50%; }
+
+	.past-nine:nth-of-type(9) { display:none; }
+	.two-up-only { display:inline; }
 
 <?php if (count($currentOther) % 2 == 1)		// An odd number? If so, center the last one.
 {
@@ -25,7 +29,7 @@ if (count($laterEvents) % 2 == 1)
 }
 if (count($pastEvents) % 2 == 1)
 {
-	// .past is for unknown quantities of past events; use .past-six when there are exactly six
+	// .past is for unknown quantities of past events; use .past-nine when there are exactly six
 
 	echo "\t" . '.past:last-child { margin-left:25%; }' . PHP_EOL;
 }
@@ -40,7 +44,7 @@ if (count($pastEvents) % 2 == 1)
 
 @media only screen and (min-width:48em)
 {
-	.current-event, .current-show, .later, .past, .past-six { width:33.33%; }
+	.current-event, .current-show, .later, .past, .past-nine { width:33.33%; }
 <?php
 	/*
 		_ # _

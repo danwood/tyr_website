@@ -93,7 +93,7 @@ define ('TYPE_GROUP', 7);		// Grouping for auditions.  Not archived.
 
 define ('NUMBER_OF_PAST_TO_SHOW', 9);
 define ('NUMBER_ADDITIONAL_PAST_TITLES', 3);
-define ('MAX_NUMBER_TO_SHOW_ON_ARCHIVES', 6);
+define ('MAX_NUMBER_TO_SHOW_ON_ARCHIVES', 9);
 
 
 define('STATE_PAST_ARCHIVE',				98);		// Show is in the past; display in archive sections

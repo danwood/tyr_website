@@ -150,26 +150,31 @@ if (count($noImageYetArray)) {
 $mostRecentEvents = array_slice($pastEvents, $indexOfFirstWithPhoto, NUMBER_OF_PAST_TO_SHOW);
 foreach ($mostRecentEvents as $event)
 {
-	echo '<div class="inlinebox past-six" id="THECARD_' . $event->id() . '">' . PHP_EOL;
+	echo '<div class="inlinebox past-nine" id="THECARD_' . $event->id() . '">' . PHP_EOL;
 	$event->outputEventCard();
 	echo "</div>\n";
 }
 ?>
 								</div>
 <?php
-$lessRecentEvents = array_slice($pastEvents, $indexOfFirstWithPhoto+NUMBER_OF_PAST_TO_SHOW, NUMBER_ADDITIONAL_PAST_TITLES);
+// Slice one less -- so the last one above gets repeated, so we can selectively show it if it got hidden above (when 2-up display)
+$lessRecentEvents = array_slice($pastEvents, $indexOfFirstWithPhoto+NUMBER_OF_PAST_TO_SHOW-1, NUMBER_ADDITIONAL_PAST_TITLES);
 if (count($lessRecentEvents))
 {
 ?>
 								<div class="inlinebox nobottom archive-intro">
 									<p style="padding:0.5em 0">Earlier:
 <?php
+$index = 0;
 foreach ($lessRecentEvents as $event)
 {
+	if (0 == $index) { echo '<span class="two-up-only">'; }
 	echo '<a href="' . $root . 'archive/' . $event->nameCode() . '">' . PHP_EOL;
 	$title = $event->title();
 	echo htmlspecialchars($title);
 	echo "</a>, \n";
+	if (0 == $index) { echo '</span>'; }
+	$index++;
 }
 
 
