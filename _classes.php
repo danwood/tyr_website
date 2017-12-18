@@ -76,9 +76,9 @@ class Event
 			'showLastDate');
 
 		$dateStatesForDebugging = $dateStates;
+		array_unshift($dateStatesForDebugging, 'STATE_UNANNOUNCED');
 		$dateStatesForDebugging[STATE_PAST_ARCHIVE] = 'STATE_PAST_ARCHIVE';
 		$dateStatesForDebugging[STATE_PAST_HIDE] = 'STATE_PAST_HIDE';
-		$dateStatesForDebugging[STATE_UNANNOUNCED] = 'STATE_UNANNOUNCED';
 
 		$bestStateMatch = STATE_UNANNOUNCED;
 		// $bestDateMatch = 0x7FFFFFFF;		// hang onto the date we matched, just in case later event is actually before it's supposed to
@@ -87,6 +87,7 @@ class Event
 			$thisDate = $this->{$key};
 			if ($thisDate)
 			{
+				error_log($key . ' = ' . date('c', $thisDate));
 				if ($now >= $thisDate)
 							// Assume date has time embedded if we want to not switch until time in that day?
 				{
@@ -94,13 +95,14 @@ class Event
 				}
 			}
 		}
+
+		if ($bestStateMatch == showLastDate) $bestStateMatch = STATE_PAST_ARCHIVE;
+
 		if ($staging) error_log('####### ' . $this->title . ' ' . $this->id . " best state: " . $bestStateMatch . ' ' . $dateStatesForDebugging[$bestStateMatch]);
 
 		$this->state = $bestStateMatch;
-
-		$canArchive = (!$this->isAnnounceOnlyType() && (!$this->isBackstageCampType() || !empty($this->photoFilename)) );		// FIXME: CONVOLUTED LOGIC!
-
 		// Fudge state if we shouldn't archive.
+		$canArchive = (!$this->isAnnounceOnlyType() && (!$this->isBackstageCampType() || !empty($this->photoFilename)) );		// FIXME: CONVOLUTED LOGIC!
 		if ($this->isPastArchiveState() && !$canArchive)
 		{
 			$this->state = STATE_PAST_HIDE;
@@ -297,10 +299,11 @@ class Event
 		return $event;
 	}
 
+	// State functions
 
-// // AFTER the announce date but BEFORE the state where we are ready so sign up... FUDGE SO THAT WE MOVE IT UP A WEEK BEFORE DATE.  REALLY NEEDS A SEPARATE STATE.
 	public function isComingSoonStates()
 	{
+		// AFTER the announce date but BEFORE the state where we are ready so sign up... FUDGE SO THAT WE MOVE IT UP A WEEK BEFORE DATE.  REALLY NEEDS A SEPARATE STATE.
 		global $now;
 		$result = $this->state >= announceDate
 				&& $this->state < signupStartDate
@@ -309,10 +312,8 @@ class Event
 		return $result;
 	}
 
-// Just before the signup date, up to the show last date
 	public function isUpcomingStates()			{ return $this->state >= announceDate && $this->state < showLastDate; }
 
-// Only one state for past (archived) events
 	public function isPastArchiveState()		{ return $this->state == STATE_PAST_ARCHIVE; }
 	public function isPastStates() 				{ return $this->state == STATE_PAST_ARCHIVE || $this->state == STATE_PAST_HIDE; }
 
@@ -324,6 +325,8 @@ class Event
 
 	public function isShowOpenTypes()			{ return $this->state >= showFirstDate && $this->state < showLastDate; }
 	public function isBeforeSignupTypes()		{ return $this->state < signupStartDate; }
+
+	// Type functions
 
 	public function isArchiveType()				{ return $this->type == TYPE_EVENT_ARCHIVE; }
 	public function isAnnounceOnlyType()		{ return $this->type == TYPE_EVENT_ANNOUNCE_ONLY; }
@@ -360,7 +363,6 @@ class Event
 
     // Other stuff
 
-// FIXME: Can we make this private?
 	public function nameCode()		// Calculate.
 	{
 		$eventYear = date('Y', $this->showFirstDate);
@@ -380,8 +382,6 @@ class Event
 		}
 		return $title;
 	}
-
-
 
 	public function outputSocialSharing($numberOfImagesForPinterest, $isAbsoluteURL = FALSE)
 	{
@@ -502,30 +502,25 @@ class Event
 		{
 			$date = smartDate('M Y', $this->showFirstDate);			// Date of performance, just month/year
 		}
-		else if ($this->isComingSoonStates())	// Date of performance NOT audition, month/year or, if 1/1, 4/1, 7/1, 10/1, the season.
+		else if ($this->isComingSoonStates())	// Show season, not actual date.
 		{
 			$dateInfo = getdate($this->showFirstDate);
-			if (   $dateInfo['mon' ] % 3 == 1	// 1, 4, 7, 10
-				&& $dateInfo['mday'] == 1 )
+			$seasonNumber = $this->season;
+			$seasons = array('Winter', 'Spring', 'Summer', 'Fall');		// All you have to do is call!
+			$season = $seasons[$seasonNumber];
+			$year = (integer) date('Y', $this->showFirstDate);
+			if (1 == $seasonNumber)	// Winter
 			{
-				$seasons = array('Winter', 'Spring', 'Summer', 'Fall');		// All you have to do is call!
-
-				$season = $seasons[($dateInfo['mon']-1)/3];
-				$year = (integer) date('Y', $this->showFirstDate);
-				if ($season == 'Winter')
-				{
-					$yearBefore = $year - 1;
-					$date = $season . ' ' . $yearBefore . '-' . ($year % 100);	// e.g. for 1/1/2016 we say Winter 2015-2016
-				}
-				else
-				{
-					$date =  $season . ' ' . $year;
-				}
+				$yearBefore = $year - 1;
+				$date = $season . ' ' . $yearBefore . '-' . ($year % 100);	// e.g. for 1/1/2016 we say Winter 2015-16
 			}
-			else	// Show range of months from rehearsal starting to performance
+			else
 			{
-				$date = smartDateRange($this->rehearsalStartDate, $this->showLastDate);
+				$date =  $season . ' ' . $year;
 			}
+			// ALTERNATE POSSIBILITY:
+			// Show range of months from rehearsal starting to performance
+			// $date = smartDateRange($this->rehearsalStartDate, $this->showLastDate);
 		}
 		else	// Need more specifics of what the date is.
 		{
@@ -546,7 +541,7 @@ class Event
 				}
 				else
 				{
-					$date = '';	// don't use actual date since the sign up end date is not right for staggared registration shows
+					$date = '';	// don't use actual date since the sign up end date is not right for staggeßred registration shows
 					// if ($this->signupEndDate)
 					// {
 					// 	$date = 'Register by ' . smartDate('M j', $this->signupEndDate);
