@@ -173,25 +173,25 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 	{
 		$hiddenEvents[] = $event;
 	}
-	else if ($event->isHiddenOrVisiblePastEvent())
+	else if ($event->isPastStates())
 	{
 		$allPastEvents[] = $event;	// Save all past events even if hidden
-		if ($event->isPastEvent())
+		if ($event->isPastArchiveState())
 		{
 			$pastEvents[] = $event;	// Usually we use just the archival events though
 		}
 		else
 		{
-//			if ($staging) { error_log("Not including hidden past event " . $event->id() . ' ' . $event->title()); }
+//			if ($staging) { error_log("Not including hidden past event " . $event->id . ' ' . $event->title); }
 		}
 	}
-	else if ($event->isComingSoonEvent())
+	else if ($event->isComingSoonStates())
 	{
 		$laterEvents[] = $event;
 	}
-	else if ($event->isUpcomingEvent())
+	else if ($event->isUpcomingStates())
 	{
-		if ($event->isBackstageCamp())
+		if ($event->isBackstageCampType())
 		{
 			$currentOther[] = $event;
 		}
@@ -205,23 +205,23 @@ while ($row = $ret->fetchArray(SQLITE3_ASSOC) ){
 		$unannouncedEvents[] = $event;
 	}
 
-	if (!empty($event->sliderArchiveFilename) && $event->isPastEvent()) {
+	if (!empty($event->sliderArchiveFilename) && $event->isPastArchiveState()) {
 		$path = 'slider_past/' . $event->getYear() . '/' . $event->sliderArchiveFilename;
 		$sliderInfo = array(
 			'filename' => $path,
 			'year' => $event->getYear(),
-			'title' => $event->title(),
-			'caption' => $event->title(),
+			'title' => $event->title,
+			'caption' => $event->title,
 			'link' => $event->link()
 			);
 		$sliderRecords[] = $sliderInfo;
 	}
-	if (!empty($event->sliderPromoFilename) && $event ->isUpcomingEvent()) {
+	if (!empty($event->sliderPromoFilename) && $event ->isUpcomingStates()) {
 		$path = 'slider_promo/' . $event->getYear() . '/' . $event->sliderPromoFilename;
 		$sliderInfo = array(
 			'filename' => $path,
 			'year' => $event->getYear(),
-			'title' => $event->title(),
+			'title' => $event->title,
 			'link' => $event->linkOrTicketURL()
 			);
 		// Put promo at the START of the array ... not really important if we are randomizing.
@@ -251,7 +251,7 @@ usort($allPastEvents,	array('Event', 'eventReverseCompare'));		// We want past e
 
 // 	foreach ($currentShows as $show)		// don't use ampersand here, there was a mysterious issue with the penultimate item in the array duplicated.
 // 	{
-// 		error_log($show->title() . ' ' . date(DATE_RSS, $show->showFirstDate) . ' ' . date(DATE_RSS, $show->showLastDate));
+// 		error_log($show->title . ' ' . date(DATE_RSS, $show->showFirstDate) . ' ' . date(DATE_RSS, $show->showLastDate));
 // 	}
 
 // 	error_log(count($currentOther) . " current others!");

@@ -33,7 +33,7 @@ if (count($currentShows) > 0)
 	{
 		// FIXME: Have a way to show video on Romeo and Juliet, anything else with a video
 
-		echo '<div class="inlinebox current-show" id="THECARD_' . $event->id() . '">' . PHP_EOL;
+		echo '<div class="inlinebox current-show" id="THECARD_' . $event->id . '">' . PHP_EOL;
 		$event->outputEventCard(TRUE, TRUE);
 		echo "</div>\n";
 	}
@@ -64,8 +64,8 @@ if (count($currentOther) > 0)
 
 	foreach ($currentOther as $event)
 	{
-if ($staging) error_log("... Current ... " . $event->title());
-		echo '<div class="inlinebox current-event" id="THECARD_' . $event->id() . '">' . PHP_EOL;
+if ($staging) error_log("... Current ... " . $event->title);
+		echo '<div class="inlinebox current-event" id="THECARD_' . $event->id . '">' . PHP_EOL;
 		$event->outputEventCard(TRUE, TRUE);
 		echo "</div>\n";
 	}
@@ -88,7 +88,7 @@ if (count($laterEvents) > 0)
 <?php
 foreach ($laterEvents as $event)
 {
-	echo '<div class="inlinebox later" id="THECARD_' . $event->id() . '">' . PHP_EOL;
+	echo '<div class="inlinebox later" id="THECARD_' . $event->id . '">' . PHP_EOL;
 	$event->outputEventCard(FALSE);
 	echo "</div>\n";
 }
@@ -137,7 +137,7 @@ if (count($noImageYetArray)) {
 			echo ', ';
 		}
 		$hasOutputYet = TRUE;
-		echo htmlspecialchars($noImageYetEvent->title()) . ' <i>(' . htmlspecialchars($noImageYetEvent->getCardLowerRightText()) . ')</i>';
+		echo htmlspecialchars($noImageYetEvent->title) . ' <i>(' . htmlspecialchars($noImageYetEvent->getCardLowerRightText()) . ')</i>';
 	}
 ?>
 										</p>
@@ -150,7 +150,7 @@ if (count($noImageYetArray)) {
 $mostRecentEvents = array_slice($pastEvents, $indexOfFirstWithPhoto, NUMBER_OF_PAST_TO_SHOW);
 foreach ($mostRecentEvents as $event)
 {
-	echo '<div class="inlinebox past-nine" id="THECARD_' . $event->id() . '">' . PHP_EOL;
+	echo '<div class="inlinebox past-nine" id="THECARD_' . $event->id . '">' . PHP_EOL;
 	$event->outputEventCard();
 	echo "</div>\n";
 }
@@ -170,7 +170,7 @@ foreach ($lessRecentEvents as $event)
 {
 	if (0 == $index) { echo '<span class="two-up-only">'; }
 	echo '<a href="' . $root . 'archive/' . $event->nameCode() . '">' . PHP_EOL;
-	$title = $event->title();
+	$title = $event->title;
 	echo htmlspecialchars($title);
 	echo "</a>, \n";
 	if (0 == $index) { echo '</span>'; }

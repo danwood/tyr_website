@@ -54,8 +54,8 @@ function outputList($eventArray, $headline)
 		echo '<div class="columnar">' . PHP_EOL;
 		foreach ($eventArray as $event)
 		{
-			echo '<p><a href="edit.php?id=' . $event->id() . '">' . htmlspecialchars($event->title());
-			if (empty($event->title())) {
+			echo '<p><a href="edit.php?id=' . $event->id . '">' . htmlspecialchars($event->title);
+			if (empty($event->title)) {
 				echo '[UNTITLED]';				// Make sure that untitled events can be seen here!
 			}
 			echo '</a></p>' . PHP_EOL;
@@ -87,11 +87,11 @@ foreach ($allPastEvents as $event)
 		echo '<div class="columnar">' . PHP_EOL;
 	}
 	echo '<p>';
-	if ($event->isPastEvent()) {
+	if ($event->isPastArchiveState()) {
 		echo '<b>';
 	}
-	echo '<a href="edit.php?id=' . $event->id() . '">' . htmlspecialchars($event->title()) . '</a>';
-	if ($event->isPastEvent()) {
+	echo '<a href="edit.php?id=' . $event->id . '">' . htmlspecialchars($event->title) . '</a>';
+	if ($event->isPastArchiveState()) {
 		echo '</b>';
 	}
 	echo '</p>' . PHP_EOL;

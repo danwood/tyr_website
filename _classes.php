@@ -90,7 +90,7 @@ class Event
 				if ($now >= $thisDate)
 							// Assume date has time embedded if we want to not switch until time in that day?
 				{
-					$bestStateMatch = array_search($key, $dateStates, TRUE) + 1 // add one to adjust for 1-based array
+					$bestStateMatch = array_search($key, $dateStates, TRUE) + 1; // add one to adjust for 1-based array
 				}
 			}
 		}
@@ -98,16 +98,16 @@ class Event
 
 		$this->state = $bestStateMatch;
 
-		$canArchive = (!$this->isAnnounceOnlyEvent() && (!$this->isBackstageCamp() || !empty($this->photoFilename)) );		// FIXME: CONVOLUTED LOGIC!
+		$canArchive = (!$this->isAnnounceOnlyType() && (!$this->isBackstageCampType() || !empty($this->photoFilename)) );		// FIXME: CONVOLUTED LOGIC!
 
 		// Fudge state if we shouldn't archive.
-		if ($this->isPastEvent() && !$canArchive)
+		if ($this->isPastArchiveState() && !$canArchive)
 		{
 			$this->state = STATE_PAST_HIDE;
 		}
 
 		// Set up URL based on state: past (archive), announced yet, regular upcoming.
-		if ($this->isPastEvent())
+		if ($this->isPastArchiveState())
 		{
 			$this->path = 'archive/' . $this->nameCode();
 			if (isset($_GET['when']))
@@ -115,7 +115,7 @@ class Event
 				$this->path .= '?when=' . $_GET['when'];
 			}
 		}
-		else if ($this->isComingSoonEvent())
+		else if ($this->isComingSoonStates())
 		{
 			$this->path = '';	// No special link; just home page.  We shouldn't actually link to it.
 		}
@@ -131,7 +131,7 @@ class Event
 		if ($staging) error_log($this->id . '  ' . $this->title . '     state: ' . $this->state . '   path: ' . $this->path);
    }
 
-    public $state;
+    private $state;
 	private $nameCode;	// special key we assign to look up an event by its year and name.  Precalculate for speed.
 	private $path;		// URL *path* for sharing and linking to the event
 
@@ -140,10 +140,10 @@ class Event
     //
     // TODO: FIGURE OUT HOW TO MAKE NEW ACCESSORS OR BRING MORE CODE INTO BEING METHODS, SO MORE PUBLIC METHODS CAN BE PRIVATE
 
-	private $id;						// Used to key other tables into this master table
-	private $title;					// Title for display
-	private $prefix;				//
-	private $suffix;				// suffix like "jr", probably in smaller font or something
+	public $id;						// Used to key other tables into this master table
+	public $title;					// Title for display
+	public $prefix;				//
+	public $suffix;				// suffix like "jr", probably in smaller font or something
 	public $storyOverview;
 	public $venue;
 	public $venueAddress;
@@ -166,7 +166,7 @@ class Event
 	public $castList;				// Fill this in to show who got cast.  Goes away after rehearsal start date **
 
 	public $tuition;				// human-readable dollars
-	private $ticketURL;				// URL to buy tickets (otherwise free show?)
+	public $ticketURL;				// URL to buy tickets (otherwise free show?)
 	public $photoURLs;				// URLs of photo albums for a show, after the run is over
 	public $videoURLs;				//
 	public $publicityAttachment;	// downloadable PDF that parents can print out for a show that is ready for ticketing
@@ -248,7 +248,7 @@ class Event
 		global $events;
 		foreach ($events as $event)
 		{
-			if (0 + $event->id() == 0 + $eventID)
+			if (0 + $event->id == 0 + $eventID)
 			{
 				return $event;
 			}
@@ -283,13 +283,13 @@ class Event
 		{
 			$event = Event::getEventByID(0 + $_POST['id']);
 		}
-		if ( $event && $mustBeArchive && !$event->isPastEvent() )
+		if ( $event && $mustBeArchive && !$event->isPastArchiveState() )
 		{
 			//error_log("Nullifying non-past event");
 			$event = NULL;
 		}
 		// error_log("event ended up being " . print_r($event, 1));
-		// if ($event && !$mustBeArchive && !$event->isUpcomingEvent() )
+		// if ($event && !$mustBeArchive && !$event->isUpcomingStates() )
 		// {
 		// 	error_log("Nullifying non-past mustNotBeArchive event");
 		// 	$event = NULL;
@@ -299,53 +299,49 @@ class Event
 
 
 // // AFTER the announce date but BEFORE the state where we are ready so sign up... FUDGE SO THAT WE MOVE IT UP A WEEK BEFORE DATE.  REALLY NEEDS A SEPARATE STATE.
-	public function isComingSoonEvent()
+	public function isComingSoonStates()
 	{
 		global $now;
-		$result = $this->state > announceDate
-				&& $this->state <= signupStartDate
+		$result = $this->state >= announceDate
+				&& $this->state < signupStartDate
 				&& ($now < $this->signupStartDate - (86400 * 7) ) ;
 		// error_log($this->title . ' coming soon? ' . $result);
 		return $result;
 	}
 
 // Just before the signup date, up to the show last date
-	public function isUpcomingEvent()		{ return $this->state > announceDate && $this->state <= showLastDate; }
+	public function isUpcomingStates()			{ return $this->state >= announceDate && $this->state < showLastDate; }
 
 // Only one state for past (archived) events
-	public function isPastEvent()			{ return $this->state == STATE_PAST_ARCHIVE; }
-	public function isHiddenOrVisiblePastEvent() { return $this->state == STATE_PAST_ARCHIVE || $this->state == STATE_PAST_HIDE; }
+	public function isPastArchiveState()		{ return $this->state == STATE_PAST_ARCHIVE; }
+	public function isPastStates() 				{ return $this->state == STATE_PAST_ARCHIVE || $this->state == STATE_PAST_HIDE; }
 
-	public function isDuringSignup()		{ return $this->state > signupStartDate && $this->state <= signupEndDate; }
-	public function isBeforeRehearsal()		{ return $this->state > signupStartDate && $this->state <= rehearsalStartDate; }
-	public function isAfterSignup()			{ return ($this->signupEndDate ? $this->state > signupEndDate : $this->state >= rehearsalStartDate); }
+	public function isSignupStates()			{ return $this->state >= signupStartDate && $this->state < signupEndDate; }
+	public function isBeforeRehearsalStates()	{ return $this->state >= signupStartDate && $this->state < rehearsalStartDate; }
+	public function isAfterSignupStates()		{ return ($this->signupEndDate ? $this->state >= signupEndDate : $this->state >= rehearsalStartDate); } // FIXME: LAST COMPARISON OK?
 
-	public function isSellingTickets()		{ return ($this->ticketSaleDate > 0) && ($this->state > ticketSaleDate && $this->state <= showLastDate); }
+	public function isTicketingStates()			{ return ($this->ticketSaleDate > 0) && ($this->state >= ticketSaleDate && $this->state < showLastDate); }
 
-	public function isArchiveEvent()		{ return $this->type == TYPE_EVENT_ARCHIVE; }
-	public function isAnnounceOnlyEvent()	{ return $this->type == TYPE_EVENT_ANNOUNCE_ONLY; }
-	public function isSpecialEvent()		{ return $this->type == TYPE_EVENT_ARCHIVE || $this->type == TYPE_EVENT_ANNOUNCE_ONLY; }
-	public function isShow()				{ return $this->type == TYPE_AUDITION_SHOW || $this->type == TYPE_CLASS_SHOW || $this->type == TYPE_COMBO_SHOW; }
-	public function isAuditionShow()		{ return $this->type == TYPE_AUDITION_SHOW || $this->type == TYPE_COMBO_SHOW; }
-	public function isBackstageCamp()		{ return $this->type == TYPE_BACKSTAGE_CAMP; }		// Gets put in a separate list from regular shows
+	public function isShowOpenTypes()			{ return $this->state >= showFirstDate && $this->state < showLastDate; }
+	public function isBeforeSignupTypes()		{ return $this->state < signupStartDate; }
 
-	public function shouldShowLogo()		{ return $this->isUpcomingEvent() 	&& !empty($this->logoFilename) && !$this->isBackstageCamp(); }
-	public function shouldShowLogoPNG()		{ return $this->shouldShowLogo() && pathinfo($this->logoFilename, PATHINFO_EXTENSION) == 'png'; }
-	public function shouldShowPhoto()		{ return $this->isPastEvent()		&& !empty($this->photoFilename); }
-	public function photoFilename()			{ return $this->photoFilename; }
+	public function isArchiveType()				{ return $this->type == TYPE_EVENT_ARCHIVE; }
+	public function isAnnounceOnlyType()		{ return $this->type == TYPE_EVENT_ANNOUNCE_ONLY; }
+	public function isSpecialEventTypes()		{ return $this->type == TYPE_EVENT_ARCHIVE || $this->type == TYPE_EVENT_ANNOUNCE_ONLY; }
+	public function isShowTypes()				{ return $this->type == TYPE_AUDITION_SHOW || $this->type == TYPE_CLASS_SHOW || $this->type == TYPE_COMBO_SHOW; }
+	public function isAuditionShowTypes()		{ return $this->type == TYPE_AUDITION_SHOW || $this->type == TYPE_COMBO_SHOW; }
+	public function isBackstageCampType()		{ return $this->type == TYPE_BACKSTAGE_CAMP; }		// Gets put in a separate list from regular shows
 
-	public function getYear()				{ $dateComponents = getdate($this->showFirstDate); return $dateComponents["year"]; }
+	public function shouldShowLogo()			{ return $this->isUpcomingStates() 	&& !empty($this->logoFilename) && !$this->isBackstageCampType(); }
+	public function shouldShowLogoPNG()			{ return $this->shouldShowLogo() && pathinfo($this->logoFilename, PATHINFO_EXTENSION) == 'png'; }
+	public function shouldShowPhoto()			{ return $this->isPastArchiveState()		&& !empty($this->photoFilename); }
+	public function photoFilename()				{ return $this->photoFilename; }
 
-	public function title() { return $this->title; }
-	public function prefix() { return $this->prefix; }
-	public function suffix() { return $this->suffix; }
-	public function id() { return $this->id; }
-
-	public function ticketURL() { return $this->ticketURL; }
+	public function getYear() { $dateComponents = getdate($this->showFirstDate); return $dateComponents["year"]; }
 
 	public function link() { global $urlBase; return $urlBase . $this->path; }
 
-	public function linkOrTicketURL() { return ($this->isSellingTickets() && $this->ticketURL()) ? $this->ticketURL() : $this->link();  }
+	public function linkOrTicketURL() { return ($this->isTicketingStates() && $this->ticketURL) ? $this->ticketURL : $this->link();  }
 
 	public function matchesFromPhotoFilename()
 	{
@@ -394,11 +390,11 @@ class Event
 
 		$sourceRoot = $isAbsoluteURL ? $urlBase : $root;
 
-		$isUpcoming = $this->isUpcomingEvent();
+		$isUpcoming = $this->isUpcomingStates();
 		$upcomingOrRecent = $isUpcoming ? 'Upcoming' : 'Recent';
 		$upcomingOrArchive = $isUpcoming ? 'upcoming' : 'archive';
 
-		$headline = $upcomingOrRecent . ' ' . ($this->isSpecialEvent() ? 'event' : 'show');
+		$headline = $upcomingOrRecent . ' ' . ($this->isSpecialEventTypes() ? 'event' : 'show');
 
 		// <!-- Should be pre-populated with name of show, but the URL to share should be the signup page. -->
 
@@ -453,16 +449,16 @@ class Event
 		$href = $this->path;
 		$text = 'More Info';
 
-		if ($this->isSellingTickets())
+		if ($this->isTicketingStates())
 		{
-			if ($this->ticketURL())
+			if ($this->ticketURL)
 			{
-				$href = $this->ticketURL();
+				$href = $this->ticketURL;
 				$text = 'Buy Tickets';
 			}
 			else
 			{
-				if ($this->isSpecialEvent())
+				if ($this->isSpecialEventTypes())
 				{
 					$text = 'Event Info';
 				}
@@ -472,9 +468,9 @@ class Event
 				}
 			}
 		}
-		else if ($this->isDuringSignup())
+		else if ($this->isSignupStates())
 		{
-			if (!$this->isAuditionShow())
+			if (!$this->isAuditionShowTypes())
 			{
 				$text = 'Sign Up';
 			}
@@ -490,7 +486,7 @@ class Event
 	public function getCardLowerLeftText()
 	{
 		$caption = '';
-		if (!$this->isPastEvent())
+		if (!$this->isPastArchiveState())
 		{
 			$caption = $this->whoCanGo;
 		}
@@ -502,11 +498,11 @@ class Event
 		global $staging;
 
 		$date = '';
-		if ($this->isPastEvent())
+		if ($this->isPastArchiveState())
 		{
 			$date = smartDate('M Y', $this->showFirstDate);			// Date of performance, just month/year
 		}
-		else if ($this->isComingSoonEvent())	// Date of performance NOT audition, month/year or, if 1/1, 4/1, 7/1, 10/1, the season.
+		else if ($this->isComingSoonStates())	// Date of performance NOT audition, month/year or, if 1/1, 4/1, 7/1, 10/1, the season.
 		{
 			$dateInfo = getdate($this->showFirstDate);
 			if (   $dateInfo['mon' ] % 3 == 1	// 1, 4, 7, 10
@@ -534,12 +530,12 @@ class Event
 		else	// Need more specifics of what the date is.
 		{
 			if ($staging) error_log($this->id . " Not past or later During? "
-				. $this->isDuringSignup()
-				. " After? " . $this->isAfterSignup());
-			if ($this->isDuringSignup())
+				. $this->isSignupStates()
+				. " After? " . $this->isAfterSignupStates());
+			if ($this->isSignupStates())
 			{
 				if ($staging) error_log($this->id . " during signup");
-				if ($this->isAuditionShow())
+				if ($this->isAuditionShowTypes())
 				{
 					if ($staging) error_log("Yes, audition show...");
 					if ($this->auditionDateTime1)
@@ -561,16 +557,16 @@ class Event
 					// }
 				}
 			}
-			else if ($this->isAfterSignup())
+			else if ($this->isAfterSignupStates())
 			{
 				if ($staging) error_log($this->id . " after signup");
-				if ($this->isSpecialEvent())
+				if ($this->isSpecialEventTypes())
 				{
 					$date = smartDateRange($this->showFirstDate, $this->showLastDate, ' & ');
 				}
-				else if (!$this->isBackstageCamp())
+				else if (!$this->isBackstageCampType())
 				{
-					if ($this->state > showFirstDate)
+					if ($this->isShowOpenTypes())
 					{
 						$date = 'Closing ' . smartDate('M j', $this->showLastDate);
 					}
@@ -602,7 +598,7 @@ class Event
 	public function getCardClasses()
 	{
 		$result = array();
-		$result[]  = $this->isSpecialEvent() ? 'event-card' : 'show-card';
+		$result[]  = $this->isSpecialEventTypes() ? 'event-card' : 'show-card';
 
 		if  ($this->shouldShowPhoto())
 		{
@@ -616,9 +612,9 @@ class Event
 			$result[] = ((!$this->shouldShowPhoto() && !$showLogo) || $showLogoPNG) ? 'later-gradient' : '';
 
 			$statusString = 'show';
-			if ($this->isComingSoonEvent()) 	$statusString = 'later';
-			else if ($this->isPastEvent()) 		$statusString = 'past';
-			else if ($this->isBackstageCamp())	$statusString = 'other';
+			if ($this->isComingSoonStates()) 	$statusString = 'later';
+			else if ($this->isPastArchiveState()) 		$statusString = 'past';
+			else if ($this->isBackstageCampType())	$statusString = 'other';
 
 			$result[] = ' equalize-' . $statusString;
 		}
@@ -659,7 +655,7 @@ class Event
 		}
 
 		$actuallyLink = $link;
-		if ($this->isPastEvent() && !$this->shouldShowPhoto())
+		if ($this->isPastArchiveState() && !$this->shouldShowPhoto())
 		{
 			$actuallyLink = FALSE;		// don't link archive shows that don't have photos yet
 		}
@@ -694,12 +690,12 @@ class Event
 		}
 		else	// Text card, but might have mini-logo in corner
 		{
-			if ($this->isBackstageCamp() && $this->logoFilename)
+			if ($this->isBackstageCampType() && $this->logoFilename)
 			{
 				echo '<img class="miniicon" src="' . $root . 'shows/logo/' . $this->getYear() . '/' . htmlspecialchars($this->logoFilename) . '" '
 					. 'alt = "' . htmlspecialchars($this->title . ': ' . htmlspecialchars($this->infoIfNoLogo)) . '" />' . PHP_EOL;
 			}
-			if ($this->isPastEvent() && !$this->shouldShowPhoto())
+			if ($this->isPastArchiveState() && !$this->shouldShowPhoto())
 			{
 				echo '<div class="card-text">Archive coming soon!</div>' . PHP_EOL;
 			}
@@ -717,7 +713,7 @@ class Event
 		{
 			echo '</a>' . PHP_EOL;
 		}
-		if ($this->isUpcomingEvent())
+		if ($this->isUpcomingStates())
 		{
 			if ($includeActionButton)
 			{
@@ -747,7 +743,7 @@ class Event
 
 
 
-		if (!$this->isAfterSignup())
+		if (!$this->isAfterSignupStates())
 		{
 			if (!empty($this->whoCanGo))
 			{
@@ -764,7 +760,7 @@ class Event
 			{
 				echo '<p><b>Tuition:</b> ' . htmlspecialchars($this->tuition) . '</p>' . PHP_EOL;
 			}
-			if ($this->isAuditionShow())
+			if ($this->isAuditionShowTypes())
 			{
 				echo '<p><b>Audition:</b> ';
 				if ($this->auditionDateTime1)
@@ -824,7 +820,7 @@ class Event
 					echo $html;
 				}
 
-				if ($this->isBeforeRehearsal())
+				if ($this->isBeforeRehearsalStates())
 				{
 					$castList = trim($this->castList);
 					if ($castList)
@@ -843,7 +839,7 @@ class Event
 			}
 			else
 			{
-				if (!$this->isSpecialEvent())
+				if (!$this->isSpecialEventTypes())
 				{
 					if ($this->signupEndDate)
 					{
@@ -861,12 +857,12 @@ class Event
 			if ($this->classDays || $this->startTime || $this->endTime || $this->rehearsalStartDate)
 			{
 				echo '<p><b>';
-				echo $this->isBackstageCamp() ? 'Camp Days' : 'Rehearsals';
+				echo $this->isBackstageCampType() ? 'Camp Days' : 'Rehearsals';
 				echo ':</b> ';
 
 				if ($this->rehearsalStartDate)
 				{
-					if ($this->isBackstageCamp())
+					if ($this->isBackstageCampType())
 					{
 						echo date('F j', $this->rehearsalStartDate) . ' - ' . date('F j', $this->showLastDate);
 					}
@@ -918,11 +914,11 @@ class Event
 		}
 		else
 		{
-			if (!$this->isSpecialEvent())	// Not a special event; make it clear that registration is over.
+			if (!$this->isSpecialEventTypes())	// Not a special event; make it clear that registration is over.
 			{
 				echo '<p><b>Registration:</b> Registration is over.</p>' . PHP_EOL;
 			}
-			if ($this->isBeforeRehearsal())
+			if ($this->isBeforeRehearsalStates())
 			{
 				// Redundant?  Hmm....
 				//
@@ -939,7 +935,7 @@ class Event
 
 			// Special events will probably not have signups, so they will end up here.
 			//
-			if ($this->isSpecialEvent())		// For special events with no signup deadline, BUT with a signup attachment.
+			if ($this->isSpecialEventTypes())		// For special events with no signup deadline, BUT with a signup attachment.
 			{
 				// Just show the attachment, and let the descriptionBefore explain it.
 				//
@@ -961,7 +957,7 @@ class Event
 	// Now show performance dates
 
 
-		if (!$this->isBackstageCamp())
+		if (!$this->isBackstageCampType())
 		{
 
 			$time = date(' g:i A', $this->showFirstDate);
@@ -1005,19 +1001,19 @@ class Event
 
 
 
-			if (!$this->isSpecialEvent()) $datePrompt = 'Performance ' . $datePrompt;
+			if (!$this->isSpecialEventTypes()) $datePrompt = 'Performance ' . $datePrompt;
 
 			echo '<p><b>' . $datePrompt . ':</b> ' . $date . '</p>' . PHP_EOL;
 
 			if (!empty($this->performanceInfo))
 			{
-				if (!$this->isSpecialEvent()) echo '<p><b>Performances:</b></p>' . PHP_EOL;
+				if (!$this->isSpecialEventTypes()) echo '<p><b>Performances:</b></p>' . PHP_EOL;
 				$html = Markdown::defaultTransform($this->performanceInfo);
 				echo $html;
 			}
 			else
 			{
-				// if (!$this->isSpecialEvent()) echo '<p><b>Performances:</b> TBA</p>' . PHP_EOL;
+				// if (!$this->isSpecialEventTypes()) echo '<p><b>Performances:</b> TBA</p>' . PHP_EOL;
 			}
 		}
 
@@ -1036,20 +1032,20 @@ class Event
 		}
 
 
-		if ($this->isSellingTickets())
+		if ($this->isTicketingStates())
 		{
-			if ($this->ticketURL())
+			if ($this->ticketURL)
 			{
-				echo '<p><b>Tickets:</b> &nbsp; <a class="button" href="' . $this->ticketURL() . '">Buy Tickets</a></p>' . PHP_EOL;
+				echo '<p><b>Tickets:</b> &nbsp; <a class="button" href="' . $this->ticketURL . '">Buy Tickets</a></p>' . PHP_EOL;
 			}
 		}
 
-		if ($this->state <= signupStartDate)
+		if ($this->isBeforeSignupTypes())
 		{
 			echo "<p><b>Registration will open " . date('F j', $this->signupStartDate) . "</b></p>\n";
 		}
 
-		if (!$this->isSellingTickets())		// Don't show calendar if we are now selling tickets; too much clutter
+		if (!$this->isTicketingStates())		// Don't show calendar if we are now selling tickets; too much clutter
 		{
 			$googleCalendarURL = trim($this->googleCalendarURL);
 			if ($googleCalendarURL)
@@ -1145,12 +1141,12 @@ scrolling="no"></iframe>
 		echo '<meta property="og:title" content="' . $fullTitle . '">' . PHP_EOL;
 
 		$fullDescription = '';
-		if ($this->isPastEvent())
+		if ($this->isPastArchiveState())
 		{
 			// Past events should be gallery card to show off our images.
 			$fullDescription = 'See photos from TYR’s ' . htmlspecialchars($this->title);
 		}
-		else if ($this->isUpcomingEvent())
+		else if ($this->isUpcomingStates())
 		{
 			$fullDescription = htmlspecialchars($this->title) . ': ' . $this->descriptionBefore;
 		}

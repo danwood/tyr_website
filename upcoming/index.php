@@ -24,8 +24,8 @@ if (!$event)
 $base='';
 $root='../';
 
-$title = 'Tomorrow Youth Rep Upcoming: ' . $event->title();
-$description='Find out about "' . $event->title() . ',"" put on by TYR in Alameda, CA';
+$title = 'Tomorrow Youth Rep Upcoming: ' . $event->title;
+$description='Find out about "' . $event->title . ',"" put on by TYR in Alameda, CA';
 
 include('../_head.php');
 ?>
@@ -123,7 +123,7 @@ if ($event->similarEventID) {
 				if ($movieInstead) continue;		// don't show movie here
 
 				echo '<img class="similar-photo" src="' . $root . 'shows/photo/' . $similarEvent->getYear() . '/' . $base . ($i+1) . '.' . $extension . '" ';
-				echo 'alt="' . htmlspecialchars($similarEvent->title() . ' photo ' . ($i+1)) . '">';
+				echo 'alt="' . htmlspecialchars($similarEvent->title . ' photo ' . ($i+1)) . '">';
 				if ($i+1 >= $stopIndex) {
 					echo PHP_EOL;
 					break;
@@ -145,7 +145,7 @@ if ($event->similarEventID) {
 	$event->outputEventCurrentBlurb();
 
 	// Special case for Romeo and Juliet
-	if ($event->id() == 510)
+	if ($event->id == 510)
 	{
 ?>
 <div class='youtube-container'>
@@ -188,7 +188,7 @@ if ($event->similarEventID) {
 				if ($movieInstead) continue;		// don't show movie here
 
 				echo '<img class="similar-photo" src="' . $root . 'shows/photo/' . $similarEvent->getYear() . '/' . $base . ($i+1) . '.' . $extension . '" ';
-				echo 'alt="' . htmlspecialchars($similarEvent->title() . ' photo ' . ($i+1)) . '">';
+				echo 'alt="' . htmlspecialchars($similarEvent->title . ' photo ' . ($i+1)) . '">';
 				if ($i+1 >= $stopIndex) {
 					echo PHP_EOL;
 					break;
@@ -197,7 +197,7 @@ if ($event->similarEventID) {
 ?>
 						</div>
 						<div class="inlinebox">
-							<p>Photos from TYR's <?php echo htmlspecialchars($similarEvent->getYear()); ?> production of <a href="<?php echo htmlspecialchars($similarEvent->link()); ?>"><?php echo htmlspecialchars($similarEvent->title()); ?></a></p>
+							<p>Photos from TYR's <?php echo htmlspecialchars($similarEvent->getYear()); ?> production of <a href="<?php echo htmlspecialchars($similarEvent->link()); ?>"><?php echo htmlspecialchars($similarEvent->title); ?></a></p>
 						</div>
 <?php
 		}

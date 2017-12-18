@@ -24,7 +24,7 @@ if (!$event)
 <head>
 <?php
 
-$title='Tomorrow Youth Rep — ' . $event->title();
+$title='Tomorrow Youth Rep — ' . $event->title;
 $description='Tomorrow Youth Rep is an educational theater program based in Alameda, CA, offering after-school classes and camps for youths of all experience levels.';
 
 include('../_head.php');
@@ -65,14 +65,14 @@ include('../_header.php'); ?>
 if ($event->logoFilename) {
 	echo '<div style="float:right; margin-bottom:1em;">' . PHP_EOL;
 	echo '<img style="max-width:150px;" src="/shows/logo/' . $event->getYear() . '/' . htmlspecialchars($event->logoFilename) . '" '
-				. 'alt = "' . htmlspecialchars($event->title() . ' Logo') . '" />' . PHP_EOL;
+				. 'alt = "' . htmlspecialchars($event->title . ' Logo') . '" />' . PHP_EOL;
 	echo '</div>' . PHP_EOL;
 }
 ?>
 									<h2>
-										<div class="suffix"><?php echo htmlspecialchars($event->prefix()); ?></div>
-										<?php echo htmlspecialchars($event->title()); ?>
-										<span class="suffix"><?php echo htmlspecialchars($event->suffix()); ?></span>
+										<div class="suffix"><?php echo htmlspecialchars($event->prefix); ?></div>
+										<?php echo htmlspecialchars($event->title); ?>
+										<span class="suffix"><?php echo htmlspecialchars($event->suffix); ?></span>
 									</h2>
 <?php
 if ($event->storyOverview) {
@@ -131,7 +131,7 @@ else
 {
 ?>
 										<img class="full-block" src="<?php echo $root . 'shows/photo/' . $event->getYear() . '/' . $base . ($i+1) . '.' . $extension; ?>"
-											alt="<?php echo htmlspecialchars($event->title() . ' photo ' . ($i+1)); ?>">
+											alt="<?php echo htmlspecialchars($event->title . ' photo ' . ($i+1)); ?>">
 
 
 <?php
@@ -139,7 +139,7 @@ else
 	{
 ?>
 											<a href="<?php echo $root . 'shows/photo/' . $event->getYear() . '/original/' . $base . ($i+1) . '.' . $extension; ?>"
-												title="<?php echo htmlspecialchars($event->title()); ?>"
+												title="<?php echo htmlspecialchars($event->title); ?>"
 												rel="enclosure"></a>
 
 <?php
@@ -148,7 +148,7 @@ else
 	{
 ?>
 											<a href="<?php echo $root . 'shows/photo/' . $event->getYear() . '/' . $base . ($i+1) . '.' . $extension; ?>"
-												title="<?php echo htmlspecialchars($event->title()); ?>"
+												title="<?php echo htmlspecialchars($event->title); ?>"
 												rel="enclosure"></a>
 
 <?php

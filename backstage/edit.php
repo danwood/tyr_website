@@ -272,7 +272,7 @@ $('#<?php echo htmlspecialchars($sqlColumn); ?>_container').html(contentHTML);
 
 }
 if ($event) {
-	echo '<p>(ID of this event: ' . $event->id();
+	echo '<p>(ID of this event: ' . $event->id;
 	if ($event ->type == TYPE_GROUP) {
 		echo '. <b>Use this ID for individual shows under this grouping.</b>';
 	}
@@ -303,7 +303,7 @@ showEditor('infoIfNoLogo', 'TEXT',           'Short Blurb', 'Text shown if no lo
 
 if ($event) {
 
-if ($event->isAuditionShow()) {
+if ($event->isAuditionShowTypes()) {
 	showEditor('parentEventID', 'INTEGER',                'ID of Show Grouping event', 'If this show is part of a Show Grouping, e.g. "A Mysterious Mainstage" enter that ID here.', SIZE_TINY, 4);
 }
 
@@ -326,7 +326,7 @@ showEditor('descriptionBefore', 'TEXT',      'Recruiting description', 'General 
 <h4>Logo File</h4>
 <p>File should be about 3:2 aspect ratio like an old TV, 544 pixels wide (or wider).  Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> file.
 </p>
-<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=logo&amp;property=logoFilename"></iframe>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=logo&amp;property=logoFilename"></iframe>
 
 <?php
 
@@ -354,14 +354,14 @@ showEditor('similarEventID', 'INTEGER',                'Previous TYR production'
 	</tr>
 </table>
 <p>File:</p>
-<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=recruiting&amp;property=similarImageFilename"></iframe>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=recruiting&amp;property=similarImageFilename"></iframe>
 
 
 
 <h4>Signup Attachment</h4>
 <p>Something that parents can download to help them sign their kids up. Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span>, <span class="extension">.png</span>, <span class="extension">.pdf</span>, or <span class="extension">.mp3</span> file.
 </p>
-<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=signup&amp;property=signupAttachment"></iframe>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=signup&amp;property=signupAttachment"></iframe>
 <?php
 
 showEditor('performanceInfo', 'TEXT',        'Performance Info', 'Details on when and where performances are', SIZE_MULTILINE, 0, MARKDOWN_TRUE);
@@ -390,11 +390,11 @@ showEditor('ticketURL', 'TEXT',              'Ticket URL', 'URL at Brown Paper T
 <h4>Publicity Attachment</h4>
 <p>Usually a poster that people can print out and display or email. Please have a simple web-friendly name (letters and numbers, no spaces). Can be <span class="extension">.jpg</span> or <span class="extension">.png</span> or <span class="extension">.pdf</span> file.
 </p>
-<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=poster&amp;property=publicityAttachment"></iframe>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=poster&amp;property=publicityAttachment"></iframe>
 <h4>Promotional Slider Graphic</h4>
 <p>An image rotated on the home page promoting the show's upcoming performance. Should be 1932 × 822 in size, and tighly compressed <span class="extension">.jpg</span> file.
 </p>
-<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=slider_promo&amp;property=sliderPromoFilename"></iframe>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=slider_promo&amp;property=sliderPromoFilename"></iframe>
 
 <?php
 
@@ -420,12 +420,12 @@ The first four images are the most important, and will be rotated in as thumbnai
 </p>
 </div>
 
-<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=photo&amp;multiple=multiple&amp;property=photoFilename"></iframe>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=photo&amp;multiple=multiple&amp;property=photoFilename"></iframe>
 
 <h4>Promotional Slider Graphic</h4>
 <p>An image rotated on the home page with a showcase photo of TYR's best performances. Only set this for a dozen or so total shows. Should be 1932 × 822 in size, and tighly compressed <span class="extension">.jpg</span> file.
 </p>
-<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id()); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=slider_past&amp;property=sliderArchiveFilename"></iframe>
+<iframe class="uploader" src="edit_uploader.php?id=<?php echo htmlspecialchars($event->id); ?>&amp;year=<?php echo htmlspecialchars(date('Y', $event->showFirstDate)); ?>&amp;type=slider_past&amp;property=sliderArchiveFilename"></iframe>
 
 <?php
 }		// end of TYPE_GROUP check
@@ -447,7 +447,7 @@ showEditor('rehearsalStartDate', 'DATETIME', 'Rehearsal start', 'Rehearsals unde
 showEditor('ticketSaleDate', 'DATETIME',     'Ticket sale date', 'Tickets now available.  If no tickets for sale, shows a countdown timer to first performance; click for cast details.');
 
 ?>
-<input type="hidden" name="id" value="<?php echo htmlspecialchars($event->id()); ?>" />
+<input type="hidden" name="id" value="<?php echo htmlspecialchars($event->id); ?>" />
 <?php
 }
 else

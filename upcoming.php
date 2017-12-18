@@ -18,10 +18,10 @@ $event = Event::getSpecifiedEvent(FALSE);		// want an upcoming event
 $base='';
 $root='';
 
-$title = $event ? 'Tomorrow Youth Rep Upcoming: ' . $event->title() : 'Tomorrow Youth Rep Upcoming Shows and Events';
+$title = $event ? 'Tomorrow Youth Rep Upcoming: ' . $event->title : 'Tomorrow Youth Rep Upcoming Shows and Events';
 if ($event)
 {
-	$description='Find out about upcoming shows and events, like "' . $event->title() . ',"" put on by TYR in Alameda, CA';
+	$description='Find out about upcoming shows and events, like "' . $event->title . ',"" put on by TYR in Alameda, CA';
 }
 else
 {
@@ -138,7 +138,7 @@ include('_header.php'); ?>
 <?php
 foreach ($currentShows as $event)
 {
-	if (!$event->isSellingTickets()) {
+	if (!$event->isTicketingStates()) {
 		echo '<div class="card">' . PHP_EOL;
 		$event->outputEventCard(TRUE, TRUE);
 	echo "</div>\n";
@@ -149,7 +149,7 @@ foreach ($currentShows as $event)
 
 foreach ($currentOther as $event)
 {
-	if (!$event->isSellingTickets()) {
+	if (!$event->isTicketingStates()) {
 		echo '<div class="card">' . PHP_EOL;
 		$event->outputEventCard(TRUE, TRUE);
 	echo "</div>\n";
