@@ -96,21 +96,22 @@ define ('NUMBER_ADDITIONAL_PAST_TITLES', 3);
 define ('MAX_NUMBER_TO_SHOW_ON_ARCHIVES', 9);
 
 
+define('STATE_UNANNOUNCED',					0);			// It's before announcement date
 define('STATE_PAST_ARCHIVE',				98);		// Show is in the past; display in archive sections
 define('STATE_PAST_HIDE',					99);		// Show is in the past; don't show.
 
 // We need numbers because we are doing range calculations!
 
-define('announceDate',        0);
-define('signupStartDate',     1);
-define('auditionDateTime1',   2);
-define('auditionDateTime2',   3);
-define('callbackDateTime',    4);
-define('signupEndDate',       5);
-define('rehearsalStartDate',  6);
-define('ticketSaleDate',      7);
-define('showFirstDate',       8);
-define('showLastDate',        9);
+define('announceDate',        1);
+define('signupStartDate',     2);
+define('auditionDateTime1',   3);
+define('auditionDateTime2',   4);
+define('callbackDateTime',    5);
+define('signupEndDate',       6);
+define('rehearsalStartDate',  7);
+define('ticketSaleDate',      8);
+define('showFirstDate',       9);
+define('showLastDate',        10);
 
 
 

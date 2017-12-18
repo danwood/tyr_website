@@ -64,7 +64,7 @@ class Event
 		// Other initialization
 
 		$dateStates = array(
-			'announceDate',
+			'announceDate',		// Careful, this correponds to 1 enum
 			'signupStartDate',
 			'auditionDateTime1',
 			'auditionDateTime2',
@@ -78,30 +78,29 @@ class Event
 		$dateStatesForDebugging = $dateStates;
 		$dateStatesForDebugging[STATE_PAST_ARCHIVE] = 'STATE_PAST_ARCHIVE';
 		$dateStatesForDebugging[STATE_PAST_HIDE] = 'STATE_PAST_HIDE';
+		$dateStatesForDebugging[STATE_UNANNOUNCED] = 'STATE_UNANNOUNCED';
 
-
-		$bestStateMatch = STATE_PAST_ARCHIVE;
-		$bestDateMatch = 0x7FFFFFFF;		// hang onto the date we matched, just in case later event is actually before it's supposed to
-		// NEW approach -- loop through time events and try to figure out which state we are based on that.
+		$bestStateMatch = STATE_UNANNOUNCED;
+		// $bestDateMatch = 0x7FFFFFFF;		// hang onto the date we matched, just in case later event is actually before it's supposed to
 		foreach ($dateStates as $key)
 		{
 			$thisDate = $this->{$key};
 			if ($thisDate)
 			{
-				if ($now < $thisDate && $thisDate < $bestDateMatch)			// Assume date has time embedded if we want to not switch until time in that day?
+				if ($now >= $thisDate)
+							// Assume date has time embedded if we want to not switch until time in that day?
 				{
-					$bestStateMatch = array_search($key, $dateStates, TRUE);
-					$bestDateMatch = $thisDate;
+					$bestStateMatch = array_search($key, $dateStates, TRUE) + 1 // add one to adjust for 1-based array
 				}
 			}
 		}
-//		if ($staging) error_log('####### ' . $this->title . ' ' . $this->id . " best state: " . $bestStateMatch . ' ' . $dateStatesForDebugging[$bestStateMatch]);
+		if ($staging) error_log('####### ' . $this->title . ' ' . $this->id . " best state: " . $bestStateMatch . ' ' . $dateStatesForDebugging[$bestStateMatch]);
 
 		$this->state = $bestStateMatch;
 
 		$canArchive = (!$this->isAnnounceOnlyEvent() && (!$this->isBackstageCamp() || !empty($this->photoFilename)) );		// FIXME: CONVOLUTED LOGIC!
 
-		// Fudge state if we shouldn't archive.  FIXME: USE A REAL STATE INSTEAD
+		// Fudge state if we shouldn't archive.
 		if ($this->isPastEvent() && !$canArchive)
 		{
 			$this->state = STATE_PAST_HIDE;
@@ -129,7 +128,7 @@ class Event
 			}
 		}
 
-//	if ($staging) error_log($this->id . '  ' . $this->title . '     state: ' . $this->state . '   path: ' . $this->path);
+		if ($staging) error_log($this->id . '  ' . $this->title . '     state: ' . $this->state . '   path: ' . $this->path);
    }
 
     public $state;
