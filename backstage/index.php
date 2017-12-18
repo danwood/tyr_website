@@ -45,6 +45,8 @@ include('../_header.php'); ?>
 
 <p>Advanced: <a href="<?php echo $root; ?>phpliteadmin.php">Direct database admin</a> (requires separate password).</p>
 
+<p>Advanced: <a href="<?php echo $root; ?>reload.php">Rebuild the web pages</a> (needed after changing the HTML).</p>
+
 						<section id="payment" class="clearfix capped-width">
 							<div class="inlinebox">
 								<h3>Configure <a href="<?php echo $root; ?>pay">Payment Page</a></h3>
