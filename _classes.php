@@ -415,7 +415,7 @@ class Event
 
 		if ($numberOfImagesForPinterest)
 		{
-			echo '<span style="padding-left:8px; position:relative; top:7px; ">';
+			echo '<span style="padding-left:8px; position:relative; top:0px; ">';
 			if ($numberOfImagesForPinterest > 1)
 			{
 				// "Any Image" picker, from http://business.pinterest.com/widget-builder/
