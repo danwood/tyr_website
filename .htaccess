@@ -1,12 +1,6 @@
-# TEMP FOR LOCAL STAGING, UNTIL I COME UP WITH BETTER PHP -> HTML LOADING
-# TEMP -- I COMMENTED OUT THE suPHP_ConfigPath
-
-RewriteEngine On
-# RewriteRule    ^(.+)\.html$    $1.php    [NC,L]
-
 # Use a local configuration for PHP to allow ‘exec’ to be used (for image processing)
 # --- PAY ATTENTION TO PATH; DIFFERENT BETWEEN STAGING AND PUBLIC SITE
-# suPHP_ConfigPath /home/ichgof/public_html
+suPHP_ConfigPath /home/ichgof/public_html
 
 # Set a header to help Internet Explorer know this is a modern site. Done here instead of a meta tag, to avoid w3c validation warnings
 Header set X-UA-Compatible "IE=edge,chrome=1"
@@ -22,24 +16,22 @@ Header set X-Robots-Tag "noindex"
 # Don’t let people peek in the directories
 options -Indexes
 
-# Serve jpeg-2000 correctly (limited browser suport though)
-AddType image/jpeg2000 .jp2
 
-# Shortcuts
+# Shortcuts so hand-entered URLs will be easier to enter
 
-Redirect Permanent /payment  http://tomorrowyouthrep.org/payment.html
-Redirect Permanent /Payment  http://tomorrowyouthrep.org/payment.html
-Redirect Permanent /pay.html http://tomorrowyouthrep.org/payment.html
-
-
-Redirect Permanent /pay  http://tomorrowyouthrep.org/payment.html
-Redirect Permanent /Pay  http://tomorrowyouthrep.org/payment.html
+Redirect Permanent /payment			http://tomorrowyouthrep.org/payment.php
+Redirect Permanent /payment			http://tomorrowyouthrep.org/payment.php
+Redirect Permanent /pay.html		http://tomorrowyouthrep.org/payment.php
+Redirect Permanent /payment.html	http://tomorrowyouthrep.org/payment.php
+Redirect Permanent /pay				http://tomorrowyouthrep.org/payment.php
+Redirect Permanent /Pay				http://tomorrowyouthrep.org/payment.php
 
 Redirect Permanent /donate  http://tomorrowyouthrep.org/donate.html
 Redirect Permanent /Donate  http://tomorrowyouthrep.org/donate.html
 
 # Fix some name changes so that old bookmarks will still work
 
+Redirect Permanent /backstage.php /backstage/
 Redirect Permanent /archive/2014-fourth-of-july-parade http://tomorrowyouthrep.org/archive/fourth-of-july-parade-2014
 Redirect Permanent /archive/2013-july-4th-parade http://tomorrowyouthrep.org/archive/fourth-of-july-parade-2013
 
@@ -47,10 +39,8 @@ Redirect Permanent /archive/2013-july-4th-parade http://tomorrowyouthrep.org/arc
 # We need to do some URL rewriting
 RewriteEngine on
 
-# Parse old requests for “upcoming.html” with an ID param to go to the event page now
-RewriteCond %{QUERY_STRING} id=(.*)
-RewriteRule ^upcoming.html(.?)$                 /upcoming/$2 [R,NE,L]
-
+# Parse requests for “upcoming.html” as a request for the upcoming.php file, just so visitors don’t have to see the “.php” extension.
+RewriteRule ^upcoming.html(.?)$                 /upcoming.php$1 [NE,L]
 
 # Parse requests in the “archive” directory as the “name” parameter passed to the archive.php page. This allows us to have virtual URLs that are bookmarkable and don’t look messy.
 RewriteRule ^archive/([0-9a-z-]+)$   /archive/archive.php?name=$1 [NE,L]
@@ -86,9 +76,23 @@ ErrorDocument 502 /ApacheError.php
 ErrorDocument 503 /ApacheError.php
 ErrorDocument 504 /ApacheError.php
 ErrorDocument 505 /ApacheError.php
-ErrorDocument 508 /ApacheError.php
 
-
+# Fix "www." requests to go to the non-www site
 RewriteBase /
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# Cache a bunch of resources; much is unlikely to change once it's set.
+
+ExpiresActive On
+ExpiresDefault "access plus 5 minutes"
+ExpiresByType image/jpg "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/gif "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType text/css "access plus 1 year"
+ExpiresByType application/pdf "access plus 1 year"
+ExpiresByType application/javascript "access plus 1 year"
+ExpiresByType text/x-javascript "access plus 1 year"
+ExpiresByType application/x-shockwave-flash "access plus 1 year"
+ExpiresByType image/x-icon "access plus 1 year"
