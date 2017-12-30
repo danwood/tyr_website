@@ -1,11 +1,7 @@
 
 *.sublime-workspace
-
-cache/cache.0.csv
-
 *.scssc
 *.html
-*.command
 /config.codekit3
 /config.codekit
 backup.*.sqlite3
