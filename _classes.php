@@ -733,10 +733,25 @@ class Event
 		if (!empty($this->suffix)) { echo ' <span class="suffix">' . htmlspecialchars($this->suffix) . '</span>'; }
 	 	echo '</h3>' . PHP_EOL;
 
+		if ($this->storyOverview || $this->credits) {
+				echo '<div class="storybox">' . PHP_EOL;
+		}
+		if ($this->storyOverview) {
+
+				$html = Markdown::defaultTransform($this->storyOverview);
+				echo $html;
+		}
+		if ($this->credits) {
+
+				$html = Markdown::defaultTransform($this->credits);
+				echo $html;
+		}
+		if ($this->storyOverview || $this->credits) {
+				echo '</div>' . PHP_EOL;
+		}
+
 		$html = Markdown::defaultTransform($this->descriptionBefore);
 		echo $html;
-
-
 
 		if (!$this->isAfterSignupStates())
 		{
@@ -1040,20 +1055,18 @@ class Event
 			echo "<p><b>Registration will open " . date('F j', $this->signupStartDate) . "</b></p>\n";
 		}
 
-		if (!$this->isTicketingStates())		// Don't show calendar if we are now selling tickets; too much clutter
+		$googleCalendarURL = trim($this->googleCalendarURL);
+		if ($googleCalendarURL)
 		{
-			$googleCalendarURL = trim($this->googleCalendarURL);
-			if ($googleCalendarURL)
+			echo '<p><a href="' . htmlspecialchars($googleCalendarURL) . '">Schedule — Google Calendar</a>';
+
+			$matched = preg_match('/src=(.+)&/', $googleCalendarURL, $matches);
+			if ($matched)
 			{
-				echo '<p><a href="' . htmlspecialchars($googleCalendarURL) . '">Schedule — Google Calendar</a>';
+				$fragment = $matches[1];
+				$iCalURL = 'webcal://www.google.com/calendar/ical/' . $fragment . '/public/basic.ics';
 
-				$matched = preg_match('/src=(.+)&/', $googleCalendarURL, $matches);
-				if ($matched)
-				{
-					$fragment = $matches[1];
-					$iCalURL = 'webcal://www.google.com/calendar/ical/' . $fragment . '/public/basic.ics';
-
-					echo '&nbsp;&nbsp;&nbsp; <a style="color:#ddd" href="' . $iCalURL . '">[iCalendar Subscription Link]</a></p>' . PHP_EOL;
+				echo '&nbsp;&nbsp;&nbsp; <a style="color:#ddd" href="' . $iCalURL . '">[iCalendar Subscription Link]</a></p>' . PHP_EOL;
 
 ?>
 <!-- Responsive iFrame http://themeloom.com/2013/02/tips-embed-google-maps-and-calendars-in-a-responsive-wordpress-theme/ -->
@@ -1071,14 +1084,14 @@ frameborder="0"
 scrolling="no"></iframe>
 </div>
 <?php
-				}
-				else
-				{
-					// Problem, but at least we have the URL, so we've output that.  End paragraph.
-					echo "</p>\n";
-				}
+			}
+			else
+			{
+				// Problem, but at least we have the URL, so we've output that.  End paragraph.
+				echo "</p>\n";
 			}
 		}
+
 	}
 
 

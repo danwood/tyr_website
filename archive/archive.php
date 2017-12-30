@@ -79,7 +79,11 @@ if ($event->storyOverview) {
 
 		$html = Markdown::defaultTransform($event->storyOverview);
 		echo $html;
+}
+if ($event->credits) {
 
+		$html = Markdown::defaultTransform($event->credits);
+		echo $html;
 }
 ?>
 								</div>
