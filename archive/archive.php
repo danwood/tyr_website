@@ -85,6 +85,12 @@ if ($event->credits) {
 		$html = Markdown::defaultTransform($event->credits);
 		echo $html;
 }
+if ($event->castList) {
+
+		$html = Markdown::defaultTransform($event->castList);
+		echo $html;
+}
+
 ?>
 								</div>
 								<div> <!-- similar elements together, for nth-child -->
