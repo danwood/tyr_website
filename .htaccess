@@ -1,6 +1,8 @@
 # Use a local configuration for PHP to allow ‘exec’ to be used (for image processing)
 # --- PAY ATTENTION TO PATH; DIFFERENT BETWEEN STAGING AND PUBLIC SITE
+<IfModule mod_suphp.c>
 suPHP_ConfigPath /home/ichgof/public_html
+</IfModule>
 
 # Set a header to help Internet Explorer know this is a modern site. Done here instead of a meta tag, to avoid w3c validation warnings
 Header set X-UA-Compatible "IE=edge,chrome=1"
