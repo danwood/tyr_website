@@ -70,7 +70,7 @@ include('_header.php'); ?>
 							<div class="inlinebox">
 								<h3 style="clear:both">What We Do</h3>
 								<p>
-								 	<img style="-webkit-transform: rotate(3deg); transform: rotate(3deg);" class="snapshot floated opposite large-block" alt="Circle of kids running through a script at Narnia rehearsal" src="<?php echo htmlspecialchars($root); ?>img/misc-group-rehearsal.jpg" />
+								 	<img style="-webkit-transform: rotate(3deg); transform: rotate(3deg);" class="snapshot floated opposite large-block" alt="rehearsing an action sequence in a Shrek production" src="<?php echo htmlspecialchars($root); ?>img/shrek-rehearsal-square.jpg" />
 								  Tomorrow Youth Repertory currently runs several weekly theater production classes every fall and spring, at a variety of locations in Alameda, CA.  Many classes begin just as school lets out, and TYR is an excellent activity that keeps kids both entertained and challenged.  Most of our classes are associated with a production, and at the end of the class term (generally somewhere around 10-12 weeks) the kids get to perform their show for friends and family, with lights, sets, costumes, and the full magic of theater.
 								</p>
 								<p>

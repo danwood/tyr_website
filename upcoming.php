@@ -120,7 +120,7 @@ include('_header.php'); ?>
 							</div>
 							<div class="inlinebox third down">
 								<div class="bigger-right">
-									<img class="snapshot snapshot1 fullwidth" alt="Amy Marie warms up students with a game of 'zip zap zop'" src="img/misc-warmup-game.jpg" />
+									<img class="snapshot snapshot1 fullwidth" alt="Outdoor games in between rehearsals" src="img/outdoor-fun.jpg" />
 								</div>
 							</div>
 							<div class="inlinebox third front">
@@ -128,7 +128,11 @@ include('_header.php'); ?>
 							</div>
 							<div class="inlinebox third down">
 								<div class="bigger-left">
-									<img class="snapshot snapshot3 fullwidth" alt="having fun for the camera" src="img/misc-crazy-fun.jpg" />
+									<img class="snapshot snapshot3 fullwidth" alt="Angelica, Eliza, and Peggy" src="img/The-Schuyler-Sisters.jpg"
+										onmouseover="this.src='img/The-Schuyler-Sisters2.jpg';"
+										onmouseout="this.src='img/The-Schuyler-Sisters.jpg';" />
+
+/>
 								</div>
 							</div>
 							<div class="inlinebox nobottom"><h2>Upcoming TYR Shows, Classes, Camps</h2></div>
@@ -180,7 +184,7 @@ If you have any questions, please contact <a href="mailto:programs@tomorrowyouth
 							</div>
 
 							<div class="inlinebox third down front">
-								<img class="snapshot snapshot4 fullwidth" alt="Staging a sequence from a musical number in Phantom Tollbooth" src="img/misc-staging.jpg" />
+								<img class="snapshot snapshot4 fullwidth" alt="The cast reviewing their bios and photos online" src="img/reviewing-cast-photos.jpg" />
 							</div>
 							<div class="inlinebox third">
 								<div class="bigger-left bigger-right">
@@ -188,7 +192,7 @@ If you have any questions, please contact <a href="mailto:programs@tomorrowyouth
 								</div>
 							</div>
 							<div class="inlinebox third down front">
-								<img class="snapshot snapshot6 fullwidth" alt="Tyler works the lights" src="img/misc-lights.jpg" />
+								<img class="snapshot snapshot6 fullwidth" alt="Creating a costume at camp" src="img/costume-creation.jpg" />
 							</div>
 
 						</section>
