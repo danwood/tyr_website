@@ -86,14 +86,16 @@ include('_header.php'); ?>
 								</p>
 								<p>
 									<img class="snapshot floated medium-block opposite" alt="Tyler getting kids ready to go on stage" src="<?php echo htmlspecialchars($root); ?>img/misc-tyler-conducting.jpg" />
-									By partnering with some creative forces, such as TonyaMarie of <a href="http://gypsycatstudios.com/">Gypsy Cat Studios</a> and some dynamite parent and teen <a href="volunteer.<?php echo htmlspecialchars(currentExtension()); ?>">volunteers</a>, we are one of the few youth theater programs that is committed to providing a full theater experience for our students.  We don’t just help kids learn to act and sing, we want them to feel the true magic of the artform.  And for this reason we put great effort into the sets, costumes, and other elements of theater that make these shows come alive.  We believe we have some of the very best designers in the area, and we are so proud to be able to offer this level of quality to our students.
+
+									We also strive to provide for students a "full theater experience", and for this reason we put great effort into the sets, costumes, and other elements of theater that make these shows come alive. By partnering with very talented designers as well as with some dynamite parent and teen
+									<a href="volunteer.<?php echo htmlspecialchars(currentExtension()); ?>">volunteers</a>,
+									we strive to not only teach kids to act and sing, but to feel the true magic of the art form AND (just as importantly) to appreciate just how many different forces come together to tell a story. We teach that all of the different contributors (Designers, Builders, Volunteers, Custodians, etc) are important and deserve as much respect as the most visible member of a production. At TYR, we believe we have some of the very best designers in the area, and we are so proud to be able to offer a high level of quality to our students and to give them a wider lens with which to appreciate all that is around them.
 								</p>
 
 								<p style="clear:all">
 									TYR is a 501(c)(3) non-profit organization.  <a href="donate.<?php echo htmlspecialchars(currentExtension()); ?>">Donations</a> are tax-deductible. The current board of directors of TYR are:
 								</p>
 								<ul>
-									<li>Howard Clowes</li>
 									<li>Alisha Woo</li>
 									<li>Amy Marie Haven</li>
 									<li>Jordan Best</li>
