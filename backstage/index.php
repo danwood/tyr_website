@@ -71,13 +71,24 @@ $values = read_config();
 			<tr><td colspan="2"><hr /></td></tr>
 
 		<tr><td colspan="2"><input type="checkbox" name="payment_tshirt"
-			<?php if ($values['payment_tshirt']) echo "checked "; ?> /> T-Shirt</td></tr>
+			<?php if ($values['payment_tshirt']) echo "checked "; ?> /> T-Shirt (Mainstage)</td></tr>
 		<tr><th>Show Name</th><td><input name="payment_tshirt_name"
 			value="<?php echo htmlspecialchars($values['payment_tshirt_name']) ?>" /></td></tr>
 		<tr><th>Color</th><td><input name="payment_tshirt_color"
 			value="<?php echo htmlspecialchars($values['payment_tshirt_color']) ?>" /></td></tr>
 		<tr><th>Style</th><td><input type="checkbox" name="payment_tshirt_twosided"
 			<?php if ($values['payment_tshirt_twosided']) echo "checked "; ?> /> Two-Sided Design</td></tr>
+
+			<tr><td colspan="2"><hr /></td></tr>
+
+		<tr><td colspan="2"><input type="checkbox" name="payment_tshirt2"
+			<?php if ($values['payment_tshirt2']) echo "checked "; ?> /> T-Shirt (All-experiences)</td></tr>
+		<tr><th>Show Name</th><td><input name="payment_tshirt2_name"
+			value="<?php echo htmlspecialchars($values['payment_tshirt2_name']) ?>" /></td></tr>
+		<tr><th>Color</th><td><input name="payment_tshirt2_color"
+			value="<?php echo htmlspecialchars($values['payment_tshirt2_color']) ?>" /></td></tr>
+		<tr><th>Style</th><td><input type="checkbox" name="payment_tshirt2twosided"
+			<?php if ($values['payment_tshirt2_twosided']) echo "checked "; ?> /> Two-Sided Design</td></tr>
 
 			<tr><td colspan="2"><hr /></td></tr>
 

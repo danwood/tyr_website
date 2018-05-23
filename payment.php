@@ -140,7 +140,7 @@ You can order multiple shirts if you want — pick a size and add to cart, then
 go "back" to this page to add additional shirts to your cart.
 </p>
 <p>
-There are two main styles:  Ladies (trimmer cut, with a V-neck) and Youth/Adult (unisex).
+There are two styles:  Ladies (trimmer cut, with a V-neck) and Youth/Adult (unisex).
 </p>
 
 <p>
@@ -168,6 +168,78 @@ Shirt will be
 	<option value="Adult - M">Adult - M $10.00 USD</option>
 	<option value="Adult - L">Adult - L $10.00 USD</option>
 	<option value="Adult - XL">Adult - XL $10.00 USD</option>
+</select> </td></tr>
+</table>
+<input type="hidden" name="currency_code" value="USD">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+
+
+
+							</div>
+						</section>
+
+<?php
+}
+
+if ($payment_tshirt2) {
+?>
+
+						<section class="clearfix capped-width">
+							<div class="inlinebox">
+
+
+
+
+<h3><?php echo htmlspecialchars($payment_tshirt2_name); ?> T-Shirt</h3>
+
+<?php
+if (!$payment_tshirt) {	// don't show intro text if already introduced above
+?>
+<p>
+Cast members, buy a shirt for yourself, and extras for your family!
+</p>
+<p>
+You can order multiple shirts if you want — pick a size and add to cart, then before you check out,
+go "back" to this page to add additional shirts to your cart.
+</p>
+
+<?php
+}
+?>
+
+<p>
+There are two styles:  Youth and Adult (unisex).
+</p>
+
+
+<p>
+Shirt will be
+<?php
+	echo htmlspecialchars($payment_tshirt2_color);
+	if ($payment_tshirt2_twosided) {
+		echo ", with design on the front and the back";
+	}
+?>.
+</p>
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="B879PTRVMWLWW">
+<table>
+<tr><td><input type="hidden" name="on0" value="Sizes">Sizes</td></tr><tr><td><select name="os0">
+	<option value="Youth - Small">Youth - Small $10.00 USD</option>
+	<option value="Youth - Medium">Youth - Medium $10.00 USD</option>
+	<option value="Youth - Large">Youth - Large $10.00 USD</option>
+	<option value="Youth - XL">Youth - XL $10.00 USD</option>
+	<option value="Adult - Small">Adult - Small $10.00 USD</option>
+	<option value="Adult - Medium">Adult - Medium $10.00 USD</option>
+	<option value="Adult - Large">Adult - Large $10.00 USD</option>
+	<option value="Adult - XL">Adult - XL $10.00 USD</option>
+	<option value="Adult - 2XL">Adult - 2XL $10.00 USD</option>
 </select> </td></tr>
 </table>
 <input type="hidden" name="currency_code" value="USD">

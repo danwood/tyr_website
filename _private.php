@@ -25,4 +25,9 @@ $payment_tshirt_twosided = TRUE;
 $payment_tshirt_name = 'XXX';
 $payment_tshirt_color = 'XXX';
 
+$payment_tshirt2 = FALSE;
+$payment_tshirt2_twosided = TRUE;
+$payment_tshirt2_name = 'XXX';
+$payment_tshirt2_color = 'XXX';
+
 ?>
