@@ -85,10 +85,13 @@ include('_header.php'); ?>
 									</div>
 
 									<div class="inlinebox bio row">
-										<p class="desc"><img alt="David Moore" class="thumbnail floated-tight" src="img/staff-tania.jpg" /><span class="person">Tania Johnson</span> <span class="title">(Instructor)</span>: A recipient of the 2014 Theatre Bay Area Award for Outstanding Music Direction for her work on <i>Always…Patsy Cline!</i> at Altarena Playhouse, Tania loves using all aspects of her musical and theatrical training to help young people develop their artistic voices. She is active in the musical theatre classes at Alameda High and St. Joseph's High. Most recently she was music director at Coastal Repertory in Half Moon Bay. At Berkeley Playhouse, Tania was conductor for <i>Peter Pan</i> as well as music director for many Conservatory productions. Other recent music director projects include the Altarena, Redwood High School, Youth Musical Theatre Company and Bay Area Children's Theatre. As an actor, Tania has performed with many companies including SF Playhouse, 42nd Street Moon, and TheatreWorks. Tania holds a B.A. in music from U.C Berkeley where she was founding music director of BareStage.
-										</p>
 
 										<p class="desc"><!--<img alt="Will Norman" class="thumbnail floated-tight" src="img/staff-will.jpg" />--><span class="person">Will Norman</span> <span class="title">(Instructor)</span> is a veteran multi-instrumentalist who has been teaching with TYR since 2013. He can be found playing in any number of bands, or arranging kids in “shells” and teaching them to “cheat out” while fending off the “Sherlock” kids who somehow were told that he was ticklish.</p>
+
+
+										<p class="desc"><img alt="Will Norman" class="thumbnail floated-tight" src="img/staff-cienna.jpg" /><span class="person">Cienna Johnson</span> <span class="title">(Instructor)</span>  graduated from San Diego State University in 2018 with a degree in Theatre Performance and a minor in Communications.  Her most recent work in college includes Julius Caesar and Octavius in an all-female production of Julius Caesar, Nemasani in Anon(ymous), and Teresa de la Rosa in Anna in the Tropics.  Cienna has been immersed in theatre since the age of 13.  She was a youth actor and intern for many TYR productions, and is ecstatic to be back as an instructor.  Cienna is looking forward to sharing the experience of storytelling with creative young artists.</p>
+
+										<p class="desc"><!--<img alt="Will Norman" class="thumbnail floated-tight" src="img/staff-will.jpg" />--><span class="person">Danny Botello</span> <span class="title">(Instructor)</span> is excited to be back once again this summer with TYR, after having taught the "Hamilton" class the past two years. A performer with extensive dance, music, and circus art experience, Danny is happy to be working with so many enthusiastic and talented students.</p>
 
 
 									</div>
@@ -151,6 +154,9 @@ include('_header.php'); ?>
 									<div class="inlinebox bio">
 										<p class="desc"><img alt="Sylvia Burboeck" class="thumbnail floated-tight" src="img/staff-sylvia.jpg" /><span class="person">Sylvia Burboeck</span> <span class="title">(Instructor)</span>  is relatively new to TYR, but not to the wonderful and magical world of theatre. She has been a Bay Area actor for over 20 years, and holds a BA in Theatre from Tulane University. When not helping to bring stories and characters to life, Sylvia is also a Certified Yoga Instructor, with over 15 years of teaching experience. 
 										</p>
+
+										<p class="desc"><span class="person">Gabby Smith</span> <span class="title">(Instructor)</span> is very excited to be a part of the TYR teaching staff. She has been able to try her hand in many aspects of theater, including performing, set building, costume design, stage management, sound, and assisting in staging and choreography. Having been a performer and intern in many past TYR shows, she is thrilled to continue working with this wonderful group. She is currently attending Azusa Pacific University for a major in Theater Arts and minor in Entrepreneurship.</p>
+
 									</div>
 
 
