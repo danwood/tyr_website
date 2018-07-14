@@ -4,6 +4,11 @@ require_once('../_functions.php');
 require_once('../_classes.php');
 require_once('../_globals.php');
 
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+	echo "Error: must be loaded as part of a form submission, not loaded separately.";
+	die;
+}
+
 $inputs = $_POST;
 unset($inputs['submit']);
 

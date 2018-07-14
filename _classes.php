@@ -87,7 +87,7 @@ class Event
 			$thisDate = $this->{$key};
 			if ($thisDate)
 			{
-				error_log($key . ' = ' . date('c', $thisDate));
+				// error_log($key . ' = ' . date('c', $thisDate));
 				if ($now >= $thisDate)
 							// Assume date has time embedded if we want to not switch until time in that day?
 				{
