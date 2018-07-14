@@ -49,10 +49,10 @@ h3 { color:#000; background-color:#F88; padding:0.3em 0.2em;}
 .source {
 	background:pink;
 	width:100%;
+	height:10em;
     unicode-bidi: embed;
     font-family: monospace;
     white-space: pre-wrap;
-    display: none;
 }
 a.wym_wymeditor_link { display:none !important;}
 .wym_classes { display:none !important;}
@@ -501,6 +501,9 @@ showEditor('showLastDate', 'DATETIME',       'Closing/Final date', 'Last perform
 <script src="<?php echo $root; ?>wymeditor/jquery.wymeditor.min.js"></script>
 
 <script>
+
+// Hide all the '.source' divs if scripting is on, which means that if scripting is off, we can see the markdown source and edit it!
+$('.source').css("display","none");
 
 var date = new Date();
 $('.datepicker').datepicker({
