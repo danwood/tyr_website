@@ -506,7 +506,9 @@ class Event
 		{
 			$dateInfo = getdate($this->showFirstDate);
 			$seasonNumber = $this->season;
-			$seasons = array('Winter', 'Spring', 'Summer', 'Fall');		// All you have to do is call!
+			// Just in case it's weird number, clamp value!
+			if ($seasonNumber > 4) $seasonNumber = 4;
+			$seasons = array('Winter', 'Spring', 'Summer', 'Fall', '');		// All you have to do is call!
 			$season = $seasons[$seasonNumber];
 			$year = (integer) date('Y', $this->showFirstDate);
 			if (1 == $seasonNumber)	// Winter
