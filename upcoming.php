@@ -169,7 +169,10 @@ foreach ($currentOther as $event)
 Tomorrow Youth Repertory offers limited need-based scholarships for all of our programs.  We believe that a child should not be excluded from participating in TYR due to financial hardship.  The Scholarship application can be obtained by emailing us at <a href="mailto:programs@tomorrowyouthrep.org">programs@tomorrowyouthrep.org</a>.  Please note that the completed scholarship application must be submitted prior to start of the first class/rehearsal or, in the case of our audition-only productions, at the time the performer accepts a role.
 </p>
 <p>
-If you are interested in applying for a scholarship, we recommend that you register for your class online using the ACTIVE registration program first.  You should use the "SCHOLARSHIP" Coupon Code during check out.  You will be asked to submit a 10% deposit to hold your spot in the class.
+If you are interested in applying for a scholarship, we recommend that you register for your class online using the ACTIVE registration program first (All-XP productions). You should use the "SCHOLARSHIP" Coupon Code during check out. You will be asked to submit a 10% deposit to hold your spot in the class. If interested in TYR Shakes and Mainstage shows, use the appropriate Google Forms for registration.
+</p>
+<p>
+Also, starting Fall 2019, TYR will offer a Sibling Scholarship.  For families with 2 or more children participating in a production, you may apply for a $50 discount off of tuition.
 </p>
 <p>
 If you have any questions, please contact <a href="mailto:programs@tomorrowyouthrep.org">programs@tomorrowyouthrep.org</a>.
