@@ -208,7 +208,7 @@ if ($event->similarEventID) {
 						<section class="clearfix capped-width pullbottom">
 							<div class="inlinebox">
 								<p>
-									<a href="/upcoming.html/#scholarship">TYR Scholarship Policy</a>
+									<a href="/upcoming.html#scholarship">TYR Scholarship Policy</a>
 								</p>
 							</div>
 						</section>
