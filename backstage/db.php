@@ -43,7 +43,7 @@ include('../_header.php'); ?>
 							<div class="inlinebox">
 
 
-<p><a href="../">« Backstage</a></p>
+<p><a href="./">« Backstage</a></p>
 <p>&#10133; <a href="edit.php"><b>Add a show or event</b></a></p>
 <?php
 

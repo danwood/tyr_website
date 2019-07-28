@@ -9,18 +9,6 @@ include('_globals.php');		// This should rebuild the globals, so we don't have O
 // Set this global so that we get the right file extension on links to main pages.
 $isRebuilding = true;
 
-function startsWith($haystack, $needle)
-{
-     $length = strlen($needle);
-     return (substr($haystack, 0, $length) === $needle);
-}
-
-function endsWith($string, $test) {
-    $strlen = strlen($string);
-    $testlen = strlen($test);
-    if ($testlen > $strlen) return false;
-    return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
-}
 
 // Files to re-build from PHP into HTML
 

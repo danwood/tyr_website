@@ -72,7 +72,7 @@ include('_header.php'); ?>
 										<p class="desc"><img alt="Jordan Best" class="thumbnail floated-tight" src="img/staff-jordan.jpg" /><span class="person">Jordan Best</span> <span class="title">(Development Director / Instructor)</span> has a Master of Music Degree in Vocal Performance from CCM in Cincinnati, one of the country's top music conservatories, and a Bachelor of Music Degree, also in Vocal Performance, from DePaul University in Chicago, IL.  She has performed extensively in opera and musical theater throughout the Bay Area and US as well as in France and Italy. Ms. Best has a background in ballet, tap, Stanislavsky and Meisner method acting training and has performed in numerous concerts, recitals and benefits.  She has taught privately since 2006 and has a private vocal studio which includes both children and adults. She has worked as a voice teacher, musical director, music teacher and choreographer throughout the Bay Area since 2007 and is currently co-producer of 142 Throckmorton Theater's <i>Little Throck</i> Program and director of their high school Accapella group <i>Throckapella</i>.</p>
 
 
-										<p class="desc"><!--<img alt="Melanie O’Reilly" class="thumbnail floated-tight" src="img/staff-melanie.jpg" />--><span class="person">Melanie O’Reilly</span> <span class="title">(Instructor)</span> is an experienced vocal teacher and musician, with too many tours and groups under her belt to name. She is glad to work with such fun and talented students.</p>
+										
 
 									</div>
 
@@ -86,12 +86,11 @@ include('_header.php'); ?>
 
 									<div class="inlinebox bio row">
 
-										<p class="desc"><!--<img alt="Will Norman" class="thumbnail floated-tight" src="img/staff-will.jpg" />--><span class="person">Will Norman</span> <span class="title">(Instructor)</span> is a veteran multi-instrumentalist who has been teaching with TYR since 2013. He can be found playing in any number of bands, or arranging kids in “shells” and teaching them to “cheat out” while fending off the “Sherlock” kids who somehow were told that he was ticklish.</p>
 
 
-										<p class="desc"><img alt="Will Norman" class="thumbnail floated-tight" src="img/staff-cienna.jpg" /><span class="person">Cienna Johnson</span> <span class="title">(Instructor)</span>  graduated from San Diego State University in 2018 with a degree in Theatre Performance and a minor in Communications.  Her most recent work in college includes Julius Caesar and Octavius in an all-female production of Julius Caesar, Nemasani in Anon(ymous), and Teresa de la Rosa in Anna in the Tropics.  Cienna has been immersed in theatre since the age of 13.  She was a youth actor and intern for many TYR productions, and is ecstatic to be back as an instructor.  Cienna is looking forward to sharing the experience of storytelling with creative young artists.</p>
+										<p class="desc"><img alt="Cienna Johnson" class="thumbnail floated-tight" src="img/staff-cienna.jpg" /><span class="person">Cienna Johnson</span> <span class="title">(Instructor)</span>  graduated from San Diego State University in 2018 with a degree in Theatre Performance and a minor in Communications.  Her most recent work in college includes Julius Caesar and Octavius in an all-female production of Julius Caesar, Nemasani in Anon(ymous), and Teresa de la Rosa in Anna in the Tropics.  Cienna has been immersed in theatre since the age of 13.  She was a youth actor and intern for many TYR productions, and is ecstatic to be back as an instructor.  Cienna is looking forward to sharing the experience of storytelling with creative young artists.</p>
 
-										<p class="desc"><!--<img alt="Will Norman" class="thumbnail floated-tight" src="img/staff-will.jpg" />--><span class="person">Danny Botello</span> <span class="title">(Instructor)</span> is excited to be back once again this summer with TYR, after having taught the "Hamilton" class the past two years. A performer with extensive dance, music, and circus art experience, Danny is happy to be working with so many enthusiastic and talented students.</p>
+										<p class="desc"><!--<img alt="______" class="thumbnail floated-tight" src="img/staff-will.jpg" />--><span class="person">Danny Botello</span> <span class="title">(Instructor)</span> is excited to be back once again this summer with TYR, after having taught the "Hamilton" class the past two years. A performer with extensive dance, music, and circus art experience, Danny is happy to be working with so many enthusiastic and talented students.</p>
 
 
 									</div>
@@ -136,24 +135,17 @@ include('_header.php'); ?>
 									</div>
 
 									<div class="inlinebox bio">
-										<p class="desc"><img alt="Rob Williamson" class="thumbnail floated-tight" src="img/staff-robw.jpg" /><span class="person">Rob Williamson</span> <span class="title">(Instructor)</span> is a California native, born at Travis Air Force Base.  Throughout his childhood and youth, he moved with his family and traveled around much of the United States coasts and Europe. Rob's love of theater began in his Maryland high school and continued through much of his time in college. He worked with the Davis Shakespeare Ensemble and was a founding member of Common House Productions, serving for a time as their Production Manager. He currently works full time as a youth director in Vacaville, but this doesn't leave him much time to perform, so he is thrilled that he received the opportunity to work with Tomorrow Youth Repertory to ensure that the love of theater gets carried down to the new generation! 
-
-
-
-											
-										</p>
+										<p class="desc"><img alt="Rob Williamson" class="thumbnail floated-tight" src="img/staff-robw.jpg" /><span class="person">Rob Williamson</span> <span class="title">(Instructor)</span> is a California native, born at Travis Air Force Base.  Throughout his childhood and youth, he moved with his family and traveled around much of the United States coasts and Europe. Rob's love of theater began in his Maryland high school and continued through much of his time in college. He worked with the Davis Shakespeare Ensemble and was a founding member of Common House Productions, serving for a time as their Production Manager. He currently works full time as a youth director in Vacaville, but this doesn't leave him much time to perform, so he is thrilled that he received the opportunity to work with Tomorrow Youth Repertory to ensure that the love of theater gets carried down to the new generation!</p>
 									</div>
 
 									<div class="inlinebox bio row">
-										<p class="desc"><img alt="Cary Litchford" class="thumbnail floated-tight" src="img/staff-cary.jpg" /><span class="person">Cary Litchford</span> <span class="title">(Instructor)</span>  is excited to be returning to TYR for the production of <i>Les Misérables</i> this summer. Last summer, he was the vocal director for TYR’s <i>The Addams Family</i>. Most recently, he was musical director for the Bentley School’s <i>Little Mermaid, Jr.</i> and Saint Joseph’s <i>Chicago</i>. In 2017 he was musical director for TVRT’s <i>Wizard of Oz</i> and Contra Costa Musical Theatre’s <i>Grease</i>. An accomplished musician, he has received critical acclaim and numerous awards for his vocal and orchestral direction on productions throughout the San Francisco Bay Area. Favorite productions as musical director include <i>AIDA</i>, <i>The Best Little Whorehouse in Texas</i>, <i>Cabaret</i>, <i>Jesus Christ Superstar</i>, <i>Joseph and the Amazing Technicolor Dreamcoat</i>, <i>Oliver</i>, <i>Rocky Horror Show</i>, <i>The Secret Garden</i>, <i>Titanic</i>, <i>Tommy and as vocal director for <i>Hair, <i>The King and I</i>, <i>Oklahoma</i>, and <i>Spring Awakening</i>. In addition to musical direction, his professional theater resume includes vocal coach, piano instructor, children’s camp director,and community theater board member.
-										</p>
+										<p class="desc"><img alt="Angel Adedokun" class="thumbnail floated-tight" src="img/staff-angel-a.jpg" /><span class="person">Angel Adedokun</span> <span class="title">(Instructor)</span> is a bilingual vocalist, songwriter, dancer, and choreographer. She has worked with the Latin company MundoBeat Entertainment and was featured as lead singer of Indianapolis Salsa band Grupo Bembe. In 2015, Angel moved from Indianapolis to California and has since jumped into musical theatre and teaching. Her stage credits include Hairspray (Lil Inez) with Footlite Musicals, SILENCE! The Musical (Ardelia Mapp), Jesus Christ Superstar (Peter, Dance Captain), and Hedwig & the Angry Inch (Choreography) with Ray of Light Theatre,  Iron Shoes (Second Girl) with Shotgun Players, and Troop Beverly Heels with Peaches Christ Productions. For more information please visit <a href="Angelnicole.us">Angelnicole.us</a>.</p>
 									</div>
 
 
 
 									<div class="inlinebox bio">
-										<p class="desc"><img alt="Sylvia Burboeck" class="thumbnail floated-tight" src="img/staff-sylvia.jpg" /><span class="person">Sylvia Burboeck</span> <span class="title">(Instructor)</span>  is relatively new to TYR, but not to the wonderful and magical world of theatre. She has been a Bay Area actor for over 20 years, and holds a BA in Theatre from Tulane University. When not helping to bring stories and characters to life, Sylvia is also a Certified Yoga Instructor, with over 15 years of teaching experience. 
-										</p>
+										
 
 										<p class="desc"><span class="person">Gabby Smith</span> <span class="title">(Instructor)</span> is very excited to be a part of the TYR teaching staff. She has been able to try her hand in many aspects of theater, including performing, set building, costume design, stage management, sound, and assisting in staging and choreography. Having been a performer and intern in many past TYR shows, she is thrilled to continue working with this wonderful group. She is currently attending Azusa Pacific University for a major in Theater Arts and minor in Entrepreneurship.</p>
 

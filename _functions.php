@@ -95,4 +95,31 @@ function currentIndexPath($absolute = FALSE) {
 	return $result;
 }
 
+function startsWith($haystack, $needle)
+{
+     $length = strlen($needle);
+     return (substr($haystack, 0, $length) === $needle);
+}
+
+function endsWith($string, $test) {
+    $strlen = strlen($string);
+    $testlen = strlen($test);
+    if ($testlen > $strlen) return false;
+    return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
+}
+
+function dateTo8601($value) {
+	if (!$value) return '';
+	$time = strtotime($value);
+	$value = date('c', $time);
+	return $value;
+}
+
+function datetimeTo8601($value) {
+	if (!$value) return '';
+	$time = strtotime($value);
+	$value = date('c', $time);
+	return $value;
+}
+
 ?>

@@ -12,27 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 $inputs = $_POST;
 unset($inputs['submit']);
 
-function endswith($string, $test) {
-    $strlen = strlen($string);
-    $testlen = strlen($test);
-    if ($testlen > $strlen) return false;
-    return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
-}
-
-function dateTo8601($value) {
-	if (!$value) return '';
-	$time = strtotime($value);
-	$value = date('c', $time);
-	return $value;
-}
-
-function datetimeTo8601($value) {
-	if (!$value) return '';
-	$time = strtotime($value);
-	$value = date('c', $time);
-	return $value;
-}
-
 if (   empty($inputs['type'])
 	|| empty($inputs['title'])
 	|| empty($inputs['season'])
