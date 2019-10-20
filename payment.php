@@ -155,19 +155,15 @@ Shirt will be
 
 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="B6ZNZMYXQGFCC">
+<input type="hidden" name="hosted_button_id" value="9XB6R5FAWMLTJ">
 <table>
 <tr><td><input type="hidden" name="on0" value="Sizes">Sizes</td></tr><tr><td><select name="os0">
-	<option value="Ladies - XS">Ladies - XS $10.00 USD</option>
-	<option value="Ladies - Small">Ladies - Small $10.00 USD</option>
-	<option value="Ladies - Medium">Ladies - Medium $10.00 USD</option>
-	<option value="Ladies - Large">Ladies - Large $10.00 USD</option>
-	<option value="Ladies - XL">Ladies - XL $10.00 USD</option>
-	<option value="Adult - XS">Adult - XS $10.00 USD</option>
-	<option value="Adult - Small">Adult - Small $10.00 USD</option>
-	<option value="Adult - M">Adult - M $10.00 USD</option>
-	<option value="Adult - L">Adult - L $10.00 USD</option>
-	<option value="Adult - XL">Adult - XL $10.00 USD</option>
+<option value="Adult - X-Small">Adult - X-Small $10.00 USD</option>
+<option value="Adult - Small">Adult - Small $10.00 USD</option>
+<option value="Adult - Medium">Adult - Medium $10.00 USD</option>
+<option value="Adult - Large">Adult - Large $10.00 USD</option>
+<option value="Adult - X-Large">Adult - X-Large $10.00 USD</option>
+<option value="Adult - 2X-Large">Adult - 2X-Large $12.00 USD</option>
 </select> </td></tr>
 </table>
 <input type="hidden" name="currency_code" value="USD">
