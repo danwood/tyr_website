@@ -38,7 +38,7 @@ include('_header.php'); ?>
 <?php
 $requestedPage = $_SERVER["REQUEST_URI"];
 if (0 === strpos($requestedPage, '/')) $requestedPage = substr($requestedPage, 1);	// kill first slash
-$n = 0 + isset($_SERVER["REDIRECT_STATUS"]) ?: 0 ;
+$n = 0 + (isset($_SERVER["REDIRECT_STATUS"]) ? $_SERVER["REDIRECT_STATUS"] : 0);
 
 /*
 ErrorDocument 400 /ApacheError.php

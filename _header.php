@@ -29,9 +29,11 @@
 									<li class="page-donate">
 										<a href="<?php echo $root; ?>donate.<?php echo currentExtension(); ?>">Donate</a>
 									</li>
+									<!--
 									<li>
 										<a title="RSS Feed" href="<?php echo $root; ?>index.rss"><img style="margin-bottom:5px;" src="<?php echo $root; ?>img/RSS.png" width="26" height="26" alt="RSS" /></a>
 									</li>
+									-->
 								</ul>
 							</nav>
 							<p class="inlinebox tyr-blurb">

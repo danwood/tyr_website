@@ -694,7 +694,7 @@ class Event
 			}
 			if ($this->isPastArchiveState() && !$this->shouldShowPhoto())
 			{
-				echo '<div class="card-text">Archive coming soon!</div>' . PHP_EOL;
+				echo '<div class="card-text">Archive coming soon! (Got photos from that show?)</div>' . PHP_EOL;
 			}
 			else
 			{

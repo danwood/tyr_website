@@ -4,7 +4,7 @@
 require_once('_functions.php');
 require_once('_classes.php');
 
-include('_globals.php');		// This should rebuild the globals, so we don't have OLD data.
+require_once('_globals.php');		// This should rebuild the globals, so we don't have OLD data.
 
 // Set this global so that we get the right file extension on links to main pages.
 $isRebuilding = true;
@@ -12,10 +12,10 @@ $isRebuilding = true;
 
 // Files to re-build from PHP into HTML
 
-$ignore = array("phpliteadmin.config.php", "phpliteadmin.php", "ApacheError.php",
+$ignore = array("index.rss.php", "phpliteadmin.config.php", "phpliteadmin.php", "ApacheError.php",
 	"reload.php", "index.inline-styles.css.php", "index.ajax.php", "payment.php");
 
-$all = scandir('.');
+$all = scandir($_SERVER["DOCUMENT_ROOT"]);
 
 foreach($all as $file) {
 
@@ -33,6 +33,7 @@ foreach($all as $file) {
 
 	chdir($path_parts['dirname']);
 	ob_start();
+	error_log("_reload.php including: $file");
 	include $file;
 	$htmlToOutput = ob_get_clean();
 
