@@ -58,9 +58,14 @@ $values = read_config();
 <form method="POST" action="updateconfig.php">
 	<table>
 		<tr><td colspan="2"><input type="checkbox" name="payment_tuition"
-			<?php if ($values['payment_tuition']) echo "checked "; ?> /> Tuition</td></tr>
+			<?php if ($values['payment_tuition']) echo "checked "; ?> /> Tuition button #1</td></tr>
 		<tr><th>Show Name</th><td><input name="payment_tuition_name"
 			value="<?php echo htmlspecialchars($values['payment_tuition_name']) ?>" /></td></tr>
+
+		<tr><td colspan="2"><input type="checkbox" name="payment_tuition_2"
+			<?php if ($values['payment_tuition_2']) echo "checked "; ?> /> Tuition button #2 (split-level)</td></tr>
+		<tr><th>Show Name</th><td><input name="payment_tuition_name_2"
+			value="<?php echo htmlspecialchars($values['payment_tuition_name_2']) ?>" /></td></tr>
 
 			<tr><td colspan="2"><hr /></td></tr>
 
