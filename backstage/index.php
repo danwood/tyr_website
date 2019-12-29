@@ -57,18 +57,27 @@ $values = read_config();
 ?>
 <form method="POST" action="updateconfig.php">
 	<table>
+		<tr><td colspan="2"><input type="checkbox" name="payment_tuition"
+			<?php if ($values['payment_tuition']) echo "checked "; ?> /> Tuition</td></tr>
+		<tr><th>Show Name</th><td><input name="payment_tuition_name"
+			value="<?php echo htmlspecialchars($values['payment_tuition_name']) ?>" /></td></tr>
+
+			<tr><td colspan="2"><hr /></td></tr>
+
 		<tr><td colspan="2"><input type="checkbox" name="payment_glossy_program"
 			<?php if ($values['payment_glossy_program']) echo "checked "; ?> /> Glossy Program</td></tr>
 		<tr><th>Show Name</th><td><input name="payment_glossy_name"
 			value="<?php echo htmlspecialchars($values['payment_glossy_name']) ?>" /></td></tr>
 
 			<tr><td colspan="2"><hr /></td></tr>
+			
 		<tr><td colspan="2"><input type="checkbox" name="payment_blackandwhite_program"
 			<?php if ($values['payment_blackandwhite_program']) echo "checked "; ?> /> Black &amp; White Program</td></tr>
 		<tr><th>Show Name</th><td><input name="payment_blackandwhite_name"
 			value="<?php echo htmlspecialchars($values['payment_blackandwhite_name']) ?>" /></td></tr>
 
 			<tr><td colspan="2"><hr /></td></tr>
+
 
 		<tr><td colspan="2"><input type="checkbox" name="payment_tshirt"
 			<?php if ($values['payment_tshirt']) echo "checked "; ?> /> T-Shirt (Mainstage)</td></tr>

@@ -145,35 +145,50 @@ $fullHeader = TRUE;
 include('_header.php'); ?>
 					<main>
 <?php include('_index.main.php'); ?>
+						<div class="gray-block">
+							<section id="actions" class="clearfix capped-width pullbottom">
+								<div class="inlinebox nobottom"><h2>Extra Thanks to our Sponsors</h2></div>
+									<div> <!-- similar elements together, for nth-child -->
+									<div class="inlinebox">
+										<a href="https://thecusackgroup.com/"><img style="max-width:180px" src="img/Market_Cusack Logo.jpg" alt="The Cusack Group" /></a>
+										<p>
+											<a style="color:black" href="https://thecusackgroup.com/">The Cusack Group</a>
+										</p>
+
+									</div>
+
+								</div>
+							</section>
+						</div>
 						<div class="white-block">
 							<section id="actions" class="clearfix capped-width pullbottom">
 								<div class="inlinebox nobottom"><h2>Get Involved with TYR</h2></div>
 									<div> <!-- similar elements together, for nth-child -->
-									<div class="inlinebox action">
-										<h3>Sign up for shows!</h3>
-										<p>
-											How and why to sign your boys and girls for upcoming TYR productions. Get the details about upcoming productions here.
-										</p>
-										<p><a class="button" href="upcoming.<?php echo currentExtension(); ?>">Learn More</a></p>
-									</div>
-									<div class="inlinebox action">
-										<h3>Volunteers Needed</h3>
-										<p>
-											Our shows are awesome… and part of that is thanks to awesome parent volunteers, helping behind the scenes (or behind the stage). Find out how you can get involved too.
-										</p>
-										<p><a class="button" href="volunteer.<?php echo currentExtension(); ?>">Learn More</a></p>
-									</div>
-									<div class="inlinebox action">
-										<h3>Donate</h3>
-										<p>
-											As a non-profit organization, TYR relies on the generosity of donations to keep its programs going and tuition costs reasonable. Your tax-deductible donation, even a small amount, can make a lot of difference.
-										</p>
-										<p><a class="button" href="donate.<?php echo currentExtension(); ?>">Learn More</a></p>
-									</div>
-									<div class="inlinebox action facebook-292">
-										<h3>TYR on Facebook</h3>
-											<iframe class="like-box" src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FTomorrowYouthRep&amp;width=292&amp;height=500&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%;" allowTransparency="true"></iframe>
-									</div>
+										<div class="inlinebox action">
+											<h3>Sign up for shows!</h3>
+											<p>
+												How and why to sign your boys and girls for upcoming TYR productions. Get the details about upcoming productions here.
+											</p>
+											<p><a class="button" href="upcoming.<?php echo currentExtension(); ?>">Learn More</a></p>
+										</div>
+										<div class="inlinebox action">
+											<h3>Volunteers Needed</h3>
+											<p>
+												Our shows are awesome… and part of that is thanks to awesome parent volunteers, helping behind the scenes (or behind the stage). Find out how you can get involved too.
+											</p>
+											<p><a class="button" href="volunteer.<?php echo currentExtension(); ?>">Learn More</a></p>
+										</div>
+										<div class="inlinebox action">
+											<h3>Donate</h3>
+											<p>
+												As a non-profit organization, TYR relies on the generosity of donations to keep its programs going and tuition costs reasonable. Your tax-deductible donation, even a small amount, can make a lot of difference.
+											</p>
+											<p><a class="button" href="donate.<?php echo currentExtension(); ?>">Learn More</a></p>
+										</div>
+										<div class="inlinebox action facebook-292">
+											<h3>TYR on Facebook</h3>
+												<iframe class="like-box" src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FTomorrowYouthRep&amp;width=292&amp;height=500&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%;" allowTransparency="true"></iframe>
+										</div>
 								</div>
 							</section>
 						</div>

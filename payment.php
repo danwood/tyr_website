@@ -37,11 +37,8 @@ include('_header.php'); ?>
 						</section>
 
 
-
-
-
-
 <?php
+
 if ($payment_glossy_program) {
 ?>
 
