@@ -68,6 +68,13 @@ include('_head.php');
 }
 
 
+@media only screen and (min-width:36em)
+{
+	.third { width:33.33%; }
+	.twothirds { width:66.66%; }
+	.half { width:50%; }
+}
+
 
 /*! http://responsiveslides.com v1.55 by @viljamis */
 
@@ -149,12 +156,11 @@ include('_header.php'); ?>
 							<section id="actions" class="clearfix capped-width pullbottom">
 								<div class="inlinebox nobottom"><h2>Extra Thanks to our Sponsors</h2></div>
 									<div> <!-- similar elements together, for nth-child -->
-									<div class="inlinebox">
-										<a href="https://thecusackgroup.com/"><img style="max-width:180px" src="img/Market_Cusack Logo.jpg" alt="The Cusack Group" /></a>
-										<p>
-											<a style="color:black" href="https://thecusackgroup.com/">The Cusack Group</a>
-										</p>
-
+									<div class="inlinebox half">
+										<a href="https://www.alamedaclc.org/"><img style="max-width:100%" src="img/aclc.png" alt="ACLC" /></a>
+									</div>
+									<div class="inlinebox half">
+										<a href="https://www.clcschools.org/page.cfm?p=351"><img style="max-width:100%" src="img/nea.png" alt="NEA" /></a>
 									</div>
 
 								</div>
