@@ -65,13 +65,13 @@ $values = read_config();
 				<?php if ($values['payment_tuition_' . $i]) echo "checked "; ?> /> Tuition button #<?php echo $i; ?>
 			</td>
 		</tr>
-		<tr class="tuition-row-<?php echo $i; ?>" style="display:<?php echo ($values['payment_tuition_' . $i]) ? 'table-row' : 'none'; ?>">
+		<tr class="tuition-row-<?php echo $i; ?>">
 			<th>Show/Class Name</th>
 			<td><input type="text" name="payment_tuition_name_<?php echo $i; ?>"
 			value="<?php echo htmlspecialchars($values['payment_tuition_name_' . $i]) ?>" /></td>
 		</tr>
 
-		<tr class="tuition-row-<?php echo $i; ?>" style="display:<?php echo ($values['payment_tuition_' . $i]) ? 'table-row' : 'none'; ?>">
+		<tr class="tuition-row-<?php echo $i; ?>">
 			<th style="vertical-align: top">PayPal code block</th>
 			<td>
 				<textarea rows="12" cols="60" name="payment_tuition_code_<?php echo $i; ?>"><?php echo htmlspecialchars($values['payment_tuition_code_' . $i]) ?></textarea>
@@ -98,24 +98,24 @@ $values = read_config();
 			<tr><td colspan="2"><hr /></td></tr>
 
 
-		<tr><td><input type="checkbox" name="payment_tshirt"
+		<tr><td><input type="checkbox" class="hiding-checkbox" data-target="tshirt-row-1" name="payment_tshirt"
 			<?php if ($values['payment_tshirt']) echo "checked "; ?> /> T-Shirt (Mainstage)</td></tr>
-		<tr><th>Show Name</th><td><input type="text" name="payment_tshirt_name"
+		<tr class="tshirt-row-1"><th>Show Name</th><td><input type="text" name="payment_tshirt_name"
 			value="<?php echo htmlspecialchars($values['payment_tshirt_name']) ?>" /></td></tr>
-		<tr><th>Color</th><td><input type="text" name="payment_tshirt_color"
+		<tr class="tshirt-row-1"><th>Color</th><td><input type="text" name="payment_tshirt_color"
 			value="<?php echo htmlspecialchars($values['payment_tshirt_color']) ?>" /></td></tr>
-		<tr><th>Style</th><td><input type="checkbox" name="payment_tshirt_twosided"
+		<tr class="tshirt-row-1"><th>Style</th><td><input type="checkbox" name="payment_tshirt_twosided"
 			<?php if ($values['payment_tshirt_twosided']) echo "checked "; ?> /> Two-Sided Design</td></tr>
 
 			<tr><td colspan="2"><hr /></td></tr>
 
-		<tr><td><input type="checkbox" name="payment_tshirt2"
+		<tr><td><input type="checkbox" class="hiding-checkbox" data-target="tshirt-row-2" name="payment_tshirt2"
 			<?php if ($values['payment_tshirt2']) echo "checked "; ?> /> T-Shirt (All-experiences)</td></tr>
-		<tr><th>Show Name</th><td><input type="text" name="payment_tshirt2_name"
+		<tr class="tshirt-row-2"><th>Show Name</th><td><input type="text" name="payment_tshirt2_name"
 			value="<?php echo htmlspecialchars($values['payment_tshirt2_name']) ?>" /></td></tr>
-		<tr><th>Color</th><td><input type="text" name="payment_tshirt2_color"
+		<tr class="tshirt-row-2"><th>Color</th><td><input type="text" name="payment_tshirt2_color"
 			value="<?php echo htmlspecialchars($values['payment_tshirt2_color']) ?>" /></td></tr>
-		<tr><th>Style</th><td><input type="checkbox" name="payment_tshirt2twosided"
+		<tr class="tshirt-row-2"><th>Style</th><td><input type="checkbox" name="payment_tshirt2twosided"
 			<?php if ($values['payment_tshirt2_twosided']) echo "checked "; ?> /> Two-Sided Design</td></tr>
 
 			<tr><td colspan="2"><hr /></td></tr>
@@ -158,12 +158,25 @@ $values = read_config();
 		});
 
 
+		// Show/hide rows related to checkbox
+
 		$( ".hiding-checkbox" ).click(function( event ) {
 			var targetID = $(this).data('target');
 			if ($(this).prop("checked") == true) {
 				$('.' + targetID).show('slow');
 			} else {
 				$('.' + targetID).hide('slow');
+			}
+		});
+
+		// And set up visibility initially
+
+		$( ".hiding-checkbox" ).each(function() {
+			var targetID = $(this).data('target');
+			if ($(this).prop("checked") == true) {
+				$('.' + targetID).show();
+			} else {
+				$('.' + targetID).hide();
 			}
 		});
 
