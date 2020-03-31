@@ -37,68 +37,43 @@ include('_header.php'); ?>
 						</section>
 
 
+<?php
 
-<!-- Manually added -->
+if (isset($payment_tuition_1) || isset($payment_tuition_2) || isset($payment_tuition_3) ) {
+?>
 
 						<section class="clearfix capped-width">
 							<div class="inlinebox">
 
+<?php if (isset($payment_tuition_1) && $payment_tuition_1) { ?>
+<h3><?php echo htmlspecialchars($payment_tuition_name_1); ?></h3>
+<?php echo $payment_tuition_code_1; ?>
+<br />
+<?php } ?>
 
+<?php if (isset($payment_tuition_2) && $payment_tuition_2) { ?>
+<h3><?php echo htmlspecialchars($payment_tuition_name_2); ?></h3>
+<?php echo $payment_tuition_code_2; ?>
+<br />
+<?php } ?>
 
-<h3>Drop-in Improv Classes</h3>
-
-
-<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="DWEP8PU9L2FJA">
-<table>
-<tr><td><input type="hidden" name="on0" value="TUITION for (Student's name)">TUITION for (Student's name)</td></tr><tr><td><input type="text" name="os0" maxlength="200"></td></tr>
-</table>
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-
-
-
-
-
-<h3>5-week Zoom DnD Classes</h3>
-
-
-<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="DWEP8PU9L2FJA">
-<table>
-<tr><td><input type="hidden" name="on0" value="TUITION for (Student's name)">TUITION for (Student's name)</td></tr><tr><td><input type="text" name="os0" maxlength="200"></td></tr>
-</table>
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-
+<?php if (isset($payment_tuition_3) && $payment_tuition_3) { ?>
+<h3><?php echo htmlspecialchars($payment_tuition_name_3); ?></h3>
+<?php echo $payment_tuition_code_3; ?>
+<br />
+<?php } ?>
 
 							</div>
 						</section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<?php
+}
+?>
 
 
 <?php
 
-if ($payment_glossy_program) {
+if (isset($payment_glossy_program) && $payment_glossy_program) {
 ?>
 
 						<section class="clearfix capped-width">
@@ -141,7 +116,7 @@ if ($payment_glossy_program) {
 <?php
 }
 
-if ($payment_blackandwhite_program) {
+if (isset($payment_blackandwhite_program) && $payment_blackandwhite_program) {
 ?>
 
 
@@ -177,7 +152,7 @@ if ($payment_blackandwhite_program) {
 <?php
 }
 
-if ($payment_tshirt) {
+if (isset($payment_tshirt) && $payment_tshirt) {
 ?>
 
 						<section class="clearfix capped-width">
@@ -203,7 +178,7 @@ There are two styles:  Ladies (trimmer cut, with a V-neck) and Youth/Adult (unis
 Shirt will be
 <?php
 	echo htmlspecialchars($payment_tshirt_color);
-	if ($payment_tshirt_twosided) {
+	if (isset($payment_tshirt_twosided) && $payment_tshirt_twosided) {
 		echo ", with design on the front and the back";
 	}
 ?>.
@@ -237,7 +212,7 @@ Shirt will be
 <?php
 }
 
-if ($payment_tshirt2) {
+if (isset($payment_tshirt2) && $payment_tshirt2) {
 ?>
 
 						<section class="clearfix capped-width">
@@ -249,7 +224,7 @@ if ($payment_tshirt2) {
 <h3><?php echo htmlspecialchars($payment_tshirt2_name); ?> T-Shirt</h3>
 
 <?php
-if (!$payment_tshirt) {	// don't show intro text if already introduced above
+if (!isset($payment_tshirt) && !$payment_tshirt) {	// don't show intro text if already introduced above
 ?>
 <p>
 Cast members, buy a shirt for yourself, and extras for your family!
@@ -272,7 +247,7 @@ There are two styles:  Youth and Adult (unisex).
 Shirt will be
 <?php
 	echo htmlspecialchars($payment_tshirt2_color);
-	if ($payment_tshirt2_twosided) {
+	if (isset($payment_tshirt2_twosided) && $payment_tshirt2_twosided) {
 		echo ", with design on the front and the back";
 	}
 ?>.
