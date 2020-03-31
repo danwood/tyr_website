@@ -62,7 +62,7 @@ $values = read_config();
 		<tr>
 			<td>
 				<input type="checkbox" class="hiding-checkbox" data-target="tuition-row-<?php echo $i; ?>" name="payment_tuition_<?php echo $i; ?>"
-				<?php if ($values['payment_tuition_' . $i]) echo "checked "; ?> /> Tuition button #<?php echo $i; ?>
+				<?php if (isset($values['payment_tuition_' . $i]) && $values['payment_tuition_' . $i]) echo "checked "; ?> /> Tuition button #<?php echo $i; ?>
 			</td>
 		</tr>
 		<tr class="tuition-row-<?php echo $i; ?>">
@@ -84,14 +84,14 @@ $values = read_config();
 		<tr><td colspan="2"><hr /></td></tr>
 
 		<tr><td><input type="checkbox" name="payment_glossy_program"
-			<?php if ($values['payment_glossy_program']) echo "checked "; ?> /> Glossy Program</td></tr>
+			<?php if (isset($values['payment_glossy_program']) && $values['payment_glossy_program']) echo "checked "; ?> /> Glossy Program</td></tr>
 		<tr><th>Show Name</th><td><input type="text" name="payment_glossy_name"
 			value="<?php echo htmlspecialchars($values['payment_glossy_name']) ?>" /></td></tr>
 
 			<tr><td><hr /></td></tr>
 			
 		<tr><td><input type="checkbox" name="payment_blackandwhite_program"
-			<?php if ($values['payment_blackandwhite_program']) echo "checked "; ?> /> Black &amp; White Program</td></tr>
+			<?php if (isset($values['payment_blackandwhite_program']) && $values['payment_blackandwhite_program']) echo "checked "; ?> /> Black &amp; White Program</td></tr>
 		<tr><th>Show Name</th><td><input type="text" name="payment_blackandwhite_name"
 			value="<?php echo htmlspecialchars($values['payment_blackandwhite_name']) ?>" /></td></tr>
 
@@ -99,24 +99,24 @@ $values = read_config();
 
 
 		<tr><td><input type="checkbox" class="hiding-checkbox" data-target="tshirt-row-1" name="payment_tshirt"
-			<?php if ($values['payment_tshirt']) echo "checked "; ?> /> T-Shirt (Mainstage)</td></tr>
+			<?php if (isset($values['payment_tshirt']) && $values['payment_tshirt']) echo "checked "; ?> /> T-Shirt (Mainstage)</td></tr>
 		<tr class="tshirt-row-1"><th>Show Name</th><td><input type="text" name="payment_tshirt_name"
 			value="<?php echo htmlspecialchars($values['payment_tshirt_name']) ?>" /></td></tr>
 		<tr class="tshirt-row-1"><th>Color</th><td><input type="text" name="payment_tshirt_color"
 			value="<?php echo htmlspecialchars($values['payment_tshirt_color']) ?>" /></td></tr>
 		<tr class="tshirt-row-1"><th>Style</th><td><input type="checkbox" name="payment_tshirt_twosided"
-			<?php if ($values['payment_tshirt_twosided']) echo "checked "; ?> /> Two-Sided Design</td></tr>
+			<?php if (isset($values['payment_tshirt_twosided']) && $values['payment_tshirt_twosided']) echo "checked "; ?> /> Two-Sided Design</td></tr>
 
 			<tr><td colspan="2"><hr /></td></tr>
 
 		<tr><td><input type="checkbox" class="hiding-checkbox" data-target="tshirt-row-2" name="payment_tshirt2"
-			<?php if ($values['payment_tshirt2']) echo "checked "; ?> /> T-Shirt (All-experiences)</td></tr>
+			<?php if (isset($values['payment_tshirt2']) && $values['payment_tshirt2']) echo "checked "; ?> /> T-Shirt (All-experiences)</td></tr>
 		<tr class="tshirt-row-2"><th>Show Name</th><td><input type="text" name="payment_tshirt2_name"
 			value="<?php echo htmlspecialchars($values['payment_tshirt2_name']) ?>" /></td></tr>
 		<tr class="tshirt-row-2"><th>Color</th><td><input type="text" name="payment_tshirt2_color"
 			value="<?php echo htmlspecialchars($values['payment_tshirt2_color']) ?>" /></td></tr>
-		<tr class="tshirt-row-2"><th>Style</th><td><input type="checkbox" name="payment_tshirt2twosided"
-			<?php if ($values['payment_tshirt2_twosided']) echo "checked "; ?> /> Two-Sided Design</td></tr>
+		<tr class="tshirt-row-2"><th>Style</th><td><input type="checkbox" name="payment_tshirt2_twosided"
+			<?php if (isset($values['payment_tshirt2_twosided']) && $values['payment_tshirt2_twosided']) echo "checked "; ?> /> Two-Sided Design</td></tr>
 
 			<tr><td colspan="2"><hr /></td></tr>
 

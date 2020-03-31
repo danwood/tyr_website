@@ -27,6 +27,8 @@ foreach($all as $file) {
 		continue;
 	}
 
+echo $file . "<br>";
+
 	$event = NULL;		// don't keep around, since it messes up future page loads as a global variable
 
 	$path_parts = pathinfo($file);

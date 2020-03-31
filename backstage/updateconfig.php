@@ -6,18 +6,19 @@ require_once('../_globals.php');
 
 require_once('../_parse_config.php');
 
-$values = read_config();
+$globals = read_config();
+$values = Array();
 
 // Since "off" checkboxes are not included here, and checked items are a string "on" then this needs some merging.
 
-foreach ($values as $key => $value) {
+foreach ($_POST as $key => $value) {
 
+	if ( $value == 'on' ) {
 
-	if ($value === TRUE || $value === FALSE) {
-		$values[$key] = (isset($_POST[$key]) && $_POST[$key] == 'on');
+		$values[$key] = TRUE;
 	}
 	else {
-		if (isset($_POST[$key])) $values[$key] = $_POST[$key];
+		$values[$key] = $_POST[$key];
 	}
 }
 
