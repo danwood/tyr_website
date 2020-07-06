@@ -335,7 +335,7 @@ class Event
 	public function isAuditionShowTypes()		{ return $this->type == TYPE_AUDITION_SHOW || $this->type == TYPE_COMBO_SHOW; }
 	public function isBackstageCampType()		{ return $this->type == TYPE_BACKSTAGE_CAMP; }		// Gets put in a separate list from regular shows
 
-	public function shouldShowLogo()			{ return $this->isUpcomingStates() 	&& !empty($this->logoFilename) && !$this->isBackstageCampType(); }
+	public function shouldShowLogo()			{ return $this->isUpcomingStates() 	&& !empty($this->logoFilename) /* && !$this->isBackstageCampType() */  ; }
 	public function shouldShowLogoPNG()			{ return $this->shouldShowLogo() && pathinfo($this->logoFilename, PATHINFO_EXTENSION) == 'png'; }
 	public function shouldShowPhoto()			{ return $this->isPastArchiveState()		&& !empty($this->photoFilename); }
 	public function photoFilename()				{ return $this->photoFilename; }
