@@ -125,7 +125,7 @@ include('_header.php'); ?>
 
 
 									<div class="inlinebox bio">
-										<p class="desc"><img alt="Niki Jew" class="thumbnail floated-tight" src="img/_________.jpg" /><span class="person">Niki Jew</span> <span class="title">(Instructor)</span> is an Alameda native who grew up performing in the Bay Area. While studying at UCLA, she was heavily involved in HOOLIGAN Theatre Company, both on stage and behind the scenes as a member of creative teams and the development department. Niki began her journey with TYR performing in Footloose back in 2012, and is thrilled to be back as an instructor. She is so excited for this opportunity to share the joys of theatre with others and give back to a community that has given her so much.</p>
+										<p class="desc"><span class="person">Niki Jew</span> <span class="title">(Instructor)</span> is an Alameda native who grew up performing in the Bay Area. While studying at UCLA, she was heavily involved in HOOLIGAN Theatre Company, both on stage and behind the scenes as a member of creative teams and the development department. Niki began her journey with TYR performing in Footloose back in 2012, and is thrilled to be back as an instructor. She is so excited for this opportunity to share the joys of theatre with others and give back to a community that has given her so much.</p>
 									</div>
 
 
