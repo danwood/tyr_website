@@ -6,6 +6,8 @@ require_once('_globals.php');
 include '_Markdown.php';
 include '_MarkdownExtra.php';
 
+include('../_private.php'); // for variables
+
 // http://michelf.ca/projects/php-markdown/configuration/
 
 $event = Event::getSpecifiedEvent(FALSE);		// want an upcoming event
@@ -102,6 +104,22 @@ ul { margin-bottom:1em;}
 $fullHeader = FALSE;
 include('_header.php'); ?>
 					<main>
+<?php
+if (isset($special_message_md) && !empty($special_message_md)) {
+?>
+						<div class="orange-block">
+							<section id="actions" class="clearfix capped-width pullbottom">
+								<div class="inlinebox nobottom">
+									<?php
+										$html = Markdown::defaultTransform($special_message_md);
+										echo $html;
+									?>
+								</div>
+							</section>
+						</div>
+<?php
+}
+?>
 						<section class="clearfix capped-width pullbottom">
 							<div class="inlinebox">
 								<h2>Sign your kids up for TYR!</h2>

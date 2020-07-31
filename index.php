@@ -2,6 +2,9 @@
 require_once('_functions.php');
 require_once('_classes.php');
 require_once('_globals.php');
+include('../_private.php'); // for variables
+include '_Markdown.php';
+include '_MarkdownExtra.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -151,6 +154,22 @@ include('_head.php');
 $fullHeader = TRUE;
 include('_header.php'); ?>
 					<main>
+<?php
+if (isset($special_message_md) && !empty($special_message_md)) {
+?>
+						<div class="orange-block">
+							<section id="actions" class="clearfix capped-width pullbottom">
+								<div class="inlinebox nobottom">
+									<?php
+										$html = Markdown::defaultTransform($special_message_md);
+										echo $html;
+									?>
+								</div>
+							</section>
+						</div>
+<?php
+}
+?>
 <?php include('_index.main.php'); ?>
 						<div class="gray-block">
 							<section id="actions" class="clearfix capped-width pullbottom">

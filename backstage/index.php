@@ -47,15 +47,23 @@ include('../_header.php'); ?>
 
 <p>Advanced: <a href="<?php echo $root; ?>reload.php">Rebuild the web pages</a> (needed after changing the HTML).</p>
 
-						<section id="payment" class="clearfix capped-width">
-							<div class="inlinebox">
-								<h3>Configure <a href="<?php echo $root; ?>pay">Payment Page</a></h3>
-
+<form method="POST" action="updateconfig.php">
 <?php
 $values = read_config();
 // write_config($values);
 ?>
-<form method="POST" action="updateconfig.php">
+						<section id="payment" class="clearfix capped-width">
+							<div class="inlinebox">
+								<h3>Special Message for Home & Signup Pages</h3>
+								<p><i>Be sure to click "Save Changes" below when done. Empty out this field to remove special message.</i></p>
+								<textarea rows="12" cols="60" name="special_message_md"><?php echo htmlspecialchars($values['special_message_md']) ?></textarea>
+							</div>
+						</section>
+
+						<section id="payment" class="clearfix capped-width">
+							<div class="inlinebox">
+								<h3>Configure <a href="<?php echo $root; ?>pay">Payment Page</a></h3>
+
 	<table>
 		<?php for ($i = 1 ; $i <= 3 ; $i++) { ?>
 
@@ -122,13 +130,13 @@ $values = read_config();
 
 		<tr><th><input type="submit" value="Save Changes" /></th></td>
 	</table>
-</form>
 
 
 
 							</div>
 						</section>
 
+</form>
 
 
 					</main>

@@ -30,4 +30,6 @@ $payment_tshirt2_twosided = TRUE;
 $payment_tshirt2_name = 'XXX';
 $payment_tshirt2_color = 'XXX';
 
+$special_message_md = 'XXX'
+
 ?>
