@@ -851,19 +851,21 @@ class Event
 			}
 			else
 			{
-				if (!$this->isSpecialEventTypes())
-				{
-					if ($this->signupEndDate)
-					{
-						$deadlineToShow = date('l, F j', $this->signupEndDate);
-					}
-					else
-					{
-						$deadlineToShow = "first rehearsal";
-					}
-					echo '<p><b>Registration:</b> Registration must be received by ' . $deadlineToShow . '.'
-						. '</p>' . PHP_EOL;
-				}
+				// Take this section out per Tyler request
+				
+				// if (!$this->isSpecialEventTypes())
+				// {
+				// 	if ($this->signupEndDate)
+				// 	{
+				// 		$deadlineToShow = date('l, F j', $this->signupEndDate);
+				// 	}
+				// 	else
+				// 	{
+				// 		$deadlineToShow = "first rehearsal";
+				// 	}
+				// 	echo '<p><b>Registration:</b> Registration must be received by ' . $deadlineToShow . '.'
+				// 		. '</p>' . PHP_EOL;
+				// }
 			}
 
 			if ($this->classDays || $this->startTime || $this->endTime || $this->rehearsalStartDate)
