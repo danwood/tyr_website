@@ -1056,7 +1056,13 @@ class Event
 
 		if ($this->isBeforeSignupTypes())
 		{
-			echo "<p><b>Registration will open " . date('F j', $this->signupStartDate) . "</b></p>\n";
+			if ($this->signupStartDate)
+			{
+				echo "<p><b>Registration will open " . date('F j', $this->signupStartDate) . "</b></p>\n";
+			}
+			else {
+				echo "<p><b>Registration will open soon. Please check back later.</b></p>\n";
+			}
 		}
 
 		$googleCalendarURL = trim($this->googleCalendarURL);
