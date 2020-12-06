@@ -3,8 +3,8 @@ require_once('_functions.php');
 require_once('_classes.php');
 require_once('_globals.php');
 include('../_private.php'); // for variables
-include '_Markdown.php';
-include '_MarkdownExtra.php';
+require_once('_Markdown.php');
+require_once('_MarkdownExtra.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -174,14 +174,18 @@ if (isset($special_message_md) && !empty($special_message_md)) {
 						<div class="gray-block">
 							<section id="actions" class="clearfix capped-width pullbottom">
 								<div class="inlinebox nobottom"><h2>Extra Thanks to our Sponsors</h2></div>
-									<div> <!-- similar elements together, for nth-child -->
+								<div> <!-- similar elements together, for nth-child -->
+
+									<div class="inlinebox center">
+										<a href="https://www.fruitvaleoptometry.com/"><img style="max-width:600px; padding:20px; background:white" src="img/fruitvale-optometry.png" alt="Fruitvale Optometry - Doctor de los ojos" /></a>
+									</div>
+									
 									<div class="inlinebox half">
 										<a href="https://www.alamedaclc.org/"><img style="max-width:100%" src="img/aclc.png" alt="ACLC" /></a>
 									</div>
 									<div class="inlinebox half">
 										<a href="https://www.clcschools.org/page.cfm?p=351"><img style="max-width:100%" src="img/nea.png" alt="NEA" /></a>
 									</div>
-
 								</div>
 							</section>
 						</div>

@@ -3,8 +3,8 @@ require_once('_functions.php');
 require_once('_classes.php');
 require_once('_globals.php');
 
-include '_Markdown.php';
-include '_MarkdownExtra.php';
+require_once('_Markdown.php');
+require_once('_MarkdownExtra.php');
 
 include('../_private.php'); // for variables
 
