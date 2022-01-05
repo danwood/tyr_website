@@ -32,19 +32,33 @@ class Event
     	global $urlBase;
     	global $staging;
 
-	    foreach($rowAssoc as $key => $value) {
+    	$newAssoc = $rowAssoc;
+		// Guarantee that the first and last dates will be set.  They might be equivalent though.
+ 		if (!$newAssoc['showLastDate']) $newAssoc['showLastDate'] = $newAssoc['showFirstDate'];	// For one-day performances, now we don't have to specify date twice
+ 		if (!$newAssoc['showFirstDate']) $newAssoc['showFirstDate'] = $newAssoc['showLastDate'];	// Be forgiving the other way around too.
 
-//	        if ($staging) error_log("$key : $value");
+	    foreach($newAssoc as $key => $value) {
+
+			if ($staging) error_log("$key : $value");
 
 	    	if (FALSE !== strpos($key, 'Date')) {
 	    		if (empty($value)) {
 	    			$value = 0;
-//	    			if ($staging) error_log(@"Empty $key");
+					if ($staging) error_log(@"Empty $key");
 	    		}
 	    		else {
-	    			$value = strtotime($value);
+	    			if ($key == 'showLastDate') {
+
+						if ($staging) error_log("showLastDate ====== WAS $value");
+						// Adjust last date to end of day
+						$value = strtotime(date('Y-m-d',strtotime($value)).' 23:59:59');
+						if ($staging) error_log("changed showLastDate to " . $value);
+
+	    			} else {
+	    				$value = strtotime($value);
+	    			}
 	    		}
-//	        if ($staging) error_log("$key CHANGED TO : $value");
+	        if ($staging) error_log("$key CHANGED TO TIMESTAMP : $value");
 	    	}
 	        $this->{$key} = $value;
 	    }
@@ -52,12 +66,6 @@ class Event
 // Dates, datetimes need to be loaded from strtotime()
 //
 //
-
-// Guarantee that the first and last dates will be set.  They might be equivalent though.
-
- 		if (!$this->showLastDate) $this->showLastDate = $this->showFirstDate;	// For one-day performances, now we don't have to specify date twice
- 		if (!$this->showFirstDate) $this->showFirstDate = $this->showLastDate;	// Be forgiving the other way around too.
-
  		if (!$this->auditionDateTime2) $this->auditionDateTime2 = $this->auditionDateTime1;	// For one-day auditions, now we don't have to specify date twice
  		if (!$this->auditionDateTime1) $this->auditionDateTime1 = $this->auditionDateTime2;	// Be forgiving the other way around too.
 
@@ -87,7 +95,7 @@ class Event
 			$thisDate = $this->{$key};
 			if ($thisDate)
 			{
-				// error_log($key . ' = ' . date('c', $thisDate));
+				if ($staging) error_log($key . ' = ' . date('c', $thisDate));
 				if ($now >= $thisDate)
 							// Assume date has time embedded if we want to not switch until time in that day?
 				{
@@ -563,17 +571,22 @@ class Event
 				}
 				else if (!$this->isBackstageCampType())
 				{
-					if ($this->isShowOpenTypes())
+					$openingDate = strtotime(date('Y-m-d',$this->showFirstDate));
+					$closingDate = strtotime(date('Y-m-d',$this->showLastDate));
+					if ($staging) {
+						error_log("~~~~~~ comparing " . $openingDate . " with " . $closingDate );
+					}
+					if ($openingDate == $closingDate)
+					{
+						$date = 'Performance ' . smartDate('M j', $this->showFirstDate);
+					}
+					else if ($this->isShowOpenTypes())
 					{
 						$date = 'Closing ' . smartDate('M j', $this->showLastDate);
 					}
-					else if ($this->showLastDate != $this->showFirstDate)
-					{
-						$date = 'Opening ' . smartDate('M j', $this->showFirstDate);
-					}
 					else
 					{
-						$date = 'Performance ' . smartDate('M j', $this->showFirstDate);
+						$date = 'Opening ' . smartDate('M j', $this->showFirstDate);
 					}
 				}
 			}

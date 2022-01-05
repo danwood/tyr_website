@@ -125,7 +125,7 @@ $urlBase = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 //error_log('referer = ' . $_SERVER['HTTP_REFERER']);
 
 $staging = ($_SERVER['HTTP_HOST'] == 'staging.tomorrowyouthrep.org');
-$staging |= ($_SERVER['HTTP_HOST'] == 'localhost');
+$staging |= ($_SERVER['HTTP_HOST'] == 'localhost:8080');
 
 $now = time();
 if (isset($_GET['when']))

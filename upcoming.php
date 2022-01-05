@@ -198,10 +198,7 @@ If you have any questions, please contact <a href="mailto:programs@tomorrowyouth
 							<div class="inlinebox" style="text-align:center; margin-top:20px;">
 								Keep up with upcoming shows via <a href="http://www.facebook.com/TomorrowYouthRep">Facebook</a>&nbsp;
 <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FTomorrowYouthRep&amp;width=90&amp;height=21&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;send=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px; margin-bottom:-6px" allowTransparency="true"></iframe>
-								and our email&nbsp;newsletter:
-								<form style="display:inline" action="https://twitter.us18.list-manage.com/subscribe/post?u=1c0864a107a09d1dc43e63a4a&amp;id=c80246feaa" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-									<input placeholder="Your email address" style="width:11em" type="email" name="EMAIL" class="required email" id="mce-EMAIL">&nbsp;<span class="visuallyhidden" aria-hidden="true"><input type="text" name="b_1c0864a107a09d1dc43e63a4a_c80246feaa" tabindex="-1" value=""></span><input type="submit" value="Subscribe" id="mc-embedded-subscribe" class="button" />
-								</form>
+								and our <a href="http://eepurl.com/dM4Ynw">email&nbsp;newsletter.</a>
 							</div>
 
 							<div class="inlinebox third down front">

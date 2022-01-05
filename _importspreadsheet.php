@@ -85,6 +85,7 @@ foreach ($eventAssocArrays as $eventAssoc)		// don't use ampersand here, there w
  	if ($showLastDate) {
 		// Adjust last date to end of day
 		$showLastDate = date('c', strtotime(date('Y-m-d',strtotime($showLastDate)).' 23:59:59'));
+		if ($staging) error_log("I changed showLastDate to $showLastDate");
 	}
 
 	if ($suffix == 'TYR Mainstage Presents') {

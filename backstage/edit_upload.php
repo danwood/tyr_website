@@ -53,6 +53,9 @@ if (! in_array($type, array('logo', 'photo', 'poster', 'signup', 'recruiting', '
 
 $uploadedFiles = $_FILES['file'];
 
+// REALLY COMPLICATED LOGIC FOR UPLOADING A BATCH OF MULTIPLE PHOTOS ALL AT ONCE …
+//
+//
 // Get the current value of the property, which may have a number in it
 $propertyName = $_POST['property'];
 $prop = $reflector->getProperty($propertyName);
@@ -83,7 +86,7 @@ for($i = 0; $i < count($uploadedFiles['name']); $i++){
 
 		$thisFileValue = (integer) $matches[0];
 	}
-    if ($thisFileValue >= $maxFileValue) {
+    if ($thisFileValue >= $maxFileValue || count($uploadedFiles['name']) == 1) {	// ALWAYS USE GIVEN FILENAME IF JUST ONE
     	$maxFileValue = $thisFileValue;
     	$maxFilename = $currentFilename;
     }
@@ -123,7 +126,7 @@ for($i = 0; $i < count($uploadedFiles['name']); $i++){
    			$pathToSized = $showsTypeAndYearSlash . $currentFilename;
    			$fullPathToSized = $root . $pathToSized;
 
-   			$put = file_put_contents($fullPathToSized, 'ImageMagick did not work');
+   			$put = file_put_contents($fullPathToSized, 'ImageMagick did not work');	// 24 bytes long
 
    			// Photos: We want 608x342.  Tight JPEG compression.
 			if ($type == 'photo' || $type == 'recruiting')
@@ -132,17 +135,22 @@ for($i = 0; $i < count($uploadedFiles['name']); $i++){
 				$phMagick->debug = TRUE;
 				$phMagick->setImageQuality(75);			// Used to be 50, but since I may be optimizing, go ahead and get a better quality
 				$phMagick->resizeExactly(608,342);
-				//error_log(print_r($phMagick->getLog(), 1));
+				error_log(print_r($phMagick->getLog(), 1));
 			}
 			else 	// logo, we want 544 wide.
 			{
 				$phMagick = new phMagick($pathToOriginal, $fullPathToSized);
 				$phMagick->setImageQuality(75);			// Used to be 50, but since I may be optimizing, go ahead and get a better quality
 				$phMagick->resize(544);
-				//error_log(print_r($phMagick->getLog(), 1));
+				error_log(print_r($phMagick->getLog(), 1));
 			}
 			$currentLink = $pathToSized;
 
+			$fileSize = filesize($fullPathToSized);
+			if ($fileSize < 50) {						// tiny file means just our placeholder contents
+    			$errorMessage = "Somehow ImageMagic didn't convert the file you uploaded";
+    			goto giveup;
+    		}
    		}
     }
     else if ($mimeType == 'application/pdf' && ($type == 'signup' || $type == 'poster'))		// seems to be an PDF, and correct type
