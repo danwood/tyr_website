@@ -176,16 +176,13 @@ if (isset($special_message_md) && !empty($special_message_md)) {
 								<div class="inlinebox nobottom"><h2>Extra Thanks to our Sponsors</h2></div>
 								<div> <!-- similar elements together, for nth-child -->
 
-									<div class="inlinebox center">
-										<a href="https://www.fruitvaleoptometry.com/"><img style="max-width:600px; padding:20px; background:white" src="img/fruitvale-optometry.png" alt="Fruitvale Optometry - Doctor de los ojos" /></a>
+									<div class="inlinebox half">
+										<a href="https://www.denhardtproductions.com/"><img style="max-width:100%; padding:20px; background:white" src="img/denhardt.png" alt="Denhardt Productions" /></a>
+									</div>
+									<div class="inlinebox half">
+										<a href="https://www.fruitvaleoptometry.com/"><img style="max-width:100%; padding:20px; background:white" src="img/fruitvale-optometry.png" alt="Fruitvale Optometry - Doctor de los ojos" /></a>
 									</div>
 									
-									<div class="inlinebox half">
-										<a href="https://www.alamedaclc.org/"><img style="max-width:100%" src="img/aclc.png" alt="ACLC" /></a>
-									</div>
-									<div class="inlinebox half">
-										<a href="https://www.clcschools.org/page.cfm?p=351"><img style="max-width:100%" src="img/nea.png" alt="NEA" /></a>
-									</div>
 								</div>
 							</section>
 						</div>
