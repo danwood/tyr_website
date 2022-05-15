@@ -127,7 +127,7 @@ foreach ($inputs as $key => $value) {
 
 
 $db->close();
-$db->backup();
+$db->backup_data();
 
 include('../_reload.php');	// not a function, and not called from a function, so all globals work right.
 

@@ -124,7 +124,7 @@ if (isset($special_message_md) && !empty($special_message_md)) {
 							<div class="inlinebox">
 								<h2>Sign your kids up for TYR!</h2>
 <p>
-	Tomorrow Youth Repertory classes are a fantastic way for your children to learn new skills, and to build on their current abilities.  But just as importantly, they are a wonderful opportunity to make new friends, and to learn the value of team-work.  Tomorrow Youth Repertory classes emphasize community building, and teach young actors to appreciate that everyone around them is valuable and important.  We strive to create a welcoming environment in which boys and girls from differing backgrounds and levels of experience can come together and learn to interact positively — and have a lot of fun in the process!
+	Tomorrow Youth Repertory classes are a fantastic way for your children to learn new skills, and to build on their current abilities.  But just as importantly, they are a wonderful opportunity to make new friends, and to learn the value of team-work.  Tomorrow Youth Repertory classes emphasize community building, and teach young actors to appreciate that everyone around them is valuable and important.  We strive to create a welcoming environment in which kids from differing backgrounds and levels of experience can come together and learn to interact positively — and have a lot of fun in the process!
 </p>
 <p>
 	We have camps and classes year-round — ranging from acting and vocal classes to full-on productions.  We strive to be constantly providing opportunities for every experience level.  Take a look at what’s coming up:

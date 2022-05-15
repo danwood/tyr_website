@@ -42,6 +42,7 @@ echo $file . "<br>";
 	$newfile = $path_parts['filename'] . '.html';
 	$bytesWritten = file_put_contents($newfile, $htmlToOutput);
 	if (!$bytesWritten) {
+		print("Unable to write to $newfile");
 		error_log("Unable to write to $newfile");
 	}
 }

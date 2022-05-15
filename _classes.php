@@ -12,7 +12,7 @@ class MyDB extends SQLite3
         $this->open($dbPath, SQLITE3_OPEN_READWRITE);
     }
 
-    function backup()
+    function backup_data()
     {
 		$dbPath = $_SERVER['DOCUMENT_ROOT'] . '/db/tyr.sqlite3';
 		$copyPath = $_SERVER['DOCUMENT_ROOT'] . '/db/backup.' . date('Y-m-d.G;i;s') . '.sqlite3';
@@ -1081,7 +1081,7 @@ class Event
 		$googleCalendarURL = trim($this->googleCalendarURL);
 		if ($googleCalendarURL)
 		{
-			echo '<p><a href="' . htmlspecialchars($googleCalendarURL) . '">Schedule — Google Calendar</a>';
+			echo '<p><a href="' . htmlspecialchars($googleCalendarURL) . '">Schedule — Google Calendar</a>';
 
 			$matched = preg_match('/src=(.+)&/', $googleCalendarURL, $matches);
 			if ($matched)

@@ -9,7 +9,7 @@ require_once('_globals.php');
 <?php
 $base='';
 $root='';
-$title='Tomorrow Youth Rep — Payment';
+$title='Tomorrow Youth Rep — Payment';
 $description='Make an online payment to Tomorrow Youth Rep';
 include('_head.php');
 include('../_private.php'); // for variables
@@ -101,7 +101,7 @@ if (isset($payment_glossy_program) && $payment_glossy_program) {
 </table>
 <br />
 <br />
-• Remember to add 'Layout Service' to your cart also, if you would like us to create your ad for you.
+• Remember to add 'Layout Service' to your cart also, if you would like us to create your ad for you.
 <br />
 <br />
 <input type="hidden" name="currency_code" value="USD">
@@ -167,7 +167,7 @@ if (isset($payment_tshirt) && $payment_tshirt) {
 Cast members, buy a shirt for yourself, and extras for your family!
 </p>
 <p>
-You can order multiple shirts if you want — pick a size and add to cart, then before you check out,
+You can order multiple shirts if you want — pick a size and add to cart, then before you check out,
 go "back" to this page to add additional shirts to your cart.
 </p>
 <p>
@@ -230,7 +230,7 @@ if (!isset($payment_tshirt) && !$payment_tshirt) {	// don't show intro text if a
 Cast members, buy a shirt for yourself, and extras for your family!
 </p>
 <p>
-You can order multiple shirts if you want — pick a size and add to cart, then before you check out,
+You can order multiple shirts if you want — pick a size and add to cart, then before you check out,
 go "back" to this page to add additional shirts to your cart.
 </p>
 

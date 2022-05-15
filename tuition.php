@@ -9,7 +9,7 @@ require_once('_globals.php');
 <?php
 $base='';
 $root='';
-$title='Tomorrow Youth Rep — Tuition';
+$title='Tomorrow Youth Rep — Tuition';
 $description='Make an online tuition payment to Tomorrow Youth Rep';
 include('_head.php');
 include('../_private.php'); // for variables

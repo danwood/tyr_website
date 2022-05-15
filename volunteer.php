@@ -9,7 +9,7 @@ require_once('_globals.php');
 <?php
 $base='';
 $root='';
-$title='Tomorrow Youth Rep — Volunteer';
+$title='Tomorrow Youth Rep — Volunteer';
 $description='How parents and community members can help out and get involved with Tomorrow Youth Repertory in Alameda, CA.';
 include('_head.php');
 ?>
@@ -72,7 +72,7 @@ Interesting in helping out more directly with a show? We can certainly use your 
 </p>
 							<h3>Teen Interns</h3>
 <p>
-	In many of our shows, the experience for the kids has been enhanced by the presence of teenage or even pre-teen “intern” volunteers — often alumni of other TYR shows — who generously give of their time to help the younger kids with social games, blocking scenes, practicing their lines, and having a good time.
+	In many of our shows, the experience for the kids has been enhanced by the presence of teenage or even pre-teen “intern” volunteers — often alumni of other TYR shows — who generously give of their time to help the younger kids with social games, blocking scenes, practicing their lines, and having a good time.
 </p>
 <h3 style="clear:left">Get in touch</h3>
 <p>

@@ -193,14 +193,14 @@ if (isset($special_message_md) && !empty($special_message_md)) {
 										<div class="inlinebox action">
 											<h3>Sign up for shows!</h3>
 											<p>
-												How and why to sign your boys and girls for upcoming TYR productions. Get the details about upcoming productions here.
+												How and why to sign your kids for upcoming TYR productions. Get the details about upcoming productions here.
 											</p>
 											<p><a class="button" href="upcoming.<?php echo currentExtension(); ?>">Learn More</a></p>
 										</div>
 										<div class="inlinebox action">
 											<h3>Volunteers Needed</h3>
 											<p>
-												Our shows are awesome… and part of that is thanks to awesome parent volunteers, helping behind the scenes (or behind the stage). Find out how you can get involved too.
+												Our shows are awesome… and part of that is thanks to awesome parent volunteers, helping behind the scenes (or behind the stage). Find out how you can get involved too.
 											</p>
 											<p><a class="button" href="volunteer.<?php echo currentExtension(); ?>">Learn More</a></p>
 										</div>
